@@ -1,13 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_node.dart";
-import "actor_path.dart";
-import "math/vec2d.dart";
-import "path_point.dart";
-import "stream_reader.dart";
-
 const double circleConstant = 0.55;
 
 class ActorEllipse extends ActorProceduralPath {

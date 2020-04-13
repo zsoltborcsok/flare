@@ -1,12 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import 'actor_component.dart';
-import "actor_node.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class ActorBoneBase extends ActorNode {
   double _length;
 

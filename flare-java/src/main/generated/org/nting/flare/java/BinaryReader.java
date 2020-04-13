@@ -1,8 +1,5 @@
 package org.nting.flare.java;
 
-import 'dart:typed_data';
-import "stream_reader.dart";
-
 /// Implementation of StreamReader that reads binary data.
 abstract class BinaryReader implements StreamReader {
   ByteData _raw;

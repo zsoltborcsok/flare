@@ -1,10 +1,5 @@
 package org.nting.flare.java;
 
-import 'package:flare_dart/actor_artboard.dart';
-
-import 'actor_component.dart';
-import 'stream_reader.dart';
-
 abstract class ActorLayerEffect extends ActorComponent {
   bool _isActive;
 

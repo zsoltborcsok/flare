@@ -1,11 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_bone_base.dart";
-import "actor_component.dart";
-import "jelly_component.dart";
-import "stream_reader.dart";
-
 class ActorBone extends ActorBoneBase {
   ActorBone _firstBone;
   JellyComponent jelly;

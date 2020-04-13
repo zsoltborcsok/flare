@@ -9,7 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 public class DartToJava {
 
@@ -19,7 +22,27 @@ public class DartToJava {
 
     public static void main(String[] args) {
         // renameDartFiles(Paths.get(RELATIVE_PATH));
-        addPackageDefinition(Paths.get(RELATIVE_PATH));
+        // addPackageDefinition(Paths.get(RELATIVE_PATH));
+        removeImports(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void removeImports(Path pathToFiles) {
+        try (Stream<Path> javaFiles = Files.walk(pathToFiles).filter(path -> path.toString().endsWith(".java"))) {
+            javaFiles.forEach(path -> {
+                try {
+                    List<String> lines = Files.readAllLines(path);
+                    lines = lines.stream().filter(line -> !(line.startsWith("import ") && line.endsWith(";"))).collect(Collectors.toList());
+                    while (2 < lines.size() && isNullOrEmpty(lines.get(2))) {
+                        lines.remove(2);
+                    }
+                    Files.write(path, lines);
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            });
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
     private static void addPackageDefinition(Path pathToFiles) {

@@ -1,17 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:typed_data";
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_node.dart";
-import "actor_shape.dart";
-import "actor_skinnable.dart";
-import "math/aabb.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "path_point.dart";
-import "stream_reader.dart";
-
 abstract class ActorBasePath {
   ActorShape _shape;
 

@@ -1,17 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:math";
-import "actor_artboard.dart";
-import "actor_bone.dart";
-import "actor_component.dart";
-import "actor_constraint.dart";
-import "actor_jelly_bone.dart";
-import "actor_node.dart";
-import "actor_root_bone.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class JellyComponent extends ActorComponent {
   static const int jellyMax = 16;
   static double optimalDistance = 4.0 * (sqrt(2.0) - 1.0) / 3.0;

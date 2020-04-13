@@ -1,10 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_bone_base.dart";
-import "actor_component.dart";
-import "stream_reader.dart";
-
 class ActorJellyBone extends ActorBoneBase {
   @override
   ActorComponent makeInstance(ActorArtboard artboard) {

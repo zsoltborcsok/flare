@@ -1,17 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:collection";
-import "dart:typed_data";
-
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_flags.dart";
-import "actor_node.dart";
-import "actor_shape.dart";
-import 'math/mat2d.dart';
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 enum FillRule { evenOdd, nonZero }
 enum StrokeCap { butt, round, square }
 enum StrokeJoin { miter, round, bevel }

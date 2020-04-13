@@ -1,47 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:math";
-import "dart:typed_data";
-
-import 'package:flare_dart/actor_layer_effect_renderer.dart';
-
-import "actor.dart";
-import 'actor_blur.dart';
-import "actor_bone.dart";
-import "actor_color.dart";
-import "actor_component.dart";
-import "actor_distance_constraint.dart";
-import "actor_drawable.dart";
-import "actor_ellipse.dart";
-import "actor_event.dart";
-import "actor_flags.dart";
-import "actor_ik_constraint.dart";
-import "actor_image.dart";
-import "actor_jelly_bone.dart";
-import 'actor_mask.dart';
-import "actor_node.dart";
-import "actor_node_solo.dart";
-import "actor_path.dart";
-import "actor_polygon.dart";
-import "actor_rectangle.dart";
-import "actor_root_bone.dart";
-import "actor_rotation_constraint.dart";
-import "actor_scale_constraint.dart";
-import 'actor_shadow.dart';
-import "actor_shape.dart";
-import "actor_skin.dart";
-import "actor_star.dart";
-import "actor_transform_constraint.dart";
-import "actor_translation_constraint.dart";
-import "actor_triangle.dart";
-import "animation/actor_animation.dart";
-import "block_types.dart";
-import "dependency_sorter.dart";
-import "jelly_component.dart";
-import "math/aabb.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class ActorArtboard {
   int _flags = ActorFlags.isDrawOrderDirty;
   int _drawableNodeCount = 0;

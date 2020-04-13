@@ -1,9 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "stream_reader.dart";
-
 class ActorEvent extends ActorComponent {
   static ActorComponent read(ActorArtboard artboard, StreamReader reader,
       ActorEvent component) {

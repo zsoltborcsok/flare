@@ -1,12 +1,5 @@
 package org.nting.flare.java;
 
-import 'package:flare_dart/actor_skin.dart';
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_node.dart";
-import "math/mat2d.dart";
-import "stream_reader.dart";
-
 class SkinnedBone {
   int boneIdx;
   ActorNode node;

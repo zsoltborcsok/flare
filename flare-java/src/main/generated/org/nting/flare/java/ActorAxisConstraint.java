@@ -1,10 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_targeted_constraint.dart";
-import "stream_reader.dart";
-import "transform_space.dart";
-
 abstract class ActorAxisConstraint extends ActorTargetedConstraint {
   bool _copyX = false;
   bool _copyY = false;

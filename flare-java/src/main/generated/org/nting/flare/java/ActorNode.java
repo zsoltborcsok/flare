@@ -1,15 +1,5 @@
 package org.nting.flare.java;
 
-import 'package:flare_dart/actor_layer_effect_renderer.dart';
-
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_constraint.dart";
-import "actor_flags.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 typedef bool ComopnentWalkCallback(ActorComponent component);
 
 class ActorClip {

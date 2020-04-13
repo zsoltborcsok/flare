@@ -1,10 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_constraint.dart";
-import "stream_reader.dart";
-
 abstract class ActorTargetedConstraint extends ActorConstraint {
   int _targetIdx;
   ActorComponent _target;

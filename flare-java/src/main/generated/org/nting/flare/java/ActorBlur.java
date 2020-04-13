@@ -1,10 +1,5 @@
 package org.nting.flare.java;
 
-import 'actor_artboard.dart';
-import 'actor_component.dart';
-import 'actor_layer_effect.dart';
-import 'stream_reader.dart';
-
 class ActorBlur extends ActorLayerEffect {
   double blurX;
   double blurY;

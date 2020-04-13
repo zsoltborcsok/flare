@@ -1,11 +1,5 @@
 package org.nting.flare.java;
 
-import 'dart:typed_data';
-
-import 'actor_artboard.dart';
-import 'actor_blur.dart';
-import 'stream_reader.dart';
-
 abstract class ActorShadow extends ActorBlur {
   double offsetX;
   double offsetY;

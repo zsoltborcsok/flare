@@ -1,14 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_axis_constraint.dart";
-import 'actor_component.dart';
-import "actor_node.dart";
-import "math/mat2d.dart";
-import "math/transform_components.dart";
-import "stream_reader.dart";
-import "transform_space.dart";
-
 class ActorScaleConstraint extends ActorAxisConstraint {
   final TransformComponents _componentsA = TransformComponents();
   final TransformComponents _componentsB = TransformComponents();

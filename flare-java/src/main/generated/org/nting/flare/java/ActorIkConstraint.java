@@ -1,16 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:math";
-import "actor_artboard.dart";
-import "actor_bone.dart";
-import "actor_component.dart";
-import "actor_node.dart";
-import "actor_targeted_constraint.dart";
-import "math/mat2d.dart";
-import "math/transform_components.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class InfluencedBone {
   int boneIdx;
   ActorBone bone;

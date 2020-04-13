@@ -1,13 +1,5 @@
 package org.nting.flare.java;
 
-import 'dart:collection';
-
-import 'actor_artboard.dart';
-import 'actor_component.dart';
-import 'actor_layer_effect.dart';
-import 'actor_node.dart';
-import 'stream_reader.dart';
-
 enum MaskType { alpha, invertedAlpha, luminance, invertedLuminance }
 
 HashMap<int, MaskType> maskTypeLookup = HashMap<int, MaskType>.fromIterables([

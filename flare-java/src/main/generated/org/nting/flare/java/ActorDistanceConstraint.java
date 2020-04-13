@@ -1,12 +1,5 @@
 package org.nting.flare.java;
 
-import "actor_artboard.dart";
-import "actor_node.dart";
-import "actor_targeted_constraint.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class DistanceMode {
   static const int closer = 0;
   static const int further = 1;

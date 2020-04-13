@@ -1,12 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:typed_data";
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_constraint.dart";
-import "actor_skinnable.dart";
-import "math/mat2d.dart";
-
 class ActorSkin extends ActorComponent {
   Float32List _boneMatrices;
 

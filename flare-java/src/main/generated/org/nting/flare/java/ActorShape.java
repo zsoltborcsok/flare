@@ -1,16 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:math";
-import "actor_artboard.dart";
-import "actor_color.dart";
-import "actor_component.dart";
-import "actor_drawable.dart";
-import "actor_path.dart";
-import "math/aabb.dart";
-import "math/mat2d.dart";
-import "math/vec2d.dart";
-import "stream_reader.dart";
-
 class ActorShape extends ActorDrawable {
   final List<ActorBasePath> _paths = <ActorBasePath>[];
   final List<ActorStroke> _strokes = <ActorStroke>[];

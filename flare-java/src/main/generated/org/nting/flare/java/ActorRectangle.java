@@ -1,15 +1,5 @@
 package org.nting.flare.java;
 
-import 'dart:math';
-
-import "actor_artboard.dart";
-import "actor_component.dart";
-import "actor_node.dart";
-import "actor_path.dart";
-import "math/vec2d.dart";
-import "path_point.dart";
-import "stream_reader.dart";
-
 class ActorRectangle extends ActorProceduralPath {
   double _radius = 0.0;
 

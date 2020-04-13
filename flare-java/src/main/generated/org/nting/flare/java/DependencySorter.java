@@ -1,8 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:collection";
-import "actor_component.dart";
-
 class DependencySorter {
   HashSet<ActorComponent> _perm;
   HashSet<ActorComponent> _temp;

@@ -1,9 +1,5 @@
 package org.nting.flare.java;
 
-import 'actor_artboard.dart';
-import 'actor_component.dart';
-import 'actor_shadow.dart';
-
 class ActorDropShadow extends ActorShadow {
   @override
   int get blendModeId => 0;

@@ -1,15 +1,5 @@
 package org.nting.flare.java;
 
-import "dart:math";
-import "actor_artboard.dart";
-import 'actor_component.dart';
-import "actor_node.dart";
-import "actor_targeted_constraint.dart";
-import "math/mat2d.dart";
-import "math/transform_components.dart";
-import "stream_reader.dart";
-import "transform_space.dart";
-
 const pi2 = pi * 2;
 
 class ActorTransformConstraint extends ActorTargetedConstraint {
