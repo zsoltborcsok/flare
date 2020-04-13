@@ -21,7 +21,7 @@ public class ActorSkin extends ActorComponent {
       List<SkinnedBone> connectedBones = skinnable.connectedBones;
       int length = (connectedBones.length + 1) * 6;
       if (_boneMatrices == null || _boneMatrices.length != length) {
-        _boneMatrices = Float32List(length);
+        _boneMatrices = new Float32List(length);
         // First bone transform is always identity.
         _boneMatrices[0] = 1.0;
         _boneMatrices[1] = 0.0;
@@ -33,7 +33,7 @@ public class ActorSkin extends ActorComponent {
 
       int bidx = 6; // Start after first identity.
 
-      Mat2D mat = Mat2D();
+      Mat2D mat = new Mat2D();
 
       for (final SkinnedBone cb in connectedBones) {
         if (cb.node == null) {
@@ -85,7 +85,7 @@ public class ActorSkin extends ActorComponent {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorSkin instance = ActorSkin();
+    ActorSkin instance = new ActorSkin();
     instance.copyComponent(this, resetArtboard);
     return instance;
   }

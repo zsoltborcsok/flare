@@ -8,7 +8,7 @@ public class ActorPolygon extends ActorProceduralPath {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorPolygon instance = ActorPolygon();
+    ActorPolygon instance = new ActorPolygon();
     instance.copyPolygon(this, resetArtboard);
     return instance;
   }
@@ -20,7 +20,7 @@ public class ActorPolygon extends ActorProceduralPath {
 
   static ActorPolygon read(ActorArtboard artboard, StreamReader reader,
       ActorPolygon component) {
-    component ??= ActorPolygon();
+    component ??= new ActorPolygon();
 
     ActorNode.read(artboard, reader, component);
 

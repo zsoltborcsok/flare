@@ -6,7 +6,7 @@ public class ActorBlur extends ActorLayerEffect {
 
   static ActorBlur read(ActorArtboard artboard, StreamReader reader,
       ActorBlur component) {
-    component ??= ActorBlur();
+    component ??= new ActorBlur();
     ActorLayerEffect.read(artboard, reader, component);
     component.blurX = reader.readFloat32("blurX");
     component.blurY = reader.readFloat32("blurY");
@@ -27,7 +27,7 @@ public class ActorBlur extends ActorLayerEffect {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorBlur instanceNode = ActorBlur();
+    ActorBlur instanceNode = new ActorBlur();
     instanceNode.copyBlur(this, resetArtboard);
     return instanceNode;
   }

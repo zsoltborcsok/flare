@@ -3,14 +3,14 @@ package org.nting.flare.java;
 public class ActorJellyBone extends ActorBoneBase {
   @override
   ActorComponent makeInstance(ActorArtboard artboard) {
-    ActorJellyBone instanceNode = ActorJellyBone();
+    ActorJellyBone instanceNode = new ActorJellyBone();
     instanceNode.copyBoneBase(this, artboard);
     return instanceNode;
   }
 
   static ActorJellyBone read(ActorArtboard artboard, StreamReader reader,
       ActorJellyBone node) {
-    node ??= ActorJellyBone();
+    node ??= new ActorJellyBone();
 
     // The Jelly Bone has a specialized read that doesn't go down the typical
     // node path, this is because majority of the transform properties

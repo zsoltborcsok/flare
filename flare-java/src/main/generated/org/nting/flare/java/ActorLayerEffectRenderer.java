@@ -110,7 +110,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
     var masks = parent.children.whereType<ActorMask>().toList(growable: false);
 
     for (final mask in masks) {
-      var renderMask = ActorLayerEffectRendererMask(mask);
+      var renderMask = new ActorLayerEffectRendererMask(mask);
       mask.source?.all((child) {
         if (child == parent) {
           // recursive mask was selected

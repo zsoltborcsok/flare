@@ -7,7 +7,7 @@ public abstract class StreamReader {
   factory StreamReader(dynamic data) {
     StreamReader reader;
     if (data is ByteData) {
-      reader = BlockReader(data);
+      reader = new BlockReader(data);
       // Move the readIndex forward for the binary reader.
       reader.readUint8("F");
       reader.readUint8("L");
@@ -15,7 +15,7 @@ public abstract class StreamReader {
       reader.readUint8("R");
       reader.readUint8("E");
     } else if (data is Map) {
-      reader = JSONBlockReader(data);
+      reader = new JSONBlockReader(data);
     }
     return reader;
   }

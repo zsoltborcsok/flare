@@ -57,7 +57,7 @@ public abstract class ActorPaint extends ActorComponent {
 }
 
 public abstract class ActorColor extends ActorPaint {
-  Float32List _color = Float32List(4);
+  Float32List _color = new Float32List(4);
 
   Float32List get color {
     return _color;

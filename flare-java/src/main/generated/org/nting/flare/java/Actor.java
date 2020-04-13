@@ -41,39 +41,39 @@ public abstract class Actor {
   }
 
   ActorArtboard makeArtboard() {
-    return ActorArtboard(this);
+    return new ActorArtboard(this);
   }
 
   ActorImage makeImageNode() {
-    return ActorImage();
+    return new ActorImage();
   }
 
   ActorPath makePathNode() {
-    return ActorPath();
+    return new ActorPath();
   }
 
   ActorShape makeShapeNode(ActorShape source) {
-    return ActorShape();
+    return new ActorShape();
   }
 
   ActorRectangle makeRectangle() {
-    return ActorRectangle();
+    return new ActorRectangle();
   }
 
   ActorTriangle makeTriangle() {
-    return ActorTriangle();
+    return new ActorTriangle();
   }
 
   ActorStar makeStar() {
-    return ActorStar();
+    return new ActorStar();
   }
 
   ActorPolygon makePolygon() {
-    return ActorPolygon();
+    return new ActorPolygon();
   }
 
   ActorEllipse makeEllipse() {
-    return ActorEllipse();
+    return new ActorEllipse();
   }
 
   ColorFill makeColorFill();
@@ -98,7 +98,7 @@ public abstract class Actor {
 
   Future<bool> load(ByteData data, dynamic context) async {
     if (data.lengthInBytes < 5) {
-      throw UnsupportedError("Not a valid Flare file.");
+      throw new UnsupportedError("Not a valid Flare file.");
     }
 
     bool success = true;
@@ -120,7 +120,7 @@ public abstract class Actor {
       inputData = jsonObject;
     }
 
-    StreamReader reader = StreamReader(inputData);
+    StreamReader reader = new StreamReader(inputData);
     _version = reader.readVersion();
 
     StreamReader block;

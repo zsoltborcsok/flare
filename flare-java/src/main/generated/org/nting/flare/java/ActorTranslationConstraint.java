@@ -5,7 +5,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
 
   static ActorTranslationConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorTranslationConstraint component) {
-    component ??= ActorTranslationConstraint();
+    component ??= new ActorTranslationConstraint();
     ActorAxisConstraint.read(artboard, reader, component);
 
     return component;
@@ -13,7 +13,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorTranslationConstraint node = ActorTranslationConstraint();
+    ActorTranslationConstraint node = new ActorTranslationConstraint();
     node.copyAxisConstraint(this, resetArtboard);
     return node;
   }
@@ -26,7 +26,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
 
     Mat2D transformA = parent.worldTransform;
     Vec2D translationA = Vec2D.fromValues(transformA[4], transformA[5]);
-    Vec2D translationB = Vec2D();
+    Vec2D translationB = new Vec2D();
 
     if (t == null) {
       Vec2D.copy(translationB, translationA);
@@ -35,7 +35,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
       if (sourceSpace == TransformSpace.local) {
         ActorNode sourceGrandParent = t.parent;
         if (sourceGrandParent != null) {
-          Mat2D inverse = Mat2D();
+          Mat2D inverse = new Mat2D();
           Mat2D.invert(inverse, sourceGrandParent.worldTransform);
           Mat2D.multiply(transformB, inverse, transformB);
         }
@@ -75,7 +75,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
         minMaxSpace == TransformSpace.local && grandParent != null;
     if (clampLocal) {
       // Apply min max in local space, so transform to local coordinates first.
-      Mat2D temp = Mat2D();
+      Mat2D temp = new Mat2D();
       Mat2D.invert(temp, grandParent.worldTransform);
       // Get our target world coordinates in parent local.
       Vec2D.transformMat2D(translationB, translationB, temp);

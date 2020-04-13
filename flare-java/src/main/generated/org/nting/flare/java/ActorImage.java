@@ -92,7 +92,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     if (value) {
       if (_animationDeformedVertices == null ||
           _animationDeformedVertices.length != _vertexCount * 2) {
-        _animationDeformedVertices = Float32List(vertexCount * 2);
+        _animationDeformedVertices = new Float32List(vertexCount * 2);
         // Copy the deform verts from the rig verts.
         int writeIdx = 0;
         int readIdx = 0;
@@ -124,7 +124,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
   static ActorImage read(ActorArtboard artboard, StreamReader reader,
       ActorImage node) {
-    node ??= ActorImage();
+    node ??= new ActorImage();
 
     ActorDrawable.read(artboard, reader, node);
     ActorSkinnable.read(artboard, reader, node);
@@ -148,7 +148,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
       }
 
       int numTris = reader.readUint32("numTriangles");
-      node._triangles = Uint16List(numTris * 3);
+      node._triangles = new Uint16List(numTris * 3);
       node._triangleCount = numTris;
       node._triangles = reader.readUint16Array(numTris * 3, "triangles");
     }
@@ -164,10 +164,10 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //       reader.openArray("frames");
 //       int frameAssetCount = reader.readUint16Length();
 //       // node._sequenceFrames = [];
-//       Float32List uvs = Float32List(node._vertexCount * 2 * frameAssetCount);
+//       Float32List uvs = new Float32List(node._vertexCount * 2 * frameAssetCount);
 //       int uvStride = node._vertexCount * 2;
 //       node._sequenceUVs = uvs;
-//       SequenceFrame firstFrame = SequenceFrame(node._textureIndex, 0);
+//       SequenceFrame firstFrame = new SequenceFrame(node._textureIndex, 0);
 //       node._sequenceFrames = List<SequenceFrame>();
 //       node._sequenceFrames.add(firstFrame);
 //       int readIdx = 2;
@@ -240,11 +240,11 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //   }
 
   Float32List makeVertexPositionBuffer() {
-    return Float32List(_vertexCount * 2);
+    return new Float32List(_vertexCount * 2);
   }
 
   Float32List makeVertexUVBuffer() {
-    return Float32List(_vertexCount * 2);
+    return new Float32List(_vertexCount * 2);
   }
 
   void transformDeformVertices(Mat2D wt) {

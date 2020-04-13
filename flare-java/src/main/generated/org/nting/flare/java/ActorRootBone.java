@@ -23,14 +23,14 @@ public class ActorRootBone extends ActorNode {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorRootBone instanceNode = ActorRootBone();
+    ActorRootBone instanceNode = new ActorRootBone();
     instanceNode.copyNode(this, resetArtboard);
     return instanceNode;
   }
 
   static ActorRootBone read(ActorArtboard artboard, StreamReader reader,
       ActorRootBone node) {
-    node ??= ActorRootBone();
+    node ??= new ActorRootBone();
     ActorNode.read(artboard, reader, node);
     return node;
   }

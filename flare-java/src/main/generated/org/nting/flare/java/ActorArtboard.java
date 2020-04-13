@@ -14,12 +14,12 @@ public class ActorArtboard {
   List<ActorComponent> _dependencyOrder;
   Actor _actor;
   String _name;
-  final Vec2D _translation = Vec2D();
+  final Vec2D _translation = new Vec2D();
   double _width = 0.0;
   double _height = 0.0;
-  final Vec2D _origin = Vec2D();
+  final Vec2D _origin = new Vec2D();
   bool _clipContents = true;
-  final Float32List _color = Float32List(4);
+  final Float32List _color = new Float32List(4);
   double _modulateOpacity = 1.0;
   Float32List _overrideColor;
 
@@ -93,7 +93,7 @@ public class ActorArtboard {
   }
 
   void sortDependencies() {
-    DependencySorter sorter = DependencySorter();
+    DependencySorter sorter = new DependencySorter();
     _dependencyOrder = sorter.sort(_root);
     int graphOrder = 0;
     for (final ActorComponent component in _dependencyOrder) {
@@ -525,7 +525,7 @@ public class ActorArtboard {
           break;
 
         case BlockTypes.actorSkin:
-          component = ActorComponent.read(this, nodeBlock, ActorSkin());
+          component = ActorComponent.read(this, nodeBlock, new ActorSkin());
           break;
 
         case BlockTypes.actorLayerEffectRenderer:
@@ -534,7 +534,7 @@ public class ActorArtboard {
           break;
 
         case BlockTypes.actorMask:
-          component = ActorMask.read(this, nodeBlock, ActorMask());
+          component = ActorMask.read(this, nodeBlock, new ActorMask());
           break;
 
         case BlockTypes.actorBlur:
@@ -602,7 +602,7 @@ public class ActorArtboard {
 
   AABB computeAABB() {
     if (_drawableNodes == null) {
-      return AABB();
+      return new AABB();
     }
 
     AABB aabb;

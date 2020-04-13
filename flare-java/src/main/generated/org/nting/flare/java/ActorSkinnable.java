@@ -26,7 +26,7 @@ public abstract class ActorSkinnable {
       node._connectedBones = List<SkinnedBone>(numConnectedBones);
 
       for (int i = 0; i < numConnectedBones; i++) {
-        SkinnedBone bc = SkinnedBone();
+        SkinnedBone bc = new SkinnedBone();
         reader.openObject("bone");
         bc.boneIdx = reader.readId("component");
         Mat2D.copyFromList(bc.bind, reader.readFloat32Array(6, "bind"));
@@ -35,7 +35,7 @@ public abstract class ActorSkinnable {
         node._connectedBones[i] = bc;
       }
       reader.closeArray();
-      Mat2D worldOverride = Mat2D();
+      Mat2D worldOverride = new Mat2D();
       Mat2D.copyFromList(
           worldOverride, reader.readFloat32Array(6, "worldTransform"));
       node.worldTransformOverride = worldOverride;
@@ -60,7 +60,7 @@ public abstract class ActorSkinnable {
       _connectedBones = List<SkinnedBone>(node._connectedBones.length);
       for (int i = 0; i < node._connectedBones.length; i++) {
         SkinnedBone from = node._connectedBones[i];
-        SkinnedBone bc = SkinnedBone();
+        SkinnedBone bc = new SkinnedBone();
         bc.boneIdx = from.boneIdx;
         Mat2D.copy(bc.bind, from.bind);
         Mat2D.copy(bc.inverseBind, from.inverseBind);

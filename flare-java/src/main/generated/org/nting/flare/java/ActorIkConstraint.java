@@ -57,12 +57,12 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     _fkChain = List<BoneChain>(count);
     int idx = count - 1;
     while (end != null && end != start.parent) {
-      BoneChain bc = BoneChain();
+      BoneChain bc = new BoneChain();
       bc.bone = end as ActorBone;
       bc.angle = 0.0;
       bc.included = allIn;
-      bc.transformComponents = TransformComponents();
-      bc.parentWorldInverse = Mat2D();
+      bc.transformComponents = new TransformComponents();
+      bc.parentWorldInverse = new Mat2D();
       bc.index = idx;
       _fkChain[idx--] = bc;
       end = end.parent;
@@ -127,7 +127,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   static ActorIKConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorIKConstraint component) {
-    component ??= ActorIKConstraint();
+    component ??= new ActorIKConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
     component._invertDirection = reader.readBool("isInverted");
 
@@ -137,7 +137,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
       component._influencedBones = List<InfluencedBone>(numInfluencedBones);
 
       for (int i = 0; i < numInfluencedBones; i++) {
-        InfluencedBone ib = InfluencedBone();
+        InfluencedBone ib = new InfluencedBone();
         ib.boneIdx = reader.readId(
           // No label here, we're just clearing the elements from the array.
             "");
@@ -154,7 +154,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     if (target == null) {
       return;
     }
-    Vec2D worldTargetTranslation = Vec2D();
+    Vec2D worldTargetTranslation = new Vec2D();
     target.getWorldTranslation(worldTargetTranslation);
 
     if (_influencedBones.isEmpty) {
@@ -244,7 +244,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   void solve1(BoneChain fk1, Vec2D worldTargetTranslation) {
     Mat2D iworld = fk1.parentWorldInverse;
-    var pA = Vec2D();
+    var pA = new Vec2D();
     fk1.bone.getWorldTranslation(pA);
     var pBT = Vec2D.clone(worldTargetTranslation);
 
@@ -333,7 +333,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   @override
   ActorComponent makeInstance(ActorArtboard artboard) {
-    ActorIKConstraint instance = ActorIKConstraint();
+    ActorIKConstraint instance = new ActorIKConstraint();
     instance.copyIKConstraint(this, artboard);
     return instance;
   }
@@ -345,7 +345,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     if (node._influencedBones != null) {
       _influencedBones = List<InfluencedBone>(node._influencedBones.length);
       for (int i = 0; i < _influencedBones.length; i++) {
-        InfluencedBone ib = InfluencedBone();
+        InfluencedBone ib = new InfluencedBone();
         ib.boneIdx = node._influencedBones[i].boneIdx;
         _influencedBones[i] = ib;
       }

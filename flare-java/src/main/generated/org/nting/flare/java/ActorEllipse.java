@@ -5,7 +5,7 @@ const double circleConstant = 0.55;
 public class ActorEllipse extends ActorProceduralPath {
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorEllipse instance = ActorEllipse();
+    ActorEllipse instance = new ActorEllipse();
     instance.copyPath(this, resetArtboard);
     return instance;
   }
@@ -15,7 +15,7 @@ public class ActorEllipse extends ActorProceduralPath {
 
   static ActorEllipse read(ActorArtboard artboard, StreamReader reader,
       ActorEllipse component) {
-    component ??= ActorEllipse();
+    component ??= new ActorEllipse();
 
     ActorNode.read(artboard, reader, component);
 

@@ -5,14 +5,14 @@ const pi2 = pi * 2;
 public class ActorTransformConstraint extends ActorTargetedConstraint {
   int _sourceSpace = TransformSpace.world;
   int _destSpace = TransformSpace.world;
-  final TransformComponents _componentsA = TransformComponents();
-  final TransformComponents _componentsB = TransformComponents();
+  final TransformComponents _componentsA = new TransformComponents();
+  final TransformComponents _componentsB = new TransformComponents();
 
   ActorTransformConstraint() : super();
 
   static ActorTransformConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorTransformConstraint component) {
-    component ??= ActorTransformConstraint();
+    component ??= new ActorTransformConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
 
     component._sourceSpace = reader.readUint8("sourceSpaceId");
@@ -23,7 +23,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorTransformConstraint node = ActorTransformConstraint();
+    ActorTransformConstraint node = new ActorTransformConstraint();
     node.copyTransformConstraint(this, resetArtboard);
     return node;
   }
@@ -49,7 +49,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
     if (_sourceSpace == TransformSpace.local) {
       ActorNode grandParent = target.parent;
       if (grandParent != null) {
-        Mat2D inverse = Mat2D();
+        Mat2D inverse = new Mat2D();
         Mat2D.invert(inverse, grandParent.worldTransform);
         Mat2D.multiply(transformB, inverse, transformB);
       }

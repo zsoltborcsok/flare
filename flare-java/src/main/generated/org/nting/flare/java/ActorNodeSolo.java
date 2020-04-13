@@ -28,7 +28,7 @@ public class ActorNodeSolo extends ActorNode {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorNodeSolo soloInstance = ActorNodeSolo();
+    ActorNodeSolo soloInstance = new ActorNodeSolo();
     soloInstance.copySolo(this, resetArtboard);
     return soloInstance;
   }
@@ -40,7 +40,7 @@ public class ActorNodeSolo extends ActorNode {
 
   static ActorNodeSolo read(ActorArtboard artboard, StreamReader reader,
       ActorNodeSolo node) {
-    node ??= ActorNodeSolo();
+    node ??= new ActorNodeSolo();
 
     ActorNode.read(artboard, reader, node);
     node._activeChildIndex = reader.readUint32("activeChild");

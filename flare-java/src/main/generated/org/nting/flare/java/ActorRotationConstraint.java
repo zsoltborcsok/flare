@@ -13,12 +13,12 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
   int _sourceSpace = TransformSpace.world;
   int _destSpace = TransformSpace.world;
   int _minMaxSpace = TransformSpace.world;
-  final TransformComponents _componentsA = TransformComponents();
-  final TransformComponents _componentsB = TransformComponents();
+  final TransformComponents _componentsA = new TransformComponents();
+  final TransformComponents _componentsB = new TransformComponents();
 
   static ActorRotationConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorRotationConstraint component) {
-    component ??= ActorRotationConstraint();
+    component ??= new ActorRotationConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
     component._copy = reader.readBool("copy");
     if (component._copy) {
@@ -47,7 +47,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
     ActorNode grandParent = parent.parent;
 
     Mat2D transformA = parent.worldTransform;
-    Mat2D transformB = Mat2D();
+    Mat2D transformB = new Mat2D();
     Mat2D.decompose(transformA, _componentsA);
     if (target == null) {
       Mat2D.copy(transformB, transformA);
@@ -62,7 +62,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
       if (_sourceSpace == TransformSpace.local) {
         ActorNode sourceGrandParent = target.parent;
         if (sourceGrandParent != null) {
-          Mat2D inverse = Mat2D();
+          Mat2D inverse = new Mat2D();
           if (!Mat2D.invert(inverse, sourceGrandParent.worldTransform)) {
             return;
           }
@@ -98,7 +98,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
     if (clampLocal) {
       // Apply min max in local space, so transform to local coordinates first.
       Mat2D.compose(transformB, _componentsB);
-      Mat2D inverse = Mat2D();
+      Mat2D inverse = new Mat2D();
       if (!Mat2D.invert(inverse, grandParent.worldTransform)) {
         return;
       }
@@ -139,7 +139,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorRotationConstraint instance = ActorRotationConstraint();
+    ActorRotationConstraint instance = new ActorRotationConstraint();
     instance.copyRotationConstraint(this, resetArtboard);
     return instance;
   }

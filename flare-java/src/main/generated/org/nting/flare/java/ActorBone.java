@@ -10,7 +10,7 @@ public class ActorBone extends ActorBoneBase {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorBone instanceNode = ActorBone();
+    ActorBone instanceNode = new ActorBone();
     instanceNode.copyBoneBase(this, resetArtboard);
     return instanceNode;
   }
@@ -31,7 +31,7 @@ public class ActorBone extends ActorBoneBase {
 
   static ActorBone read(ActorArtboard artboard, StreamReader reader,
       ActorBone node) {
-    node ??= ActorBone();
+    node ??= new ActorBone();
     ActorBoneBase.read(artboard, reader, node);
     return node;
   }

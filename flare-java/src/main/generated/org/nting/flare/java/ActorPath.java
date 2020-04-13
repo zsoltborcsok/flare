@@ -263,7 +263,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     int length = points.fold<int>(0, (int previous, PathPoint point) {
       return previous + 2 + (point.pointType == PointType.straight ? 1 : 4);
     });
-    Float32List vertices = Float32List(length);
+    Float32List vertices = new Float32List(length);
     int readIdx = 0;
     for (final PathPoint point in points) {
       vertices[readIdx++] = point.translation[0];
@@ -320,7 +320,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
   static ActorPath read(ActorArtboard artboard, StreamReader reader,
       ActorPath component) {
-    component ??= ActorPath();
+    component ??= new ActorPath();
     ActorNode.read(artboard, reader, component);
     ActorSkinnable.read(artboard, reader, component);
 
@@ -337,17 +337,17 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
       switch (type) {
         case PointType.straight:
           {
-            point = StraightPathPoint();
+            point = new StraightPathPoint();
             break;
           }
         default:
           {
-            point = CubicPathPoint(type);
+            point = new CubicPathPoint(type);
             break;
           }
       }
       if (point == null) {
-        throw UnsupportedError("Invalid point type " + type.toString());
+        throw new UnsupportedError("Invalid point type " + type.toString());
       } else {
         point.read(reader, component.isConnectedToBones);
       }
@@ -361,7 +361,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorPath instanceEvent = ActorPath();
+    ActorPath instanceEvent = new ActorPath();
     instanceEvent.copyPath(this, resetArtboard);
     return instanceEvent;
   }

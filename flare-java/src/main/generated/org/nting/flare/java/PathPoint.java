@@ -17,7 +17,7 @@ HashMap<int, PointType>.fromIterables([
 
 public abstract class PathPoint {
   PointType _type;
-  Vec2D _translation = Vec2D();
+  Vec2D _translation = new Vec2D();
   Float32List _weights;
 
   PathPoint(PointType type) {
@@ -79,7 +79,7 @@ public class StraightPathPoint extends PathPoint {
 
   @override
   PathPoint makeInstance() {
-    StraightPathPoint node = StraightPathPoint();
+    StraightPathPoint node = new StraightPathPoint();
     node.copyStraight(this);
     return node;
   }
@@ -100,7 +100,7 @@ public class StraightPathPoint extends PathPoint {
 
   @override
   PathPoint skin(Mat2D world, Float32List bones) {
-    StraightPathPoint point = StraightPathPoint()
+    StraightPathPoint point = new StraightPathPoint()
       ..radius = radius;
 
     double px =
@@ -161,7 +161,7 @@ public class CubicPathPoint extends PathPoint {
 
   @override
   PathPoint makeInstance() {
-    CubicPathPoint node = CubicPathPoint(_type);
+    CubicPathPoint node = new CubicPathPoint(_type);
     node.copyCubic(this);
     return node;
   }
@@ -192,7 +192,7 @@ public class CubicPathPoint extends PathPoint {
 
   @override
   PathPoint skin(Mat2D world, Float32List bones) {
-    CubicPathPoint point = CubicPathPoint(pointType);
+    CubicPathPoint point = new CubicPathPoint(pointType);
 
     double px =
         world[0] * translation[0] + world[2] * translation[1] + world[4];

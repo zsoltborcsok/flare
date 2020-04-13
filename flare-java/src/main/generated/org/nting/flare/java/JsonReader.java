@@ -43,7 +43,7 @@ public abstract class JSONReader implements StreamReader {
   // Reads the array into ar
   @override
   Float32List readFloat32Array(int length, String label) {
-    var ar = Float32List(length);
+    var ar = new Float32List(length);
     _readArray(ar, label);
     return ar;
   }
@@ -92,14 +92,14 @@ public abstract class JSONReader implements StreamReader {
 
   @override
   Uint8List readUint8Array(int length, String label) {
-    var ar = Uint8List(length);
+    var ar = new Uint8List(length);
     _readArray(ar, label);
     return ar;
   }
 
   @override
   Uint16List readUint16Array(int length, String label) {
-    var ar = Uint16List(length);
+    var ar = new Uint16List(length);
     _readArray(ar, label);
     return ar;
   }

@@ -23,7 +23,7 @@ public class ActorBoneBase extends ActorNode {
   }
 
   Vec2D getTipWorldTranslation(Vec2D vec) {
-    Mat2D transform = Mat2D();
+    Mat2D transform = new Mat2D();
     transform[4] = _length;
     Mat2D.multiply(transform, worldTransform, transform);
     vec[0] = transform[4];

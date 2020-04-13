@@ -106,23 +106,23 @@ public class JellyComponent extends ActorComponent {
   ActorNode get outTarget => _inTarget;
 
   JellyComponent() {
-    _inPoint = Vec2D();
-    _inDirection = Vec2D();
-    _outPoint = Vec2D();
-    _outDirection = Vec2D();
-    _cachedTip = Vec2D();
-    _cachedOut = Vec2D();
-    _cachedIn = Vec2D();
+    _inPoint = new Vec2D();
+    _inDirection = new Vec2D();
+    _outPoint = new Vec2D();
+    _outDirection = new Vec2D();
+    _cachedTip = new Vec2D();
+    _cachedOut = new Vec2D();
+    _cachedIn = new Vec2D();
 
     _jellyPoints = List<Vec2D>(jellyMax + 1);
     for (var i = 0; i <= jellyMax; i++) {
-      _jellyPoints[i] = Vec2D();
+      _jellyPoints[i] = new Vec2D();
     }
   }
 
   @override
   ActorComponent makeInstance(ActorArtboard artboard) {
-    JellyComponent instance = JellyComponent();
+    JellyComponent instance = new JellyComponent();
     instance.copyJelly(this, artboard);
     return instance;
   }
@@ -219,7 +219,7 @@ public class JellyComponent extends ActorComponent {
 
   static JellyComponent read(ActorArtboard artboard, StreamReader reader,
       JellyComponent node) {
-    node ??= JellyComponent();
+    node ??= new JellyComponent();
     ActorComponent.read(artboard, reader, node);
 
     node._easeIn = reader.readFloat32("easeIn");
@@ -254,7 +254,7 @@ public class JellyComponent extends ActorComponent {
     _cachedScaleIn = _scaleIn;
     _cachedScaleOut = _scaleOut;
 
-    Vec2D q0 = Vec2D();
+    Vec2D q0 = new Vec2D();
     Vec2D q1 = _inPoint;
     Vec2D q2 = _outPoint;
     Vec2D q3 = tipPosition;
@@ -311,7 +311,7 @@ public class JellyComponent extends ActorComponent {
       parentBoneJelly = parentBone.jelly;
     }
 
-    Mat2D inverseWorld = Mat2D();
+    Mat2D inverseWorld = new Mat2D();
     if (!Mat2D.invert(inverseWorld, bone.worldTransform)) {
       return;
     }

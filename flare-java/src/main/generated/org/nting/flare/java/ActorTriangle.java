@@ -6,14 +6,14 @@ public class ActorTriangle extends ActorProceduralPath {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorTriangle instance = ActorTriangle();
+    ActorTriangle instance = new ActorTriangle();
     instance.copyPath(this, resetArtboard);
     return instance;
   }
 
   static ActorTriangle read(ActorArtboard artboard, StreamReader reader,
       ActorTriangle component) {
-    component ??= ActorTriangle();
+    component ??= new ActorTriangle();
 
     ActorNode.read(artboard, reader, component);
 

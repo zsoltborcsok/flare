@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +27,22 @@ public class DartToJava {
         // renameDartFiles(Paths.get(RELATIVE_PATH));
         // addPackageDefinition(Paths.get(RELATIVE_PATH));
         // removeImports(Paths.get(RELATIVE_PATH));
-        makeClassesPublic(Paths.get(RELATIVE_PATH));
+        // makeClassesPublic(Paths.get(RELATIVE_PATH));
+        insertNewKeywords(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void insertNewKeywords(Path pathToFiles) {
+        Pattern pattern = Pattern.compile("\\s[A-Z]+[a-zA-Z_0-9]*\\(");
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find()) {
+                String start = line.substring(0, matcher.start());
+                if (start.endsWith("return") || start.endsWith("throw") || start.endsWith("=") || start.endsWith(",")) {
+                    return start + " new" + line.substring(matcher.start());
+                }
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void makeClassesPublic(Path pathToFiles) {

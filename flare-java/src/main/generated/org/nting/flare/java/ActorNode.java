@@ -18,10 +18,10 @@ public class ActorNode extends ActorComponent {
   List<ActorComponent> _children;
 
   //List<ActorNode> m_Dependents;
-  Mat2D _transform = Mat2D();
-  Mat2D _worldTransform = Mat2D();
+  Mat2D _transform = new Mat2D();
+  Mat2D _worldTransform = new Mat2D();
 
-  Vec2D _translation = Vec2D();
+  Vec2D _translation = new Vec2D();
   double _rotation = 0.0;
   Vec2D _scale = Vec2D.fromValues(1.0, 1.0);
   double _opacity = 1.0;
@@ -252,7 +252,7 @@ public class ActorNode extends ActorComponent {
 
   static ActorNode read(ActorArtboard artboard, StreamReader reader,
       ActorNode node) {
-    node ??= ActorNode();
+    node ??= new ActorNode();
     ActorComponent.read(artboard, reader, node);
     Vec2D.copyFromList(
         node._translation, reader.readFloat32Array(2, "translation"));
@@ -267,7 +267,7 @@ public class ActorNode extends ActorComponent {
       node._clips = List<ActorClip>(clipCount);
       for (int i = 0; i < clipCount; i++) {
         reader.openObject("clip");
-        var clip = ActorClip(reader.readId("node"));
+        var clip = new ActorClip(reader.readId("node"));
         if (artboard.actor.version >= 23) {
           clip.intersect = reader.readBool("intersect");
         }
@@ -298,7 +298,7 @@ public class ActorNode extends ActorComponent {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorNode instanceNode = ActorNode();
+    ActorNode instanceNode = new ActorNode();
     instanceNode.copyNode(this, resetArtboard);
     return instanceNode;
   }

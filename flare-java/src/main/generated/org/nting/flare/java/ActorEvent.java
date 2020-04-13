@@ -3,7 +3,7 @@ package org.nting.flare.java;
 public class ActorEvent extends ActorComponent {
   static ActorComponent read(ActorArtboard artboard, StreamReader reader,
       ActorEvent component) {
-    component ??= ActorEvent();
+    component ??= new ActorEvent();
 
     ActorComponent.read(artboard, reader, component);
 
@@ -12,7 +12,7 @@ public class ActorEvent extends ActorComponent {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorEvent instanceEvent = ActorEvent();
+    ActorEvent instanceEvent = new ActorEvent();
     instanceEvent.copyComponent(this, resetArtboard);
     return instanceEvent;
   }

@@ -9,7 +9,7 @@ public class ActorStar extends ActorProceduralPath {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorStar instance = ActorStar();
+    ActorStar instance = new ActorStar();
     instance.copyStar(this, resetArtboard);
     return instance;
   }
@@ -22,7 +22,7 @@ public class ActorStar extends ActorProceduralPath {
 
   static ActorStar read(ActorArtboard artboard, StreamReader reader,
       ActorStar component) {
-    component ??= ActorStar();
+    component ??= new ActorStar();
 
     ActorNode.read(artboard, reader, component);
 

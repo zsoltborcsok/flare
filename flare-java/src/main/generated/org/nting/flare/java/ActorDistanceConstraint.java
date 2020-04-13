@@ -14,7 +14,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
 
   static ActorDistanceConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorDistanceConstraint component) {
-    component ??= ActorDistanceConstraint();
+    component ??= new ActorDistanceConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
 
     component._distance = reader.readFloat32("distance");
@@ -25,7 +25,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
 
   @override
   ActorDistanceConstraint makeInstance(ActorArtboard resetArtboard) {
-    ActorDistanceConstraint node = ActorDistanceConstraint();
+    ActorDistanceConstraint node = new ActorDistanceConstraint();
     node.copyDistanceConstraint(this, resetArtboard);
     return node;
   }

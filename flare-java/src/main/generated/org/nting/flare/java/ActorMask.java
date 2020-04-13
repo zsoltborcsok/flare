@@ -25,7 +25,7 @@ public class ActorMask extends ActorLayerEffect {
 
   static ActorMask read(ActorArtboard artboard, StreamReader reader,
       ActorMask component) {
-    component ??= ActorMask();
+    component ??= new ActorMask();
     ActorLayerEffect.read(artboard, reader, component);
     component._sourceIdx = reader.readId("source");
     component._maskType =
@@ -54,7 +54,7 @@ public class ActorMask extends ActorLayerEffect {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorMask instanceNode = ActorMask();
+    ActorMask instanceNode = new ActorMask();
     instanceNode.copyMask(this, resetArtboard);
     return instanceNode;
   }

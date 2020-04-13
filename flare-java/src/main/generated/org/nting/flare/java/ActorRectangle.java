@@ -8,7 +8,7 @@ public class ActorRectangle extends ActorProceduralPath {
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorRectangle instance = ActorRectangle();
+    ActorRectangle instance = new ActorRectangle();
     instance.copyRectangle(this, resetArtboard);
     return instance;
   }
@@ -20,7 +20,7 @@ public class ActorRectangle extends ActorProceduralPath {
 
   static ActorRectangle read(ActorArtboard artboard, StreamReader reader,
       ActorRectangle component) {
-    component ??= ActorRectangle();
+    component ??= new ActorRectangle();
 
     ActorNode.read(artboard, reader, component);
 

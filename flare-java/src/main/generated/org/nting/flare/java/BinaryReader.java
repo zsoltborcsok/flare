@@ -61,7 +61,7 @@ public abstract class BinaryReader implements StreamReader {
 
   @override
   Uint16List readUint16Array(int length, [String label]) {
-    Uint16List list = Uint16List(length);
+    Uint16List list = new Uint16List(length);
     for (int i = 0; i < length; i++) {
       list[i] = _raw.getUint16(_readIndex, Endian.little);
       _readIndex += 2;
@@ -101,7 +101,7 @@ public abstract class BinaryReader implements StreamReader {
   String readString([String label]) {
     int length = readUint32();
     int end = _readIndex + length;
-    StringBuffer stringBuffer = StringBuffer();
+    StringBuffer stringBuffer = new StringBuffer();
 
     while (_readIndex < end) {
       int c1 = readUint8();
@@ -161,7 +161,7 @@ public abstract class BinaryReader implements StreamReader {
 
   @override
   Float32List readFloat32Array(int length, String label) {
-    Float32List list = Float32List(length);
+    Float32List list = new Float32List(length);
     for (int i = 0; i < length; i++) {
       list[i] = _raw.getFloat32(_readIndex, Endian.little);
       _readIndex += 4;

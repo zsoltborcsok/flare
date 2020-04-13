@@ -1,21 +1,21 @@
 package org.nting.flare.java;
 
 public class ActorScaleConstraint extends ActorAxisConstraint {
-  final TransformComponents _componentsA = TransformComponents();
-  final TransformComponents _componentsB = TransformComponents();
+  final TransformComponents _componentsA = new TransformComponents();
+  final TransformComponents _componentsB = new TransformComponents();
 
   ActorScaleConstraint() : super();
 
   static ActorScaleConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorScaleConstraint component) {
-    component ??= ActorScaleConstraint();
+    component ??= new ActorScaleConstraint();
     ActorAxisConstraint.read(artboard, reader, component);
     return component;
   }
 
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorScaleConstraint node = ActorScaleConstraint();
+    ActorScaleConstraint node = new ActorScaleConstraint();
     node.copyAxisConstraint(this, resetArtboard);
     return node;
   }
@@ -27,7 +27,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
     ActorNode grandParent = p.parent;
 
     Mat2D transformA = parent.worldTransform;
-    Mat2D transformB = Mat2D();
+    Mat2D transformB = new Mat2D();
     Mat2D.decompose(transformA, _componentsA);
     if (t == null) {
       Mat2D.copy(transformB, transformA);
@@ -42,7 +42,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
       if (sourceSpace == TransformSpace.local) {
         ActorNode sourceGrandParent = t.parent;
         if (sourceGrandParent != null) {
-          Mat2D inverse = Mat2D();
+          Mat2D inverse = new Mat2D();
           Mat2D.invert(inverse, sourceGrandParent.worldTransform);
           Mat2D.multiply(transformB, inverse, transformB);
         }
@@ -87,7 +87,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
     if (clampLocal) {
       // Apply min max in local space, so transform to local coordinates first.
       Mat2D.compose(transformB, _componentsB);
-      Mat2D inverse = Mat2D();
+      Mat2D inverse = new Mat2D();
       Mat2D.invert(inverse, grandParent.worldTransform);
       Mat2D.multiply(transformB, inverse, transformB);
       Mat2D.decompose(transformB, _componentsB);
