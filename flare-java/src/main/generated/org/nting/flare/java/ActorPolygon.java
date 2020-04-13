@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorPolygon extends ActorProceduralPath {
+public class ActorPolygon extends ActorProceduralPath {
   int sides = 5;
 
   @override

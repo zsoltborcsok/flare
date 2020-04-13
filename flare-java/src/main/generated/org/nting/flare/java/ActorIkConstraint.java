@@ -1,11 +1,11 @@
 package org.nting.flare.java;
 
-class InfluencedBone {
+public class InfluencedBone {
   int boneIdx;
   ActorBone bone;
 }
 
-class BoneChain {
+public class BoneChain {
   int index;
   ActorBone bone;
   double angle;
@@ -14,7 +14,7 @@ class BoneChain {
   Mat2D parentWorldInverse;
 }
 
-class ActorIKConstraint extends ActorTargetedConstraint {
+public class ActorIKConstraint extends ActorTargetedConstraint {
   static const double PI2 = pi * 2.0;
   bool _invertDirection = false;
   List<InfluencedBone> _influencedBones;

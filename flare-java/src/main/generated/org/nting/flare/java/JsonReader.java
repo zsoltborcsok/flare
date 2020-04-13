@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class JSONReader implements StreamReader {
+public abstract class JSONReader implements StreamReader {
   @override
   int blockType;
 

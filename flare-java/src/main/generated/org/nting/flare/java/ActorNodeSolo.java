@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorNodeSolo extends ActorNode {
+public class ActorNodeSolo extends ActorNode {
   int _activeChildIndex = 0;
 
   set activeChildIndex(int idx) {

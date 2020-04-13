@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 typedef bool ComopnentWalkCallback(ActorComponent component);
 
-class ActorClip {
+public class ActorClip {
   int clipIdx;
   bool intersect = true;
   ActorNode node;
@@ -14,7 +14,7 @@ class ActorClip {
         intersect = from.intersect;
 }
 
-class ActorNode extends ActorComponent {
+public class ActorNode extends ActorComponent {
   List<ActorComponent> _children;
 
   //List<ActorNode> m_Dependents;

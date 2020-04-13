@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class JSONBlockReader extends JSONReader {
+public class JSONBlockReader extends JSONReader {
   JSONBlockReader(Map object) : super(object);
 
   JSONBlockReader.fromObject(int type, Map object) : super(object) {

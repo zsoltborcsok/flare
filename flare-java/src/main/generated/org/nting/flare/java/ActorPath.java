@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class ActorBasePath {
+public abstract class ActorBasePath {
   ActorShape _shape;
 
   ActorShape get shape => _shape;
@@ -166,7 +166,7 @@ abstract class ActorBasePath {
   }
 }
 
-abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
+public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
   double _width;
   double _height;
 
@@ -207,7 +207,7 @@ abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
   }
 }
 
-class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
+public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   bool _isHidden;
   bool _isClosed;
   List<PathPoint> _points;

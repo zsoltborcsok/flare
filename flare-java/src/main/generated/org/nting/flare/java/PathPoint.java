@@ -15,7 +15,7 @@ HashMap<int, PointType>.fromIterables([
   PointType.asymmetric
 ]);
 
-abstract class PathPoint {
+public abstract class PathPoint {
   PointType _type;
   Vec2D _translation = Vec2D();
   Float32List _weights;
@@ -62,7 +62,7 @@ abstract class PathPoint {
   PathPoint skin(Mat2D world, Float32List bones);
 }
 
-class StraightPathPoint extends PathPoint {
+public class StraightPathPoint extends PathPoint {
   double radius = 0.0;
 
   StraightPathPoint() : super(PointType.straight);
@@ -138,7 +138,7 @@ class StraightPathPoint extends PathPoint {
   }
 }
 
-class CubicPathPoint extends PathPoint {
+public class CubicPathPoint extends PathPoint {
   Vec2D _in = Vec2D();
   Vec2D _out = Vec2D();
 

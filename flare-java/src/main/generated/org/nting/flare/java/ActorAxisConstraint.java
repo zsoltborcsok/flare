@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class ActorAxisConstraint extends ActorTargetedConstraint {
+public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
   bool _copyX = false;
   bool _copyY = false;
   bool _enableMinX = false;

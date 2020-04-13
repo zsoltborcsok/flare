@@ -54,7 +54,7 @@ const Map<String, int> blockTypesMap = {
   "innerShadow": BlockTypes.actorInnerShadow
 };
 
-class BlockTypes {
+public class BlockTypes {
   static const int unknown = 0;
   static const int components = 1;
   static const int actorNode = 2;

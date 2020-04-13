@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorRectangle extends ActorProceduralPath {
+public class ActorRectangle extends ActorProceduralPath {
   double _radius = 0.0;
 
   @override

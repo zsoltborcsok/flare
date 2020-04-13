@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorEvent extends ActorComponent {
+public class ActorEvent extends ActorComponent {
   static ActorComponent read(ActorArtboard artboard, StreamReader reader,
       ActorEvent component) {
     component ??= ActorEvent();

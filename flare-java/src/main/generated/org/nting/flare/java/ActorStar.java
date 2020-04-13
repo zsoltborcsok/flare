@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorStar extends ActorProceduralPath {
+public class ActorStar extends ActorProceduralPath {
   int _numPoints = 5;
   double _innerRadius = 0.0;
 

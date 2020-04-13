@@ -14,7 +14,7 @@ HashMap<int, MaskType> maskTypeLookup = HashMap<int, MaskType>.fromIterables([
   MaskType.invertedLuminance
 ]);
 
-class ActorMask extends ActorLayerEffect {
+public class ActorMask extends ActorLayerEffect {
   ActorNode _source;
   int _sourceIdx;
   MaskType _maskType;

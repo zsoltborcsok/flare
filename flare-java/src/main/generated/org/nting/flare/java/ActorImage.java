@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class SequenceFrame {
+public class SequenceFrame {
   final int _atlasIndex;
   final int _offset;
 
@@ -16,7 +16,7 @@ class SequenceFrame {
   int get offset => _offset;
 }
 
-class ActorImage extends ActorDrawable with ActorSkinnable {
+public class ActorImage extends ActorDrawable with ActorSkinnable {
   @override
   int drawOrder;
 

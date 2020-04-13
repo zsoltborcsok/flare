@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 const double circleConstant = 0.55;
 
-class ActorEllipse extends ActorProceduralPath {
+public class ActorEllipse extends ActorProceduralPath {
   @override
   ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorEllipse instance = ActorEllipse();

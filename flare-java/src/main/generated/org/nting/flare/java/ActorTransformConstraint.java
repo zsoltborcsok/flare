@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 const pi2 = pi * 2;
 
-class ActorTransformConstraint extends ActorTargetedConstraint {
+public class ActorTransformConstraint extends ActorTargetedConstraint {
   int _sourceSpace = TransformSpace.world;
   int _destSpace = TransformSpace.world;
   final TransformComponents _componentsA = TransformComponents();

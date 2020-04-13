@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorTranslationConstraint extends ActorAxisConstraint {
+public class ActorTranslationConstraint extends ActorAxisConstraint {
   ActorTranslationConstraint() : super();
 
   static ActorTranslationConstraint read(ActorArtboard artboard,

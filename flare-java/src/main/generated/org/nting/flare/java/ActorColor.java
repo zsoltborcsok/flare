@@ -18,7 +18,7 @@ final HashMap<int, TrimPath> trimPathLookup =
 HashMap<int, TrimPath>.fromIterables(
     [0, 1, 2], [TrimPath.off, TrimPath.sequential, TrimPath.synced]);
 
-abstract class ActorPaint extends ActorComponent {
+public abstract class ActorPaint extends ActorComponent {
   double _opacity = 1.0;
 
   double get opacity => _opacity;
@@ -56,7 +56,7 @@ abstract class ActorPaint extends ActorComponent {
   }
 }
 
-abstract class ActorColor extends ActorPaint {
+public abstract class ActorColor extends ActorPaint {
   Float32List _color = Float32List(4);
 
   Float32List get color {
@@ -102,7 +102,7 @@ abstract class ActorColor extends ActorPaint {
   void update(int dirt) {}
 }
 
-abstract class ActorFill {
+public abstract class ActorFill {
   FillRule _fillRule = FillRule.evenOdd;
 
   FillRule get fillRule => _fillRule;
@@ -119,7 +119,7 @@ abstract class ActorFill {
   void initializeGraphics();
 }
 
-abstract class ActorStroke {
+public abstract class ActorStroke {
   double _width = 1.0;
 
   double get width => _width;
@@ -216,7 +216,7 @@ abstract class ActorStroke {
   void initializeGraphics();
 }
 
-abstract class ColorFill extends ActorColor with ActorFill {
+public abstract class ColorFill extends ActorColor with ActorFill {
   void copyColorFill(ColorFill node, ActorArtboard resetArtboard) {
     copyColor(node, resetArtboard);
     copyFill(node, resetArtboard);
@@ -240,7 +240,7 @@ abstract class ColorFill extends ActorColor with ActorFill {
   }
 }
 
-abstract class ColorStroke extends ActorColor with ActorStroke {
+public abstract class ColorStroke extends ActorColor with ActorStroke {
   void copyColorStroke(ColorStroke node, ActorArtboard resetArtboard) {
     copyColor(node, resetArtboard);
     copyStroke(node, resetArtboard);
@@ -264,7 +264,7 @@ abstract class ColorStroke extends ActorColor with ActorStroke {
   }
 }
 
-abstract class GradientColor extends ActorPaint {
+public abstract class GradientColor extends ActorPaint {
   Float32List _colorStops = Float32List(10);
   final Vec2D _start = Vec2D();
   final Vec2D _end = Vec2D();
@@ -322,7 +322,7 @@ abstract class GradientColor extends ActorPaint {
   }
 }
 
-abstract class GradientFill extends GradientColor with ActorFill {
+public abstract class GradientFill extends GradientColor with ActorFill {
   void copyGradientFill(GradientFill node, ActorArtboard resetArtboard) {
     copyGradient(node, resetArtboard);
     copyFill(node, resetArtboard);
@@ -346,7 +346,7 @@ abstract class GradientFill extends GradientColor with ActorFill {
   }
 }
 
-abstract class GradientStroke extends GradientColor with ActorStroke {
+public abstract class GradientStroke extends GradientColor with ActorStroke {
   void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
     copyGradient(node, resetArtboard);
     copyStroke(node, resetArtboard);
@@ -370,7 +370,7 @@ abstract class GradientStroke extends GradientColor with ActorStroke {
   }
 }
 
-abstract class RadialGradientColor extends GradientColor {
+public abstract class RadialGradientColor extends GradientColor {
   double secondaryRadiusScale = 1.0;
 
   void copyRadialGradient(RadialGradientColor node,
@@ -389,7 +389,7 @@ abstract class RadialGradientColor extends GradientColor {
   }
 }
 
-abstract class RadialGradientFill extends RadialGradientColor with ActorFill {
+public abstract class RadialGradientFill extends RadialGradientColor with ActorFill {
   void copyRadialFill(RadialGradientFill node, ActorArtboard resetArtboard) {
     copyRadialGradient(node, resetArtboard);
     copyFill(node, resetArtboard);
@@ -414,7 +414,7 @@ abstract class RadialGradientFill extends RadialGradientColor with ActorFill {
   }
 }
 
-abstract class RadialGradientStroke extends RadialGradientColor
+public abstract class RadialGradientStroke extends RadialGradientColor
     with ActorStroke {
   void copyRadialStroke(RadialGradientStroke node,
       ActorArtboard resetArtboard) {

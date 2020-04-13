@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,35 +24,44 @@ public class DartToJava {
     public static void main(String[] args) {
         // renameDartFiles(Paths.get(RELATIVE_PATH));
         // addPackageDefinition(Paths.get(RELATIVE_PATH));
-        removeImports(Paths.get(RELATIVE_PATH));
+        // removeImports(Paths.get(RELATIVE_PATH));
+        makeClassesPublic(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void makeClassesPublic(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.startsWith("class") || line.startsWith("abstract class")) {
+                return "public " + line;
+            } else {
+                return line;
+            }
+        }).collect(Collectors.toList()));
     }
 
     private static void removeImports(Path pathToFiles) {
-        try (Stream<Path> javaFiles = Files.walk(pathToFiles).filter(path -> path.toString().endsWith(".java"))) {
-            javaFiles.forEach(path -> {
-                try {
-                    List<String> lines = Files.readAllLines(path);
-                    lines = lines.stream().filter(line -> !(line.startsWith("import ") && line.endsWith(";"))).collect(Collectors.toList());
-                    while (2 < lines.size() && isNullOrEmpty(lines.get(2))) {
-                        lines.remove(2);
-                    }
-                    Files.write(path, lines);
-                } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
-                }
-            });
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
+        manipulateJavaFiles(pathToFiles, lines -> {
+            lines = lines.stream().filter(line -> !(line.startsWith("import ") && line.endsWith(";"))).collect(Collectors.toList());
+            while (2 < lines.size() && isNullOrEmpty(lines.get(2))) {
+                lines.remove(2);
+            }
+            return lines;
+        });
     }
 
     private static void addPackageDefinition(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> {
+            lines.add(0, "package org.nting.flare.java;");
+            lines.add(1, "");
+            return lines;
+        });
+    }
+
+    private static void manipulateJavaFiles(Path pathToFiles, Function<List<String>, List<String>> manipulation) {
         try (Stream<Path> javaFiles = Files.walk(pathToFiles).filter(path -> path.toString().endsWith(".java"))) {
             javaFiles.forEach(path -> {
                 try {
                     List<String> lines = Files.readAllLines(path);
-                    lines.add(0, "package org.nting.flare.java;");
-                    lines.add(1, "");
+                    lines = manipulation.apply(lines);
                     Files.write(path, lines);
                 } catch (IOException e) {
                     logger.error(e.getMessage(), e);

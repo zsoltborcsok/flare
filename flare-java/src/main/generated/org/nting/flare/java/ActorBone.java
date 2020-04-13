@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorBone extends ActorBoneBase {
+public class ActorBone extends ActorBoneBase {
   ActorBone _firstBone;
   JellyComponent jelly;
 

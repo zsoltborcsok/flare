@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class ActorShadow extends ActorBlur {
+public abstract class ActorShadow extends ActorBlur {
   double offsetX;
   double offsetY;
   Float32List _color = Float32List(4);

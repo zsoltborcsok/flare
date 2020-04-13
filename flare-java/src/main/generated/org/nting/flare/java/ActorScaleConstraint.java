@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorScaleConstraint extends ActorAxisConstraint {
+public class ActorScaleConstraint extends ActorAxisConstraint {
   final TransformComponents _componentsA = TransformComponents();
   final TransformComponents _componentsB = TransformComponents();
 

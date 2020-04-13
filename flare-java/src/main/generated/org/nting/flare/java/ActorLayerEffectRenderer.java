@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
-class ActorLayerEffectRendererMask {
+public class ActorLayerEffectRendererMask {
   final ActorMask mask;
   final List<ActorDrawable> drawables = [];
 
   ActorLayerEffectRendererMask(this.mask);
 }
 
-class ActorLayerEffectRenderer extends ActorDrawable {
+public class ActorLayerEffectRenderer extends ActorDrawable {
   final List<ActorDrawable> _drawables = <ActorDrawable>[];
 
   List<ActorDrawable> get drawables => _drawables;

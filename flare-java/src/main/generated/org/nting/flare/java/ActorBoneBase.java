@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorBoneBase extends ActorNode {
+public class ActorBoneBase extends ActorNode {
   double _length;
 
   double get length {

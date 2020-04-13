@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class ActorTargetedConstraint extends ActorConstraint {
+public abstract class ActorTargetedConstraint extends ActorConstraint {
   int _targetIdx;
   ActorComponent _target;
 

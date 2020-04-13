@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorTriangle extends ActorProceduralPath {
+public class ActorTriangle extends ActorProceduralPath {
   @override
   void invalidatePath() {}
 

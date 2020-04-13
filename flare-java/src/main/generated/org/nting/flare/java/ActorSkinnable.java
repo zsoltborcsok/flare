@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
-class SkinnedBone {
+public class SkinnedBone {
   int boneIdx;
   ActorNode node;
   Mat2D bind = Mat2D();
   Mat2D inverseBind = Mat2D();
 }
 
-abstract class ActorSkinnable {
+public abstract class ActorSkinnable {
   ActorSkin skin;
   List<SkinnedBone> _connectedBones;
 

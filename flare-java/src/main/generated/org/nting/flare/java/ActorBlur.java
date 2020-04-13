@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorBlur extends ActorLayerEffect {
+public class ActorBlur extends ActorLayerEffect {
   double blurX;
   double blurY;
 

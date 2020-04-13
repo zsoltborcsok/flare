@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class ActorComponent {
+public abstract class ActorComponent {
   String _name = "Unnamed";
   ActorNode _parent;
 

@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class DependencySorter {
+public class DependencySorter {
   HashSet<ActorComponent> _perm;
   HashSet<ActorComponent> _temp;
   List<ActorComponent> _order;

@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorDropShadow extends ActorShadow {
+public class ActorDropShadow extends ActorShadow {
   @override
   int get blendModeId => 0;
 

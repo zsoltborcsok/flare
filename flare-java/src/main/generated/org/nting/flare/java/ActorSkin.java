@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class ActorSkin extends ActorComponent {
+public class ActorSkin extends ActorComponent {
   Float32List _boneMatrices;
 
   Float32List get boneMatrices => _boneMatrices;

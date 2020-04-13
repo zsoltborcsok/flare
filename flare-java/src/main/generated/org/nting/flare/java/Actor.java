@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-abstract class Actor {
+public abstract class Actor {
   int maxTextureIndex = 0;
   int _version = 0;
   List<ActorArtboard> _artboards;

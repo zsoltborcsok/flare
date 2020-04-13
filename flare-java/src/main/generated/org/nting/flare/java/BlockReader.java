@@ -1,6 +1,6 @@
 package org.nting.flare.java;
 
-class BlockReader extends BinaryReader {
+public class BlockReader extends BinaryReader {
   @override
   int blockType;
 
