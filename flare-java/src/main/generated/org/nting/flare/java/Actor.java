@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import 'dart:async';
 import "dart:convert";
 import "dart:typed_data";

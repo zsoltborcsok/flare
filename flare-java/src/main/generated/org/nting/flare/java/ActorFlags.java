@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 class ActorFlags {
   static const int isDrawOrderDirty = 1 << 0;
   static const int isDirty = 1 << 1;

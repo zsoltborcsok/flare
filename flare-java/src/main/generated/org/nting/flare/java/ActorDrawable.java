@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import 'package:flare_dart/actor_artboard.dart';
 import 'package:flare_dart/actor_shape.dart';
 import 'package:flare_dart/stream_reader.dart';

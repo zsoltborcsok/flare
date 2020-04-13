@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 const Map<String, int> blockTypesMap = {
   "unknown": BlockTypes.unknown,
   "nodes": BlockTypes.components,

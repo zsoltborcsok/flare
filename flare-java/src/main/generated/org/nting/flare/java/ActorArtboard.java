@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "dart:math";
 import "dart:typed_data";
 

@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "dart:collection";
 import "dart:typed_data";
 import "math/mat2d.dart";

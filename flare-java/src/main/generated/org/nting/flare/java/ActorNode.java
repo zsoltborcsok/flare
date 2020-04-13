@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import 'package:flare_dart/actor_layer_effect_renderer.dart';
 
 import "actor_artboard.dart";

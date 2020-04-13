@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "actor_artboard.dart";
 import "actor_bone.dart";
 import "actor_component.dart";

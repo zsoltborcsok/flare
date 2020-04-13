@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "actor_artboard.dart";
 import "actor_node.dart";
 import "stream_reader.dart";

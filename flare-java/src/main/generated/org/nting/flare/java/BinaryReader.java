@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import 'dart:typed_data';
 import "stream_reader.dart";
 

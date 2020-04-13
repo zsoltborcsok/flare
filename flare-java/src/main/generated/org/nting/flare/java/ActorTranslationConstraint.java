@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "actor_artboard.dart";
 import "actor_axis_constraint.dart";
 import "actor_component.dart";

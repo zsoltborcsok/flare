@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import 'package:flare_dart/actor_drop_shadow.dart';
 import 'package:flare_dart/actor_node.dart';
 import 'package:flare_dart/math/aabb.dart';

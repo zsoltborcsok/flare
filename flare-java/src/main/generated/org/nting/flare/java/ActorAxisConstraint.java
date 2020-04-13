@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "actor_artboard.dart";
 import "actor_targeted_constraint.dart";
 import "stream_reader.dart";

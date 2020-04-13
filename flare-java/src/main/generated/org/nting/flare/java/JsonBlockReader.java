@@ -1,3 +1,5 @@
+package org.nting.flare.java;
+
 import "json_reader.dart";
 
 class JSONBlockReader extends JSONReader {
