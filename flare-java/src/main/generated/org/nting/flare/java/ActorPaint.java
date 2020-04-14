@@ -3,7 +3,7 @@ package org.nting.flare.java;
 public abstract class ActorPaint extends ActorComponent {
   double _opacity = 1.0;
 
-  double get opacity => _opacity;
+  public double opacity() { return _opacity; }
 
   set opacity(double value) {
     if (value == _opacity) {
@@ -31,7 +31,7 @@ public abstract class ActorPaint extends ActorComponent {
     artboard.addDependency(this, parent);
   }
 
-  ActorShape get shape => parent as ActorShape;
+  public ActorShape shape() { return parent as ActorShape; }
 
   public void markPaintDirty() {
     artboard.addDirt(this, DirtyFlags.paintDirty, false);

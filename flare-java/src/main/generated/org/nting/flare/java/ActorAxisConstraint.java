@@ -92,35 +92,35 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
     markDirty();
   }
 
-  boolean get copyX => _copyX;
+  public boolean copyX() { return _copyX; }
 
-  boolean get copyY => _copyY;
+  public boolean copyY() { return _copyY; }
 
-  int get destSpace => _destSpace;
+  public int destSpace() { return _destSpace; }
 
-  boolean get enableMaxX => _enableMaxX;
+  public boolean enableMaxX() { return _enableMaxX; }
 
-  boolean get enableMaxY => _enableMaxY;
+  public boolean enableMaxY() { return _enableMaxY; }
 
-  boolean get enableMinX => _enableMinX;
+  public boolean enableMinX() { return _enableMinX; }
 
-  boolean get enableMinY => _enableMinY;
+  public boolean enableMinY() { return _enableMinY; }
 
-  double get maxX => _maxX;
+  public double maxX() { return _maxX; }
 
-  double get maxY => _maxY;
+  public double maxY() { return _maxY; }
 
-  int get minMaxSpace => _minMaxSpace;
+  public int minMaxSpace() { return _minMaxSpace; }
 
-  double get minX => _minX;
+  public double minX() { return _minX; }
 
-  double get minY => _minY;
+  public double minY() { return _minY; }
 
-  boolean get offset => _offset;
+  public boolean offset() { return _offset; }
 
-  double get scaleX => _scaleX;
+  public double scaleX() { return _scaleX; }
 
-  double get scaleY => _scaleY;
+  public double scaleY() { return _scaleY; }
 
-  int get sourceSpace => _sourceSpace;
+  public int sourceSpace() { return _sourceSpace; }
 }

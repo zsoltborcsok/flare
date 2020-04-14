@@ -3,7 +3,7 @@ package org.nting.flare.java;
 public abstract class ActorFill {
   FillRule _fillRule = FillRule.evenOdd;
 
-  FillRule get fillRule => _fillRule;
+  public FillRule fillRule() { return _fillRule; }
 
   static void read(ActorArtboard artboard, StreamReader reader,
       ActorFill component) {

@@ -192,7 +192,7 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  String get containerType => "json";
+  public String containerType() { return "json"; }
 
-  ListQueue get context => _context;
+  public ListQueue context() { return _context; }
 }

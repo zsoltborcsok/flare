@@ -12,17 +12,17 @@ public class ActorShape extends ActorDrawable {
   final List<ActorFill> _fills = <ActorFill>[];
   boolean _transformAffectsStroke = false;
 
-  boolean get transformAffectsStroke => _transformAffectsStroke;
+  public boolean transformAffectsStroke() { return _transformAffectsStroke; }
 
-  ActorFill get fill => _fills.isNotEmpty ? _fills.first : null;
+  public ActorFill fill() { return _fills.isNotEmpty ? _fills.first : null; }
 
-  ActorStroke get stroke => _strokes.isNotEmpty ? _strokes.first : null;
+  public ActorStroke stroke() { return _strokes.isNotEmpty ? _strokes.first : null; }
 
-  List<ActorFill> get fills => _fills;
+  public List<ActorFill> fills() { return _fills; }
 
-  List<ActorStroke> get strokes => _strokes;
+  public List<ActorStroke> strokes() { return _strokes; }
 
-  List<ActorBasePath> get paths => _paths;
+  public List<ActorBasePath> paths() { return _paths; }
 
   @Override
   public void update(int dirt) {

@@ -63,17 +63,17 @@ public class ActorStar extends ActorProceduralPath {
     }
   }
 
-  double get innerRadius => _innerRadius;
+  public double innerRadius() { return _innerRadius; }
 
-  boolean get isClosed => true;
+  public boolean isClosed() { return true; }
 
-  boolean get doesDraw => !renderCollapsed;
+  public boolean doesDraw() { return !renderCollapsed; }
 
-  double get radiusX => width / 2;
+  public double radiusX() { return width / 2; }
 
-  double get radiusY => height / 2;
+  public double radiusY() { return height / 2; }
 
-  int get numPoints => _numPoints;
+  public int numPoints() { return _numPoints; }
 
-  int get sides => _numPoints * 2;
+  public int sides() { return _numPoints * 2; }
 }

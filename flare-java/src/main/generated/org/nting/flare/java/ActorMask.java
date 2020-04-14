@@ -10,9 +10,9 @@ public class ActorMask extends ActorLayerEffect {
   int _sourceIdx;
   MaskType _maskType;
 
-  ActorNode get source => _source;
+  public ActorNode source() { return _source; }
 
-  MaskType get maskType => _maskType;
+  public MaskType maskType() { return _maskType; }
 
   static ActorMask read(ActorArtboard artboard, StreamReader reader,
       ActorMask component) {

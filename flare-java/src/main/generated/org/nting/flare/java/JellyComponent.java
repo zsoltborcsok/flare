@@ -107,9 +107,9 @@ public class JellyComponent extends ActorComponent {
 
   List<Vec2D> _jellyPoints;
 
-  ActorNode get inTarget => _inTarget;
+  public ActorNode inTarget() { return _inTarget; }
 
-  ActorNode get outTarget => _inTarget;
+  public ActorNode outTarget() { return _inTarget; }
 
   JellyComponent() {
     _inPoint = new Vec2D();

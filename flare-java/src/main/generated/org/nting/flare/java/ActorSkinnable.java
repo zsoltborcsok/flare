@@ -11,10 +11,9 @@ public abstract class ActorSkinnable {
 
   public abstract set worldTransformOverride(Mat2D value);
 
-  List<SkinnedBone> get connectedBones => _connectedBones;
+  public List<SkinnedBone> connectedBones() { return _connectedBones; }
 
-  boolean get isConnectedToBones =>
-      _connectedBones != null && _connectedBones.isNotEmpty;
+  public boolean isConnectedToBones() { return _connectedBones != null && _connectedBones.isNotEmpty; }
 
   static ActorSkinnable read(ActorArtboard artboard, StreamReader reader,
       ActorSkinnable node) {

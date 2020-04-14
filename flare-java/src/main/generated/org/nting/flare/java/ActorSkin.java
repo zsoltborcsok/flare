@@ -7,7 +7,7 @@ import java.util.List;
 public class ActorSkin extends ActorComponent {
   Float32List _boneMatrices;
 
-  Float32List get boneMatrices => _boneMatrices;
+  public Float32List boneMatrices() { return _boneMatrices; }
 
   @Override
   public void onDirty(int dirt) {

@@ -17,12 +17,12 @@ public abstract class ActorDrawable extends ActorNode {
 
   List<List<ClipShape>> _clipShapes;
 
-  List<List<ClipShape>> get clipShapes => _clipShapes;
+  public List<List<ClipShape>> clipShapes() { return _clipShapes; }
 
   // Editor set draw index.
   int _drawOrder;
 
-  int get drawOrder => _drawOrder;
+  public int drawOrder() { return _drawOrder; }
 
   set drawOrder(int value) {
     if (_drawOrder == value) {

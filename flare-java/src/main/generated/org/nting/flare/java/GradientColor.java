@@ -10,13 +10,13 @@ public abstract class GradientColor extends ActorPaint {
   final Vec2D _renderStart = new Vec2D();
   final Vec2D _renderEnd = new Vec2D();
 
-  Vec2D get start => _start;
+  public Vec2D start() { return _start; }
 
-  Vec2D get end => _end;
+  public Vec2D end() { return _end; }
 
-  Vec2D get renderStart => _renderStart;
+  public Vec2D renderStart() { return _renderStart; }
 
-  Vec2D get renderEnd => _renderEnd;
+  public Vec2D renderEnd() { return _renderEnd; }
 
   public Float32List colorStops() {
     return _colorStops;

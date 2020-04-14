@@ -6,7 +6,7 @@ public abstract class ActorComponent {
   String _name = "Unnamed";
   ActorNode _parent;
 
-  ActorNode get parent => _parent;
+  public ActorNode parent() { return _parent; }
 
   set parent(ActorNode value) {
     if (_parent == value) {

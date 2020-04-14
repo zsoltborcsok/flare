@@ -9,7 +9,7 @@ public abstract class ActorShadow extends ActorBlur {
 
   public abstract set blendModeId(int value);
 
-  Float32List get color => _color;
+  public Float32List color() { return _color; }
 
   static ActorShadow read(ActorArtboard artboard, StreamReader reader,
       ActorShadow component) {

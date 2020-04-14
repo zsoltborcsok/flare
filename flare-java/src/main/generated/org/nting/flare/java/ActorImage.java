@@ -19,9 +19,9 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
       return "(" + _atlasIndex.toString() + ", " + _offset.toString() + ")";
     }
 
-    int get atlasIndex => _atlasIndex;
+    public int atlasIndex() { return _atlasIndex; }
 
-    int get offset => _offset;
+    public int offset() { return _offset; }
   }
 
   @Override
@@ -31,7 +31,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   Float32List _vertices;
   Float32List _dynamicUV;
 
-  Float32List get dynamicUV => _dynamicUV;
+  public Float32List dynamicUV() { return _dynamicUV; }
   Uint16List _triangles;
   int _vertexCount = 0;
   int _triangleCount = 0;
@@ -41,11 +41,11 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   Float32List _sequenceUVs;
   int _sequenceFrame = 0;
 
-  int get sequenceFrame => _sequenceFrame;
+  public int sequenceFrame() { return _sequenceFrame; }
 
-  Float32List get sequenceUVs => _sequenceUVs;
+  public Float32List sequenceUVs() { return _sequenceUVs; }
 
-  List<SequenceFrame> get sequenceFrames => _sequenceFrames;
+  public List<SequenceFrame> sequenceFrames() { return _sequenceFrames; }
 
   set sequenceFrame(int value) {
     _sequenceFrame = value;
@@ -394,7 +394,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
         worldTransform[4], worldTransform[5]);
   }
 
-  Mat2D get imageTransform => isConnectedToBones ? null : worldTransform;
+  public Mat2D imageTransform() { return isConnectedToBones ? null : worldTransform; }
 
   @Override
   public void initializeGraphics() {}

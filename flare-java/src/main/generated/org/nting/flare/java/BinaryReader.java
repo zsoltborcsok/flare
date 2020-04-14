@@ -5,9 +5,9 @@ public abstract class BinaryReader implements StreamReader {
   ByteData _raw;
   int _readIndex;
 
-  ByteData get raw => _raw;
+  public ByteData raw() { return _raw; }
 
-  int get readIndex => _readIndex;
+  public int readIndex() { return _readIndex; }
 
   BinaryReader(ByteData data) {
     _raw = data;
@@ -203,5 +203,5 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  String get containerType => "bin";
+  public String containerType() { return "bin"; }
 }

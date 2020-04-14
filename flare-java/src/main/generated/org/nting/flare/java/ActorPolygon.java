@@ -49,11 +49,11 @@ public class ActorPolygon extends ActorProceduralPath {
     return _polygonPoints;
   }
 
-  boolean get isClosed => true;
+  public boolean isClosed() { return true; }
 
-  boolean get doesDraw => !renderCollapsed;
+  public boolean doesDraw() { return !renderCollapsed; }
 
-  double get radiusX => width / 2;
+  public double radiusX() { return width / 2; }
 
-  double get radiusY => height / 2;
+  public double radiusY() { return height / 2; }
 }

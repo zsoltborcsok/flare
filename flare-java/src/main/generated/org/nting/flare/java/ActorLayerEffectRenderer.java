@@ -7,19 +7,19 @@ import java.util.List;
 public class ActorLayerEffectRenderer extends ActorDrawable {
   final List<ActorDrawable> _drawables = <ActorDrawable>[];
 
-  List<ActorDrawable> get drawables => _drawables;
+  public List<ActorDrawable> drawables() { return _drawables; }
   final List<ActorLayerEffectRendererMask> _renderMasks = [];
 
-  List<ActorLayerEffectRendererMask> get renderMasks => _renderMasks;
+  public List<ActorLayerEffectRendererMask> renderMasks() { return _renderMasks; }
   ActorBlur _blur;
   List<ActorDropShadow> _dropShadows;
   List<ActorInnerShadow> _innerShadows;
 
-  ActorBlur get blur => _blur;
+  public ActorBlur blur() { return _blur; }
 
-  List<ActorDropShadow> get dropShadows => _dropShadows;
+  public List<ActorDropShadow> dropShadows() { return _dropShadows; }
 
-  List<ActorInnerShadow> get innerShadows => _innerShadows;
+  public List<ActorInnerShadow> innerShadows() { return _innerShadows; }
 
   public void sortDrawables() {
     _drawables

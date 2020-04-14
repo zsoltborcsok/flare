@@ -56,5 +56,5 @@ public class JSONBlockReader extends JSONReader {
     return next;
   }
 
-  dynamic get nextKey => context.first.keys.first;
+  public dynamic nextKey() { return context.first.keys.first; }
 }

@@ -12,7 +12,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   Float32List vertexDeform;
 
   @Override
-  boolean get isPathInWorldSpace => isConnectedToBones;
+  public boolean isPathInWorldSpace() { return isConnectedToBones; }
 
   @Override
   public void invalidatePath() {
@@ -20,12 +20,12 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   }
 
   @Override
-  Mat2D get pathTransform => isConnectedToBones ? Mat2D() : worldTransform;
+  public Mat2D pathTransform() { return isConnectedToBones ? Mat2D() : worldTransform; }
 
   public static final int vertexDeformDirty = 1 << 1;
 
   @Override
-  List<PathPoint> get points => _points;
+  public List<PathPoint> points() { return _points; }
 
   @Override
   public List<PathPoint> deformedPoints() {

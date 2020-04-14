@@ -6,12 +6,12 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
   double _width;
   double _height;
 
-  double get width => _width;
+  public double width() { return _width; }
 
-  double get height => _height;
+  public double height() { return _height; }
 
   @Override
-  Mat2D get pathTransform => worldTransform;
+  public Mat2D pathTransform() { return worldTransform; }
 
   set width(double w) {
     if (w != _width) {

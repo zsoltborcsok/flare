@@ -9,10 +9,10 @@ import java.util.List;
 public abstract class ActorBasePath {
   ActorShape _shape;
 
-  ActorShape get shape => _shape;
+  public ActorShape shape() { return _shape; }
   boolean _isRootPath = false;
 
-  boolean get isRootPath => _isRootPath;
+  public boolean isRootPath() { return _isRootPath; }
 
   List<PathPoint> get points;
 
@@ -20,7 +20,7 @@ public abstract class ActorBasePath {
 
   public abstract void invalidatePath();
 
-  boolean get isPathInWorldSpace => false;
+  public boolean isPathInWorldSpace() { return false; }
 
   Mat2D get pathTransform;
 
@@ -30,7 +30,7 @@ public abstract class ActorBasePath {
 
   List<List<ActorClip>> get allClips;
 
-  List<PathPoint> get deformedPoints => points;
+  public List<PathPoint> deformedPoints() { return points; }
 
   public AABB getPathAABB() {
     double minX = double.maxFinite;

@@ -29,21 +29,21 @@ public class ActorArtboard {
   double _modulateOpacity = 1.0;
   Float32List _overrideColor;
 
-  String get name => _name;
+  public String name() { return _name; }
 
-  double get width => _width;
+  public double width() { return _width; }
 
-  double get height => _height;
+  public double height() { return _height; }
 
-  Vec2D get origin => _origin;
+  public Vec2D origin() { return _origin; }
 
-  Vec2D get translation => _translation;
+  public Vec2D translation() { return _translation; }
 
-  boolean get clipContents => _clipContents;
+  public boolean clipContents() { return _clipContents; }
 
-  double get modulateOpacity => _modulateOpacity;
+  public double modulateOpacity() { return _modulateOpacity; }
 
-  Float32List get overrideColor => _overrideColor;
+  public Float32List overrideColor() { return _overrideColor; }
 
   set overrideColor(Float32List value) {
     _overrideColor = value;
@@ -64,27 +64,27 @@ public class ActorArtboard {
     _root = ActorNode.withArtboard(this);
   }
 
-  Actor get actor => _actor;
+  public Actor actor() { return _actor; }
 
-  List<ActorComponent> get components => _components;
+  public List<ActorComponent> components() { return _components; }
 
-  List<ActorNode> get nodes => _nodes;
+  public List<ActorNode> nodes() { return _nodes; }
 
-  List<ActorAnimation> get animations => _animations;
+  public List<ActorAnimation> animations() { return _animations; }
 
-  List<ActorDrawable> get drawableNodes => _drawableNodes;
+  public List<ActorDrawable> drawableNodes() { return _drawableNodes; }
 
   ActorComponent operator [](int index) {
     return _components[index];
   }
 
-  int get componentCount => _components.length;
+  public int componentCount() { return _components.length; }
 
-  int get nodeCount => _nodeCount;
+  public int nodeCount() { return _nodeCount; }
 
-  int get drawNodeCount => _drawableNodeCount;
+  public int drawNodeCount() { return _drawableNodeCount; }
 
-  ActorNode get root => _root;
+  public ActorNode root() { return _root; }
 
   public boolean addDependency(ActorComponent a, ActorComponent b) {
     List<ActorComponent> dependents = b.dependents;

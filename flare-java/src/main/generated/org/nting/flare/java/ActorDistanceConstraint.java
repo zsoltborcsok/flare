@@ -82,9 +82,9 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
     world[5] = position[1];
   }
 
-  double get distance => _distance;
+  public double distance() { return _distance; }
 
-  int get mode => _mode;
+  public int mode() { return _mode; }
 
   set distance(double d) {
     if (_distance != d) {

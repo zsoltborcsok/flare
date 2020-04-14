@@ -59,11 +59,11 @@ public class ActorRectangle extends ActorProceduralPath {
     }
   }
 
-  boolean get isClosed => true;
+  public boolean isClosed() { return true; }
 
   public boolean doesDraw() {
     return !renderCollapsed;
   }
 
-  double get radius => _radius;
+  public double radius() { return _radius; }
 }

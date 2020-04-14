@@ -3,7 +3,7 @@ package org.nting.flare.java;
 public abstract class ActorStroke {
   double _width = 1.0;
 
-  double get width => _width;
+  public double width() { return _width; }
 
   set width(double value) {
     if (value == _width) {
@@ -16,19 +16,19 @@ public abstract class ActorStroke {
   StrokeCap _cap = StrokeCap.butt;
   StrokeJoin _join = StrokeJoin.miter;
 
-  StrokeCap get cap => _cap;
+  public StrokeCap cap() { return _cap; }
 
-  StrokeJoin get join => _join;
+  public StrokeJoin join() { return _join; }
 
   TrimPath _trim = TrimPath.off;
 
-  TrimPath get trim => _trim;
+  public TrimPath trim() { return _trim; }
 
-  boolean get isTrimmed => _trim != TrimPath.off;
+  public boolean isTrimmed() { return _trim != TrimPath.off; }
 
   double _trimStart = 0.0;
 
-  double get trimStart => _trimStart;
+  public double trimStart() { return _trimStart; }
 
   set trimStart(double value) {
     if (_trimStart == value) {
@@ -40,7 +40,7 @@ public abstract class ActorStroke {
 
   double _trimEnd = 0.0;
 
-  double get trimEnd => _trimEnd;
+  public double trimEnd() { return _trimEnd; }
 
   set trimEnd(double value) {
     if (_trimEnd == value) {
@@ -52,7 +52,7 @@ public abstract class ActorStroke {
 
   double _trimOffset = 0.0;
 
-  double get trimOffset => _trimOffset;
+  public double trimOffset() { return _trimOffset; }
 
   set trimOffset(double value) {
     if (_trimOffset == value) {

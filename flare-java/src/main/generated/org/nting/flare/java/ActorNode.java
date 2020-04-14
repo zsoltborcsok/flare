@@ -22,7 +22,7 @@ public class ActorNode extends ActorComponent {
   double _renderOpacity = 1.0;
   ActorLayerEffectRenderer _layerEffect;
 
-  ActorLayerEffectRenderer get layerEffect => _layerEffect;
+  public ActorLayerEffectRenderer layerEffect() { return _layerEffect; }
 
   boolean _overrideWorldTransform = false;
   boolean _isCollapsedVisibility = false;
