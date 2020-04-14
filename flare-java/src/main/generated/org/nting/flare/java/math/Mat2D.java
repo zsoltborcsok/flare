@@ -1,9 +1,6 @@
-import "dart:math";
-import "dart:typed_data";
-import "transform_components.dart";
-import "vec2d.dart";
+package org.nting.flare.java.math;
 
-class Mat2D {
+public class Mat2D {
   Float32List _buffer;
 
   Float32List get values {
@@ -47,7 +44,7 @@ class Mat2D {
     _buffer = Float32List.fromList(copy.values);
   }
 
-  static void fromRotation(Mat2D o, double rad) {
+  public static void fromRotation(Mat2D o, double rad) {
     double s = sin(rad);
     double c = cos(rad);
     o[0] = c;
@@ -58,7 +55,7 @@ class Mat2D {
     o[5] = 0.0;
   }
 
-  static void copy(Mat2D o, Mat2D f) {
+  public static void copy(Mat2D o, Mat2D f) {
     o[0] = f[0];
     o[1] = f[1];
     o[2] = f[2];
@@ -67,7 +64,7 @@ class Mat2D {
     o[5] = f[5];
   }
 
-  static void copyFromList(Mat2D o, Float32List f) {
+  public static void copyFromList(Mat2D o, Float32List f) {
     o[0] = f[0];
     o[1] = f[1];
     o[2] = f[2];
@@ -76,7 +73,7 @@ class Mat2D {
     o[5] = f[5];
   }
 
-  static void scale(Mat2D o, Mat2D a, Vec2D v) {
+  public static void scale(Mat2D o, Mat2D a, Vec2D v) {
     double a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -93,7 +90,7 @@ class Mat2D {
     o[5] = a5;
   }
 
-  static void multiply(Mat2D o, Mat2D a, Mat2D b) {
+  public static void multiply(Mat2D o, Mat2D a, Mat2D b) {
     double a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -114,7 +111,7 @@ class Mat2D {
     o[5] = a1 * b4 + a3 * b5 + a5;
   }
 
-  static void cCopy(Mat2D o, Mat2D a) {
+  public static void cCopy(Mat2D o, Mat2D a) {
     o[0] = a[0];
     o[1] = a[1];
     o[2] = a[2];
@@ -123,7 +120,7 @@ class Mat2D {
     o[5] = a[5];
   }
 
-  static bool invert(Mat2D o, Mat2D a) {
+  public static boolean invert(Mat2D o, Mat2D a) {
     double aa = a[0], ab = a[1], ac = a[2], ad = a[3], atx = a[4], aty = a[5];
 
     double det = aa * ad - ab * ac;
@@ -141,7 +138,7 @@ class Mat2D {
     return true;
   }
 
-  static void getScale(Mat2D m, Vec2D s) {
+  public static void getScale(Mat2D m, Vec2D s) {
     double x = m[0];
     double y = m[1];
     s[0] = x.sign * sqrt(x * x + y * y);
@@ -151,7 +148,7 @@ class Mat2D {
     s[1] = y.sign * sqrt(x * x + y * y);
   }
 
-  static void identity(Mat2D mat) {
+  public static void identity(Mat2D mat) {
     mat[0] = 1.0;
     mat[1] = 0.0;
     mat[2] = 0.0;
@@ -160,7 +157,7 @@ class Mat2D {
     mat[5] = 0.0;
   }
 
-  static void decompose(Mat2D m, TransformComponents result) {
+  public static void decompose(Mat2D m, TransformComponents result) {
     double m0 = m[0], m1 = m[1], m2 = m[2], m3 = m[3];
 
     double rotation = atan2(m1, m0);
@@ -177,7 +174,7 @@ class Mat2D {
     result[5] = skewX;
   }
 
-  static void compose(Mat2D m, TransformComponents result) {
+  public static void compose(Mat2D m, TransformComponents result) {
     double r = result[4];
 
     if (r != 0.0) {
@@ -196,7 +193,7 @@ class Mat2D {
     }
   }
 
-  static bool areEqual(Mat2D a, Mat2D b) {
+  public static boolean areEqual(Mat2D a, Mat2D b) {
     return a[0] == b[0] &&
         a[1] == b[1] &&
         a[2] == b[2] &&
@@ -205,8 +202,8 @@ class Mat2D {
         a[5] == b[5];
   }
 
-  @override
-  String toString() {
+  @Override
+  public String toString() {
     return _buffer.toString();
   }
 }

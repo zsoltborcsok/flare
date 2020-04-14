@@ -1,7 +1,6 @@
-import "dart:typed_data";
-import "vec2d.dart";
+package org.nting.flare.java.math;
 
-class TransformComponents {
+public class TransformComponents {
   Float32List _buffer;
 
   Float32List get values {

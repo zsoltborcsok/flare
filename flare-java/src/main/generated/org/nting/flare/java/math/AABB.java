@@ -1,8 +1,6 @@
-import 'dart:math';
-import "dart:typed_data";
-import "vec2d.dart";
+package org.nting.flare.java.math;
 
-class AABB {
+public class AABB {
   Float32List _buffer;
 
   Float32List get values {
@@ -37,7 +35,7 @@ class AABB {
     _buffer[idx] = v;
   }
 
-  static AABB copy(AABB out, AABB a) {
+  public static AABB copy(AABB out, AABB a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -45,31 +43,31 @@ class AABB {
     return out;
   }
 
-  static Vec2D center(Vec2D out, AABB a) {
+  public static Vec2D center(Vec2D out, AABB a) {
     out[0] = (a[0] + a[2]) * 0.5;
     out[1] = (a[1] + a[3]) * 0.5;
     return out;
   }
 
-  static Vec2D size(Vec2D out, AABB a) {
+  public static Vec2D size(Vec2D out, AABB a) {
     out[0] = a[2] - a[0];
     out[1] = a[3] - a[1];
     return out;
   }
 
-  static Vec2D extents(Vec2D out, AABB a) {
+  public static Vec2D extents(Vec2D out, AABB a) {
     out[0] = (a[2] - a[0]) * 0.5;
     out[1] = (a[3] - a[1]) * 0.5;
     return out;
   }
 
-  static double perimeter(AABB a) {
+  public static double perimeter(AABB a) {
     double wx = a[2] - a[0];
     double wy = a[3] - a[1];
     return 2.0 * (wx + wy);
   }
 
-  static AABB combine(AABB out, AABB a, AABB b) {
+  public static AABB combine(AABB out, AABB a, AABB b) {
     out[0] = min(a[0], b[0]);
     out[1] = min(a[1], b[1]);
     out[2] = max(a[2], b[2]);
@@ -77,11 +75,11 @@ class AABB {
     return out;
   }
 
-  static bool contains(AABB a, AABB b) {
+  public static boolean contains(AABB a, AABB b) {
     return a[0] <= b[0] && a[1] <= b[1] && b[2] <= a[2] && b[3] <= a[3];
   }
 
-  static bool isValid(AABB a) {
+  public static boolean isValid(AABB a) {
     double dx = a[2] - a[0];
     double dy = a[3] - a[1];
     return dx >= 0 &&
@@ -92,7 +90,7 @@ class AABB {
         a[3] <= double.maxFinite;
   }
 
-  static bool testOverlap(AABB a, AABB b) {
+  public static boolean testOverlap(AABB a, AABB b) {
     double d1x = b[0] - a[2];
     double d1y = b[1] - a[3];
 
@@ -110,8 +108,8 @@ class AABB {
     return true;
   }
 
-  @override
-  String toString() {
+  @Override
+  public String toString() {
     return _buffer.toString();
   }
 }

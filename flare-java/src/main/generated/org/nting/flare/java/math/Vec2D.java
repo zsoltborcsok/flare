@@ -1,8 +1,6 @@
-import 'dart:math';
-import 'dart:typed_data';
-import 'mat2d.dart';
+package org.nting.flare.java.math;
 
-class Vec2D {
+public class Vec2D {
   Float32List _buffer;
 
   Float32List get values {
@@ -29,17 +27,17 @@ class Vec2D {
     _buffer = Float32List.fromList([x, y]);
   }
 
-  static void copy(Vec2D o, Vec2D a) {
+  public static void copy(Vec2D o, Vec2D a) {
     o[0] = a[0];
     o[1] = a[1];
   }
 
-  static void copyFromList(Vec2D o, Float32List a) {
+  public static void copyFromList(Vec2D o, Float32List a) {
     o[0] = a[0];
     o[1] = a[1];
   }
 
-  static Vec2D transformMat2D(Vec2D o, Vec2D a, Mat2D m) {
+  public static Vec2D transformMat2D(Vec2D o, Vec2D a, Mat2D m) {
     double x = a[0];
     double y = a[1];
     o[0] = m[0] * x + m[2] * y + m[4];
@@ -47,7 +45,7 @@ class Vec2D {
     return o;
   }
 
-  static Vec2D transformMat2(Vec2D o, Vec2D a, Mat2D m) {
+  public static Vec2D transformMat2(Vec2D o, Vec2D a, Mat2D m) {
     double x = a[0];
     double y = a[1];
     o[0] = m[0] * x + m[2] * y;
@@ -55,25 +53,25 @@ class Vec2D {
     return o;
   }
 
-  static Vec2D subtract(Vec2D o, Vec2D a, Vec2D b) {
+  public static Vec2D subtract(Vec2D o, Vec2D a, Vec2D b) {
     o[0] = a[0] - b[0];
     o[1] = a[1] - b[1];
     return o;
   }
 
-  static Vec2D add(Vec2D o, Vec2D a, Vec2D b) {
+  public static Vec2D add(Vec2D o, Vec2D a, Vec2D b) {
     o[0] = a[0] + b[0];
     o[1] = a[1] + b[1];
     return o;
   }
 
-  static Vec2D scale(Vec2D o, Vec2D a, double scale) {
+  public static Vec2D scale(Vec2D o, Vec2D a, double scale) {
     o[0] = a[0] * scale;
     o[1] = a[1] * scale;
     return o;
   }
 
-  static Vec2D lerp(Vec2D o, Vec2D a, Vec2D b, double f) {
+  public static Vec2D lerp(Vec2D o, Vec2D a, Vec2D b, double f) {
     double ax = a[0];
     double ay = a[1];
     o[0] = ax + f * (b[0] - ax);
@@ -81,38 +79,38 @@ class Vec2D {
     return o;
   }
 
-  static double length(Vec2D a) {
+  public static double length(Vec2D a) {
     double x = a[0];
     double y = a[1];
-    return sqrt(x * x + y * y);
+    public abstract return sqrt(x * x + y * y);
   }
 
-  static double squaredLength(Vec2D a) {
+  public static double squaredLength(Vec2D a) {
     double x = a[0];
     double y = a[1];
     return x * x + y * y;
   }
 
-  static double distance(Vec2D a, Vec2D b) {
+  public static double distance(Vec2D a, Vec2D b) {
     double x = b[0] - a[0];
     double y = b[1] - a[1];
-    return sqrt(x * x + y * y);
+    public abstract return sqrt(x * x + y * y);
   }
 
-  static double squaredDistance(Vec2D a, Vec2D b) {
+  public static double squaredDistance(Vec2D a, Vec2D b) {
     double x = b[0] - a[0];
     double y = b[1] - a[1];
     return x * x + y * y;
   }
 
-  static Vec2D negate(Vec2D result, Vec2D a) {
+  public static Vec2D negate(Vec2D result, Vec2D a) {
     result[0] = -1 * a[0];
     result[1] = -1 * a[1];
 
     return result;
   }
 
-  static void normalize(Vec2D result, Vec2D a) {
+  public static void normalize(Vec2D result, Vec2D a) {
     double x = a[0];
     double y = a[1];
     double len = x * x + y * y;
@@ -123,18 +121,18 @@ class Vec2D {
     }
   }
 
-  static double dot(Vec2D a, Vec2D b) {
+  public static double dot(Vec2D a, Vec2D b) {
     return a[0] * b[0] + a[1] * b[1];
   }
 
-  static Vec2D scaleAndAdd(Vec2D result, Vec2D a, Vec2D b, double scale) {
+  public static Vec2D scaleAndAdd(Vec2D result, Vec2D a, Vec2D b, double scale) {
     result[0] = a[0] + b[0] * scale;
     result[1] = a[1] + b[1] * scale;
     return result;
   }
 
-  @override
-  String toString() {
+  @Override
+  public String toString() {
     String v = _buffer[0].toString() + ", ";
     return v + _buffer[1].toString();
   }
