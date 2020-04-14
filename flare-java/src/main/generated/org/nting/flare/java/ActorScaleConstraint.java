@@ -82,7 +82,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
       }
     }
 
-    bool clampLocal =
+    boolean clampLocal =
         minMaxSpace == TransformSpace.local && grandParent != null;
     if (clampLocal) {
       // Apply min max in local space, so transform to local coordinates first.

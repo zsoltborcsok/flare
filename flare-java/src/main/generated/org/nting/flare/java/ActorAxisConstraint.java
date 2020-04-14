@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
 public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
-  bool _copyX = false;
-  bool _copyY = false;
-  bool _enableMinX = false;
-  bool _enableMaxX = false;
-  bool _enableMinY = false;
-  bool _enableMaxY = false;
-  bool _offset = false;
+  boolean _copyX = false;
+  boolean _copyY = false;
+  boolean _enableMinX = false;
+  boolean _enableMaxX = false;
+  boolean _enableMinY = false;
+  boolean _enableMaxY = false;
+  boolean _offset = false;
 
   double _scaleX = 1.0;
   double _scaleY = 1.0;
@@ -25,37 +25,37 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
   static ActorAxisConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorAxisConstraint component) {
     ActorTargetedConstraint.read(artboard, reader, component);
-    component._copyX = reader.readBool("copyX");
+    component._copyX = reader.readBoolean("copyX");
     if (component._copyX) {
       component._scaleX = reader.readFloat32("scaleX");
     }
 
-    component._enableMinX = reader.readBool("enableMinX");
+    component._enableMinX = reader.readBoolean("enableMinX");
     if (component._enableMinX) {
       component._minX = reader.readFloat32("minX");
     }
 
-    component._enableMaxX = reader.readBool("enableMaxX");
+    component._enableMaxX = reader.readBoolean("enableMaxX");
     if (component._enableMaxX) {
       component._maxX = reader.readFloat32("maxX");
     }
 
-    component._copyY = reader.readBool("copyY");
+    component._copyY = reader.readBoolean("copyY");
     if (component._copyY) {
       component._scaleY = reader.readFloat32("scaleY");
     }
 
-    component._enableMinY = reader.readBool("enableMinY");
+    component._enableMinY = reader.readBoolean("enableMinY");
     if (component._enableMinY) {
       component._minY = reader.readFloat32("minY");
     }
 
-    component._enableMaxY = reader.readBool("enableMaxY");
+    component._enableMaxY = reader.readBoolean("enableMaxY");
     if (component._enableMaxY) {
       component._maxY = reader.readFloat32("maxY");
     }
 
-    component._offset = reader.readBool("offset");
+    component._offset = reader.readBoolean("offset");
     component._sourceSpace = reader.readUint8("sourceSpaceId");
     component._destSpace = reader.readUint8("destSpaceId");
     component._minMaxSpace = reader.readUint8("minMaxSpaceId");
@@ -92,19 +92,19 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
     markDirty();
   }
 
-  bool get copyX => _copyX;
+  boolean get copyX => _copyX;
 
-  bool get copyY => _copyY;
+  boolean get copyY => _copyY;
 
   int get destSpace => _destSpace;
 
-  bool get enableMaxX => _enableMaxX;
+  boolean get enableMaxX => _enableMaxX;
 
-  bool get enableMaxY => _enableMaxY;
+  boolean get enableMaxY => _enableMaxY;
 
-  bool get enableMinX => _enableMinX;
+  boolean get enableMinX => _enableMinX;
 
-  bool get enableMinY => _enableMinY;
+  boolean get enableMinY => _enableMinY;
 
   double get maxX => _maxX;
 
@@ -116,7 +116,7 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
 
   double get minY => _minY;
 
-  bool get offset => _offset;
+  boolean get offset => _offset;
 
   double get scaleX => _scaleX;
 

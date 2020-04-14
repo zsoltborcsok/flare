@@ -1,14 +1,14 @@
 package org.nting.flare.java;
 
 public abstract class ActorLayerEffect extends ActorComponent {
-  bool _isActive;
+  boolean _isActive;
 
-  bool get isActive => _isActive;
+  boolean get isActive => _isActive;
 
   static ActorLayerEffect read(ActorArtboard artboard, StreamReader reader,
       ActorLayerEffect component) {
     ActorComponent.read(artboard, reader, component);
-    component._isActive = reader.readBool("isActive");
+    component._isActive = reader.readBoolean("isActive");
 
     return component;
   }

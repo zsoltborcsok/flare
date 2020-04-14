@@ -18,7 +18,7 @@ public class DependencySorter {
     return _order;
   }
 
-  public bool visit(ActorComponent n) {
+  public boolean visit(ActorComponent n) {
     if (_perm.contains(n)) {
       return true;
     }

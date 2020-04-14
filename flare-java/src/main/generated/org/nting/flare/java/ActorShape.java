@@ -4,9 +4,9 @@ public class ActorShape extends ActorDrawable {
   final List<ActorBasePath> _paths = <ActorBasePath>[];
   final List<ActorStroke> _strokes = <ActorStroke>[];
   final List<ActorFill> _fills = <ActorFill>[];
-  bool _transformAffectsStroke = false;
+  boolean _transformAffectsStroke = false;
 
-  bool get transformAffectsStroke => _transformAffectsStroke;
+  boolean get transformAffectsStroke => _transformAffectsStroke;
 
   ActorFill get fill => _fills.isNotEmpty ? _fills.first : null;
 
@@ -29,7 +29,7 @@ public class ActorShape extends ActorDrawable {
     ActorDrawable.read(artboard, reader, component);
     if (artboard.actor.version >= 22) {
       component._transformAffectsStroke =
-          reader.readBool("transformAffectsStroke");
+          reader.readBoolean("transformAffectsStroke");
     }
 
     return component;
@@ -175,7 +175,7 @@ public class ActorShape extends ActorDrawable {
   @Override
   set blendModeId(int value) {}
 
-  public bool addPath(ActorBasePath path) {
+  public boolean addPath(ActorBasePath path) {
     if (_paths.contains(path)) {
       return false;
     }
@@ -183,7 +183,7 @@ public class ActorShape extends ActorDrawable {
     return true;
   }
 
-  public bool removePath(ActorBasePath path) {
+  public boolean removePath(ActorBasePath path) {
     return _paths.remove(path);
   }
 }

@@ -4,7 +4,7 @@ enum BlendModes { normal, multiply, screen, additive }
 
 public class ClipShape {
   final ActorShape shape;
-  final bool intersect;
+  final boolean intersect;
 
   ClipShape(this.shape, this.intersect);
 }
@@ -29,9 +29,9 @@ public abstract class ActorDrawable extends ActorNode {
 
   // Computed draw index in the draw list.
   int drawIndex;
-  bool isHidden;
+  boolean isHidden;
 
-  bool get doesDraw {
+  boolean get doesDraw {
     return !isHidden && !renderCollapsed;
   }
 
@@ -43,7 +43,7 @@ public abstract class ActorDrawable extends ActorNode {
       ActorDrawable component) {
     ActorNode.read(artboard, reader, component);
 
-    component.isHidden = !reader.readBool("isVisible");
+    component.isHidden = !reader.readBoolean("isVisible");
     if (artboard.actor.version < 21) {
       component.blendModeId = 3;
     } else {

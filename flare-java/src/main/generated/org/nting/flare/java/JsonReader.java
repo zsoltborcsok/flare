@@ -76,7 +76,7 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  public bool isEOF() {
+  public boolean isEOF() {
     return _context.length <= 1 && _readObject.length == 0;
   }
 
@@ -140,8 +140,8 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  public bool readBool(String label) {
-    return readProp<bool>(label) ?? false;
+  public boolean readBoolean(String label) {
+    return readProp<boolean>(label) ?? false;
   }
 
   // @hasOffset flag is needed for older (up until version 14) files.

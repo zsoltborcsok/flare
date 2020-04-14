@@ -61,9 +61,9 @@ public class ActorStar extends ActorProceduralPath {
 
   double get innerRadius => _innerRadius;
 
-  bool get isClosed => true;
+  boolean get isClosed => true;
 
-  bool get doesDraw => !renderCollapsed;
+  boolean get doesDraw => !renderCollapsed;
 
   double get radiusX => width / 2;
 

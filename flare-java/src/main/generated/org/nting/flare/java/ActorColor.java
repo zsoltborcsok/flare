@@ -143,7 +143,7 @@ public abstract class ActorStroke {
 
   TrimPath get trim => _trim;
 
-  bool get isTrimmed => _trim != TrimPath.off;
+  boolean get isTrimmed => _trim != TrimPath.off;
 
   double _trimStart = 0.0;
 

@@ -35,9 +35,9 @@ public class ActorTriangle extends ActorProceduralPath {
     return _trianglePoints;
   }
 
-  bool get isClosed => true;
+  boolean get isClosed => true;
 
-  bool get doesDraw => !renderCollapsed;
+  boolean get doesDraw => !renderCollapsed;
 
   double get radiusX => width / 2;
 

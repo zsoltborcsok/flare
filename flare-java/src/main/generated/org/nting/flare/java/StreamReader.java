@@ -20,7 +20,7 @@ public abstract class StreamReader {
     return reader;
   }
 
-  public abstract bool isEOF();
+  public abstract boolean isEOF();
 
   public abstract int readUint8Length();
 
@@ -54,7 +54,7 @@ public abstract class StreamReader {
 
   public abstract String readString(String label);
 
-  public abstract bool readBool(String label);
+  public abstract boolean readBoolean(String label);
 
   public abstract int readId(String label);
 

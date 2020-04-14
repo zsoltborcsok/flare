@@ -31,7 +31,20 @@ public class DartToJava {
         // insertNewKeywords(Paths.get(RELATIVE_PATH));
         // makeMethodsPublic(Paths.get(RELATIVE_PATH));
         // makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
-        handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
+        // handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
+        handleBools(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleBools(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains("bool")) {
+                line = line.replace("bool", "boolean");
+            }
+            if (line.contains("Bool") && !line.contains("Boolean")) {
+                line = line.replace("Bool", "Boolean");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void handleOverrideAnnotations(Path pathToFiles) {

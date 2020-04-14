@@ -3,13 +3,13 @@ package org.nting.flare.java;
 public class ActorRotationConstraint extends ActorTargetedConstraint {
   static const double pi2 = pi * 2.0;
 
-  bool _copy = false;
+  boolean _copy = false;
   double _scale = 1.0;
-  bool _enableMin = false;
-  bool _enableMax = false;
+  boolean _enableMin = false;
+  boolean _enableMax = false;
   double _max = pi2;
   double _min = -pi2;
-  bool _offset = false;
+  boolean _offset = false;
   int _sourceSpace = TransformSpace.world;
   int _destSpace = TransformSpace.world;
   int _minMaxSpace = TransformSpace.world;
@@ -20,20 +20,20 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
       StreamReader reader, ActorRotationConstraint component) {
     component ??= new ActorRotationConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
-    component._copy = reader.readBool("copy");
+    component._copy = reader.readBoolean("copy");
     if (component._copy) {
       component._scale = reader.readFloat32("scale");
     }
-    component._enableMin = reader.readBool("enableMin");
+    component._enableMin = reader.readBoolean("enableMin");
     if (component._enableMin) {
       component._min = reader.readFloat32("min");
     }
-    component._enableMax = reader.readBool("enableMax");
+    component._enableMax = reader.readBoolean("enableMax");
     if (component._enableMax) {
       component._max = reader.readFloat32("max");
     }
 
-    component._offset = reader.readBool("offset");
+    component._offset = reader.readBoolean("offset");
     component._sourceSpace = reader.readUint8("sourceSpaceId");
     component._destSpace = reader.readUint8("destSpaceId");
     component._minMaxSpace = reader.readUint8("minMaxSpaceId");
@@ -93,7 +93,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
       }
     }
 
-    bool clampLocal =
+    boolean clampLocal =
         _minMaxSpace == TransformSpace.local && grandParent != null;
     if (clampLocal) {
       // Apply min max in local space, so transform to local coordinates first.

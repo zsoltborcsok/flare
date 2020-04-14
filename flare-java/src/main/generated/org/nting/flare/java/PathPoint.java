@@ -42,7 +42,7 @@ public abstract class PathPoint {
     }
   }
 
-  public void read(StreamReader reader, bool isConnectedToBones) {
+  public void read(StreamReader reader, boolean isConnectedToBones) {
     Vec2D.copyFromList(_translation, reader.readFloat32Array(2, "translation"));
 
     int weightLength = readPoint(reader, isConnectedToBones);
@@ -51,7 +51,7 @@ public abstract class PathPoint {
     }
   }
 
-  public abstract int readPoint(StreamReader reader, bool isConnectedToBones);
+  public abstract int readPoint(StreamReader reader, boolean isConnectedToBones);
 
   public PathPoint transformed(Mat2D transform) {
     PathPoint result = makeInstance();
@@ -90,7 +90,7 @@ public class StraightPathPoint extends PathPoint {
   }
 
   @Override
-  public int readPoint(StreamReader reader, bool isConnectedToBones) {
+  public int readPoint(StreamReader reader, boolean isConnectedToBones) {
     radius = reader.readFloat32("radius");
     if (isConnectedToBones) {
       return 8;
@@ -173,7 +173,7 @@ public class CubicPathPoint extends PathPoint {
   }
 
   @Override
-  public int readPoint(StreamReader reader, bool isConnectedToBones) {
+  public int readPoint(StreamReader reader, boolean isConnectedToBones) {
     Vec2D.copyFromList(_in, reader.readFloat32Array(2, "in"));
     Vec2D.copyFromList(_out, reader.readFloat32Array(2, "out"));
     if (isConnectedToBones) {

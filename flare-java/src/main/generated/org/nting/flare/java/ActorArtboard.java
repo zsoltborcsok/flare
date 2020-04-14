@@ -18,7 +18,7 @@ public class ActorArtboard {
   double _width = 0.0;
   double _height = 0.0;
   final Vec2D _origin = new Vec2D();
-  bool _clipContents = true;
+  boolean _clipContents = true;
   final Float32List _color = new Float32List(4);
   double _modulateOpacity = 1.0;
   Float32List _overrideColor;
@@ -33,7 +33,7 @@ public class ActorArtboard {
 
   Vec2D get translation => _translation;
 
-  bool get clipContents => _clipContents;
+  boolean get clipContents => _clipContents;
 
   double get modulateOpacity => _modulateOpacity;
 
@@ -80,7 +80,7 @@ public class ActorArtboard {
 
   ActorNode get root => _root;
 
-  public bool addDependency(ActorComponent a, ActorComponent b) {
+  public boolean addDependency(ActorComponent a, ActorComponent b) {
     List<ActorComponent> dependents = b.dependents;
     if (dependents == null) {
       b.dependents = dependents = <ActorComponent>[];
@@ -103,7 +103,7 @@ public class ActorArtboard {
     _flags |= ActorFlags.isDirty;
   }
 
-  public bool addDirt(ActorComponent component, int value, bool recurse) {
+  public boolean addDirt(ActorComponent component, int value, boolean recurse) {
     if ((component.dirtMask & value) == value) {
       // Already marked.
       return false;
@@ -320,7 +320,7 @@ public class ActorArtboard {
     _width = reader.readFloat32("width");
     _height = reader.readFloat32("height");
     Vec2D.copyFromList(_origin, reader.readFloat32Array(2, "origin"));
-    _clipContents = reader.readBool("clipContents");
+    _clipContents = reader.readBoolean("clipContents");
 
     Float32List color = reader.readFloat32Array(4, "color");
     _color[0] = color[0];

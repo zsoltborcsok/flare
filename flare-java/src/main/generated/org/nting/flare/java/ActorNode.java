@@ -1,10 +1,10 @@
 package org.nting.flare.java;
 
-typedef bool ComopnentWalkCallback(ActorComponent component);
+typedef boolean ComopnentWalkCallback(ActorComponent component);
 
 public class ActorClip {
   int clipIdx;
-  bool intersect = true;
+  boolean intersect = true;
   ActorNode node;
 
   ActorClip(this.clipIdx);
@@ -30,10 +30,10 @@ public class ActorNode extends ActorComponent {
 
   ActorLayerEffectRenderer get layerEffect => _layerEffect;
 
-  bool _overrideWorldTransform = false;
-  bool _isCollapsedVisibility = false;
+  boolean _overrideWorldTransform = false;
+  boolean _isCollapsedVisibility = false;
 
-  bool _renderCollapsed = false;
+  boolean _renderCollapsed = false;
   List<ActorClip> _clips;
 
   List<ActorConstraint> _constraints;
@@ -183,15 +183,15 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  bool get renderCollapsed {
+  boolean get renderCollapsed {
     return _renderCollapsed;
   }
 
-  bool get collapsedVisibility {
+  boolean get collapsedVisibility {
     return _isCollapsedVisibility;
   }
 
-  set collapsedVisibility(bool value) {
+  set collapsedVisibility(boolean value) {
     if (_isCollapsedVisibility != value) {
       _isCollapsedVisibility = value;
       markTransformDirty();
@@ -259,7 +259,7 @@ public class ActorNode extends ActorComponent {
     node._rotation = reader.readFloat32("rotation");
     Vec2D.copyFromList(node._scale, reader.readFloat32Array(2, "scale"));
     node._opacity = reader.readFloat32("opacity");
-    node._isCollapsedVisibility = reader.readBool("isCollapsed");
+    node._isCollapsedVisibility = reader.readBoolean("isCollapsed");
 
     reader.openArray("clips");
     int clipCount = reader.readUint8Length();
@@ -269,7 +269,7 @@ public class ActorNode extends ActorComponent {
         reader.openObject("clip");
         var clip = new ActorClip(reader.readId("node"));
         if (artboard.actor.version >= 23) {
-          clip.intersect = reader.readBool("intersect");
+          clip.intersect = reader.readBoolean("intersect");
         }
         reader.closeObject();
         node._clips[i] = clip;
@@ -327,7 +327,7 @@ public class ActorNode extends ActorComponent {
   @Override
   public void onDirty(int dirt) {}
 
-  public bool addConstraint(ActorConstraint constraint) {
+  public boolean addConstraint(ActorConstraint constraint) {
     _constraints ??= <ActorConstraint>[];
     if (_constraints.contains(constraint)) {
       return false;
@@ -336,7 +336,7 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  public bool addPeerConstraint(ActorConstraint constraint) {
+  public boolean addPeerConstraint(ActorConstraint constraint) {
     _peerConstraints ??= <ActorConstraint>[];
     if (_peerConstraints.contains(constraint)) {
       return false;
@@ -391,7 +391,7 @@ public class ActorNode extends ActorComponent {
     // Nothing to complete for actornode.
   }
 
-  public bool eachChildRecursive(ComopnentWalkCallback cb) {
+  public boolean eachChildRecursive(ComopnentWalkCallback cb) {
     if (_children != null) {
       for (final ActorComponent child in _children) {
         if (cb(child) == false) {
@@ -406,7 +406,7 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  public bool all(ComopnentWalkCallback cb) {
+  public boolean all(ComopnentWalkCallback cb) {
     if (cb(this) == false) {
       return false;
     }

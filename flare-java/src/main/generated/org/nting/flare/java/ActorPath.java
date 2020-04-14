@@ -4,9 +4,9 @@ public abstract class ActorBasePath {
   ActorShape _shape;
 
   ActorShape get shape => _shape;
-  bool _isRootPath = false;
+  boolean _isRootPath = false;
 
-  bool get isRootPath => _isRootPath;
+  boolean get isRootPath => _isRootPath;
 
   List<PathPoint> get points;
 
@@ -14,7 +14,7 @@ public abstract class ActorBasePath {
 
   public abstract void invalidatePath();
 
-  bool get isPathInWorldSpace => false;
+  boolean get isPathInWorldSpace => false;
 
   Mat2D get pathTransform;
 
@@ -208,13 +208,13 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
 }
 
 public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
-  bool _isHidden;
-  bool _isClosed;
+  boolean _isHidden;
+  boolean _isClosed;
   List<PathPoint> _points;
   Float32List vertexDeform;
 
   @Override
-  bool get isPathInWorldSpace => isConnectedToBones;
+  boolean get isPathInWorldSpace => isConnectedToBones;
 
   @Override
   public void invalidatePath() {
@@ -243,7 +243,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     return deformed;
   }
 
-  bool get isClosed {
+  boolean get isClosed {
     return _isClosed;
   }
 
@@ -324,8 +324,8 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     ActorNode.read(artboard, reader, component);
     ActorSkinnable.read(artboard, reader, component);
 
-    component._isHidden = !reader.readBool("isVisible");
-    component._isClosed = reader.readBool("isClosed");
+    component._isHidden = !reader.readBoolean("isVisible");
+    component._isClosed = reader.readBoolean("isClosed");
 
     reader.openArray("points");
     int pointCount = reader.readUint16Length();

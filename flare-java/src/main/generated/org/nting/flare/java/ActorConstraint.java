@@ -1,14 +1,14 @@
 package org.nting.flare.java;
 
 public abstract class ActorConstraint extends ActorComponent {
-  bool _isEnabled;
+  boolean _isEnabled;
   double _strength;
 
-  bool get isEnabled {
+  boolean get isEnabled {
     return _isEnabled;
   }
 
-  set isEnabled(bool value) {
+  set isEnabled(boolean value) {
     if (value == _isEnabled) {
       return;
     }
@@ -53,7 +53,7 @@ public abstract class ActorConstraint extends ActorComponent {
       ActorConstraint component) {
     ActorComponent.read(artboard, reader, component);
     component._strength = reader.readFloat32("strength");
-    component._isEnabled = reader.readBool("isEnabled");
+    component._isEnabled = reader.readBoolean("isEnabled");
 
     return component;
   }

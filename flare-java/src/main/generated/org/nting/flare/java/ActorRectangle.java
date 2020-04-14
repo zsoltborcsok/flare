@@ -55,9 +55,9 @@ public class ActorRectangle extends ActorProceduralPath {
     }
   }
 
-  bool get isClosed => true;
+  boolean get isClosed => true;
 
-  bool get doesDraw {
+  boolean get doesDraw {
     return !renderCollapsed;
   }
 

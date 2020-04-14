@@ -18,7 +18,7 @@ public class ActorJellyBone extends ActorBoneBase {
     // unnecessary for serialization.
     ActorComponent.read(artboard, reader, node);
     node.opacity = reader.readFloat32("opacity");
-    node.collapsedVisibility = reader.readBool("isCollapsed");
+    node.collapsedVisibility = reader.readBoolean("isCollapsed");
     return node;
   }
 }

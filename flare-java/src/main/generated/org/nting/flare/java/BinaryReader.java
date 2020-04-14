@@ -42,7 +42,7 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  public bool isEOF() {
+  public boolean isEOF() {
     return _readIndex >= _raw.lengthInBytes;
   }
 
@@ -172,7 +172,7 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  public bool readBool(String label) {
+  public boolean readBoolean(String label) {
     return readUint8(label) == 1;
   }
 

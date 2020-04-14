@@ -6,7 +6,7 @@ public class JellyComponent extends ActorComponent {
   static double curveConstant = optimalDistance * sqrt(2.0) * 0.5;
   static const double epsilon = 0.001; // Intentionally agressive.
 
-  public static bool fuzzyEquals(Vec2D a, Vec2D b) {
+  public static boolean fuzzyEquals(Vec2D a, Vec2D b) {
     double a0 = a[0],
         a1 = a[1];
     double b0 = b[0],

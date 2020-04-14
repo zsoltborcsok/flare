@@ -94,14 +94,14 @@ public abstract class Actor {
 
   public abstract ActorLayerEffectRenderer makeLayerEffectRenderer();
 
-  Future<bool> loadAtlases(List<Uint8List> rawAtlases);
+  Future<boolean> loadAtlases(List<Uint8List> rawAtlases);
 
-  Future<bool> load(ByteData data, dynamic context) async {
+  Future<boolean> load(ByteData data, dynamic context) async {
     if (data.lengthInBytes < 5) {
       throw new UnsupportedError("Not a valid Flare file.");
     }
 
-    bool success = true;
+    boolean success = true;
 
     int F = data.getUint8(0);
     int L = data.getUint8(1);
@@ -180,7 +180,7 @@ public abstract class Actor {
   Future<List<Uint8List>> readAtlasesBlock(StreamReader block,
       dynamic context) {
     // Determine whether or not the atlas is in or out of band.
-    bool isOOB = block.readBool("isOOB");
+    boolean isOOB = block.readBoolean("isOOB");
     block.openArray("data");
     int numAtlases = block.readUint16Length();
     Future<List<Uint8List>> result;

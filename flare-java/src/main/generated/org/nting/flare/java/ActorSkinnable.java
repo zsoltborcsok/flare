@@ -15,7 +15,7 @@ public abstract class ActorSkinnable {
 
   List<SkinnedBone> get connectedBones => _connectedBones;
 
-  bool get isConnectedToBones =>
+  boolean get isConnectedToBones =>
       _connectedBones != null && _connectedBones.isNotEmpty;
 
   static ActorSkinnable read(ActorArtboard artboard, StreamReader reader,

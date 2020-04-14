@@ -84,11 +84,11 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     return isConnectedToBones ? 12 : 4;
   }
 
-  bool get doesAnimationVertexDeform {
+  boolean get doesAnimationVertexDeform {
     return _animationDeformedVertices != null;
   }
 
-  set doesAnimationVertexDeform(bool value) {
+  set doesAnimationVertexDeform(boolean value) {
     if (value) {
       if (_animationDeformedVertices == null ||
           _animationDeformedVertices.length != _vertexCount * 2) {
@@ -141,7 +141,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
       // In version 24 we started packing the original UV coordinates if the
       // image was marked for dynamic runtime swapping.
       if (artboard.actor.version >= 24) {
-        bool isDynamic = reader.readBool("isDynamic");
+        boolean isDynamic = reader.readBoolean("isDynamic");
         if (isDynamic) {
           node._dynamicUV = reader.readFloat32Array(numVertices * 2, "uv");
         }
@@ -280,7 +280,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   }
 
   void updateVertexPositionBuffer(Float32List buffer,
-      bool isSkinnedDeformInWorld) {
+      boolean isSkinnedDeformInWorld) {
     Mat2D worldTransform = this.worldTransform;
     int readIdx = 0;
     int writeIdx = 0;

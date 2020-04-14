@@ -9,14 +9,14 @@ public class BoneChain {
   int index;
   ActorBone bone;
   double angle;
-  bool included;
+  boolean included;
   TransformComponents transformComponents;
   Mat2D parentWorldInverse;
 }
 
 public class ActorIKConstraint extends ActorTargetedConstraint {
   static const double PI2 = pi * 2.0;
-  bool _invertDirection = false;
+  boolean _invertDirection = false;
   List<InfluencedBone> _influencedBones;
   List<BoneChain> _fkChain;
   List<BoneChain> _boneData;
@@ -52,7 +52,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
       end = end.parent;
     }
 
-    bool allIn = count < 3;
+    boolean allIn = count < 3;
     end = _influencedBones[_influencedBones.length - 1].bone;
     _fkChain = List<BoneChain>(count);
     int idx = count - 1;
@@ -129,7 +129,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
       ActorIKConstraint component) {
     component ??= new ActorIKConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
-    component._invertDirection = reader.readBool("isInverted");
+    component._invertDirection = reader.readBoolean("isInverted");
 
     reader.openArray("bones");
     int numInfluencedBones = reader.readUint8Length();
