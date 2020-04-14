@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ActorBasePath {
@@ -331,7 +332,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
     reader.openArray("points");
     int pointCount = reader.readUint16Length();
-    component._points = List<PathPoint>(pointCount);
+    component._points = new ArrayList<PathPoint>(pointCount);
     for (int i = 0; i < pointCount; i++) {
       reader.openObject("point");
       PathPoint point;
@@ -382,7 +383,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
     int pointCount = node._points.length;
 
-    _points = List<PathPoint>(pointCount);
+    _points = new ArrayList<PathPoint>(pointCount);
     for (int i = 0; i < pointCount; i++) {
       _points[i] = node._points[i].makeInstance();
     }

@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 typedef boolean ComopnentWalkCallback(ActorComponent component);
@@ -266,7 +267,7 @@ public class ActorNode extends ActorComponent {
     reader.openArray("clips");
     int clipCount = reader.readUint8Length();
     if (clipCount > 0) {
-      node._clips = List<ActorClip>(clipCount);
+      node._clips = new ArrayList<ActorClip>(clipCount);
       for (int i = 0; i < clipCount; i++) {
         reader.openObject("clip");
         var clip = new ActorClip(reader.readId("node"));
@@ -317,7 +318,7 @@ public class ActorNode extends ActorComponent {
     _overrideWorldTransform = node._overrideWorldTransform;
 
     if (node._clips != null) {
-      _clips = List<ActorClip>(node._clips.length);
+      _clips = new ArrayList<ActorClip>(node._clips.length);
       for (int i = 0, l = node._clips.length; i < l; i++) {
         _clips[i] = ActorClip.copy(node._clips[i]);
       }

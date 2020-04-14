@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Actor {
@@ -30,7 +31,7 @@ public abstract class Actor {
     int artboardCount = actor._artboards.length;
     if (artboardCount > 0) {
       int idx = 0;
-      _artboards = List<ActorArtboard>(artboardCount);
+      _artboards = new ArrayList<ActorArtboard>(artboardCount);
       for (final ActorArtboard artboard : actor._artboards) {
         if (artboard == null) {
           _artboards[idx++] = null;
@@ -156,7 +157,7 @@ public abstract class Actor {
 
   public void readArtboardsBlock(StreamReader block) {
     int artboardCount = block.readUint16Length();
-    _artboards = List<ActorArtboard>(artboardCount);
+    _artboards = new ArrayList<ActorArtboard>(artboardCount);
 
     for (int artboardIndex = 0, end = _artboards.length;
     artboardIndex < end;
@@ -187,14 +188,14 @@ public abstract class Actor {
     int numAtlases = block.readUint16Length();
     Future<List<Uint8List>> result;
     if (isOOB) {
-      List<Future<Uint8List>> waitingFor = List<Future<Uint8List>>(numAtlases);
+      List<Future<Uint8List>> waitingFor = new ArrayList<Future<Uint8List>>(numAtlases);
       for (int i = 0; i < numAtlases; i++) {
         waitingFor[i] = readOutOfBandAsset(block.readString("data"), context);
       }
       result = Future.wait(waitingFor);
     } else {
       // This is sync.
-      List<Uint8List> inBandAssets = List<Uint8List>(numAtlases);
+      List<Uint8List> inBandAssets = new ArrayList<Uint8List>(numAtlases);
       for (int i = 0; i < numAtlases; i++) {
         inBandAssets[i] = block.readAsset();
       }

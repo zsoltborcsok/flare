@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkinnedBone {
@@ -25,7 +26,7 @@ public abstract class ActorSkinnable {
     reader.openArray("bones");
     int numConnectedBones = reader.readUint8Length();
     if (numConnectedBones != 0) {
-      node._connectedBones = List<SkinnedBone>(numConnectedBones);
+      node._connectedBones = new ArrayList<SkinnedBone>(numConnectedBones);
 
       for (int i = 0; i < numConnectedBones; i++) {
         SkinnedBone bc = new SkinnedBone();
@@ -59,7 +60,7 @@ public abstract class ActorSkinnable {
 
   public void copySkinnable(ActorSkinnable node, ActorArtboard resetArtboard) {
     if (node._connectedBones != null) {
-      _connectedBones = List<SkinnedBone>(node._connectedBones.length);
+      _connectedBones = new ArrayList<SkinnedBone>(node._connectedBones.length);
       for (int i = 0; i < node._connectedBones.length; i++) {
         SkinnedBone from = node._connectedBones[i];
         SkinnedBone bc = new SkinnedBone();

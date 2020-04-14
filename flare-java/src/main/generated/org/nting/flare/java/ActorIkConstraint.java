@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InfluencedBone {
@@ -56,7 +57,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     boolean allIn = count < 3;
     end = _influencedBones[_influencedBones.length - 1].bone;
-    _fkChain = List<BoneChain>(count);
+    _fkChain = new ArrayList<BoneChain>(count);
     int idx = count - 1;
     while (end != null && end != start.parent) {
       BoneChain bc = new BoneChain();
@@ -136,7 +137,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     reader.openArray("bones");
     int numInfluencedBones = reader.readUint8Length();
     if (numInfluencedBones > 0) {
-      component._influencedBones = List<InfluencedBone>(numInfluencedBones);
+      component._influencedBones = new ArrayList<InfluencedBone>(numInfluencedBones);
 
       for (int i = 0; i < numInfluencedBones; i++) {
         InfluencedBone ib = new InfluencedBone();
@@ -345,7 +346,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     _invertDirection = node._invertDirection;
     if (node._influencedBones != null) {
-      _influencedBones = List<InfluencedBone>(node._influencedBones.length);
+      _influencedBones = new ArrayList<InfluencedBone>(node._influencedBones.length);
       for (int i = 0; i < _influencedBones.length; i++) {
         InfluencedBone ib = new InfluencedBone();
         ib.boneIdx = node._influencedBones[i].boneIdx;

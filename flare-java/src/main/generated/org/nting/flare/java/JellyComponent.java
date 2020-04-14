@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JellyComponent extends ActorComponent {
@@ -47,7 +48,7 @@ public class JellyComponent extends ActorComponent {
   public List<Vec2D> normalizeCurve(List<Vec2D> curve, int numSegments) {
     List<Vec2D> points = <Vec2D>[];
     int curvePointCount = curve.length;
-    List<double> distances = List<double>(curvePointCount);
+    List<double> distances = new ArrayList<double>(curvePointCount);
     distances[0] = 0.0;
     for (int i = 0; i < curvePointCount - 1; i++) {
       Vec2D p1 = curve[i];
@@ -116,7 +117,7 @@ public class JellyComponent extends ActorComponent {
     _cachedOut = new Vec2D();
     _cachedIn = new Vec2D();
 
-    _jellyPoints = List<Vec2D>(jellyMax + 1);
+    _jellyPoints = new ArrayList<Vec2D>(jellyMax + 1);
     for (var i = 0; i <= jellyMax; i++) {
       _jellyPoints[i] = new Vec2D();
     }

@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SequenceFrame {
@@ -170,7 +171,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //       int uvStride = node._vertexCount * 2;
 //       node._sequenceUVs = uvs;
 //       SequenceFrame firstFrame = new SequenceFrame(node._textureIndex, 0);
-//       node._sequenceFrames = List<SequenceFrame>();
+//       node._sequenceFrames = new ArrayList<SequenceFrame>();
 //       node._sequenceFrames.add(firstFrame);
 //       int readIdx = 2;
 //       int writeIdx = 0;

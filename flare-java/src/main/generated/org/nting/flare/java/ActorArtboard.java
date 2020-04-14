@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorArtboard {
@@ -191,11 +192,11 @@ public class ActorArtboard {
     _nodeCount = artboard._nodeCount;
 
     if (artboard.componentCount != 0) {
-      _components = List<ActorComponent>(artboard.componentCount);
+      _components = new ArrayList<ActorComponent>(artboard.componentCount);
     }
     if (_nodeCount != 0) // This will always be at least 1.
         {
-      _nodes = List<ActorNode>(_nodeCount);
+      _nodes = new ArrayList<ActorNode>(_nodeCount);
     }
 
     if (artboard.componentCount != 0) {
@@ -211,7 +212,7 @@ public class ActorArtboard {
       }
     }
     // Copy dependency order.
-    _dependencyOrder = List<ActorComponent>(artboard._dependencyOrder.length);
+    _dependencyOrder = new ArrayList<ActorComponent>(artboard._dependencyOrder.length);
     for (final ActorComponent component : artboard._dependencyOrder) {
       final ActorComponent localComponent = _components[component.idx];
       _dependencyOrder[component.graphOrder] = localComponent;
@@ -345,7 +346,7 @@ public class ActorArtboard {
 
   public void readComponentsBlock(StreamReader block) {
     int componentCount = block.readUint16Length();
-    _components = List<ActorComponent>(componentCount + 1);
+    _components = new ArrayList<ActorComponent>(componentCount + 1);
     _components[0] = _root;
 
     // Guaranteed from the exporter to be in index order.
@@ -565,7 +566,7 @@ public class ActorArtboard {
       }
     }
 
-    _nodes = List<ActorNode>(_nodeCount);
+    _nodes = new ArrayList<ActorNode>(_nodeCount);
     _nodes[0] = _root;
   }
 
@@ -581,7 +582,7 @@ public class ActorArtboard {
   public void readAnimationsBlock(StreamReader block) {
     // Read animations.
     int animationCount = block.readUint16Length();
-    _animations = List<ActorAnimation>(animationCount);
+    _animations = new ArrayList<ActorAnimation>(animationCount);
     StreamReader animationBlock;
     int animationIndex = 0;
 

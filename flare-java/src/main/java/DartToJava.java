@@ -34,7 +34,26 @@ public class DartToJava {
         // handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
         // handleBools(Paths.get(RELATIVE_PATH));
         // handleCollectionIterations(Paths.get(RELATIVE_PATH));
-        addListImport(Paths.get(RELATIVE_PATH));
+        // addListImport(Paths.get(RELATIVE_PATH));
+        handleListCreation(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleListCreation(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> {
+            boolean[] hasArrayListUsage = {false};
+            lines = lines.stream().map(line -> {
+                if (line.contains("= List<")) {
+                    hasArrayListUsage[0] = true;
+                    line = line.replace("= List<", "= new ArrayList<");
+                }
+                return line;
+            }).collect(Collectors.toList());
+
+            if (hasArrayListUsage[0]) {
+                lines.add(2, "import java.util.ArrayList;");
+            }
+            return lines;
+        });
     }
 
     private static void addListImport(Path pathToFiles) {
