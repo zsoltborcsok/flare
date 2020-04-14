@@ -26,7 +26,7 @@ public class ActorNodeSolo extends ActorNode {
     }
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorNodeSolo soloInstance = new ActorNodeSolo();
     soloInstance.copySolo(this, resetArtboard);
@@ -47,7 +47,7 @@ public class ActorNodeSolo extends ActorNode {
     return node;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
     setActiveChildIndex(activeChildIndex);

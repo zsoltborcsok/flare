@@ -3,10 +3,10 @@ package org.nting.flare.java;
 public class ActorPolygon extends ActorProceduralPath {
   int sides = 5;
 
-  @override
+  @Override
   public void invalidatePath() {}
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorPolygon instance = new ActorPolygon();
     instance.copyPolygon(this, resetArtboard);
@@ -30,7 +30,7 @@ public class ActorPolygon extends ActorProceduralPath {
     return component;
   }
 
-  @override
+  @Override
   List<PathPoint> get points {
     List<PathPoint> _polygonPoints = <PathPoint>[];
     double angle = -pi / 2.0;

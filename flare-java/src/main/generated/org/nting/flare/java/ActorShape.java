@@ -18,7 +18,7 @@ public class ActorShape extends ActorDrawable {
 
   List<ActorBasePath> get paths => _paths;
 
-  @override
+  @Override
   public void update(int dirt) {
     super.update(dirt);
     invalidateShape();
@@ -35,7 +35,7 @@ public class ActorShape extends ActorDrawable {
     return component;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorShape instanceShape = resetArtboard.actor.makeShapeNode(this);
     instanceShape.copyShape(this, resetArtboard);
@@ -47,7 +47,7 @@ public class ActorShape extends ActorDrawable {
     _transformAffectsStroke = node._transformAffectsStroke;
   }
 
-  @override
+  @Override
   public AABB computeAABB() {
     AABB aabb;
     for (final List<ClipShape> clips in clipShapes) {
@@ -157,7 +157,7 @@ public class ActorShape extends ActorDrawable {
     _fills.add(fill);
   }
 
-  @override
+  @Override
   public void initializeGraphics() {
     for (final ActorStroke stroke in _strokes) {
       stroke.initializeGraphics();
@@ -167,12 +167,12 @@ public class ActorShape extends ActorDrawable {
     }
   }
 
-  @override
+  @Override
   int get blendModeId {
     return 0;
   }
 
-  @override
+  @Override
   set blendModeId(int value) {}
 
   public bool addPath(ActorBasePath path) {

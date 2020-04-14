@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
 public class ActorInnerShadow extends ActorShadow {
-  @override
+  @Override
   int get blendModeId => 0;
 
-  @override
+  @Override
   set blendModeId(int value) {}
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorInnerShadow instanceShape = resetArtboard.actor.makeInnerShadow();
     instanceShape.copyShadow(this, resetArtboard);

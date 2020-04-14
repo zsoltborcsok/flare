@@ -11,14 +11,14 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
     return component;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorTranslationConstraint node = new ActorTranslationConstraint();
     node.copyAxisConstraint(this, resetArtboard);
     return node;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode t = target as ActorNode;
     ActorNode p = parent;
@@ -105,9 +105,9 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
     transformA[5] = translationA[1] * ti + translationB[1] * strength;
   }
 
-  @override
+  @Override
   public void update(int dirt) {}
 
-  @override
+  @Override
   public void completeResolve() {}
 }

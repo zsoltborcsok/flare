@@ -4,10 +4,10 @@ public class ActorStar extends ActorProceduralPath {
   int _numPoints = 5;
   double _innerRadius = 0.0;
 
-  @override
+  @Override
   public void invalidatePath() {}
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorStar instance = new ActorStar();
     instance.copyStar(this, resetArtboard);
@@ -33,7 +33,7 @@ public class ActorStar extends ActorProceduralPath {
     return component;
   }
 
-  @override
+  @Override
   List<PathPoint> get points {
     List<PathPoint> _starPoints = <PathPoint>[
       StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY))

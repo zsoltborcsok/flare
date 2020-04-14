@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class JSONReader implements StreamReader {
-  @override
+  @Override
   int blockType;
 
   dynamic _readObject;
@@ -34,14 +34,14 @@ public abstract class JSONReader implements StreamReader {
     return null;
   }
 
-  @override
+  @Override
   public double readFloat32(String label) {
     num f = readProp<num>(label);
     return f?.toDouble() ?? 0.0;
   }
 
   // Reads the array into ar
-  @override
+  @Override
   public Float32List readFloat32Array(int length, String label) {
     var ar = new Float32List(length);
     _readArray(ar, label);
@@ -59,87 +59,87 @@ public abstract class JSONReader implements StreamReader {
     }
   }
 
-  @override
+  @Override
   public double readFloat64(String label) {
     num f = readProp<num>(label);
     return f?.toDouble() ?? 0;
   }
 
-  @override
+  @Override
   public int readUint8(String label) {
     return readProp(label) ?? 0;
   }
 
-  @override
+  @Override
   public int readUint8Length() {
     return _readLength();
   }
 
-  @override
+  @Override
   public bool isEOF() {
     return _context.length <= 1 && _readObject.length == 0;
   }
 
-  @override
+  @Override
   public int readInt8(String label) {
     return readProp<int>(label) ?? 0;
   }
 
-  @override
+  @Override
   public int readUint16(String label) {
     return readProp<int>(label) ?? 0;
   }
 
-  @override
+  @Override
   public Uint8List readUint8Array(int length, String label) {
     var ar = new Uint8List(length);
     _readArray(ar, label);
     return ar;
   }
 
-  @override
+  @Override
   public Uint16List readUint16Array(int length, String label) {
     var ar = new Uint16List(length);
     _readArray(ar, label);
     return ar;
   }
 
-  @override
+  @Override
   public int readInt16(String label) {
     return readProp<int>(label) ?? 0;
   }
 
-  @override
+  @Override
   public int readUint16Length() {
     return _readLength();
   }
 
-  @override
+  @Override
   public int readUint32Length() {
     return _readLength();
   }
 
-  @override
+  @Override
   public int readUint32(String label) {
     return readProp<int>(label) ?? 0;
   }
 
-  @override
+  @Override
   public int readInt32(String label) {
     return readProp<int>(label) ?? 0;
   }
 
-  @override
+  @Override
   public int readVersion() {
     return readProp<int>("version") ?? 0;
   }
 
-  @override
+  @Override
   public String readString(String label) {
     return readProp<String>(label) ?? "";
   }
 
-  @override
+  @Override
   public bool readBool(String label) {
     return readProp<bool>(label) ?? false;
   }
@@ -147,30 +147,30 @@ public abstract class JSONReader implements StreamReader {
   // @hasOffset flag is needed for older (up until version 14) files.
   // Since the JSON Reader has been added in version 15, the field
   // here is optional.
-  @override
+  @Override
   public int readId(String label) {
     var val = readProp<num>(label);
     return val != null ? val.toInt() + 1 : 0;
   }
 
-  @override
+  @Override
   public void openArray(String label) {
     dynamic array = readProp<dynamic>(label);
     _context.addFirst(array);
   }
 
-  @override
+  @Override
   public void closeArray() {
     _context.removeFirst();
   }
 
-  @override
+  @Override
   public void openObject(String label) {
     dynamic o = readProp<dynamic>(label);
     _context.addFirst(o);
   }
 
-  @override
+  @Override
   public void closeObject() {
     _context.removeFirst();
   }
@@ -184,14 +184,14 @@ public abstract class JSONReader implements StreamReader {
     return 0;
   }
 
-  @override
+  @Override
   public Uint8List readAsset() {
     String encodedAsset =
     readString("data"); // are we sure we need a label here?
     return const Base64Decoder().convert(encodedAsset, 22);
   }
 
-  @override
+  @Override
   String get containerType => "json";
 
   ListQueue get context => _context;

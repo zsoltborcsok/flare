@@ -29,7 +29,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
         .sort((ActorDrawable a, ActorDrawable b) => a.drawOrder - b.drawOrder);
   }
 
-  @override
+  @Override
   public void onParentChanged(ActorNode from, ActorNode to) {
     super.onParentChanged(from, to);
     from?.findLayerEffect();
@@ -37,20 +37,20 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
     findEffects();
   }
 
-  @override
+  @Override
   int get blendModeId {
     return 0;
   }
 
-  @override
+  @Override
   set blendModeId(int value) {}
 
-  @override
+  @Override
   public AABB computeAABB() {
     return artboard.artboardAABB();
   }
 
-  @override
+  @Override
   public ActorLayerEffectRenderer makeInstance(ActorArtboard resetArtboard) {
     ActorLayerEffectRenderer instanceNode =
     resetArtboard.actor.makeLayerEffectRenderer();
@@ -69,13 +69,13 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
         parent.children.whereType<ActorInnerShadow>().toList(growable: false);
   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     parent.findLayerEffect();
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 

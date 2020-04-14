@@ -3,14 +3,14 @@ package org.nting.flare.java;
 const double circleConstant = 0.55;
 
 public class ActorEllipse extends ActorProceduralPath {
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorEllipse instance = new ActorEllipse();
     instance.copyPath(this, resetArtboard);
     return instance;
   }
 
-  @override
+  @Override
   public void invalidatePath() {}
 
   static ActorEllipse read(ActorArtboard artboard, StreamReader reader,
@@ -24,7 +24,7 @@ public class ActorEllipse extends ActorProceduralPath {
     return component;
   }
 
-  @override
+  @Override
   List<PathPoint> get points {
     List<PathPoint> _ellipsePathPoints = <PathPoint>[];
     _ellipsePathPoints.add(CubicPathPoint.fromValues(

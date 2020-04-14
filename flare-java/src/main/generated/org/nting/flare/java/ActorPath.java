@@ -174,7 +174,7 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
 
   double get height => _height;
 
-  @override
+  @Override
   Mat2D get pathTransform => worldTransform;
 
   set width(double w) {
@@ -197,7 +197,7 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
     _height = node.height;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     super.onDirty(dirt);
     // We transformed, make sure parent is invalidated.
@@ -213,23 +213,23 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   List<PathPoint> _points;
   Float32List vertexDeform;
 
-  @override
+  @Override
   bool get isPathInWorldSpace => isConnectedToBones;
 
-  @override
+  @Override
   public void invalidatePath() {
     // Up to the implementation.
   }
 
-  @override
+  @Override
   Mat2D get pathTransform => isConnectedToBones ? Mat2D() : worldTransform;
 
   static const int vertexDeformDirty = 1 << 1;
 
-  @override
+  @Override
   List<PathPoint> get points => _points;
 
-  @override
+  @Override
   List<PathPoint> get deformedPoints {
     if (!isConnectedToBones || skin == null) {
       return _points;
@@ -247,7 +247,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     return _isClosed;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     super.onDirty(dirt);
     // We transformed, make sure parent is invalidated.
@@ -290,7 +290,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     artboard.addDirt(this, vertexDeformDirty, false);
   }
 
-  @override
+  @Override
   public void update(int dirt) {
     if (vertexDeform != null &&
         (dirt & vertexDeformDirty) == vertexDeformDirty) {
@@ -359,14 +359,14 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     return component;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorPath instanceEvent = new ActorPath();
     instanceEvent.copyPath(this, resetArtboard);
     return instanceEvent;
   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     resolveSkinnable(components);

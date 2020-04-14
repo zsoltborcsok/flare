@@ -30,7 +30,17 @@ public class DartToJava {
         // makeClassesPublic(Paths.get(RELATIVE_PATH));
         // insertNewKeywords(Paths.get(RELATIVE_PATH));
         // makeMethodsPublic(Paths.get(RELATIVE_PATH));
-        makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
+        // makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
+        handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleOverrideAnnotations(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains("@override")) {
+                return line.replace("@override", "@Override");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void makeAbstractMethodsPublic(Path pathToFiles) {

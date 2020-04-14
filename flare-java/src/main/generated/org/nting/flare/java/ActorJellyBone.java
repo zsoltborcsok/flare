@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public class ActorJellyBone extends ActorBoneBase {
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard artboard) {
     ActorJellyBone instanceNode = new ActorJellyBone();
     instanceNode.copyBoneBase(this, artboard);

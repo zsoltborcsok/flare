@@ -21,7 +21,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   List<BoneChain> _fkChain;
   List<BoneChain> _boneData;
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
@@ -37,7 +37,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
   }
 
-  @override
+  @Override
   public void completeResolve() {
     if (_influencedBones == null || _influencedBones.isEmpty) {
       return;
@@ -148,7 +148,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     return component;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode target = this.target as ActorNode;
     if (target == null) {
@@ -331,7 +331,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     firstChild.angle = r2;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard artboard) {
     ActorIKConstraint instance = new ActorIKConstraint();
     instance.copyIKConstraint(this, artboard);
@@ -352,6 +352,6 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
   }
 
-  @override
+  @Override
   public void update(int dirt) {}
 }

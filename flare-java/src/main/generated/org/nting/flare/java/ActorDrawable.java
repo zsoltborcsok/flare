@@ -66,7 +66,7 @@ public abstract class ActorDrawable extends ActorNode {
 
   public void initializeGraphics() {}
 
-  @override
+  @Override
   public void completeResolve() {
     _clipShapes = <List<ClipShape>>[];
     List<List<ActorClip>> clippers = allClips;

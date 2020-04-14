@@ -6,7 +6,7 @@ public class SequenceFrame {
 
   SequenceFrame(this._atlasIndex, this._offset);
 
-  @override
+  @Override
   public String toString() {
     return "(" + _atlasIndex.toString() + ", " + _offset.toString() + ")";
   }
@@ -17,7 +17,7 @@ public class SequenceFrame {
 }
 
 public class ActorImage extends ActorDrawable with ActorSkinnable {
-  @override
+  @Override
   int drawOrder;
 
   int _textureIndex = -1;
@@ -201,13 +201,13 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //     return node;
 //   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     resolveSkinnable(components);
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorImage instanceNode = resetArtboard.actor.makeImageNode();
     instanceNode.copyImage(this, resetArtboard);
@@ -379,7 +379,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  @override
+  @Override
   public AABB computeAABB() {
     // Todo: implement for image.
     Mat2D worldTransform = this.worldTransform;
@@ -389,17 +389,17 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
   Mat2D get imageTransform => isConnectedToBones ? null : worldTransform;
 
-  @override
+  @Override
   public void initializeGraphics() {}
 
-  @override
+  @Override
   public void invalidateDrawable() {}
 
-  @override
+  @Override
   int get blendModeId {
     return 0;
   }
 
-  @override
+  @Override
   set blendModeId(int value) {}
 }

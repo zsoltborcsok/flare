@@ -40,31 +40,31 @@ public class ActorMask extends ActorLayerEffect {
     _maskType = from._maskType;
   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
     _source = components[_sourceIdx] as ActorNode;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     // intentionally empty, no logic to complete.
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorMask instanceNode = new ActorMask();
     instanceNode.copyMask(this, resetArtboard);
     return instanceNode;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     // intentionally empty
   }
 
-  @override
+  @Override
   public void update(int dirt) {
     // intentionally empty
   }

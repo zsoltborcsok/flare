@@ -77,7 +77,7 @@ public class StraightPathPoint extends PathPoint {
     _translation = translation;
   }
 
-  @override
+  @Override
   public PathPoint makeInstance() {
     StraightPathPoint node = new StraightPathPoint();
     node.copyStraight(this);
@@ -89,7 +89,7 @@ public class StraightPathPoint extends PathPoint {
     radius = from.radius;
   }
 
-  @override
+  @Override
   public int readPoint(StreamReader reader, bool isConnectedToBones) {
     radius = reader.readFloat32("radius");
     if (isConnectedToBones) {
@@ -98,7 +98,7 @@ public class StraightPathPoint extends PathPoint {
     return 0;
   }
 
-  @override
+  @Override
   public PathPoint skin(Mat2D world, Float32List bones) {
     StraightPathPoint point = new StraightPathPoint()
       ..radius = radius;
@@ -159,7 +159,7 @@ public class CubicPathPoint extends PathPoint {
     _out = outPoint;
   }
 
-  @override
+  @Override
   public PathPoint makeInstance() {
     CubicPathPoint node = new CubicPathPoint(_type);
     node.copyCubic(this);
@@ -172,7 +172,7 @@ public class CubicPathPoint extends PathPoint {
     Vec2D.copy(_out, from._out);
   }
 
-  @override
+  @Override
   public int readPoint(StreamReader reader, bool isConnectedToBones) {
     Vec2D.copyFromList(_in, reader.readFloat32Array(2, "in"));
     Vec2D.copyFromList(_out, reader.readFloat32Array(2, "out"));
@@ -182,7 +182,7 @@ public class CubicPathPoint extends PathPoint {
     return 0;
   }
 
-  @override
+  @Override
   public PathPoint transformed(Mat2D transform) {
     CubicPathPoint result = super.transformed(transform) as CubicPathPoint;
     Vec2D.transformMat2D(result.inPoint, result.inPoint, transform);
@@ -190,7 +190,7 @@ public class CubicPathPoint extends PathPoint {
     return result;
   }
 
-  @override
+  @Override
   public PathPoint skin(Mat2D world, Float32List bones) {
     CubicPathPoint point = new CubicPathPoint(pointType);
 

@@ -7,7 +7,7 @@ public class ActorRootBone extends ActorNode {
     return _firstBone;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
     if (children == null) {
@@ -21,7 +21,7 @@ public class ActorRootBone extends ActorNode {
     }
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorRootBone instanceNode = new ActorRootBone();
     instanceNode.copyNode(this, resetArtboard);

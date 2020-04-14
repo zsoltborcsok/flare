@@ -20,7 +20,7 @@ public abstract class BinaryReader implements StreamReader {
     return raw.buffer.asByteData(offset, length);
   }
 
-  @override
+  @Override
   public double readFloat32([String label]) {
     double value = _raw.getFloat32(_readIndex, Endian.little);
     _readIndex += 4;
@@ -28,7 +28,7 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public double readFloat64([String label]) {
     double value = _raw.getFloat64(_readIndex, Endian.little);
     _readIndex += 8;
@@ -36,22 +36,22 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public int readUint8([String label]) {
     return _raw.getUint8(_readIndex++);
   }
 
-  @override
+  @Override
   public bool isEOF() {
     return _readIndex >= _raw.lengthInBytes;
   }
 
-  @override
+  @Override
   public int readInt8([String label]) {
     return _raw.getInt8(_readIndex++);
   }
 
-  @override
+  @Override
   public int readUint16([String label]) {
     int value = _raw.getUint16(_readIndex, Endian.little);
     _readIndex += 2;
@@ -59,7 +59,7 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public Uint16List readUint16Array(int length, [String label]) {
     Uint16List list = new Uint16List(length);
     for (int i = 0; i < length; i++) {
@@ -73,7 +73,7 @@ public abstract class BinaryReader implements StreamReader {
     // return _raw.buffer.asUint16List(offset + _raw.offsetInBytes, length);
   }
 
-  @override
+  @Override
   public int readInt16([String label]) {
     int value = _raw.getInt16(_readIndex, Endian.little);
     _readIndex += 2;
@@ -81,7 +81,7 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public int readUint32([String label]) {
     int value = _raw.getUint32(_readIndex, Endian.little);
     _readIndex += 4;
@@ -89,7 +89,7 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public int readInt32([String label]) {
     int value = _raw.getInt32(_readIndex, Endian.little);
     _readIndex += 4;
@@ -97,7 +97,7 @@ public abstract class BinaryReader implements StreamReader {
     return value;
   }
 
-  @override
+  @Override
   public String readString([String label]) {
     int length = readUint32();
     int end = _readIndex + length;
@@ -127,39 +127,39 @@ public abstract class BinaryReader implements StreamReader {
     return stringBuffer.toString();
   }
 
-  @override
+  @Override
   public Uint8List readUint8Array(int length, [String label]) {
     int offset = _readIndex + _raw.offsetInBytes;
     _readIndex += length;
     return _raw.buffer.asUint8List(offset, length);
   }
 
-  @override
+  @Override
   public int readVersion() {
     return readUint32();
   }
 
-  @override
+  @Override
   public int readUint8Length() {
     return readUint8();
   }
 
-  @override
+  @Override
   public int readUint32Length() {
     return readUint32();
   }
 
-  @override
+  @Override
   public int readUint16Length() {
     return readUint16();
   }
 
-  @override
+  @Override
   public int readId(String label) {
     return readUint16(label);
   }
 
-  @override
+  @Override
   public Float32List readFloat32Array(int length, String label) {
     Float32List list = new Float32List(length);
     for (int i = 0; i < length; i++) {
@@ -171,37 +171,37 @@ public abstract class BinaryReader implements StreamReader {
     //return _raw.buffer.asFloat32List(offset+_raw.offsetInBytes, length);
   }
 
-  @override
+  @Override
   public bool readBool(String label) {
     return readUint8(label) == 1;
   }
 
-  @override
+  @Override
   public Uint8List readAsset() {
     int length = readUint32();
     return readUint8Array(length);
   }
 
-  @override
+  @Override
   public void openArray(String label) {
     /* NOP */
   }
 
-  @override
+  @Override
   public void closeArray() {
     /* NOP */
   }
 
-  @override
+  @Override
   public void openObject(String label) {
     /* NOP */
   }
 
-  @override
+  @Override
   public void closeObject() {
     /* NOP */
   }
 
-  @override
+  @Override
   String get containerType => "bin";
 }

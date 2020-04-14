@@ -1,10 +1,10 @@
 package org.nting.flare.java;
 
 public class ActorTriangle extends ActorProceduralPath {
-  @override
+  @Override
   public void invalidatePath() {}
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorTriangle instance = new ActorTriangle();
     instance.copyPath(this, resetArtboard);
@@ -22,7 +22,7 @@ public class ActorTriangle extends ActorProceduralPath {
     return component;
   }
 
-  @override
+  @Override
   List<PathPoint> get points {
     List<PathPoint> _trianglePoints = <PathPoint>[];
     _trianglePoints.add(

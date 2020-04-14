@@ -20,24 +20,24 @@ public class ActorBlur extends ActorLayerEffect {
     blurY = from.blurY;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     // intentionally empty, no logic to complete.
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorBlur instanceNode = new ActorBlur();
     instanceNode.copyBlur(this, resetArtboard);
     return instanceNode;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     // intentionally empty
   }
 
-  @override
+  @Override
   public void update(int dirt) {
     // intentionally empty
   }

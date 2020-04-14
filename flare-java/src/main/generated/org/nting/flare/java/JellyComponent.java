@@ -120,7 +120,7 @@ public class JellyComponent extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard artboard) {
     JellyComponent instance = new JellyComponent();
     instance.copyJelly(this, artboard);
@@ -137,7 +137,7 @@ public class JellyComponent extends ActorComponent {
     _outTargetIdx = component._outTargetIdx;
   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
@@ -194,7 +194,7 @@ public class JellyComponent extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public void completeResolve() {
     //super.completeResolve();
     ActorBone bone = parent as ActorBone;
@@ -297,12 +297,12 @@ public class JellyComponent extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     // Intentionally empty. Doesn't throw dirt around.
   }
 
-  @override
+  @Override
   public void update(int dirt) {
     ActorBone bone = parent as ActorBone;
     ActorNode parentBone = bone.parent;

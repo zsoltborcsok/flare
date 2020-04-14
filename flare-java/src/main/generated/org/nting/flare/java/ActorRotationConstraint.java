@@ -41,7 +41,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
     return component;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode target = this.target as ActorNode;
     ActorNode grandParent = parent.parent;
@@ -137,7 +137,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
     Mat2D.compose(parent.worldTransform, _componentsB);
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorRotationConstraint instance = new ActorRotationConstraint();
     instance.copyRotationConstraint(this, resetArtboard);
@@ -161,9 +161,9 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
     _minMaxSpace = node._minMaxSpace;
   }
 
-  @override
+  @Override
   public void update(int dirt) {}
 
-  @override
+  @Override
   public void completeResolve() {}
 }

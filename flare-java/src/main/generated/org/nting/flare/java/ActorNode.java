@@ -296,7 +296,7 @@ public class ActorNode extends ActorComponent {
     return _children;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorNode instanceNode = new ActorNode();
     instanceNode.copyNode(this, resetArtboard);
@@ -324,7 +324,7 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {}
 
   public bool addConstraint(ActorConstraint constraint) {
@@ -353,7 +353,7 @@ public class ActorNode extends ActorComponent {
           : _constraints + _peerConstraints) ??
           <ActorConstraint>[];
 
-  @override
+  @Override
   public void update(int dirt) {
     if ((dirt & transformDirty) == transformDirty) {
       updateTransform();
@@ -370,7 +370,7 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
@@ -386,7 +386,7 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  @override
+  @Override
   public void completeResolve() {
     // Nothing to complete for actornode.
   }

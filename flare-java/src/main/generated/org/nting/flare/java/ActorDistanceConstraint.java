@@ -23,7 +23,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
     return component;
   }
 
-  @override
+  @Override
   public ActorDistanceConstraint makeInstance(ActorArtboard resetArtboard) {
     ActorDistanceConstraint node = new ActorDistanceConstraint();
     node.copyDistanceConstraint(this, resetArtboard);
@@ -37,7 +37,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
     _mode = node._mode;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode t = target as ActorNode;
     if (t == null) {
@@ -96,9 +96,9 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
     }
   }
 
-  @override
+  @Override
   public void completeResolve() {}
 
-  @override
+  @Override
   public void update(int dirt) {}
 }

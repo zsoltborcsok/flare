@@ -3,10 +3,10 @@ package org.nting.flare.java;
 public class ActorRectangle extends ActorProceduralPath {
   double _radius = 0.0;
 
-  @override
+  @Override
   public void invalidatePath() {}
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorRectangle instance = new ActorRectangle();
     instance.copyRectangle(this, resetArtboard);
@@ -30,7 +30,7 @@ public class ActorRectangle extends ActorProceduralPath {
     return component;
   }
 
-  @override
+  @Override
   List<PathPoint> get points {
     double halfWidth = width / 2;
     double halfHeight = height / 2;

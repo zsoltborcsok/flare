@@ -44,7 +44,7 @@ public abstract class ActorPaint extends ActorComponent {
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     artboard.addDependency(this, parent);
   }
@@ -95,10 +95,10 @@ public abstract class ActorColor extends ActorPaint {
     return component;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {}
 
-  @override
+  @Override
   public void update(int dirt) {}
 }
 
@@ -229,7 +229,7 @@ public abstract class ColorFill extends ActorColor with ActorFill {
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 
@@ -253,7 +253,7 @@ public abstract class ColorStroke extends ActorColor with ActorStroke {
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 
@@ -305,10 +305,10 @@ public abstract class GradientColor extends ActorPaint {
     return component;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {}
 
-  @override
+  @Override
   public void update(int dirt) {
     ActorShape shape = parent as ActorShape;
     Mat2D world = shape.worldTransform;
@@ -335,7 +335,7 @@ public abstract class GradientFill extends GradientColor with ActorFill {
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 
@@ -359,7 +359,7 @@ public abstract class GradientStroke extends GradientColor with ActorStroke {
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 
@@ -403,7 +403,7 @@ public abstract class RadialGradientFill extends RadialGradientColor with ActorF
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 
@@ -429,7 +429,7 @@ public abstract class RadialGradientStroke extends RadialGradientColor
     return component;
   }
 
-  @override
+  @Override
   public void completeResolve() {
     super.completeResolve();
 

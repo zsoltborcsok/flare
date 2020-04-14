@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public class BlockReader extends BinaryReader {
-  @override
+  @Override
   int blockType;
 
   BlockReader(ByteData data) : super(data) {
@@ -12,7 +12,7 @@ public class BlockReader extends BinaryReader {
 
   // A block is defined as a TLV with type of one byte, length of 4 bytes,
   // and then the value following.
-  @override
+  @Override
   public BlockReader readNextBlock(Map<String, int> types) {
     if (isEOF()) {
       return null;

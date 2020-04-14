@@ -21,7 +21,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
     return component;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorTransformConstraint node = new ActorTransformConstraint();
     node.copyTransformConstraint(this, resetArtboard);
@@ -35,7 +35,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
     _destSpace = node._destSpace;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode t = target as ActorNode;
     if (t == null) {
@@ -84,9 +84,9 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
     Mat2D.compose(parent.worldTransform, _componentsB);
   }
 
-  @override
+  @Override
   public void update(int dirt) {}
 
-  @override
+  @Override
   public void completeResolve() {}
 }

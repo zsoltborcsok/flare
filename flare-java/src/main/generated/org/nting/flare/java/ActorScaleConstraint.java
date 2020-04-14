@@ -13,14 +13,14 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
     return component;
   }
 
-  @override
+  @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorScaleConstraint node = new ActorScaleConstraint();
     node.copyAxisConstraint(this, resetArtboard);
     return node;
   }
 
-  @override
+  @Override
   public void constrain(ActorNode node) {
     ActorNode t = target as ActorNode;
     ActorNode p = parent;
@@ -123,9 +123,9 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
     Mat2D.compose(parent.worldTransform, _componentsB);
   }
 
-  @override
+  @Override
   public void update(int dirt) {}
 
-  @override
+  @Override
   public void completeResolve() {}
 }

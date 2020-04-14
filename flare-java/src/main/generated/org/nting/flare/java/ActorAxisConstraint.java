@@ -87,7 +87,7 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
     _minMaxSpace = node._minMaxSpace;
   }
 
-  @override
+  @Override
   public void onDirty(int dirt) {
     markDirty();
   }
