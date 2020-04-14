@@ -34,38 +34,38 @@ public class ActorMask extends ActorLayerEffect {
     return component;
   }
 
-  void copyMask(ActorMask from, ActorArtboard resetArtboard) {
+  public void copyMask(ActorMask from, ActorArtboard resetArtboard) {
     copyLayerEffect(from, resetArtboard);
     _sourceIdx = from._sourceIdx;
     _maskType = from._maskType;
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
     _source = components[_sourceIdx] as ActorNode;
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     // intentionally empty, no logic to complete.
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorMask instanceNode = new ActorMask();
     instanceNode.copyMask(this, resetArtboard);
     return instanceNode;
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     // intentionally empty
   }
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     // intentionally empty
   }
 }

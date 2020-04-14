@@ -4,16 +4,16 @@ public class ActorPolygon extends ActorProceduralPath {
   int sides = 5;
 
   @override
-  void invalidatePath() {}
+  public void invalidatePath() {}
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorPolygon instance = new ActorPolygon();
     instance.copyPolygon(this, resetArtboard);
     return instance;
   }
 
-  void copyPolygon(ActorPolygon node, ActorArtboard resetArtboard) {
+  public void copyPolygon(ActorPolygon node, ActorArtboard resetArtboard) {
     copyPath(node, resetArtboard);
     sides = node.sides;
   }

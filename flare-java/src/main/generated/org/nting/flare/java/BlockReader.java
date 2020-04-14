@@ -13,7 +13,7 @@ public class BlockReader extends BinaryReader {
   // A block is defined as a TLV with type of one byte, length of 4 bytes,
   // and then the value following.
   @override
-  BlockReader readNextBlock(Map<String, int> types) {
+  public BlockReader readNextBlock(Map<String, int> types) {
     if (isEOF()) {
       return null;
     }

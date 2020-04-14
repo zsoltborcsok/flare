@@ -9,7 +9,7 @@ public abstract class ActorTargetedConstraint extends ActorConstraint {
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     if (_targetIdx != 0) {
       _target = components[_targetIdx];

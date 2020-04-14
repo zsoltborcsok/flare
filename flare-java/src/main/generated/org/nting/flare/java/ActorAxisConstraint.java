@@ -88,7 +88,7 @@ public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     markDirty();
   }
 

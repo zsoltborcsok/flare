@@ -26,7 +26,7 @@ public abstract class ActorBasePath {
 
   List<PathPoint> get deformedPoints => points;
 
-  AABB getPathAABB() {
+  public AABB getPathAABB() {
     double minX = double.maxFinite;
     double minY = double.maxFinite;
     double maxX = -double.maxFinite;
@@ -75,14 +75,14 @@ public abstract class ActorBasePath {
     return AABB.fromValues(minX, minY, maxX, maxY);
   }
 
-  void invalidateDrawable() {
+  public void invalidateDrawable() {
     invalidatePath();
     if (shape != null) {
       shape.invalidateShape();
     }
   }
 
-  AABB getPathOBB() {
+  public AABB getPathOBB() {
     double minX = double.maxFinite;
     double minY = double.maxFinite;
     double maxX = -double.maxFinite;
@@ -144,7 +144,7 @@ public abstract class ActorBasePath {
     return AABB.fromValues(minX, minY, maxX, maxY);
   }
 
-  void updateShape() {
+  public void updateShape() {
     if (_shape != null) {
       _shape.removePath(this);
     }
@@ -161,7 +161,7 @@ public abstract class ActorBasePath {
     _isRootPath = _shape == parent;
   }
 
-  void completeResolve() {
+  public void completeResolve() {
     updateShape();
   }
 }
@@ -191,14 +191,14 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
     }
   }
 
-  void copyPath(ActorProceduralPath node, ActorArtboard resetArtboard) {
+  public void copyPath(ActorProceduralPath node, ActorArtboard resetArtboard) {
     copyNode(node, resetArtboard);
     _width = node.width;
     _height = node.height;
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     super.onDirty(dirt);
     // We transformed, make sure parent is invalidated.
     if (shape != null) {
@@ -217,7 +217,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   bool get isPathInWorldSpace => isConnectedToBones;
 
   @override
-  void invalidatePath() {
+  public void invalidatePath() {
     // Up to the implementation.
   }
 
@@ -248,7 +248,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     super.onDirty(dirt);
     // We transformed, make sure parent is invalidated.
     if (shape != null) {
@@ -256,7 +256,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     }
   }
 
-  void makeVertexDeform() {
+  public void makeVertexDeform() {
     if (vertexDeform != null) {
       return;
     }
@@ -283,7 +283,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     vertexDeform = vertices;
   }
 
-  void markVertexDeformDirty() {
+  public void markVertexDeformDirty() {
     if (artboard == null) {
       return;
     }
@@ -291,7 +291,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   }
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     if (vertexDeform != null &&
         (dirt & vertexDeformDirty) == vertexDeformDirty) {
       int readIdx = 0;
@@ -360,19 +360,19 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorPath instanceEvent = new ActorPath();
     instanceEvent.copyPath(this, resetArtboard);
     return instanceEvent;
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     resolveSkinnable(components);
   }
 
-  void copyPath(ActorPath node, ActorArtboard resetArtboard) {
+  public void copyPath(ActorPath node, ActorArtboard resetArtboard) {
     copyNode(node, resetArtboard);
     copySkinnable(node, resetArtboard);
     _isHidden = node._isHidden;

@@ -7,7 +7,7 @@ public class SequenceFrame {
   SequenceFrame(this._atlasIndex, this._offset);
 
   @override
-  String toString() {
+  public String toString() {
     return "(" + _atlasIndex.toString() + ", " + _offset.toString() + ")";
   }
 
@@ -114,7 +114,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
   ActorImage();
 
-  void disposeGeometry() {
+  public void disposeGeometry() {
     // Delete vertices only if we do not vertex deform at runtime.
     if (_animationDeformedVertices == null) {
       _vertices = null;
@@ -202,19 +202,19 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     resolveSkinnable(components);
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorImage instanceNode = resetArtboard.actor.makeImageNode();
     instanceNode.copyImage(this, resetArtboard);
     return instanceNode;
   }
 
-  void copyImage(ActorImage node, ActorArtboard resetArtboard) {
+  public void copyImage(ActorImage node, ActorArtboard resetArtboard) {
     copyDrawable(node, resetArtboard);
     copySkinnable(node, resetArtboard);
 
@@ -239,15 +239,15 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //     }
 //   }
 
-  Float32List makeVertexPositionBuffer() {
+  public Float32List makeVertexPositionBuffer() {
     return new Float32List(_vertexCount * 2);
   }
 
-  Float32List makeVertexUVBuffer() {
+  public Float32List makeVertexUVBuffer() {
     return new Float32List(_vertexCount * 2);
   }
 
-  void transformDeformVertices(Mat2D wt) {
+  public void transformDeformVertices(Mat2D wt) {
     if (_animationDeformedVertices == null) {
       return;
     }
@@ -266,7 +266,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  void updateVertexUVBuffer(Float32List buffer) {
+  public void updateVertexUVBuffer(Float32List buffer) {
     int readIdx = vertexUVOffset;
     int writeIdx = 0;
     int stride = vertexStride;
@@ -380,7 +380,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   }
 
   @override
-  AABB computeAABB() {
+  public AABB computeAABB() {
     // Todo: implement for image.
     Mat2D worldTransform = this.worldTransform;
     return AABB.fromValues(worldTransform[4], worldTransform[5],
@@ -390,10 +390,10 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   Mat2D get imageTransform => isConnectedToBones ? null : worldTransform;
 
   @override
-  void initializeGraphics() {}
+  public void initializeGraphics() {}
 
   @override
-  void invalidateDrawable() {}
+  public void invalidateDrawable() {}
 
   @override
   int get blendModeId {

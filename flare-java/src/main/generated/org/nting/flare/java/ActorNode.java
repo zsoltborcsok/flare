@@ -171,7 +171,7 @@ public class ActorNode extends ActorComponent {
   // Helper that looks for layer effect, this is only called by
   // ActorLayerEffectRenderer when the parent changes. This keeps it efficient
   // so not every ActorNode has to look for layerEffects as most won't have it.
-  void findLayerEffect() {
+  public void findLayerEffect() {
     var layerEffects = children?.whereType<ActorLayerEffectRenderer>();
     var change = layerEffects != null && layerEffects.isNotEmpty
         ? layerEffects.first
@@ -212,7 +212,7 @@ public class ActorNode extends ActorComponent {
     return all;
   }
 
-  void markTransformDirty() {
+  public void markTransformDirty() {
     if (artboard == null) {
       // Still loading?
       return;
@@ -223,20 +223,20 @@ public class ActorNode extends ActorComponent {
     artboard.addDirt(this, worldTransformDirty, true);
   }
 
-  void updateTransform() {
+  public void updateTransform() {
     Mat2D.fromRotation(_transform, _rotation);
     _transform[4] = _translation[0];
     _transform[5] = _translation[1];
     Mat2D.scale(_transform, _transform, _scale);
   }
 
-  Vec2D getWorldTranslation(Vec2D vec) {
+  public Vec2D getWorldTranslation(Vec2D vec) {
     vec[0] = _worldTransform[4];
     vec[1] = _worldTransform[5];
     return vec;
   }
 
-  void updateWorldTransform() {
+  public void updateWorldTransform() {
     _renderOpacity = _opacity;
 
     if (parent != null) {
@@ -279,11 +279,11 @@ public class ActorNode extends ActorComponent {
     return node;
   }
 
-  void removeChild(ActorComponent component) {
+  public void removeChild(ActorComponent component) {
     _children?.remove(component);
   }
 
-  void addChild(ActorComponent component) {
+  public void addChild(ActorComponent component) {
     if (component.parent != null) {
       component.parent.removeChild(component);
     }
@@ -297,13 +297,13 @@ public class ActorNode extends ActorComponent {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorNode instanceNode = new ActorNode();
     instanceNode.copyNode(this, resetArtboard);
     return instanceNode;
   }
 
-  void copyNode(ActorNode node, ActorArtboard resetArtboard) {
+  public void copyNode(ActorNode node, ActorArtboard resetArtboard) {
     copyComponent(node, resetArtboard);
     _transform = Mat2D.clone(node._transform);
     _worldTransform = Mat2D.clone(node._worldTransform);
@@ -325,9 +325,9 @@ public class ActorNode extends ActorComponent {
   }
 
   @override
-  void onDirty(int dirt) {}
+  public void onDirty(int dirt) {}
 
-  bool addConstraint(ActorConstraint constraint) {
+  public bool addConstraint(ActorConstraint constraint) {
     _constraints ??= <ActorConstraint>[];
     if (_constraints.contains(constraint)) {
       return false;
@@ -336,7 +336,7 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  bool addPeerConstraint(ActorConstraint constraint) {
+  public bool addPeerConstraint(ActorConstraint constraint) {
     _peerConstraints ??= <ActorConstraint>[];
     if (_peerConstraints.contains(constraint)) {
       return false;
@@ -354,7 +354,7 @@ public class ActorNode extends ActorComponent {
           <ActorConstraint>[];
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     if ((dirt & transformDirty) == transformDirty) {
       updateTransform();
     }
@@ -371,7 +371,7 @@ public class ActorNode extends ActorComponent {
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
     if (_clips == null) {
@@ -387,11 +387,11 @@ public class ActorNode extends ActorComponent {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     // Nothing to complete for actornode.
   }
 
-  bool eachChildRecursive(ComopnentWalkCallback cb) {
+  public bool eachChildRecursive(ComopnentWalkCallback cb) {
     if (_children != null) {
       for (final ActorComponent child in _children) {
         if (cb(child) == false) {
@@ -406,7 +406,7 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  bool all(ComopnentWalkCallback cb) {
+  public bool all(ComopnentWalkCallback cb) {
     if (cb(this) == false) {
       return false;
     }
@@ -426,5 +426,5 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  void invalidateShape() {}
+  public void invalidateShape() {}
 }

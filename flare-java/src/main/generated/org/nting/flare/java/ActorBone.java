@@ -9,14 +9,14 @@ public class ActorBone extends ActorBoneBase {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorBone instanceNode = new ActorBone();
     instanceNode.copyBoneBase(this, resetArtboard);
     return instanceNode;
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
     if (children == null) {
       return;

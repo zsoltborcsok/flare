@@ -35,20 +35,20 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @override
-  double readFloat32(String label) {
+  public double readFloat32(String label) {
     num f = readProp<num>(label);
     return f?.toDouble() ?? 0.0;
   }
 
   // Reads the array into ar
   @override
-  Float32List readFloat32Array(int length, String label) {
+  public Float32List readFloat32Array(int length, String label) {
     var ar = new Float32List(length);
     _readArray(ar, label);
     return ar;
   }
 
-  void _readArray(List ar, String label) {
+  public void _readArray(List ar, String label) {
     List array = readProp<List>(label);
     if (array == null) {
       return;
@@ -60,87 +60,87 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @override
-  double readFloat64(String label) {
+  public double readFloat64(String label) {
     num f = readProp<num>(label);
     return f?.toDouble() ?? 0;
   }
 
   @override
-  int readUint8(String label) {
+  public int readUint8(String label) {
     return readProp(label) ?? 0;
   }
 
   @override
-  int readUint8Length() {
+  public int readUint8Length() {
     return _readLength();
   }
 
   @override
-  bool isEOF() {
+  public bool isEOF() {
     return _context.length <= 1 && _readObject.length == 0;
   }
 
   @override
-  int readInt8(String label) {
+  public int readInt8(String label) {
     return readProp<int>(label) ?? 0;
   }
 
   @override
-  int readUint16(String label) {
+  public int readUint16(String label) {
     return readProp<int>(label) ?? 0;
   }
 
   @override
-  Uint8List readUint8Array(int length, String label) {
+  public Uint8List readUint8Array(int length, String label) {
     var ar = new Uint8List(length);
     _readArray(ar, label);
     return ar;
   }
 
   @override
-  Uint16List readUint16Array(int length, String label) {
+  public Uint16List readUint16Array(int length, String label) {
     var ar = new Uint16List(length);
     _readArray(ar, label);
     return ar;
   }
 
   @override
-  int readInt16(String label) {
+  public int readInt16(String label) {
     return readProp<int>(label) ?? 0;
   }
 
   @override
-  int readUint16Length() {
+  public int readUint16Length() {
     return _readLength();
   }
 
   @override
-  int readUint32Length() {
+  public int readUint32Length() {
     return _readLength();
   }
 
   @override
-  int readUint32(String label) {
+  public int readUint32(String label) {
     return readProp<int>(label) ?? 0;
   }
 
   @override
-  int readInt32(String label) {
+  public int readInt32(String label) {
     return readProp<int>(label) ?? 0;
   }
 
   @override
-  int readVersion() {
+  public int readVersion() {
     return readProp<int>("version") ?? 0;
   }
 
   @override
-  String readString(String label) {
+  public String readString(String label) {
     return readProp<String>(label) ?? "";
   }
 
   @override
-  bool readBool(String label) {
+  public bool readBool(String label) {
     return readProp<bool>(label) ?? false;
   }
 
@@ -148,34 +148,34 @@ public abstract class JSONReader implements StreamReader {
   // Since the JSON Reader has been added in version 15, the field
   // here is optional.
   @override
-  int readId(String label) {
+  public int readId(String label) {
     var val = readProp<num>(label);
     return val != null ? val.toInt() + 1 : 0;
   }
 
   @override
-  void openArray(String label) {
+  public void openArray(String label) {
     dynamic array = readProp<dynamic>(label);
     _context.addFirst(array);
   }
 
   @override
-  void closeArray() {
+  public void closeArray() {
     _context.removeFirst();
   }
 
   @override
-  void openObject(String label) {
+  public void openObject(String label) {
     dynamic o = readProp<dynamic>(label);
     _context.addFirst(o);
   }
 
   @override
-  void closeObject() {
+  public void closeObject() {
     _context.removeFirst();
   }
 
-  int _readLength() {
+  public int _readLength() {
     if (_context.first is List) {
       return (_context.first as List).length;
     } else if (_context.first is Map) {
@@ -185,7 +185,7 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @override
-  Uint8List readAsset() {
+  public Uint8List readAsset() {
     String encodedAsset =
     readString("data"); // are we sure we need a label here?
     return const Base64Decoder().convert(encodedAsset, 22);

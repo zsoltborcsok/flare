@@ -42,7 +42,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void constrain(ActorNode node) {
+  public void constrain(ActorNode node) {
     ActorNode target = this.target as ActorNode;
     ActorNode grandParent = parent.parent;
 
@@ -138,7 +138,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorRotationConstraint instance = new ActorRotationConstraint();
     instance.copyRotationConstraint(this, resetArtboard);
     return instance;
@@ -162,8 +162,8 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void update(int dirt) {}
+  public void update(int dirt) {}
 
   @override
-  void completeResolve() {}
+  public void completeResolve() {}
 }

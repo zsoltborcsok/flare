@@ -31,7 +31,7 @@ public abstract class ActorPaint extends ActorComponent {
     markPaintDirty();
   }
 
-  void copyPaint(ActorPaint component, ActorArtboard resetArtboard) {
+  public void copyPaint(ActorPaint component, ActorArtboard resetArtboard) {
     copyComponent(component, resetArtboard);
     opacity = component.opacity;
   }
@@ -45,13 +45,13 @@ public abstract class ActorPaint extends ActorComponent {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     artboard.addDependency(this, parent);
   }
 
   ActorShape get shape => parent as ActorShape;
 
-  void markPaintDirty() {
+  public void markPaintDirty() {
     artboard.addDirt(this, DirtyFlags.paintDirty, false);
   }
 }
@@ -78,7 +78,7 @@ public abstract class ActorColor extends ActorPaint {
     markPaintDirty();
   }
 
-  void copyColor(ActorColor node, ActorArtboard resetArtboard) {
+  public void copyColor(ActorColor node, ActorArtboard resetArtboard) {
     copyPaint(node, resetArtboard);
     _color[0] = node._color[0];
     _color[1] = node._color[1];
@@ -96,10 +96,10 @@ public abstract class ActorColor extends ActorPaint {
   }
 
   @override
-  void onDirty(int dirt) {}
+  public void onDirty(int dirt) {}
 
   @override
-  void update(int dirt) {}
+  public void update(int dirt) {}
 }
 
 public abstract class ActorFill {
@@ -112,7 +112,7 @@ public abstract class ActorFill {
     component._fillRule = fillRuleLookup[reader.readUint8("fillRule")];
   }
 
-  void copyFill(ActorFill node, ActorArtboard resetArtboard) {
+  public void copyFill(ActorFill node, ActorArtboard resetArtboard) {
     _fillRule = node._fillRule;
   }
 
@@ -203,7 +203,7 @@ public abstract class ActorStroke {
     }
   }
 
-  void copyStroke(ActorStroke node, ActorArtboard resetArtboard) {
+  public void copyStroke(ActorStroke node, ActorArtboard resetArtboard) {
     width = node.width;
     _cap = node._cap;
     _join = node._join;
@@ -217,7 +217,7 @@ public abstract class ActorStroke {
 }
 
 public abstract class ColorFill extends ActorColor with ActorFill {
-  void copyColorFill(ColorFill node, ActorArtboard resetArtboard) {
+  public void copyColorFill(ColorFill node, ActorArtboard resetArtboard) {
     copyColor(node, resetArtboard);
     copyFill(node, resetArtboard);
   }
@@ -230,7 +230,7 @@ public abstract class ColorFill extends ActorColor with ActorFill {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;
@@ -241,7 +241,7 @@ public abstract class ColorFill extends ActorColor with ActorFill {
 }
 
 public abstract class ColorStroke extends ActorColor with ActorStroke {
-  void copyColorStroke(ColorStroke node, ActorArtboard resetArtboard) {
+  public void copyColorStroke(ColorStroke node, ActorArtboard resetArtboard) {
     copyColor(node, resetArtboard);
     copyStroke(node, resetArtboard);
   }
@@ -254,7 +254,7 @@ public abstract class ColorStroke extends ActorColor with ActorStroke {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;
@@ -283,7 +283,7 @@ public abstract class GradientColor extends ActorPaint {
     return _colorStops;
   }
 
-  void copyGradient(GradientColor node, ActorArtboard resetArtboard) {
+  public void copyGradient(GradientColor node, ActorArtboard resetArtboard) {
     copyPaint(node, resetArtboard);
     _colorStops = Float32List.fromList(node._colorStops);
     Vec2D.copy(_start, node._start);
@@ -306,10 +306,10 @@ public abstract class GradientColor extends ActorPaint {
   }
 
   @override
-  void onDirty(int dirt) {}
+  public void onDirty(int dirt) {}
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     ActorShape shape = parent as ActorShape;
     Mat2D world = shape.worldTransform;
     if (shape.transformAffectsStroke) {
@@ -323,7 +323,7 @@ public abstract class GradientColor extends ActorPaint {
 }
 
 public abstract class GradientFill extends GradientColor with ActorFill {
-  void copyGradientFill(GradientFill node, ActorArtboard resetArtboard) {
+  public void copyGradientFill(GradientFill node, ActorArtboard resetArtboard) {
     copyGradient(node, resetArtboard);
     copyFill(node, resetArtboard);
   }
@@ -336,7 +336,7 @@ public abstract class GradientFill extends GradientColor with ActorFill {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;
@@ -347,7 +347,7 @@ public abstract class GradientFill extends GradientColor with ActorFill {
 }
 
 public abstract class GradientStroke extends GradientColor with ActorStroke {
-  void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
+  public void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
     copyGradient(node, resetArtboard);
     copyStroke(node, resetArtboard);
   }
@@ -360,7 +360,7 @@ public abstract class GradientStroke extends GradientColor with ActorStroke {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;
@@ -390,7 +390,7 @@ public abstract class RadialGradientColor extends GradientColor {
 }
 
 public abstract class RadialGradientFill extends RadialGradientColor with ActorFill {
-  void copyRadialFill(RadialGradientFill node, ActorArtboard resetArtboard) {
+  public void copyRadialFill(RadialGradientFill node, ActorArtboard resetArtboard) {
     copyRadialGradient(node, resetArtboard);
     copyFill(node, resetArtboard);
   }
@@ -404,7 +404,7 @@ public abstract class RadialGradientFill extends RadialGradientColor with ActorF
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;
@@ -430,7 +430,7 @@ public abstract class RadialGradientStroke extends RadialGradientColor
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     ActorNode parentNode = parent;

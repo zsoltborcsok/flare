@@ -11,18 +11,18 @@ public class ActorEvent extends ActorComponent {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorEvent instanceEvent = new ActorEvent();
     instanceEvent.copyComponent(this, resetArtboard);
     return instanceEvent;
   }
 
   @override
-  void completeResolve() {}
+  public void completeResolve() {}
 
   @override
-  void onDirty(int dirt) {}
+  public void onDirty(int dirt) {}
 
   @override
-  void update(int dirt) {}
+  public void update(int dirt) {}
 }

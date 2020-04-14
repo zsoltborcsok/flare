@@ -8,7 +8,7 @@ public class ActorInnerShadow extends ActorShadow {
   set blendModeId(int value) {}
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorInnerShadow instanceShape = resetArtboard.actor.makeInnerShadow();
     instanceShape.copyShadow(this, resetArtboard);
     return instanceShape;

@@ -6,12 +6,12 @@ public class ActorSkin extends ActorComponent {
   Float32List get boneMatrices => _boneMatrices;
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     // Intentionally empty. Doesn't throw dirt around.
   }
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     ActorSkinnable skinnable = parent as ActorSkinnable;
     if (skinnable == null) {
       return;
@@ -61,7 +61,7 @@ public class ActorSkin extends ActorComponent {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     ActorSkinnable skinnable = parent as ActorSkinnable;
     if (skinnable == null) {
       return;
@@ -84,7 +84,7 @@ public class ActorSkin extends ActorComponent {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorSkin instance = new ActorSkin();
     instance.copyComponent(this, resetArtboard);
     return instance;

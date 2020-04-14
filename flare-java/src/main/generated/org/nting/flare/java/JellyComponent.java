@@ -6,7 +6,7 @@ public class JellyComponent extends ActorComponent {
   static double curveConstant = optimalDistance * sqrt(2.0) * 0.5;
   static const double epsilon = 0.001; // Intentionally agressive.
 
-  static bool fuzzyEquals(Vec2D a, Vec2D b) {
+  public static bool fuzzyEquals(Vec2D a, Vec2D b) {
     double a0 = a[0],
         a1 = a[1];
     double b0 = b[0],
@@ -42,7 +42,7 @@ public class JellyComponent extends ActorComponent {
     }
   }
 
-  List<Vec2D> normalizeCurve(List<Vec2D> curve, int numSegments) {
+  public List<Vec2D> normalizeCurve(List<Vec2D> curve, int numSegments) {
     List<Vec2D> points = <Vec2D>[];
     int curvePointCount = curve.length;
     List<double> distances = List<double>(curvePointCount);
@@ -121,13 +121,13 @@ public class JellyComponent extends ActorComponent {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard artboard) {
+  public ActorComponent makeInstance(ActorArtboard artboard) {
     JellyComponent instance = new JellyComponent();
     instance.copyJelly(this, artboard);
     return instance;
   }
 
-  void copyJelly(JellyComponent component, ActorArtboard artboard) {
+  public void copyJelly(JellyComponent component, ActorArtboard artboard) {
     super.copyComponent(component, artboard);
     _easeIn = component._easeIn;
     _easeOut = component._easeOut;
@@ -138,7 +138,7 @@ public class JellyComponent extends ActorComponent {
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
     if (_inTargetIdx != 0) {
@@ -195,7 +195,7 @@ public class JellyComponent extends ActorComponent {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     //super.completeResolve();
     ActorBone bone = parent as ActorBone;
     bone.jelly = this;
@@ -232,7 +232,7 @@ public class JellyComponent extends ActorComponent {
     return node;
   }
 
-  void updateJellies() {
+  public void updateJellies() {
     if (_bones == null) {
       return;
     }
@@ -298,12 +298,12 @@ public class JellyComponent extends ActorComponent {
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     // Intentionally empty. Doesn't throw dirt around.
   }
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     ActorBone bone = parent as ActorBone;
     ActorNode parentBone = bone.parent;
     JellyComponent parentBoneJelly;

@@ -5,16 +5,16 @@ public class ActorStar extends ActorProceduralPath {
   double _innerRadius = 0.0;
 
   @override
-  void invalidatePath() {}
+  public void invalidatePath() {}
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorStar instance = new ActorStar();
     instance.copyStar(this, resetArtboard);
     return instance;
   }
 
-  void copyStar(ActorStar node, ActorArtboard resetArtboard) {
+  public void copyStar(ActorStar node, ActorArtboard resetArtboard) {
     copyPath(node, resetArtboard);
     _numPoints = node._numPoints;
     _innerRadius = node._innerRadius;

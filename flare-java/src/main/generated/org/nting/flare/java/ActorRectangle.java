@@ -4,16 +4,16 @@ public class ActorRectangle extends ActorProceduralPath {
   double _radius = 0.0;
 
   @override
-  void invalidatePath() {}
+  public void invalidatePath() {}
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorRectangle instance = new ActorRectangle();
     instance.copyRectangle(this, resetArtboard);
     return instance;
   }
 
-  void copyRectangle(ActorRectangle node, ActorArtboard resetArtboard) {
+  public void copyRectangle(ActorRectangle node, ActorArtboard resetArtboard) {
     copyPath(node, resetArtboard);
     _radius = node._radius;
   }

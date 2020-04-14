@@ -8,7 +8,7 @@ public class JSONBlockReader extends JSONReader {
   }
 
   @override
-  JSONBlockReader readNextBlock([Map<String, int> blockTypes]) {
+  public JSONBlockReader readNextBlock([Map<String, int> blockTypes]) {
     if (isEOF()) {
       return null;
     }
@@ -26,7 +26,7 @@ public class JSONBlockReader extends JSONReader {
     return JSONBlockReader.fromObject(type, obj);
   }
 
-  int readBlockType(Map<String, int> blockTypes) {
+  public int readBlockType(Map<String, int> blockTypes) {
     dynamic next = _peek();
     int bType;
     if (next is Map) {
@@ -45,7 +45,7 @@ public class JSONBlockReader extends JSONReader {
     return bType;
   }
 
-  dynamic _peek() {
+  public dynamic _peek() {
     dynamic stream = context.first;
     dynamic next;
     if (stream is Map) {

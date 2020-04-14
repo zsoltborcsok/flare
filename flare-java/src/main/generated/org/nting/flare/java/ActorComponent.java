@@ -15,7 +15,7 @@ public abstract class ActorComponent {
     onParentChanged(from, value);
   }
 
-  void onParentChanged(ActorNode from, ActorNode to) {}
+  public void onParentChanged(ActorNode from, ActorNode to) {}
 
   ActorArtboard artboard;
   int _parentIdx = 0;
@@ -32,7 +32,7 @@ public abstract class ActorComponent {
     return _name;
   }
 
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     ActorNode node = components[_parentIdx] as ActorNode;
     if (node != null) {
       node.addChild(this);
@@ -57,7 +57,7 @@ public abstract class ActorComponent {
     return component;
   }
 
-  void copyComponent(ActorComponent component, ActorArtboard resetArtboard) {
+  public void copyComponent(ActorComponent component, ActorArtboard resetArtboard) {
     _name = component._name;
     artboard = resetArtboard;
     _parentIdx = component._parentIdx;

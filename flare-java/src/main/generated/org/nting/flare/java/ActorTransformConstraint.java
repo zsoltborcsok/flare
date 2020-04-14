@@ -22,7 +22,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorTransformConstraint node = new ActorTransformConstraint();
     node.copyTransformConstraint(this, resetArtboard);
     return node;
@@ -36,7 +36,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void constrain(ActorNode node) {
+  public void constrain(ActorNode node) {
     ActorNode t = target as ActorNode;
     if (t == null) {
       return;
@@ -85,8 +85,8 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void update(int dirt) {}
+  public void update(int dirt) {}
 
   @override
-  void completeResolve() {}
+  public void completeResolve() {}
 }

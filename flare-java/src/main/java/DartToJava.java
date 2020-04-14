@@ -28,7 +28,23 @@ public class DartToJava {
         // addPackageDefinition(Paths.get(RELATIVE_PATH));
         // removeImports(Paths.get(RELATIVE_PATH));
         // makeClassesPublic(Paths.get(RELATIVE_PATH));
-        insertNewKeywords(Paths.get(RELATIVE_PATH));
+        // insertNewKeywords(Paths.get(RELATIVE_PATH));
+        makeMethodsPublic(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void makeMethodsPublic(Path pathToFiles) {
+        Pattern pattern = Pattern.compile("\\s[a-z_0-9]+[a-zA-Z_0-9]*\\(.*\\)\\s\\{");
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find()) {
+                String lineText = line.replaceAll("^[ ]+", "");
+                if (!lineText.startsWith("set") && !lineText.startsWith("//") && !lineText.contains(":")) {
+                    int leadingSpaces = line.length() - lineText.length();
+                    return line.substring(0, leadingSpaces) + "public " + line.substring(leadingSpaces);
+                }
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void insertNewKeywords(Path pathToFiles) {

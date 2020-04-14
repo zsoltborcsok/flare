@@ -23,7 +23,7 @@ public abstract class Actor {
     return maxTextureIndex + 1;
   }
 
-  void copyActor(Actor actor) {
+  public void copyActor(Actor actor) {
     maxTextureIndex = actor.maxTextureIndex;
     int artboardCount = actor._artboards.length;
     if (artboardCount > 0) {
@@ -40,39 +40,39 @@ public abstract class Actor {
     }
   }
 
-  ActorArtboard makeArtboard() {
+  public ActorArtboard makeArtboard() {
     return new ActorArtboard(this);
   }
 
-  ActorImage makeImageNode() {
+  public ActorImage makeImageNode() {
     return new ActorImage();
   }
 
-  ActorPath makePathNode() {
+  public ActorPath makePathNode() {
     return new ActorPath();
   }
 
-  ActorShape makeShapeNode(ActorShape source) {
+  public ActorShape makeShapeNode(ActorShape source) {
     return new ActorShape();
   }
 
-  ActorRectangle makeRectangle() {
+  public ActorRectangle makeRectangle() {
     return new ActorRectangle();
   }
 
-  ActorTriangle makeTriangle() {
+  public ActorTriangle makeTriangle() {
     return new ActorTriangle();
   }
 
-  ActorStar makeStar() {
+  public ActorStar makeStar() {
     return new ActorStar();
   }
 
-  ActorPolygon makePolygon() {
+  public ActorPolygon makePolygon() {
     return new ActorPolygon();
   }
 
-  ActorEllipse makeEllipse() {
+  public ActorEllipse makeEllipse() {
     return new ActorEllipse();
   }
 
@@ -152,7 +152,7 @@ public abstract class Actor {
     return success;
   }
 
-  void readArtboardsBlock(StreamReader block) {
+  public void readArtboardsBlock(StreamReader block) {
     int artboardCount = block.readUint16Length();
     _artboards = List<ActorArtboard>(artboardCount);
 

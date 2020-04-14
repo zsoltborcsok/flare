@@ -17,7 +17,7 @@ public abstract class ActorConstraint extends ActorComponent {
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     markDirty();
   }
 
@@ -33,14 +33,14 @@ public abstract class ActorConstraint extends ActorComponent {
     markDirty();
   }
 
-  void markDirty() {
+  public void markDirty() {
     parent.markTransformDirty();
   }
 
   void constrain(ActorNode node);
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     if (parent != null) {
       // This works because nodes are exported in hierarchy order, 
@@ -58,7 +58,7 @@ public abstract class ActorConstraint extends ActorComponent {
     return component;
   }
 
-  void copyConstraint(ActorConstraint node, ActorArtboard resetArtboard) {
+  public void copyConstraint(ActorConstraint node, ActorArtboard resetArtboard) {
     copyComponent(node, resetArtboard);
 
     _isEnabled = node._isEnabled;

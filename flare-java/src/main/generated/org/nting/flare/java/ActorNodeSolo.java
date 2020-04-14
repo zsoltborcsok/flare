@@ -13,7 +13,7 @@ public class ActorNodeSolo extends ActorNode {
     return _activeChildIndex;
   }
 
-  void setActiveChildIndex(int idx) {
+  public void setActiveChildIndex(int idx) {
     if (children != null) {
       _activeChildIndex = min(children.length, max(0, idx));
       for (int i = 0; i < children.length; i++) {
@@ -27,13 +27,13 @@ public class ActorNodeSolo extends ActorNode {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorNodeSolo soloInstance = new ActorNodeSolo();
     soloInstance.copySolo(this, resetArtboard);
     return soloInstance;
   }
 
-  void copySolo(ActorNodeSolo node, ActorArtboard resetArtboard) {
+  public void copySolo(ActorNodeSolo node, ActorArtboard resetArtboard) {
     copyNode(node, resetArtboard);
     _activeChildIndex = node._activeChildIndex;
   }
@@ -48,7 +48,7 @@ public class ActorNodeSolo extends ActorNode {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
     setActiveChildIndex(activeChildIndex);
   }

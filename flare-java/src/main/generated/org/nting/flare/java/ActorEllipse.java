@@ -4,14 +4,14 @@ const double circleConstant = 0.55;
 
 public class ActorEllipse extends ActorProceduralPath {
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorEllipse instance = new ActorEllipse();
     instance.copyPath(this, resetArtboard);
     return instance;
   }
 
   @override
-  void invalidatePath() {}
+  public void invalidatePath() {}
 
   static ActorEllipse read(ActorArtboard artboard, StreamReader reader,
       ActorEllipse component) {

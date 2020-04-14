@@ -21,7 +21,7 @@ public abstract class ActorShadow extends ActorBlur {
     return component;
   }
 
-  void copyShadow(ActorShadow from, ActorArtboard resetArtboard) {
+  public void copyShadow(ActorShadow from, ActorArtboard resetArtboard) {
     copyBlur(from, resetArtboard);
     offsetX = from.offsetX;
     offsetY = from.offsetY;

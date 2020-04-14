@@ -54,7 +54,7 @@ public abstract class ActorDrawable extends ActorNode {
     return component;
   }
 
-  void copyDrawable(ActorDrawable node, ActorArtboard resetArtboard) {
+  public void copyDrawable(ActorDrawable node, ActorArtboard resetArtboard) {
     copyNode(node, resetArtboard);
     // todo blendmode
     drawOrder = node.drawOrder;
@@ -64,10 +64,10 @@ public abstract class ActorDrawable extends ActorNode {
 
   AABB computeAABB();
 
-  void initializeGraphics() {}
+  public void initializeGraphics() {}
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     _clipShapes = <List<ClipShape>>[];
     List<List<ActorClip>> clippers = allClips;
     for (final List<ActorClip> clips in clippers) {

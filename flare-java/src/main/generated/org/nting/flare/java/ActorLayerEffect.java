@@ -13,7 +13,7 @@ public abstract class ActorLayerEffect extends ActorComponent {
     return component;
   }
 
-  void copyLayerEffect(ActorLayerEffect from, ActorArtboard resetArtboard) {
+  public void copyLayerEffect(ActorLayerEffect from, ActorArtboard resetArtboard) {
     copyComponent(from, resetArtboard);
     _isActive = from._isActive;
   }

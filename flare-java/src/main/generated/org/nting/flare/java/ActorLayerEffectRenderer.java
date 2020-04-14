@@ -24,13 +24,13 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 
   List<ActorInnerShadow> get innerShadows => _innerShadows;
 
-  void sortDrawables() {
+  public void sortDrawables() {
     _drawables
         .sort((ActorDrawable a, ActorDrawable b) => a.drawOrder - b.drawOrder);
   }
 
   @override
-  void onParentChanged(ActorNode from, ActorNode to) {
+  public void onParentChanged(ActorNode from, ActorNode to) {
     super.onParentChanged(from, to);
     from?.findLayerEffect();
     to?.findLayerEffect();
@@ -46,19 +46,19 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   set blendModeId(int value) {}
 
   @override
-  AABB computeAABB() {
+  public AABB computeAABB() {
     return artboard.artboardAABB();
   }
 
   @override
-  ActorLayerEffectRenderer makeInstance(ActorArtboard resetArtboard) {
+  public ActorLayerEffectRenderer makeInstance(ActorArtboard resetArtboard) {
     ActorLayerEffectRenderer instanceNode =
     resetArtboard.actor.makeLayerEffectRenderer();
     instanceNode.copyDrawable(this, resetArtboard);
     return instanceNode;
   }
 
-  void findEffects() {
+  public void findEffects() {
     var blurs = parent.children
         .where((child) => child is ActorBlur && child is! ActorShadow)
         .toList(growable: false);
@@ -70,13 +70,13 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   }
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
     parent.findLayerEffect();
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     super.completeResolve();
 
     _drawables.clear();
@@ -105,7 +105,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
     findEffects();
   }
 
-  void computeMasks() {
+  public void computeMasks() {
     _renderMasks.clear();
     var masks = parent.children.whereType<ActorMask>().toList(growable: false);
 
@@ -139,7 +139,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   }
 }
 
-void _computeLayerNode(ActorDrawable drawable) {
+public void _computeLayerNode(ActorDrawable drawable) {
   ActorNode parent = drawable;
   while (parent != null) {
     if (parent.layerEffect != null) {

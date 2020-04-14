@@ -22,7 +22,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   List<BoneChain> _boneData;
 
   @override
-  void resolveComponentIndices(List<ActorComponent> components) {
+  public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
     if (_influencedBones != null) {
@@ -38,7 +38,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     if (_influencedBones == null || _influencedBones.isEmpty) {
       return;
     }
@@ -149,7 +149,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void constrain(ActorNode node) {
+  public void constrain(ActorNode node) {
     ActorNode target = this.target as ActorNode;
     if (target == null) {
       return;
@@ -211,7 +211,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
   }
 
-  void constrainRotation(BoneChain fk, double rotation) {
+  public void constrainRotation(BoneChain fk, double rotation) {
     ActorBone bone = fk.bone;
     Mat2D parentWorld = bone.parent.worldTransform;
     Mat2D transform = bone.transform;
@@ -242,7 +242,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     Mat2D.multiply(bone.worldTransform, parentWorld, transform);
   }
 
-  void solve1(BoneChain fk1, Vec2D worldTargetTranslation) {
+  public void solve1(BoneChain fk1, Vec2D worldTargetTranslation) {
     Mat2D iworld = fk1.parentWorldInverse;
     var pA = new Vec2D();
     fk1.bone.getWorldTranslation(pA);
@@ -258,7 +258,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     fk1.angle = r;
   }
 
-  void solve2(BoneChain fk1, BoneChain fk2, Vec2D worldTargetTranslation) {
+  public void solve2(BoneChain fk1, BoneChain fk2, Vec2D worldTargetTranslation) {
     ActorBone b1 = fk1.bone;
     ActorBone b2 = fk2.bone;
     BoneChain firstChild = _fkChain[fk1.index + 1];
@@ -332,13 +332,13 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard artboard) {
+  public ActorComponent makeInstance(ActorArtboard artboard) {
     ActorIKConstraint instance = new ActorIKConstraint();
     instance.copyIKConstraint(this, artboard);
     return instance;
   }
 
-  void copyIKConstraint(ActorIKConstraint node, ActorArtboard artboard) {
+  public void copyIKConstraint(ActorIKConstraint node, ActorArtboard artboard) {
     copyTargetedConstraint(node, artboard);
 
     _invertDirection = node._invertDirection;
@@ -353,5 +353,5 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   }
 
   @override
-  void update(int dirt) {}
+  public void update(int dirt) {}
 }

@@ -19,7 +19,7 @@ public class ActorShape extends ActorDrawable {
   List<ActorBasePath> get paths => _paths;
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     super.update(dirt);
     invalidateShape();
   }
@@ -36,19 +36,19 @@ public class ActorShape extends ActorDrawable {
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorShape instanceShape = resetArtboard.actor.makeShapeNode(this);
     instanceShape.copyShape(this, resetArtboard);
     return instanceShape;
   }
 
-  void copyShape(ActorShape node, ActorArtboard resetArtboard) {
+  public void copyShape(ActorShape node, ActorArtboard resetArtboard) {
     copyDrawable(node, resetArtboard);
     _transformAffectsStroke = node._transformAffectsStroke;
   }
 
   @override
-  AABB computeAABB() {
+  public AABB computeAABB() {
     AABB aabb;
     for (final List<ClipShape> clips in clipShapes) {
       for (final ClipShape clipShape in clips) {
@@ -149,16 +149,16 @@ public class ActorShape extends ActorDrawable {
     return AABB.fromValues(minX, minY, maxX, maxY);
   }
 
-  void addStroke(ActorStroke stroke) {
+  public void addStroke(ActorStroke stroke) {
     _strokes.add(stroke);
   }
 
-  void addFill(ActorFill fill) {
+  public void addFill(ActorFill fill) {
     _fills.add(fill);
   }
 
   @override
-  void initializeGraphics() {
+  public void initializeGraphics() {
     for (final ActorStroke stroke in _strokes) {
       stroke.initializeGraphics();
     }
@@ -175,7 +175,7 @@ public class ActorShape extends ActorDrawable {
   @override
   set blendModeId(int value) {}
 
-  bool addPath(ActorBasePath path) {
+  public bool addPath(ActorBasePath path) {
     if (_paths.contains(path)) {
       return false;
     }
@@ -183,7 +183,7 @@ public class ActorShape extends ActorDrawable {
     return true;
   }
 
-  bool removePath(ActorBasePath path) {
+  public bool removePath(ActorBasePath path) {
     return _paths.remove(path);
   }
 }

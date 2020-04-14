@@ -14,31 +14,31 @@ public class ActorBlur extends ActorLayerEffect {
     return component;
   }
 
-  void copyBlur(ActorBlur from, ActorArtboard resetArtboard) {
+  public void copyBlur(ActorBlur from, ActorArtboard resetArtboard) {
     copyLayerEffect(from, resetArtboard);
     blurX = from.blurX;
     blurY = from.blurY;
   }
 
   @override
-  void completeResolve() {
+  public void completeResolve() {
     // intentionally empty, no logic to complete.
   }
 
   @override
-  ActorComponent makeInstance(ActorArtboard resetArtboard) {
+  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
     ActorBlur instanceNode = new ActorBlur();
     instanceNode.copyBlur(this, resetArtboard);
     return instanceNode;
   }
 
   @override
-  void onDirty(int dirt) {
+  public void onDirty(int dirt) {
     // intentionally empty
   }
 
   @override
-  void update(int dirt) {
+  public void update(int dirt) {
     // intentionally empty
   }
 }

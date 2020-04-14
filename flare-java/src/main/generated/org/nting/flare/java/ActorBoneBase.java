@@ -22,7 +22,7 @@ public class ActorBoneBase extends ActorNode {
     }
   }
 
-  Vec2D getTipWorldTranslation(Vec2D vec) {
+  public Vec2D getTipWorldTranslation(Vec2D vec) {
     Mat2D transform = new Mat2D();
     transform[4] = _length;
     Mat2D.multiply(transform, worldTransform, transform);
@@ -40,7 +40,7 @@ public class ActorBoneBase extends ActorNode {
     return node;
   }
 
-  void copyBoneBase(ActorBoneBase node, ActorArtboard resetArtboard) {
+  public void copyBoneBase(ActorBoneBase node, ActorArtboard resetArtboard) {
     super.copyNode(node, resetArtboard);
     _length = node._length;
   }

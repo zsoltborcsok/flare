@@ -10,7 +10,7 @@ public class DependencySorter {
     _temp = HashSet<ActorComponent>();
   }
 
-  List<ActorComponent> sort(ActorComponent root) {
+  public List<ActorComponent> sort(ActorComponent root) {
     _order = <ActorComponent>[];
     if (!visit(root)) {
       return null;
@@ -18,7 +18,7 @@ public class DependencySorter {
     return _order;
   }
 
-  bool visit(ActorComponent n) {
+  public bool visit(ActorComponent n) {
     if (_perm.contains(n)) {
       return true;
     }
