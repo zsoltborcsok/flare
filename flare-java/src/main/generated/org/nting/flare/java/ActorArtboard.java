@@ -41,14 +41,14 @@ public class ActorArtboard {
 
   set overrideColor(Float32List value) {
     _overrideColor = value;
-    for (final ActorDrawable drawable in _drawableNodes) {
+    for (final ActorDrawable drawable : _drawableNodes) {
       addDirt(drawable, DirtyFlags.paintDirty, true);
     }
   }
 
   set modulateOpacity(double value) {
     _modulateOpacity = value;
-    for (final ActorDrawable drawable in _drawableNodes) {
+    for (final ActorDrawable drawable : _drawableNodes) {
       addDirt(drawable, DirtyFlags.paintDirty, true);
     }
   }
@@ -96,7 +96,7 @@ public class ActorArtboard {
     DependencySorter sorter = new DependencySorter();
     _dependencyOrder = sorter.sort(_root);
     int graphOrder = 0;
-    for (final ActorComponent component in _dependencyOrder) {
+    for (final ActorComponent component : _dependencyOrder) {
       component.graphOrder = graphOrder++;
       component.dirtMask = 255;
     }
@@ -128,7 +128,7 @@ public class ActorArtboard {
     }
     List<ActorComponent> dependents = component.dependents;
     if (dependents != null) {
-      for (final ActorComponent d in dependents) {
+      for (final ActorComponent d : dependents) {
         addDirt(d, value, recurse);
       }
     }
@@ -137,7 +137,7 @@ public class ActorArtboard {
   }
 
   public ActorAnimation getAnimation(String name) {
-    for (final ActorAnimation a in _animations) {
+    for (final ActorAnimation a : _animations) {
       if (a.name == name) {
         return a;
       }
@@ -146,7 +146,7 @@ public class ActorArtboard {
   }
 
   public ActorNode getNode(String name) {
-    for (final ActorNode node in _nodes) {
+    for (final ActorNode node : _nodes) {
       if (node != null && node.name == name) {
         return node;
       }
@@ -199,7 +199,7 @@ public class ActorArtboard {
     if (artboard.componentCount != 0) {
       int idx = 0;
 
-      for (final ActorComponent component in artboard.components) {
+      for (final ActorComponent component : artboard.components) {
         if (component == null) {
           _components[idx++] = null;
           continue;
@@ -210,7 +210,7 @@ public class ActorArtboard {
     }
     // Copy dependency order.
     _dependencyOrder = List<ActorComponent>(artboard._dependencyOrder.length);
-    for (final ActorComponent component in artboard._dependencyOrder) {
+    for (final ActorComponent component : artboard._dependencyOrder) {
       final ActorComponent localComponent = _components[component.idx];
       _dependencyOrder[component.graphOrder] = localComponent;
       localComponent.dirtMask = 255;
@@ -277,7 +277,7 @@ public class ActorArtboard {
     for (int i = 0; i < _drawableNodes.length; i++) {
       _drawableNodes[i].drawIndex = i;
     }
-    for (final ActorLayerEffectRenderer layer in _effectRenderers) {
+    for (final ActorLayerEffectRenderer layer : _effectRenderers) {
       layer.sortDrawables();
     }
   }
@@ -569,7 +569,7 @@ public class ActorArtboard {
 
   public void initializeGraphics() {
     // Iterate components as some drawables may end up in other layers.
-    for (final ActorComponent component in _components) {
+    for (final ActorComponent component : _components) {
       if (component is ActorDrawable) {
         component.initializeGraphics();
       }
@@ -606,7 +606,7 @@ public class ActorArtboard {
     }
 
     AABB aabb;
-    for (final ActorDrawable drawable in _drawableNodes) {
+    for (final ActorDrawable drawable : _drawableNodes) {
       // This is the axis aligned bounding box in the space
       // of the parent (this case our shape).
       AABB pathAABB = drawable.computeAABB();

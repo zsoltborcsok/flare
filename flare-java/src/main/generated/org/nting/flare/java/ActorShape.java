@@ -50,8 +50,8 @@ public class ActorShape extends ActorDrawable {
   @Override
   public AABB computeAABB() {
     AABB aabb;
-    for (final List<ClipShape> clips in clipShapes) {
-      for (final ClipShape clipShape in clips) {
+    for (final List<ClipShape> clips : clipShapes) {
+      for (final ClipShape clipShape : clips) {
         AABB bounds = clipShape.shape.computeAABB();
         if (bounds == null) {
           continue;
@@ -78,7 +78,7 @@ public class ActorShape extends ActorDrawable {
       return aabb;
     }
 
-    for (final ActorComponent component in children) {
+    for (final ActorComponent component : children) {
       if (component is! ActorBasePath) {
         continue;
       }
@@ -111,7 +111,7 @@ public class ActorShape extends ActorDrawable {
 
     if (_strokes != null) {
       double maxStroke = 0.0;
-      for (final ActorStroke stroke in _strokes) {
+      for (final ActorStroke stroke : _strokes) {
         if (stroke.width > maxStroke) {
           maxStroke = stroke.width;
         }
@@ -159,10 +159,10 @@ public class ActorShape extends ActorDrawable {
 
   @Override
   public void initializeGraphics() {
-    for (final ActorStroke stroke in _strokes) {
+    for (final ActorStroke stroke : _strokes) {
       stroke.initializeGraphics();
     }
-    for (final ActorFill fill in _fills) {
+    for (final ActorFill fill : _fills) {
       fill.initializeGraphics();
     }
   }

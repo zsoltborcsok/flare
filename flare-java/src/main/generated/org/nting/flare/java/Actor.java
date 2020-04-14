@@ -29,7 +29,7 @@ public abstract class Actor {
     if (artboardCount > 0) {
       int idx = 0;
       _artboards = List<ActorArtboard>(artboardCount);
-      for (final ActorArtboard artboard in actor._artboards) {
+      for (final ActorArtboard artboard : actor._artboards) {
         if (artboard == null) {
           _artboards[idx++] = null;
           continue;
@@ -138,14 +138,14 @@ public abstract class Actor {
     }
 
     // Resolve now.
-    for (final ActorArtboard artboard in _artboards) {
+    for (final ActorArtboard artboard : _artboards) {
       artboard.resolveHierarchy();
     }
-    for (final ActorArtboard artboard in _artboards) {
+    for (final ActorArtboard artboard : _artboards) {
       artboard.completeResolveHierarchy();
     }
 
-    for (final ActorArtboard artboard in _artboards) {
+    for (final ActorArtboard artboard : _artboards) {
       artboard.sortDependencies();
     }
 

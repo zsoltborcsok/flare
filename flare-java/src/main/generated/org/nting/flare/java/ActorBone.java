@@ -21,7 +21,7 @@ public class ActorBone extends ActorBoneBase {
     if (children == null) {
       return;
     }
-    for (final ActorComponent component in children) {
+    for (final ActorComponent component : children) {
       if (component is ActorBone) {
         _firstBone = component;
         return;

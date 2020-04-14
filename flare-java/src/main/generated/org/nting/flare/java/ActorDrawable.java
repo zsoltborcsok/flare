@@ -70,9 +70,9 @@ public abstract class ActorDrawable extends ActorNode {
   public void completeResolve() {
     _clipShapes = <List<ClipShape>>[];
     List<List<ActorClip>> clippers = allClips;
-    for (final List<ActorClip> clips in clippers) {
+    for (final List<ActorClip> clips : clippers) {
       List<ClipShape> shapes = <ClipShape>[];
-      for (final ActorClip clip in clips) {
+      for (final ActorClip clip : clips) {
         clip.node.all((component) {
           if (component is ActorShape) {
             shapes.add(ClipShape(component, clip.intersect));

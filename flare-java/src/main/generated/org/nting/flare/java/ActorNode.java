@@ -361,7 +361,7 @@ public class ActorNode extends ActorComponent {
     if ((dirt & worldTransformDirty) == worldTransformDirty) {
       updateWorldTransform();
       if (_constraints != null) {
-        for (final ActorConstraint constraint in _constraints) {
+        for (final ActorConstraint constraint : _constraints) {
           if (constraint.isEnabled) {
             constraint.constrain(this);
           }
@@ -378,7 +378,7 @@ public class ActorNode extends ActorComponent {
       return;
     }
 
-    for (final ActorClip clip in _clips) {
+    for (final ActorClip clip : _clips) {
       final ActorComponent component = components[clip.clipIdx];
       if (component is ActorNode) {
         clip.node = component;
@@ -393,7 +393,7 @@ public class ActorNode extends ActorComponent {
 
   public boolean eachChildRecursive(ComopnentWalkCallback cb) {
     if (_children != null) {
-      for (final ActorComponent child in _children) {
+      for (final ActorComponent child : _children) {
         if (cb(child) == false) {
           return false;
         }
@@ -412,7 +412,7 @@ public class ActorNode extends ActorComponent {
     }
 
     if (_children != null) {
-      for (final ActorComponent child in _children) {
+      for (final ActorComponent child : _children) {
         if (cb(child) == false) {
           return false;
         }

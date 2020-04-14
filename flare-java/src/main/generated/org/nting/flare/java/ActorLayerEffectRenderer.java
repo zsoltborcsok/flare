@@ -109,7 +109,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
     _renderMasks.clear();
     var masks = parent.children.whereType<ActorMask>().toList(growable: false);
 
-    for (final mask in masks) {
+    for (final mask : masks) {
       var renderMask = new ActorLayerEffectRendererMask(mask);
       mask.source?.all((child) {
         if (child == parent) {

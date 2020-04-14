@@ -35,7 +35,7 @@ public class ActorSkin extends ActorComponent {
 
       Mat2D mat = new Mat2D();
 
-      for (final SkinnedBone cb in connectedBones) {
+      for (final SkinnedBone cb : connectedBones) {
         if (cb.node == null) {
           _boneMatrices[bidx++] = 1.0;
           _boneMatrices[bidx++] = 0.0;
@@ -70,12 +70,12 @@ public class ActorSkin extends ActorComponent {
     artboard.addDependency(this, skinnable as ActorComponent);
     if (skinnable.isConnectedToBones) {
       List<SkinnedBone> connectedBones = skinnable.connectedBones;
-      for (final SkinnedBone skinnedBone in connectedBones) {
+      for (final SkinnedBone skinnedBone : connectedBones) {
         artboard.addDependency(this, skinnedBone.node);
         List<ActorConstraint> constraints = skinnedBone.node.allConstraints;
 
         if (constraints != null) {
-          for (final ActorConstraint constraint in constraints) {
+          for (final ActorConstraint constraint : constraints) {
             artboard.addDependency(this, constraint);
           }
         }

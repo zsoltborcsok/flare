@@ -31,7 +31,7 @@ public class DependencySorter {
 
     List<ActorComponent> dependents = n.dependents;
     if (dependents != null) {
-      for (final ActorComponent d in dependents) {
+      for (final ActorComponent d : dependents) {
         if (!visit(d)) {
           return false;
         }

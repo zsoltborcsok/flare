@@ -32,7 +32,17 @@ public class DartToJava {
         // makeMethodsPublic(Paths.get(RELATIVE_PATH));
         // makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
         // handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
-        handleBools(Paths.get(RELATIVE_PATH));
+        // handleBools(Paths.get(RELATIVE_PATH));
+        handleCollectionIterations(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleCollectionIterations(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains("for ")) {
+                return line.replace(" in ", " : ");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void handleBools(Path pathToFiles) {

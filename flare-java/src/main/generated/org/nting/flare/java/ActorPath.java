@@ -56,7 +56,7 @@ public abstract class ActorBasePath {
       localTransform = transform;
     }
 
-    for (final Vec2D p in pts) {
+    for (final Vec2D p : pts) {
       Vec2D wp = Vec2D.transformMat2D(p, p, localTransform);
       if (wp[0] < minX) {
         minX = wp[0];
@@ -89,7 +89,7 @@ public abstract class ActorBasePath {
     double maxY = -double.maxFinite;
 
     List<PathPoint> renderPoints = points;
-    for (final PathPoint point in renderPoints) {
+    for (final PathPoint point : renderPoints) {
       Vec2D t = point.translation;
       double x = t[0];
       double y = t[1];
@@ -237,7 +237,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
     Float32List boneMatrices = skin.boneMatrices;
     List<PathPoint> deformed = <PathPoint>[];
-    for (final PathPoint point in _points) {
+    for (final PathPoint point : _points) {
       deformed.add(point.skin(worldTransform, boneMatrices));
     }
     return deformed;
@@ -265,7 +265,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     });
     Float32List vertices = new Float32List(length);
     int readIdx = 0;
-    for (final PathPoint point in points) {
+    for (final PathPoint point : points) {
       vertices[readIdx++] = point.translation[0];
       vertices[readIdx++] = point.translation[1];
       if (point.pointType == PointType.straight) {
@@ -295,7 +295,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     if (vertexDeform != null &&
         (dirt & vertexDeformDirty) == vertexDeformDirty) {
       int readIdx = 0;
-      for (final PathPoint point in _points) {
+      for (final PathPoint point : _points) {
         point.translation[0] = vertexDeform[readIdx++];
         point.translation[1] = vertexDeform[readIdx++];
         switch (point.pointType) {

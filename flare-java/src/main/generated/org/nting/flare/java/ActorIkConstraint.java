@@ -26,7 +26,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     super.resolveComponentIndices(components);
 
     if (_influencedBones != null) {
-      for (final InfluencedBone influenced in _influencedBones) {
+      for (final InfluencedBone influenced : _influencedBones) {
         influenced.bone = components[influenced.boneIdx] as ActorBone;
         // Mark peer constraints, N.B. that we're not adding it to the
         //  parent bone as we're constraining it anyway.
@@ -70,7 +70,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     // Make sure bones are good.
     _boneData = <BoneChain>[];
-    for (final InfluencedBone bone in _influencedBones) {
+    for (final InfluencedBone bone : _influencedBones) {
       BoneChain item = _fkChain.firstWhere(
               (chainItem) => chainItem.bone == bone.bone,
           orElse: () => null);
@@ -90,7 +90,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
 
     // Finally mark dependencies.
-    for (final InfluencedBone bone in _influencedBones) {
+    for (final InfluencedBone bone : _influencedBones) {
       // Don't mark dependency on parent as ActorComponent already does this.
       if (bone.bone == parent) {
         continue;
@@ -106,13 +106,13 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     // All the first level children of the influenced bones should
     // depend on the final bone.
     BoneChain tip = _fkChain[_fkChain.length - 1];
-    for (final BoneChain fk in _fkChain) {
+    for (final BoneChain fk : _fkChain) {
       if (fk == tip) {
         continue;
       }
 
       ActorBone bone = fk.bone;
-      for (final node in bone.children) {
+      for (final node : bone.children) {
         BoneChain item = _fkChain.firstWhere(
                 (chainItem) => chainItem.bone == node,
             orElse: () => null);
@@ -162,7 +162,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
 
     // Decompose the chain.
-    for (final BoneChain item in _fkChain) {
+    for (final BoneChain item : _fkChain) {
       ActorBone bone = item.bone;
       Mat2D parentWorld = bone.parent.worldTransform;
       Mat2D.invert(item.parentWorldInverse, parentWorld);
@@ -190,7 +190,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     // At the end, mix the FK angle with the IK angle by strength
     if (strength != 1.0) {
-      for (final BoneChain fk in _fkChain) {
+      for (final BoneChain fk : _fkChain) {
         if (!fk.included) {
           ActorBone bone = fk.bone;
           Mat2D.multiply(

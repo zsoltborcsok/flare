@@ -189,7 +189,7 @@ public class JellyComponent extends ActorComponent {
     // We want to depend on any and all constraints that our dependents have.
     Set<ActorConstraint> constraints =
     Set<ActorConstraint>.from(dependencyConstraints);
-    for (final ActorConstraint constraint in constraints) {
+    for (final ActorConstraint constraint : constraints) {
       artboard.addDependency(this, constraint);
     }
   }
@@ -207,7 +207,7 @@ public class JellyComponent extends ActorComponent {
     }
 
     _bones = <ActorJellyBone>[];
-    for (final child in children) {
+    for (final child : children) {
       if (child is ActorJellyBone) {
         _bones.add(child);
         // Make sure the jelly doesn't update until

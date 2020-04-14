@@ -232,7 +232,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
 //   void transformBind(Mat2D xform) {
 //     if (_boneConnections != null) {
-//       for (BoneConnection bc in _boneConnections) {
+//       for (BoneConnection bc : _boneConnections) {
 //         Mat2D.multiply(bc.bind, xform, bc.bind);
 //         Mat2D.invert(bc.inverseBind, bc.bind);
 //       }
