@@ -9,7 +9,7 @@ public class ActorNodeSolo extends ActorNode {
     }
   }
 
-  int get activeChildIndex {
+  public int activeChildIndex() {
     return _activeChildIndex;
   }
 

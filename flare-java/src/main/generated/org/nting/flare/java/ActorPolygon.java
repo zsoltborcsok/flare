@@ -35,7 +35,7 @@ public class ActorPolygon extends ActorProceduralPath {
   }
 
   @Override
-  List<PathPoint> get points {
+  public List<PathPoint> points() {
     List<PathPoint> _polygonPoints = <PathPoint>[];
     double angle = -pi / 2.0;
     double inc = (pi * 2.0) / sides;

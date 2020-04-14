@@ -28,7 +28,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   List<PathPoint> get points => _points;
 
   @Override
-  List<PathPoint> get deformedPoints {
+  public List<PathPoint> deformedPoints() {
     if (!isConnectedToBones || skin == null) {
       return _points;
     }
@@ -41,7 +41,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     return deformed;
   }
 
-  boolean get isClosed {
+  public boolean isClosed() {
     return _isClosed;
   }
 

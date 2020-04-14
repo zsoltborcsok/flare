@@ -30,7 +30,7 @@ public abstract class ActorComponent {
 
   ActorComponent.withArtboard(this.artboard);
 
-  String get name {
+  public String name() {
     return _name;
   }
 

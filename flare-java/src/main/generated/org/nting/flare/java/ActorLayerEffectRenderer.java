@@ -35,7 +35,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   }
 
   @Override
-  int get blendModeId {
+  public int blendModeId() {
     return 0;
   }
 

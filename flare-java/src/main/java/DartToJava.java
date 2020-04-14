@@ -39,7 +39,21 @@ public class DartToJava {
         // handleListCreation(Paths.get(RELATIVE_PATH));
         // handleConstDeclarations(Paths.get(RELATIVE_PATH));
         // addImports(Paths.get(RELATIVE_PATH), "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
-        handleInstanceOfs(Paths.get(RELATIVE_PATH));
+        // handleInstanceOfs(Paths.get(RELATIVE_PATH));
+        handleGetters(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleGetters(Path pathToFiles) {
+        Pattern pattern = Pattern.compile(" get .* \\{");
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find()) {
+                String lineText = line.replaceAll("^[ ]+", "");
+                int leadingSpaces = line.length() - lineText.length();
+                line = line.substring(0, leadingSpaces) + "public " + lineText.replace(" get ", " ").replace(" {", "() {");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void handleInstanceOfs(Path pathToFiles) {

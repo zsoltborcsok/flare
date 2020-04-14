@@ -6,7 +6,7 @@ public abstract class ActorTargetedConstraint extends ActorConstraint {
   int _targetIdx;
   ActorComponent _target;
 
-  ActorComponent get target {
+  public ActorComponent target() {
     return _target;
   }
 

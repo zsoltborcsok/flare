@@ -3,11 +3,11 @@ package org.nting.flare.java.maths;
 public class Mat2D {
   Float32List _buffer;
 
-  Float32List get values {
+  public Float32List values() {
     return _buffer;
   }
 
-  Float64List get mat4 {
+  public Float64List mat4() {
     return Float64List.fromList([
       _buffer[0],
       _buffer[1],

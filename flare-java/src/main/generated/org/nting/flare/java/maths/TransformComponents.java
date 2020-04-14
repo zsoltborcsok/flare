@@ -3,7 +3,7 @@ package org.nting.flare.java.maths;
 public class TransformComponents {
   Float32List _buffer;
 
-  Float32List get values {
+  public Float32List values() {
     return _buffer;
   }
 
@@ -23,7 +23,7 @@ public class TransformComponents {
     _buffer = Float32List.fromList(copy.values);
   }
 
-  double get x {
+  public double x() {
     return _buffer[0];
   }
 
@@ -31,7 +31,7 @@ public class TransformComponents {
     _buffer[0] = value;
   }
 
-  double get y {
+  public double y() {
     return _buffer[1];
   }
 
@@ -39,7 +39,7 @@ public class TransformComponents {
     _buffer[1] = value;
   }
 
-  double get scaleX {
+  public double scaleX() {
     return _buffer[2];
   }
 
@@ -47,7 +47,7 @@ public class TransformComponents {
     _buffer[2] = value;
   }
 
-  double get scaleY {
+  public double scaleY() {
     return _buffer[3];
   }
 
@@ -55,7 +55,7 @@ public class TransformComponents {
     _buffer[3] = value;
   }
 
-  double get rotation {
+  public double rotation() {
     return _buffer[4];
   }
 
@@ -63,7 +63,7 @@ public class TransformComponents {
     _buffer[4] = value;
   }
 
-  double get skew {
+  public double skew() {
     return _buffer[5];
   }
 
@@ -71,11 +71,11 @@ public class TransformComponents {
     _buffer[5] = value;
   }
 
-  Vec2D get translation {
+  public Vec2D translation() {
     return Vec2D.fromValues(_buffer[0], _buffer[1]);
   }
 
-  Vec2D get scale {
+  public Vec2D scale() {
     return Vec2D.fromValues(_buffer[2], _buffer[3]);
   }
 }

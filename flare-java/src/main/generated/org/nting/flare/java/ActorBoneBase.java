@@ -6,7 +6,7 @@ import org.nting.flare.java.maths.Vec2D;
 public class ActorBoneBase extends ActorNode {
   double _length;
 
-  double get length {
+  public double length() {
     return _length;
   }
 

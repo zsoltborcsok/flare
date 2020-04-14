@@ -3,15 +3,15 @@ package org.nting.flare.java.maths;
 public class AABB {
   Float32List _buffer;
 
-  Float32List get values {
+  public Float32List values() {
     return _buffer;
   }
 
-  Vec2D get minimum {
+  public Vec2D minimum() {
     return Vec2D.fromValues(_buffer[0], _buffer[1]);
   }
 
-  Vec2D get maximum {
+  public Vec2D maximum() {
     return Vec2D.fromValues(_buffer[2], _buffer[3]);
   }
 

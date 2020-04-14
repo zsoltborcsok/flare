@@ -35,7 +35,7 @@ public class ActorRectangle extends ActorProceduralPath {
   }
 
   @Override
-  List<PathPoint> get points {
+  public List<PathPoint> points() {
     double halfWidth = width / 2;
     double halfHeight = height / 2;
     double renderRadius = min(_radius, min(halfWidth, halfHeight));
@@ -61,7 +61,7 @@ public class ActorRectangle extends ActorProceduralPath {
 
   boolean get isClosed => true;
 
-  boolean get doesDraw {
+  public boolean doesDraw() {
     return !renderCollapsed;
   }
 

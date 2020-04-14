@@ -12,11 +12,11 @@ public abstract class PathPoint {
     _type = type;
   }
 
-  PointType get pointType {
+  public PointType pointType() {
     return _type;
   }
 
-  Vec2D get translation {
+  public Vec2D translation() {
     return _translation;
   }
 

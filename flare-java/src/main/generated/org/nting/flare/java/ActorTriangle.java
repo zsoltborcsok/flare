@@ -27,7 +27,7 @@ public class ActorTriangle extends ActorProceduralPath {
   }
 
   @Override
-  List<PathPoint> get points {
+  public List<PathPoint> points() {
     List<PathPoint> _trianglePoints = <PathPoint>[];
     _trianglePoints.add(
         StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY)));

@@ -9,11 +9,11 @@ public class CubicPathPoint extends PathPoint {
 
   CubicPathPoint(PointType type) : super(type);
 
-  Vec2D get inPoint {
+  public Vec2D inPoint() {
     return _in;
   }
 
-  Vec2D get outPoint {
+  public Vec2D outPoint() {
     return _out;
   }
 

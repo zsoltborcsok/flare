@@ -4,7 +4,7 @@ public class ActorBone extends ActorBoneBase {
   ActorBone _firstBone;
   JellyComponent jelly;
 
-  ActorBone get firstBone {
+  public ActorBone firstBone() {
     return _firstBone;
   }
 

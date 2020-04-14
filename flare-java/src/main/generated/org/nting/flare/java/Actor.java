@@ -18,11 +18,11 @@ public abstract class Actor {
           : _artboards.firstWhere((artboard) => artboard?.name == name,
           orElse: () => null);
 
-  int get version {
+  public int version() {
     return _version;
   }
 
-  int get texturesUsed {
+  public int texturesUsed() {
     return maxTextureIndex + 1;
   }
 

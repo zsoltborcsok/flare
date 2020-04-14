@@ -6,7 +6,7 @@ public abstract class ActorConstraint extends ActorComponent {
   boolean _isEnabled;
   double _strength;
 
-  boolean get isEnabled {
+  public boolean isEnabled() {
     return _isEnabled;
   }
 
@@ -23,7 +23,7 @@ public abstract class ActorConstraint extends ActorComponent {
     markDirty();
   }
 
-  double get strength {
+  public double strength() {
     return _strength;
   }
 

@@ -40,15 +40,15 @@ public class ActorNode extends ActorComponent {
 
   ActorNode.withArtboard(ActorArtboard artboard) : super.withArtboard(artboard);
 
-  Mat2D get transform {
+  public Mat2D transform() {
     return _transform;
   }
 
-  List<ActorClip> get clips {
+  public List<ActorClip> clips() {
     return _clips;
   }
 
-  Mat2D get worldTransformOverride {
+  public Mat2D worldTransformOverride() {
     return _overrideWorldTransform ? _worldTransform : null;
   }
 
@@ -62,7 +62,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  Mat2D get worldTransform {
+  public Mat2D worldTransform() {
     return _worldTransform;
   }
 
@@ -73,7 +73,7 @@ public class ActorNode extends ActorComponent {
     Mat2D.copy(_worldTransform, value);
   }
 
-  double get x {
+  public double x() {
     return _translation[0];
   }
 
@@ -85,7 +85,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get y {
+  public double y() {
     return _translation[1];
   }
 
@@ -97,7 +97,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  Vec2D get translation {
+  public Vec2D translation() {
     return Vec2D.clone(_translation);
   }
 
@@ -106,7 +106,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get rotation {
+  public double rotation() {
     return _rotation;
   }
 
@@ -118,7 +118,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get scaleX {
+  public double scaleX() {
     return _scale[0];
   }
 
@@ -130,7 +130,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get scaleY {
+  public double scaleY() {
     return _scale[1];
   }
 
@@ -142,7 +142,7 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get opacity {
+  public double opacity() {
     return _opacity;
   }
 
@@ -154,11 +154,11 @@ public class ActorNode extends ActorComponent {
     markTransformDirty();
   }
 
-  double get renderOpacity {
+  public double renderOpacity() {
     return _renderOpacity;
   }
 
-  double get childOpacity {
+  public double childOpacity() {
     return _layerEffect == null ? _renderOpacity : 1;
   }
 
@@ -177,11 +177,11 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  boolean get renderCollapsed {
+  public boolean renderCollapsed() {
     return _renderCollapsed;
   }
 
-  boolean get collapsedVisibility {
+  public boolean collapsedVisibility() {
     return _isCollapsedVisibility;
   }
 
@@ -192,7 +192,7 @@ public class ActorNode extends ActorComponent {
     }
   }
 
-  List<List<ActorClip>> get allClips {
+  public List<List<ActorClip>> allClips() {
     // Find clips.
     List<List<ActorClip>> all = <List<ActorClip>>[];
     ActorNode clipSearch = this;
@@ -286,7 +286,7 @@ public class ActorNode extends ActorComponent {
     _children.add(component);
   }
 
-  List<ActorComponent> get children {
+  public List<ActorComponent> children() {
     return _children;
   }
 

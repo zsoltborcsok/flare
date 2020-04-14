@@ -38,7 +38,7 @@ public class ActorStar extends ActorProceduralPath {
   }
 
   @Override
-  List<PathPoint> get points {
+  public List<PathPoint> points() {
     List<PathPoint> _starPoints = <PathPoint>[
       StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY))
     ];

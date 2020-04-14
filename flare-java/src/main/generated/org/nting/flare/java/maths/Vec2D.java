@@ -3,7 +3,7 @@ package org.nting.flare.java.maths;
 public class Vec2D {
   Float32List _buffer;
 
-  Float32List get values {
+  public Float32List values() {
     return _buffer;
   }
 

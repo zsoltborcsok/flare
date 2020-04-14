@@ -36,7 +36,7 @@ public abstract class ActorDrawable extends ActorNode {
   int drawIndex;
   boolean isHidden;
 
-  boolean get doesDraw {
+  public boolean doesDraw() {
     return !isHidden && !renderCollapsed;
   }
 

@@ -29,7 +29,7 @@ public class ActorEllipse extends ActorProceduralPath {
   }
 
   @Override
-  List<PathPoint> get points {
+  public List<PathPoint> points() {
     List<PathPoint> _ellipsePathPoints = <PathPoint>[];
     _ellipsePathPoints.add(CubicPathPoint.fromValues(
         Vec2D.fromValues(0.0, -radiusY),
@@ -53,7 +53,7 @@ public class ActorEllipse extends ActorProceduralPath {
 
   boolean get isClosed => true;
 
-  boolean get doesDraw {
+  public boolean doesDraw() {
     return !renderCollapsed;
   }
 

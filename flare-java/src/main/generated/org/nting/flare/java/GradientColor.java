@@ -18,7 +18,7 @@ public abstract class GradientColor extends ActorPaint {
 
   Vec2D get renderEnd => _renderEnd;
 
-  Float32List get colorStops {
+  public Float32List colorStops() {
     return _colorStops;
   }
 

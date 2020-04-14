@@ -51,47 +51,47 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     _sequenceFrame = value;
   }
 
-  int get textureIndex {
+  public int textureIndex() {
     return _textureIndex;
   }
 
-  int get vertexCount {
+  public int vertexCount() {
     return _vertexCount;
   }
 
-  int get triangleCount {
+  public int triangleCount() {
     return _triangleCount;
   }
 
-  Uint16List get triangles {
+  public Uint16List triangles() {
     return _triangles;
   }
 
-  Float32List get vertices {
+  public Float32List vertices() {
     return _vertices;
   }
 
-  int get vertexPositionOffset {
+  public int vertexPositionOffset() {
     return 0;
   }
 
-  int get vertexUVOffset {
+  public int vertexUVOffset() {
     return 2;
   }
 
-  int get vertexBoneIndexOffset {
+  public int vertexBoneIndexOffset() {
     return 4;
   }
 
-  int get vertexBoneWeightOffset {
+  public int vertexBoneWeightOffset() {
     return 8;
   }
 
-  int get vertexStride {
+  public int vertexStride() {
     return isConnectedToBones ? 12 : 4;
   }
 
-  boolean get doesAnimationVertexDeform {
+  public boolean doesAnimationVertexDeform() {
     return _animationDeformedVertices != null;
   }
 
@@ -115,7 +115,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  Float32List get animationDeformedVertices {
+  public Float32List animationDeformedVertices() {
     return _animationDeformedVertices;
   }
 
@@ -403,7 +403,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   public void invalidateDrawable() {}
 
   @Override
-  int get blendModeId {
+  public int blendModeId() {
     return 0;
   }
 
