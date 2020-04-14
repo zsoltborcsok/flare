@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
 public abstract class GradientColor extends ActorPaint {
   Float32List _colorStops = new Float32List(10);
   final Vec2D _start = new Vec2D();

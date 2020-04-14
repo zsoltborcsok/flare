@@ -1,5 +1,9 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.AABB;
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
 import java.util.List;
 
 public class ActorShape extends ActorDrawable {

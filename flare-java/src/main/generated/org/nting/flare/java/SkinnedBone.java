@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+
 public class SkinnedBone {
   int boneIdx;
   ActorNode node;

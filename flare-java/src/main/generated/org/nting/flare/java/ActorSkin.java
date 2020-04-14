@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+
 import java.util.List;
 
 public class ActorSkin extends ActorComponent {

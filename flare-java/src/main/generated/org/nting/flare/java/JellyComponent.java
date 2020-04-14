@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
 import java.util.ArrayList;
 import java.util.List;
 

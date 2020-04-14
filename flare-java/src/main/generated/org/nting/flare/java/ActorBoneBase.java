@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
 public class ActorBoneBase extends ActorNode {
   double _length;
 

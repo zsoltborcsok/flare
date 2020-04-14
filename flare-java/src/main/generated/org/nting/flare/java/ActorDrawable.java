@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.AABB;
+
 import java.util.List;
 
 public abstract class ActorDrawable extends ActorNode {

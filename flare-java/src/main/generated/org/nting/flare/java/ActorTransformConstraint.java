@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.TransformComponents;
+
 final pi2 = pi * 2;
 
 public class ActorTransformConstraint extends ActorTargetedConstraint {

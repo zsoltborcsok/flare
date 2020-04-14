@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Vec2D;
+
 import java.util.List;
 
 final double circleConstant = 0.55;

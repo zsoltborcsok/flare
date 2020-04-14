@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
 public class CubicPathPoint extends PathPoint {
   Vec2D _in = new Vec2D();
   Vec2D _out = new Vec2D();

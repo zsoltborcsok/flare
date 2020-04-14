@@ -1,5 +1,6 @@
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
+import com.google.common.primitives.Booleans;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,31 @@ public class DartToJava {
         // handleCollectionIterations(Paths.get(RELATIVE_PATH));
         // addListImport(Paths.get(RELATIVE_PATH));
         // handleListCreation(Paths.get(RELATIVE_PATH));
-        handleConstDeclarations(Paths.get(RELATIVE_PATH));
+        // handleConstDeclarations(Paths.get(RELATIVE_PATH));
+        addImports(Paths.get(RELATIVE_PATH), "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
+    }
+
+    private static void addImports(Path pathToFiles, String packageName, String... classNames) {
+        manipulateJavaFiles(pathToFiles, lines -> {
+            boolean[] classUsages = new boolean[classNames.length];
+            lines.stream().peek(line -> {
+                for (int i = 0; i < classNames.length; i++) {
+                    if (line.contains(classNames[i])) {
+                        classUsages[i] = true;
+                    }
+                }
+            }).collect(Collectors.toList());
+
+            if (Booleans.asList(classUsages).stream().anyMatch(b -> b)) {
+                lines.add(2, "");
+            }
+            for (int i = classUsages.length - 1; 0 <= i; i--) {
+                if (classUsages[i]) {
+                    lines.add(2, "import " + packageName + "." + classNames[i] + ";");
+                }
+            }
+            return lines;
+        });
     }
 
     private static void handleConstDeclarations(Path pathToFiles) {
