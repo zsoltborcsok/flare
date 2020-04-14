@@ -3,23 +3,24 @@ package org.nting.flare.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SequenceFrame {
-  final int _atlasIndex;
-  final int _offset;
+public class ActorImage extends ActorDrawable with ActorSkinnable {
 
-  SequenceFrame(this._atlasIndex, this._offset);
+  public static class SequenceFrame {
+    final int _atlasIndex;
+    final int _offset;
 
-  @Override
-  public String toString() {
-    return "(" + _atlasIndex.toString() + ", " + _offset.toString() + ")";
+    SequenceFrame(this._atlasIndex, this._offset);
+
+    @Override
+    public String toString() {
+      return "(" + _atlasIndex.toString() + ", " + _offset.toString() + ")";
+    }
+
+    int get atlasIndex => _atlasIndex;
+
+    int get offset => _offset;
   }
 
-  int get atlasIndex => _atlasIndex;
-
-  int get offset => _offset;
-}
-
-public class ActorImage extends ActorDrawable with ActorSkinnable {
   @Override
   int drawOrder;
 

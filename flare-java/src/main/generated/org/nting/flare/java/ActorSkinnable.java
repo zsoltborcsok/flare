@@ -3,13 +3,6 @@ package org.nting.flare.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkinnedBone {
-  int boneIdx;
-  ActorNode node;
-  Mat2D bind = Mat2D();
-  Mat2D inverseBind = Mat2D();
-}
-
 public abstract class ActorSkinnable {
   ActorSkin skin;
   List<SkinnedBone> _connectedBones;

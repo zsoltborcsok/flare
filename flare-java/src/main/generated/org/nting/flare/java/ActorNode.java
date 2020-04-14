@@ -5,18 +5,6 @@ import java.util.List;
 
 typedef boolean ComopnentWalkCallback(ActorComponent component);
 
-public class ActorClip {
-  int clipIdx;
-  boolean intersect = true;
-  ActorNode node;
-
-  ActorClip(this.clipIdx);
-
-  ActorClip.copy(ActorClip from)
-      : clipIdx = from.clipIdx,
-        intersect = from.intersect;
-}
-
 public class ActorNode extends ActorComponent {
   List<ActorComponent> _children;
 

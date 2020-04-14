@@ -2,21 +2,10 @@ package org.nting.flare.java;
 
 import java.util.List;
 
-enum MaskType { alpha, invertedAlpha, luminance, invertedLuminance }
-
-HashMap<int, MaskType> maskTypeLookup = HashMap<int, MaskType>.fromIterables([
-  0,
-  1,
-  2,
-  3
-], [
-  MaskType.alpha,
-  MaskType.invertedAlpha,
-  MaskType.luminance,
-  MaskType.invertedLuminance
-]);
-
 public class ActorMask extends ActorLayerEffect {
+
+  enum MaskType { alpha, invertedAlpha, luminance, invertedLuminance }
+
   ActorNode _source;
   int _sourceIdx;
   MaskType _maskType;
@@ -31,7 +20,7 @@ public class ActorMask extends ActorLayerEffect {
     ActorLayerEffect.read(artboard, reader, component);
     component._sourceIdx = reader.readId("source");
     component._maskType =
-        maskTypeLookup[reader.readUint8("maskType")] ?? MaskType.alpha;
+        MaskType.values()[reader.readUint8("maskType")] ?? MaskType.alpha;
 
     return component;
   }

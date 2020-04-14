@@ -2,16 +2,17 @@ package org.nting.flare.java;
 
 import java.util.List;
 
-enum BlendModes { normal, multiply, screen, additive }
-
-public class ClipShape {
-  final ActorShape shape;
-  final boolean intersect;
-
-  ClipShape(this.shape, this.intersect);
-}
-
 public abstract class ActorDrawable extends ActorNode {
+
+  enum BlendModes { normal, multiply, screen, additive }
+
+  public static class ClipShape {
+    final ActorShape shape;
+    final boolean intersect;
+
+    ClipShape(this.shape, this.intersect);
+  }
+
   List<List<ClipShape>> _clipShapes;
 
   List<List<ClipShape>> get clipShapes => _clipShapes;

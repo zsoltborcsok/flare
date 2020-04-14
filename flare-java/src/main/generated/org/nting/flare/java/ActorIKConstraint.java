@@ -3,21 +3,22 @@ package org.nting.flare.java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfluencedBone {
-  int boneIdx;
-  ActorBone bone;
-}
-
-public class BoneChain {
-  int index;
-  ActorBone bone;
-  double angle;
-  boolean included;
-  TransformComponents transformComponents;
-  Mat2D parentWorldInverse;
-}
-
 public class ActorIKConstraint extends ActorTargetedConstraint {
+
+  public static class InfluencedBone {
+    int boneIdx;
+    ActorBone bone;
+  }
+
+  public static class BoneChain {
+    int index;
+    ActorBone bone;
+    double angle;
+    boolean included;
+    TransformComponents transformComponents;
+    Mat2D parentWorldInverse;
+  }
+
   public static final double PI2 = pi * 2.0;
   boolean _invertDirection = false;
   List<InfluencedBone> _influencedBones;
