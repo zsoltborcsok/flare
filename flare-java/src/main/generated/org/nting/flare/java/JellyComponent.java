@@ -173,7 +173,7 @@ public class JellyComponent extends ActorComponent {
           dependencyConstraints += firstBone.jelly.inTarget.allConstraints;
         }
       }
-      if (bone.parent is ActorBone) {
+      if (bone.parent instanceof ActorBone) {
         ActorBone parentBone = bone.parent as ActorBone;
         JellyComponent parentBoneJelly = parentBone.jelly;
         if (parentBoneJelly != null && parentBoneJelly.outTarget != null) {
@@ -214,7 +214,7 @@ public class JellyComponent extends ActorComponent {
 
     _bones = <ActorJellyBone>[];
     for (final child : children) {
-      if (child is ActorJellyBone) {
+      if (child instanceof ActorJellyBone) {
         _bones.add(child);
         // Make sure the jelly doesn't update until
         // the jelly component has updated
@@ -313,7 +313,7 @@ public class JellyComponent extends ActorComponent {
     ActorBone bone = parent as ActorBone;
     ActorNode parentBone = bone.parent;
     JellyComponent parentBoneJelly;
-    if (parentBone is ActorBone) {
+    if (parentBone instanceof ActorBone) {
       parentBoneJelly = parentBone.jelly;
     }
 
@@ -328,9 +328,9 @@ public class JellyComponent extends ActorComponent {
       Vec2D.normalize(_inDirection, _inPoint);
     } else if (parentBone != null) {
       ActorBone firstBone;
-      if (parentBone is ActorBone) {
+      if (parentBone instanceof ActorBone) {
         firstBone = parentBone.firstBone;
-      } else if (parentBone is ActorRootBone) {
+      } else if (parentBone instanceof ActorRootBone) {
         firstBone = parentBone.firstBone;
       }
       if (firstBone == bone &&

@@ -22,7 +22,7 @@ public class ActorBone extends ActorBoneBase {
       return;
     }
     for (final ActorComponent component : children) {
-      if (component is ActorBone) {
+      if (component instanceof ActorBone) {
         _firstBone = component;
         return;
       }

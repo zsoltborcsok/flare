@@ -19,7 +19,7 @@ public abstract class RadialGradientFill extends RadialGradientColor with ActorF
     super.completeResolve();
 
     ActorNode parentNode = parent;
-    if (parentNode is ActorShape) {
+    if (parentNode instanceof ActorShape) {
       parentNode.addFill(this);
     }
   }

@@ -374,7 +374,7 @@ public class ActorNode extends ActorComponent {
 
     for (final ActorClip clip : _clips) {
       final ActorComponent component = components[clip.clipIdx];
-      if (component is ActorNode) {
+      if (component instanceof ActorNode) {
         clip.node = component;
       }
     }
@@ -392,7 +392,7 @@ public class ActorNode extends ActorComponent {
           return false;
         }
 
-        if (child is ActorNode && child.eachChildRecursive(cb) == false) {
+        if (child instanceof ActorNode && child.eachChildRecursive(cb) == false) {
           return false;
         }
       }
@@ -411,7 +411,7 @@ public class ActorNode extends ActorComponent {
           return false;
         }
 
-        if (child is ActorNode) {
+        if (child instanceof ActorNode) {
           child.eachChildRecursive(cb);
         }
       }

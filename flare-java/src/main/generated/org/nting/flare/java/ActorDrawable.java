@@ -79,7 +79,7 @@ public abstract class ActorDrawable extends ActorNode {
       List<ClipShape> shapes = <ClipShape>[];
       for (final ActorClip clip : clips) {
         clip.node.all((component) {
-          if (component is ActorShape) {
+          if (component instanceof ActorShape) {
             shapes.add(ClipShape(component, clip.intersect));
           }
           return true;

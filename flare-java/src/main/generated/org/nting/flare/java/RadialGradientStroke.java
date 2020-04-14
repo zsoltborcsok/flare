@@ -20,7 +20,7 @@ public abstract class RadialGradientStroke extends RadialGradientColor
     super.completeResolve();
 
     ActorNode parentNode = parent;
-    if (parentNode is ActorShape) {
+    if (parentNode instanceof ActorShape) {
       parentNode.addStroke(this);
     }
   }

@@ -19,7 +19,7 @@ public class ActorNodeSolo extends ActorNode {
       for (int i = 0; i < children.length; i++) {
         var child = children[i];
         boolean cv = i != (_activeChildIndex - 1);
-        if (child is ActorNode) {
+        if (child instanceof ActorNode) {
           child.collapsedVisibility = cv; // Setter
         }
       }

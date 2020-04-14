@@ -57,7 +57,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 
   public void findEffects() {
     var blurs = parent.children
-        .where((child) => child is ActorBlur && child is! ActorShadow)
+        .where((child) => child instanceof ActorBlur && child is! ActorShadow)
         .toList(growable: false);
     _blur = blurs.isNotEmpty ? blurs.first as ActorBlur : null;
     _dropShadows =
@@ -82,14 +82,14 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
       if (node == this) {
         // don't recurse into this renderer
         return false;
-      } else if (node is ActorNode &&
+      } else if (node instanceof ActorNode &&
           node.layerEffect != null &&
           node.layerEffect != this) {
         _drawables.add(node.layerEffect);
         // don't recurse further into nodes that are drawing to layers
         return false;
       }
-      if (node is ActorDrawable) {
+      if (node instanceof ActorDrawable) {
         _drawables.add(node);
       }
       return true;
@@ -113,7 +113,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
           // recursive mask was selected
           return false;
         }
-        if (child is ActorDrawable) {
+        if (child instanceof ActorDrawable) {
           if (child == this) {
             return false;
           } else if (child.layerEffect != null) {

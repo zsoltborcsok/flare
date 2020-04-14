@@ -18,7 +18,7 @@ public abstract class ColorStroke extends ActorColor with ActorStroke {
     super.completeResolve();
 
     ActorNode parentNode = parent;
-    if (parentNode is ActorShape) {
+    if (parentNode instanceof ActorShape) {
       parentNode.addStroke(this);
     }
   }

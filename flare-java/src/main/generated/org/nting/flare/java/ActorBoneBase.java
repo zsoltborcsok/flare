@@ -19,7 +19,7 @@ public class ActorBoneBase extends ActorNode {
       return;
     }
     for (final ActorComponent component : children) {
-      if (component is ActorBoneBase) {
+      if (component instanceof ActorBoneBase) {
         component.x = value;
       }
     }

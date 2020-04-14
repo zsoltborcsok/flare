@@ -38,7 +38,17 @@ public class DartToJava {
         // addListImport(Paths.get(RELATIVE_PATH));
         // handleListCreation(Paths.get(RELATIVE_PATH));
         // handleConstDeclarations(Paths.get(RELATIVE_PATH));
-        addImports(Paths.get(RELATIVE_PATH), "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
+        // addImports(Paths.get(RELATIVE_PATH), "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
+        handleInstanceOfs(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleInstanceOfs(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains(" is ") && !line.trim().startsWith("//")) {
+                line = line.replace(" is ", " instanceof ");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void addImports(Path pathToFiles, String packageName, String... classNames) {

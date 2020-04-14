@@ -18,7 +18,7 @@ public abstract class ColorFill extends ActorColor with ActorFill {
     super.completeResolve();
 
     ActorNode parentNode = parent;
-    if (parentNode is ActorShape) {
+    if (parentNode instanceof ActorShape) {
       parentNode.addFill(this);
     }
   }

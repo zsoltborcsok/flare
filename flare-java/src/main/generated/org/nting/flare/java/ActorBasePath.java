@@ -112,7 +112,7 @@ public abstract class ActorBasePath {
         maxY = y;
       }
 
-      if (point is CubicPathPoint) {
+      if (point instanceof CubicPathPoint) {
         Vec2D t = point.inPoint;
         x = t[0];
         y = t[1];

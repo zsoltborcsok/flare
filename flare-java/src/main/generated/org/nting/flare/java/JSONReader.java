@@ -15,17 +15,17 @@ public abstract class JSONReader implements StreamReader {
 
   T readProp<T>(String label) {
     dynamic head = _context.first;
-    if (head is Map) {
+    if (head instanceof Map) {
       dynamic prop = head[label];
       head.remove(label);
-      if (prop is T) {
+      if (prop instanceof T) {
         return prop;
       } else {
         return null;
       }
-    } else if (head is List) {
+    } else if (head instanceof List) {
       dynamic prop = head.removeAt(0);
-      if (prop is T) {
+      if (prop instanceof T) {
         return prop;
       } else {
         return null;
@@ -55,7 +55,7 @@ public abstract class JSONReader implements StreamReader {
     }
     for (int i = 0; i < ar.length; i++) {
       num val = array[i] as num;
-      ar[i] = ar.first is double ? val.toDouble() : val.toInt();
+      ar[i] = ar.first instanceof double ? val.toDouble() : val.toInt();
     }
   }
 
@@ -176,9 +176,9 @@ public abstract class JSONReader implements StreamReader {
   }
 
   public int _readLength() {
-    if (_context.first is List) {
+    if (_context.first instanceof List) {
       return (_context.first as List).length;
-    } else if (_context.first is Map) {
+    } else if (_context.first instanceof Map) {
       return (_context.first as Map).length;
     }
     return 0;

@@ -243,7 +243,7 @@ public class ActorArtboard {
         c.resolveComponentIndices(_components);
       }
 
-      if (c is ActorNode) {
+      if (c instanceof ActorNode) {
         ActorNode an = c;
         if (an != null) {
           _nodes[anIdx++] = an;
@@ -267,10 +267,10 @@ public class ActorArtboard {
     // layers won't be known before this.
     for (int i = 1; i < componentCount; i++) {
       ActorComponent c = components[i];
-      if (c is ActorDrawable && c.layerEffectRenderParent == null) {
+      if (c instanceof ActorDrawable && c.layerEffectRenderParent == null) {
         _drawableNodes.add(c);
       }
-      if (c is ActorLayerEffectRenderer && c.layerEffectRenderParent == null) {
+      if (c instanceof ActorLayerEffectRenderer && c.layerEffectRenderParent == null) {
         _effectRenderers.add(c);
       }
     }
@@ -556,11 +556,11 @@ public class ActorArtboard {
               ActorShadow.read(this, nodeBlock, actor.makeInnerShadow());
           break;
       }
-      if (component is ActorDrawable) {
+      if (component instanceof ActorDrawable) {
         _drawableNodeCount++;
       }
 
-      if (component is ActorNode) {
+      if (component instanceof ActorNode) {
         _nodeCount++;
       }
       _components[componentIndex] = component;
@@ -576,7 +576,7 @@ public class ActorArtboard {
   public void initializeGraphics() {
     // Iterate components as some drawables may end up in other layers.
     for (final ActorComponent component : _components) {
-      if (component is ActorDrawable) {
+      if (component instanceof ActorDrawable) {
         component.initializeGraphics();
       }
     }

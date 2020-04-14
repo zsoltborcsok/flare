@@ -6,7 +6,7 @@ public abstract class StreamReader {
   // Instantiate the right type of Reader based on the input values
   factory StreamReader(dynamic data) {
     StreamReader reader;
-    if (data is ByteData) {
+    if (data instanceof ByteData) {
       reader = new BlockReader(data);
       // Move the readIndex forward for the binary reader.
       reader.readUint8("F");
@@ -14,7 +14,7 @@ public abstract class StreamReader {
       reader.readUint8("A");
       reader.readUint8("R");
       reader.readUint8("E");
-    } else if (data is Map) {
+    } else if (data instanceof Map) {
       reader = new JSONBlockReader(data);
     }
     return reader;
