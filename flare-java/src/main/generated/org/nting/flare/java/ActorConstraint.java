@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public abstract class ActorConstraint extends ActorComponent {
   boolean _isEnabled;
   double _strength;

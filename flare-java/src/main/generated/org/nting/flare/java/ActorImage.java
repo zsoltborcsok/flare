@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class SequenceFrame {
   final int _atlasIndex;
   final int _offset;

@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public abstract class ActorTargetedConstraint extends ActorConstraint {
   int _targetIdx;
   ActorComponent _target;

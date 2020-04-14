@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class ActorPolygon extends ActorProceduralPath {
   int sides = 5;
 

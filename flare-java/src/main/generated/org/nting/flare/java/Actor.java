@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public abstract class Actor {
   int maxTextureIndex = 0;
   int _version = 0;

@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 enum BlendModes { normal, multiply, screen, additive }
 
 public class ClipShape {

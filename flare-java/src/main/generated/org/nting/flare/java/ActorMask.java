@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 enum MaskType { alpha, invertedAlpha, luminance, invertedLuminance }
 
 HashMap<int, MaskType> maskTypeLookup = HashMap<int, MaskType>.fromIterables([

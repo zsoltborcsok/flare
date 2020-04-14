@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class ActorShape extends ActorDrawable {
   final List<ActorBasePath> _paths = <ActorBasePath>[];
   final List<ActorStroke> _strokes = <ActorStroke>[];

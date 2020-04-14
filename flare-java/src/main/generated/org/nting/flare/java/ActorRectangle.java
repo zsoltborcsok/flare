@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class ActorRectangle extends ActorProceduralPath {
   double _radius = 0.0;
 

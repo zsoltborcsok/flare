@@ -33,7 +33,18 @@ public class DartToJava {
         // makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
         // handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
         // handleBools(Paths.get(RELATIVE_PATH));
-        handleCollectionIterations(Paths.get(RELATIVE_PATH));
+        // handleCollectionIterations(Paths.get(RELATIVE_PATH));
+        addListImport(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void addListImport(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> {
+            if (lines.stream().anyMatch(line -> line.contains("List<"))) {
+                lines.add(2, "import java.util.List;");
+                lines.add(3, "");
+            }
+            return lines;
+        });
     }
 
     private static void handleCollectionIterations(Path pathToFiles) {

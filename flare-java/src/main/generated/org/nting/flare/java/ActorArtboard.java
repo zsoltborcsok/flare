@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class ActorArtboard {
   int _flags = ActorFlags.isDrawOrderDirty;
   int _drawableNodeCount = 0;

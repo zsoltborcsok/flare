@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class JellyComponent extends ActorComponent {
   static const int jellyMax = 16;
   static double optimalDistance = 4.0 * (sqrt(2.0) - 1.0) / 3.0;

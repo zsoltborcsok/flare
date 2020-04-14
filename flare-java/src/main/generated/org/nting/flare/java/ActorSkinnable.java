@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 public class SkinnedBone {
   int boneIdx;
   ActorNode node;
