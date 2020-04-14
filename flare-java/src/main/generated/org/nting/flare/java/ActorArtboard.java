@@ -287,7 +287,7 @@ public class ActorArtboard {
 
   public void advance(double seconds) {
     if ((_flags & ActorFlags.isDirty) != 0) {
-      const int maxSteps = 100;
+      final int maxSteps = 100;
       int step = 0;
       int count = _dependencyOrder.length;
       while ((_flags & ActorFlags.isDirty) != 0 && step < maxSteps) {

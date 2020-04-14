@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JellyComponent extends ActorComponent {
-  static const int jellyMax = 16;
+  public static final int jellyMax = 16;
   static double optimalDistance = 4.0 * (sqrt(2.0) - 1.0) / 3.0;
   static double curveConstant = optimalDistance * sqrt(2.0) * 0.5;
-  static const double epsilon = 0.001; // Intentionally agressive.
+  public static final double epsilon = 0.001; // Intentionally agressive.
 
   public static boolean fuzzyEquals(Vec2D a, Vec2D b) {
     double a0 = a[0],

@@ -1,9 +1,9 @@
 package org.nting.flare.java;
 
 public class DistanceMode {
-  static const int closer = 0;
-  static const int further = 1;
-  static const int exact = 2;
+  public static final int closer = 0;
+  public static final int further = 1;
+  public static final int exact = 2;
 }
 
 public class ActorDistanceConstraint extends ActorTargetedConstraint {

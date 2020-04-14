@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public class ActorRotationConstraint extends ActorTargetedConstraint {
-  static const double pi2 = pi * 2.0;
+  public static final double pi2 = pi * 2.0;
 
   boolean _copy = false;
   double _scale = 1.0;

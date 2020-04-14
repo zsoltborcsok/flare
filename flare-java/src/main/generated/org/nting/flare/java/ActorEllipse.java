@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 import java.util.List;
 
-const double circleConstant = 0.55;
+final double circleConstant = 0.55;
 
 public class ActorEllipse extends ActorProceduralPath {
   @Override

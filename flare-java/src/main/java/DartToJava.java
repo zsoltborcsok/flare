@@ -35,7 +35,22 @@ public class DartToJava {
         // handleBools(Paths.get(RELATIVE_PATH));
         // handleCollectionIterations(Paths.get(RELATIVE_PATH));
         // addListImport(Paths.get(RELATIVE_PATH));
-        handleListCreation(Paths.get(RELATIVE_PATH));
+        // handleListCreation(Paths.get(RELATIVE_PATH));
+        handleConstDeclarations(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void handleConstDeclarations(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> {
+            lines = lines.stream().map(line -> {
+                if (line.contains("static const ")) {
+                    line = line.replace("static const ", "public static final ");
+                } else if (line.contains("const ")) {
+                    line = line.replace("const ", "final ");
+                }
+                return line;
+            }).collect(Collectors.toList());
+            return lines;
+        });
     }
 
     private static void handleListCreation(Path pathToFiles) {

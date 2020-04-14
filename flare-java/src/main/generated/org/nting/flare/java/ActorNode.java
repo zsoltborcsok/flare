@@ -42,8 +42,8 @@ public class ActorNode extends ActorComponent {
   List<ActorConstraint> _constraints;
   List<ActorConstraint> _peerConstraints;
 
-  static const int transformDirty = DirtyFlags.transformDirty;
-  static const int worldTransformDirty = DirtyFlags.worldTransformDirty;
+  public static final int transformDirty = DirtyFlags.transformDirty;
+  public static final int worldTransformDirty = DirtyFlags.worldTransformDirty;
 
   ActorNode();
 

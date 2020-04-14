@@ -18,7 +18,7 @@ public class BoneChain {
 }
 
 public class ActorIKConstraint extends ActorTargetedConstraint {
-  static const double PI2 = pi * 2.0;
+  public static final double PI2 = pi * 2.0;
   boolean _invertDirection = false;
   List<InfluencedBone> _influencedBones;
   List<BoneChain> _fkChain;
