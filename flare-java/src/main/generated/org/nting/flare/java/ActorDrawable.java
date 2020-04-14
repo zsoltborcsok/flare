@@ -37,7 +37,7 @@ public abstract class ActorDrawable extends ActorNode {
 
   int get blendModeId;
 
-  set blendModeId(int value);
+  public abstract set blendModeId(int value);
 
   static ActorDrawable read(ActorArtboard artboard, StreamReader reader,
       ActorDrawable component) {
@@ -62,7 +62,7 @@ public abstract class ActorDrawable extends ActorNode {
     isHidden = node.isHidden;
   }
 
-  AABB computeAABB();
+  public abstract AABB computeAABB();
 
   public void initializeGraphics() {}
 

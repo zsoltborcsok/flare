@@ -37,7 +37,7 @@ public abstract class ActorConstraint extends ActorComponent {
     parent.markTransformDirty();
   }
 
-  void constrain(ActorNode node);
+  public abstract void constrain(ActorNode node);
 
   @override
   public void resolveComponentIndices(List<ActorComponent> components) {

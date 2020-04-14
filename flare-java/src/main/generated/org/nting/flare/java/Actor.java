@@ -76,23 +76,23 @@ public abstract class Actor {
     return new ActorEllipse();
   }
 
-  ColorFill makeColorFill();
+  public abstract ColorFill makeColorFill();
 
-  ColorStroke makeColorStroke();
+  public abstract ColorStroke makeColorStroke();
 
-  GradientFill makeGradientFill();
+  public abstract GradientFill makeGradientFill();
 
-  GradientStroke makeGradientStroke();
+  public abstract GradientStroke makeGradientStroke();
 
-  RadialGradientFill makeRadialFill();
+  public abstract RadialGradientFill makeRadialFill();
 
-  RadialGradientStroke makeRadialStroke();
+  public abstract RadialGradientStroke makeRadialStroke();
 
-  ActorDropShadow makeDropShadow();
+  public abstract ActorDropShadow makeDropShadow();
 
-  ActorInnerShadow makeInnerShadow();
+  public abstract ActorInnerShadow makeInnerShadow();
 
-  ActorLayerEffectRenderer makeLayerEffectRenderer();
+  public abstract ActorLayerEffectRenderer makeLayerEffectRenderer();
 
   Future<bool> loadAtlases(List<Uint8List> rawAtlases);
 

@@ -20,55 +20,55 @@ public abstract class StreamReader {
     return reader;
   }
 
-  bool isEOF();
+  public abstract bool isEOF();
 
-  int readUint8Length();
+  public abstract int readUint8Length();
 
-  int readUint16Length();
+  public abstract int readUint16Length();
 
-  int readUint32Length();
+  public abstract int readUint32Length();
 
-  int readUint8(String label);
+  public abstract int readUint8(String label);
 
-  Uint8List readUint8Array(int length, String label);
+  public abstract Uint8List readUint8Array(int length, String label);
 
-  int readInt8(String label);
+  public abstract int readInt8(String label);
 
-  int readUint16(String label);
+  public abstract int readUint16(String label);
 
-  Uint16List readUint16Array(int length, String label);
+  public abstract Uint16List readUint16Array(int length, String label);
 
-  int readInt16(String label);
+  public abstract int readInt16(String label);
 
-  int readInt32(String label);
+  public abstract int readInt32(String label);
 
-  int readUint32(String label);
+  public abstract int readUint32(String label);
 
-  int readVersion();
+  public abstract int readVersion();
 
-  double readFloat32(String label);
+  public abstract double readFloat32(String label);
 
-  Float32List readFloat32Array(int length, String label);
+  public abstract Float32List readFloat32Array(int length, String label);
 
-  double readFloat64(String label);
+  public abstract double readFloat64(String label);
 
-  String readString(String label);
+  public abstract String readString(String label);
 
-  bool readBool(String label);
+  public abstract bool readBool(String label);
 
-  int readId(String label);
+  public abstract int readId(String label);
 
-  StreamReader readNextBlock(Map<String, int> types);
+  public abstract StreamReader readNextBlock(Map<String, int> types);
 
-  void openArray(String label);
+  public abstract void openArray(String label);
 
-  void closeArray();
+  public abstract void closeArray();
 
-  void openObject(String label);
+  public abstract void openObject(String label);
 
-  void closeObject();
+  public abstract void closeObject();
 
   String get containerType;
 
-  Uint8List readAsset();
+  public abstract Uint8List readAsset();
 }

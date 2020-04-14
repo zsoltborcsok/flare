@@ -116,7 +116,7 @@ public abstract class ActorFill {
     _fillRule = node._fillRule;
   }
 
-  void initializeGraphics();
+  public abstract void initializeGraphics();
 }
 
 public abstract class ActorStroke {
@@ -181,9 +181,9 @@ public abstract class ActorStroke {
     markPathEffectsDirty();
   }
 
-  void markPaintDirty();
+  public abstract void markPaintDirty();
 
-  void markPathEffectsDirty();
+  public abstract void markPathEffectsDirty();
 
   static void read(ActorArtboard artboard, StreamReader reader,
       ActorStroke component) {
@@ -213,7 +213,7 @@ public abstract class ActorStroke {
     _trimOffset = node._trimOffset;
   }
 
-  void initializeGraphics();
+  public abstract void initializeGraphics();
 }
 
 public abstract class ColorFill extends ActorColor with ActorFill {

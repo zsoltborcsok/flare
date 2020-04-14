@@ -29,7 +29,21 @@ public class DartToJava {
         // removeImports(Paths.get(RELATIVE_PATH));
         // makeClassesPublic(Paths.get(RELATIVE_PATH));
         // insertNewKeywords(Paths.get(RELATIVE_PATH));
-        makeMethodsPublic(Paths.get(RELATIVE_PATH));
+        // makeMethodsPublic(Paths.get(RELATIVE_PATH));
+        makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
+    }
+
+    private static void makeAbstractMethodsPublic(Path pathToFiles) {
+        Pattern pattern = Pattern.compile("^\\s*[a-zA-Z_0-9]+\\s[a-z]+[a-zA-Z_0-9]*\\(.*\\);");
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find() && !line.contains("return")) {
+                String lineText = line.replaceAll("^[ ]+", "");
+                int leadingSpaces = line.length() - lineText.length();
+                return line.substring(0, leadingSpaces) + "public abstract " + line.substring(leadingSpaces);
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void makeMethodsPublic(Path pathToFiles) {

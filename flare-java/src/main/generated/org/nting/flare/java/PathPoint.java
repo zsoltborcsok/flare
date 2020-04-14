@@ -32,7 +32,7 @@ public abstract class PathPoint {
     return _translation;
   }
 
-  PathPoint makeInstance();
+  public abstract PathPoint makeInstance();
 
   public void copy(PathPoint from) {
     _type = from._type;
@@ -51,7 +51,7 @@ public abstract class PathPoint {
     }
   }
 
-  int readPoint(StreamReader reader, bool isConnectedToBones);
+  public abstract int readPoint(StreamReader reader, bool isConnectedToBones);
 
   public PathPoint transformed(Mat2D transform) {
     PathPoint result = makeInstance();
@@ -59,7 +59,7 @@ public abstract class PathPoint {
     return result;
   }
 
-  PathPoint skin(Mat2D world, Float32List bones);
+  public abstract PathPoint skin(Mat2D world, Float32List bones);
 }
 
 public class StraightPathPoint extends PathPoint {

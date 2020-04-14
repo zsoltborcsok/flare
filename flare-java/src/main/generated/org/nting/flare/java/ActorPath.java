@@ -12,7 +12,7 @@ public abstract class ActorBasePath {
 
   ActorNode get parent;
 
-  void invalidatePath();
+  public abstract void invalidatePath();
 
   bool get isPathInWorldSpace => false;
 

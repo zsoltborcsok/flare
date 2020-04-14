@@ -40,13 +40,13 @@ public abstract class ActorComponent {
     }
   }
 
-  void completeResolve();
+  public abstract void completeResolve();
 
-  ActorComponent makeInstance(ActorArtboard resetArtboard);
+  public abstract ActorComponent makeInstance(ActorArtboard resetArtboard);
 
-  void onDirty(int dirt);
+  public abstract void onDirty(int dirt);
 
-  void update(int dirt);
+  public abstract void update(int dirt);
 
   static ActorComponent read(ActorArtboard artboard, StreamReader reader,
       ActorComponent component) {

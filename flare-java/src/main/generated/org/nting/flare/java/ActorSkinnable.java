@@ -11,7 +11,7 @@ public abstract class ActorSkinnable {
   ActorSkin skin;
   List<SkinnedBone> _connectedBones;
 
-  set worldTransformOverride(Mat2D value);
+  public abstract set worldTransformOverride(Mat2D value);
 
   List<SkinnedBone> get connectedBones => _connectedBones;
 
@@ -69,5 +69,5 @@ public abstract class ActorSkinnable {
     }
   }
 
-  void invalidateDrawable();
+  public abstract void invalidateDrawable();
 }
