@@ -1,4 +1,4 @@
-package org.nting.flare.java.math;
+package org.nting.flare.java.maths;
 
 public class AABB {
   Float32List _buffer;
