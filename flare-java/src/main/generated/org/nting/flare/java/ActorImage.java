@@ -98,7 +98,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   set doesAnimationVertexDeform(boolean value) {
     if (value) {
       if (_animationDeformedVertices == null ||
-          _animationDeformedVertices.length != _vertexCount * 2) {
+          _animationDeformedVertices.size() != _vertexCount * 2) {
         _animationDeformedVertices = new Float32List(vertexCount * 2);
         // Copy the deform verts from the rig verts.
         int writeIdx = 0;
@@ -180,7 +180,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //       int readIdx = 2;
 //       int writeIdx = 0;
 //       int vertexStride = 4;
-//       if (node._boneConnections != null && node._boneConnections.length > 0) {
+//       if (node._boneConnections != null && node._boneConnections.size() > 0) {
 //         vertexStride = 12;
 //       }
 //       for (int i = 0; i < node._vertexCount; i++) {
@@ -355,7 +355,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
           double weight = _vertices[weightOffset + wi];
 
           int boneTransformIndex = boneIndex * 6;
-          if (boneIndex <= connectedBones.length) {
+          if (boneIndex <= connectedBones.size()) {
             for (int j = 0; j < 6; j++) {
               influenceMatrix[j] +=
                   boneTransforms[boneTransformIndex + j] * weight;

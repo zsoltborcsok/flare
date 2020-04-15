@@ -45,12 +45,23 @@ public class DartToJava {
         // handleGetters(pathToFiles);
         // handleLambdaGetters(pathToFiles);
         // handleAbstractGetters(pathToFiles);
-        addImport(pathToFiles, "min\\(", "import static java.lang.Math.min;");
-        addImport(pathToFiles, "max\\(", "import static java.lang.Math.max;");
-        addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
+        // addImport(pathToFiles, "min\\(", "import static java.lang.Math.min;");
+        // addImport(pathToFiles, "max\\(", "import static java.lang.Math.max;");
+        // addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
+        handleListSizes(pathToFiles);
 
-        // .length, operators (e.g. []), dynamic, var, Float32List, Uint8List, ByteData
-        // = [];, constructors, factories, clone, Future, await, .isNotEmpty, as
+        // = [];, .isNotEmpty, as
+        // dynamic, var, Float32List, Uint8List, ByteData
+        // operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void handleListSizes(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains(".length") && !Pattern.compile("\\.length[(a-zA-Z]").matcher(line).find()) {
+                line = line.replace(".length", ".size()");
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void addImport(Path pathToFiles, String regex, String importText) {

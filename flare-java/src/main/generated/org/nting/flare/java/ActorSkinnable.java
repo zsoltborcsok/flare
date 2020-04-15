@@ -45,7 +45,7 @@ public abstract class ActorSkinnable {
 
   public void resolveSkinnable(List<ActorComponent> components) {
     if (_connectedBones != null) {
-      for (int i = 0; i < _connectedBones.length; i++) {
+      for (int i = 0; i < _connectedBones.size(); i++) {
         SkinnedBone bc = _connectedBones[i];
         bc.node = components[bc.boneIdx] as ActorNode;
       }
@@ -54,8 +54,8 @@ public abstract class ActorSkinnable {
 
   public void copySkinnable(ActorSkinnable node, ActorArtboard resetArtboard) {
     if (node._connectedBones != null) {
-      _connectedBones = new ArrayList<SkinnedBone>(node._connectedBones.length);
-      for (int i = 0; i < node._connectedBones.length; i++) {
+      _connectedBones = new ArrayList<SkinnedBone>(node._connectedBones.size());
+      for (int i = 0; i < node._connectedBones.size(); i++) {
         SkinnedBone from = node._connectedBones[i];
         SkinnedBone bc = new SkinnedBone();
         bc.boneIdx = from.boneIdx;

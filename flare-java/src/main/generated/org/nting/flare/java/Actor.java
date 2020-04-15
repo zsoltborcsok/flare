@@ -28,7 +28,7 @@ public abstract class Actor {
 
   public void copyActor(Actor actor) {
     maxTextureIndex = actor.maxTextureIndex;
-    int artboardCount = actor._artboards.length;
+    int artboardCount = actor._artboards.size();
     if (artboardCount > 0) {
       int idx = 0;
       _artboards = new ArrayList<ActorArtboard>(artboardCount);
@@ -159,7 +159,7 @@ public abstract class Actor {
     int artboardCount = block.readUint16Length();
     _artboards = new ArrayList<ActorArtboard>(artboardCount);
 
-    for (int artboardIndex = 0, end = _artboards.length;
+    for (int artboardIndex = 0, end = _artboards.size();
     artboardIndex < end;
     artboardIndex++) {
       StreamReader artboardBlock = block.readNextBlock(blockTypesMap);

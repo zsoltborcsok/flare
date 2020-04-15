@@ -137,7 +137,7 @@ public class ActorShape extends ActorDrawable {
       Vec2D.fromValues(aabb[2], aabb[3]),
       Vec2D.fromValues(aabb[0], aabb[3])
     ];
-    for (var i = 0; i < points.length; i++) {
+    for (var i = 0; i < points.size(); i++) {
       Vec2D pt = points[i];
       Vec2D wp = Vec2D.transformMat2D(pt, pt, world);
       if (wp[0] < minX) {

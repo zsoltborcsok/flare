@@ -80,7 +80,7 @@ public class ActorArtboard {
     return _components[index];
   }
 
-  public int componentCount() { return _components.length; }
+  public int componentCount() { return _components.size(); }
 
   public int nodeCount() { return _nodeCount; }
 
@@ -217,7 +217,7 @@ public class ActorArtboard {
       }
     }
     // Copy dependency order.
-    _dependencyOrder = new ArrayList<ActorComponent>(artboard._dependencyOrder.length);
+    _dependencyOrder = new ArrayList<ActorComponent>(artboard._dependencyOrder.size());
     for (final ActorComponent component : artboard._dependencyOrder) {
       final ActorComponent localComponent = _components[component.idx];
       _dependencyOrder[component.graphOrder] = localComponent;
@@ -282,7 +282,7 @@ public class ActorArtboard {
 
   public void sortDrawOrder() {
     _drawableNodes.sort((a, b) => a.drawOrder.compareTo(b.drawOrder));
-    for (int i = 0; i < _drawableNodes.length; i++) {
+    for (int i = 0; i < _drawableNodes.size(); i++) {
       _drawableNodes[i].drawIndex = i;
     }
     for (final ActorLayerEffectRenderer layer : _effectRenderers) {
@@ -294,7 +294,7 @@ public class ActorArtboard {
     if ((_flags & ActorFlags.isDirty) != 0) {
       final int maxSteps = 100;
       int step = 0;
-      int count = _dependencyOrder.length;
+      int count = _dependencyOrder.size();
       while ((_flags & ActorFlags.isDirty) != 0 && step < maxSteps) {
         _flags &= ~ActorFlags.isDirty;
         // Track dirt depth here so that if something else marks

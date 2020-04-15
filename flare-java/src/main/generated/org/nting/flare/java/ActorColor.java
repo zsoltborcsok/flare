@@ -12,7 +12,7 @@ public abstract class ActorColor extends ActorPaint {
   }
 
   set color(Float32List value) {
-    if (value.length != 4) {
+    if (value.size() != 4) {
       return;
     }
     _color[0] = value[0];

@@ -18,8 +18,8 @@ public class ActorNodeSolo extends ActorNode {
 
   public void setActiveChildIndex(int idx) {
     if (children != null) {
-      _activeChildIndex = min(children.length, max(0, idx));
-      for (int i = 0; i < children.length; i++) {
+      _activeChildIndex = min(children.size(), max(0, idx));
+      for (int i = 0; i < children.size(); i++) {
         var child = children[i];
         boolean cv = i != (_activeChildIndex - 1);
         if (child instanceof ActorNode) {

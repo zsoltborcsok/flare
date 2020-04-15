@@ -51,7 +51,7 @@ public class JellyComponent extends ActorComponent {
 
   public List<Vec2D> normalizeCurve(List<Vec2D> curve, int numSegments) {
     List<Vec2D> points = <Vec2D>[];
-    int curvePointCount = curve.length;
+    int curvePointCount = curve.size();
     List<double> distances = new ArrayList<double>(curvePointCount);
     distances[0] = 0.0;
     for (int i = 0; i < curvePointCount - 1; i++) {
@@ -245,7 +245,7 @@ public class JellyComponent extends ActorComponent {
     }
     ActorBone bone = parent as ActorBone;
     // We are in local bone space.
-    Vec2D tipPosition = Vec2D.fromValues(bone.length, 0.0);
+    Vec2D tipPosition = Vec2D.fromValues(bone.size(), 0.0);
 
     if (fuzzyEquals(_cachedTip, tipPosition) &&
         fuzzyEquals(_cachedOut, _outPoint) &&
@@ -283,18 +283,18 @@ public class JellyComponent extends ActorComponent {
         jellyMax,
         1);
 
-    List<Vec2D> normalizedPoints = normalizeCurve(_jellyPoints, _bones.length);
+    List<Vec2D> normalizedPoints = normalizeCurve(_jellyPoints, _bones.size());
 
     Vec2D lastPoint = _jellyPoints[0];
 
     double scale = _scaleIn;
-    double scaleInc = (_scaleOut - _scaleIn) / (_bones.length - 1);
-    for (int i = 0; i < normalizedPoints.length; i++) {
+    double scaleInc = (_scaleOut - _scaleIn) / (_bones.size() - 1);
+    for (int i = 0; i < normalizedPoints.size(); i++) {
       ActorJellyBone jelly = _bones[i];
       Vec2D p = normalizedPoints[i];
 
       jelly.translation = lastPoint;
-      jelly.length = Vec2D.distance(p, lastPoint);
+      jelly.size() = Vec2D.distance(p, lastPoint);
       jelly.scaleY = scale;
       scale += scaleInc;
 
@@ -354,18 +354,18 @@ public class JellyComponent extends ActorComponent {
         Vec2D.transformMat2(_inDirection, sum, inverseWorld);
         Vec2D.normalize(_inDirection, _inDirection);
       }
-      _inPoint[0] = _inDirection[0] * _easeIn * bone.length * curveConstant;
-      _inPoint[1] = _inDirection[1] * _easeIn * bone.length * curveConstant;
+      _inPoint[0] = _inDirection[0] * _easeIn * bone.size() * curveConstant;
+      _inPoint[1] = _inDirection[1] * _easeIn * bone.size() * curveConstant;
     } else {
       _inDirection[0] = 1.0;
       _inDirection[1] = 0.0;
-      _inPoint[0] = _inDirection[0] * _easeIn * bone.length * curveConstant;
+      _inPoint[0] = _inDirection[0] * _easeIn * bone.size() * curveConstant;
     }
 
     if (_outTarget != null) {
       Vec2D translation = _outTarget.getWorldTranslation(Vec2D());
       Vec2D.transformMat2D(_outPoint, translation, inverseWorld);
-      Vec2D tip = Vec2D.fromValues(bone.length, 0.0);
+      Vec2D tip = Vec2D.fromValues(bone.size(), 0.0);
       Vec2D.subtract(_outDirection, _outPoint, tip);
       Vec2D.normalize(_outDirection, _outDirection);
     } else if (bone.firstBone != null) {
@@ -391,8 +391,8 @@ public class JellyComponent extends ActorComponent {
       }
       Vec2D.normalize(_outDirection, _outDirection);
       Vec2D scaledOut = Vec2D.scale(
-          Vec2D(), _outDirection, _easeOut * bone.length * curveConstant);
-      _outPoint[0] = bone.length;
+          Vec2D(), _outDirection, _easeOut * bone.size() * curveConstant);
+      _outPoint[0] = bone.size();
       _outPoint[1] = 0.0;
       Vec2D.add(_outPoint, _outPoint, scaledOut);
     } else {
@@ -400,8 +400,8 @@ public class JellyComponent extends ActorComponent {
       _outDirection[1] = 0.0;
 
       Vec2D scaledOut = Vec2D.scale(
-          Vec2D(), _outDirection, _easeOut * bone.length * curveConstant);
-      _outPoint[0] = bone.length;
+          Vec2D(), _outDirection, _easeOut * bone.size() * curveConstant);
+      _outPoint[0] = bone.size();
       _outPoint[1] = 0.0;
       Vec2D.add(_outPoint, _outPoint, scaledOut);
     }

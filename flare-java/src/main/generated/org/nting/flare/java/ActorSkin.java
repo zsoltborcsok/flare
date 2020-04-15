@@ -23,8 +23,8 @@ public class ActorSkin extends ActorComponent {
 
     if (skinnable.isConnectedToBones) {
       List<SkinnedBone> connectedBones = skinnable.connectedBones;
-      int length = (connectedBones.length + 1) * 6;
-      if (_boneMatrices == null || _boneMatrices.length != length) {
+      int length = (connectedBones.size() + 1) * 6;
+      if (_boneMatrices == null || _boneMatrices.size() != length) {
         _boneMatrices = new Float32List(length);
         // First bone transform is always identity.
         _boneMatrices[0] = 1.0;

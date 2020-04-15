@@ -176,7 +176,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     _isHidden = node._isHidden;
     _isClosed = node._isClosed;
 
-    int pointCount = node._points.length;
+    int pointCount = node._points.size();
 
     _points = new ArrayList<PathPoint>(pointCount);
     for (int i = 0; i < pointCount; i++) {

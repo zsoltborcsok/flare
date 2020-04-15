@@ -53,7 +53,7 @@ public abstract class JSONReader implements StreamReader {
     if (array == null) {
       return;
     }
-    for (int i = 0; i < ar.length; i++) {
+    for (int i = 0; i < ar.size(); i++) {
       num val = array[i] as num;
       ar[i] = ar.first instanceof double ? val.toDouble() : val.toInt();
     }
@@ -77,7 +77,7 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public boolean isEOF() {
-    return _context.length <= 1 && _readObject.length == 0;
+    return _context.size() <= 1 && _readObject.size() == 0;
   }
 
   @Override
@@ -177,9 +177,9 @@ public abstract class JSONReader implements StreamReader {
 
   public int _readLength() {
     if (_context.first instanceof List) {
-      return (_context.first as List).length;
+      return (_context.first as List).size();
     } else if (_context.first instanceof Map) {
-      return (_context.first as Map).length;
+      return (_context.first as Map).size();
     }
     return 0;
   }

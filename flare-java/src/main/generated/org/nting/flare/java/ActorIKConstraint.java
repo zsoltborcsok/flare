@@ -56,7 +56,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     // Initialize solver.
     ActorBone start = _influencedBones[0].bone;
-    ActorNode end = _influencedBones[_influencedBones.length - 1].bone;
+    ActorNode end = _influencedBones[_influencedBones.size() - 1].bone;
     int count = 0;
     while (end != null && end != start.parent) {
       count++;
@@ -64,7 +64,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
 
     boolean allIn = count < 3;
-    end = _influencedBones[_influencedBones.length - 1].bone;
+    end = _influencedBones[_influencedBones.size() - 1].bone;
     _fkChain = new ArrayList<BoneChain>(count);
     int idx = count - 1;
     while (end != null && end != start.parent) {
@@ -93,7 +93,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
     if (!allIn) {
       // Influenced bones are in the IK chain.
-      for (int i = 0; i < _boneData.length - 1; i++) {
+      for (int i = 0; i < _boneData.size() - 1; i++) {
         BoneChain item = _boneData[i];
         item.included = true;
         _fkChain[item.index + 1].included = true;
@@ -116,7 +116,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     // All the first level children of the influenced bones should
     // depend on the final bone.
-    BoneChain tip = _fkChain[_fkChain.length - 1];
+    BoneChain tip = _fkChain[_fkChain.size() - 1];
     for (final BoneChain fk : _fkChain) {
       if (fk == tip) {
         continue;
@@ -182,7 +182,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
       Mat2D.decompose(bone.transform, item.transformComponents);
     }
 
-    int count = _boneData.length;
+    int count = _boneData.size();
     if (count == 1) {
       solve1(_boneData[0], worldTargetTranslation);
     } else if (count == 2) {
@@ -192,7 +192,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
       for (int i = 0; i < count - 1; i++) {
         BoneChain item = _boneData[i];
         solve2(item, tip, worldTargetTranslation);
-        for (int j = item.index + 1; j < _fkChain.length - 1; j++) {
+        for (int j = item.index + 1; j < _fkChain.size() - 1; j++) {
           BoneChain fk = _fkChain[j];
           Mat2D.invert(fk.parentWorldInverse, fk.bone.parent.worldTransform);
         }
@@ -354,8 +354,8 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     _invertDirection = node._invertDirection;
     if (node._influencedBones != null) {
-      _influencedBones = new ArrayList<InfluencedBone>(node._influencedBones.length);
-      for (int i = 0; i < _influencedBones.length; i++) {
+      _influencedBones = new ArrayList<InfluencedBone>(node._influencedBones.size());
+      for (int i = 0; i < _influencedBones.size(); i++) {
         InfluencedBone ib = new InfluencedBone();
         ib.boneIdx = node._influencedBones[i].boneIdx;
         _influencedBones[i] = ib;

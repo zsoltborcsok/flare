@@ -309,8 +309,8 @@ public class ActorNode extends ActorComponent {
     _overrideWorldTransform = node._overrideWorldTransform;
 
     if (node._clips != null) {
-      _clips = new ArrayList<ActorClip>(node._clips.length);
-      for (int i = 0, l = node._clips.length; i < l; i++) {
+      _clips = new ArrayList<ActorClip>(node._clips.size());
+      for (int i = 0, l = node._clips.size(); i < l; i++) {
         _clips[i] = ActorClip.copy(node._clips[i]);
       }
     } else {
