@@ -2,13 +2,14 @@ package org.nting.flare.java;
 
 import org.nting.flare.java.maths.AABB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorLayerEffectRenderer extends ActorDrawable {
   final List<ActorDrawable> _drawables = <ActorDrawable>[];
 
   public List<ActorDrawable> drawables() { return _drawables; }
-  final List<ActorLayerEffectRendererMask> _renderMasks = [];
+  final List<ActorLayerEffectRendererMask> _renderMasks = new ArrayList<>();
 
   public List<ActorLayerEffectRendererMask> renderMasks() { return _renderMasks; }
   ActorBlur _blur;

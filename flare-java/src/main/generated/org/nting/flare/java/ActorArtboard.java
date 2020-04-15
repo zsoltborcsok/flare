@@ -16,8 +16,8 @@ public class ActorArtboard {
   ActorNode _root;
   List<ActorComponent> _components;
   List<ActorNode> _nodes;
-  final List<ActorDrawable> _drawableNodes = [];
-  final List<ActorLayerEffectRenderer> _effectRenderers = [];
+  final List<ActorDrawable> _drawableNodes = new ArrayList<>();
+  final List<ActorLayerEffectRenderer> _effectRenderers = new ArrayList<>();
   List<ActorAnimation> _animations;
   List<ActorComponent> _dependencyOrder;
   Actor _actor;

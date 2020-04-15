@@ -170,7 +170,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //     if (node._textureIndex != -1) {
 //       reader.openArray("frames");
 //       int frameAssetCount = reader.readUint16Length();
-//       // node._sequenceFrames = [];
+//       // node._sequenceFrames = new ArrayList<>();
 //       Float32List uvs = new Float32List(node._vertexCount * 2 * frameAssetCount);
 //       int uvStride = node._vertexCount * 2;
 //       node._sequenceUVs = uvs;

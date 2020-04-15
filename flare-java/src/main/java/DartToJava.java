@@ -38,7 +38,7 @@ public class DartToJava {
         // handleBools(pathToFiles);
         // handleCollectionIterations(pathToFiles);
         // addListImport(pathToFiles);
-        // handleListCreation(pathToFiles);
+        handleListCreation(pathToFiles);
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
@@ -48,9 +48,9 @@ public class DartToJava {
         // addImport(pathToFiles, "min\\(", "import static java.lang.Math.min;");
         // addImport(pathToFiles, "max\\(", "import static java.lang.Math.max;");
         // addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
-        handleListSizes(pathToFiles);
+        // handleListSizes(pathToFiles);
 
-        // = [];, .isNotEmpty, as
+        // .isNotEmpty, as
         // dynamic, var, Float32List, Uint8List, ByteData
         // operators (e.g. []), constructors, factories, clone, Future, await
     }
@@ -171,6 +171,9 @@ public class DartToJava {
                 if (line.contains("= List<")) {
                     hasArrayListUsage[0] = true;
                     line = line.replace("= List<", "= new ArrayList<");
+                } else if (line.contains("= []")) {
+                    hasArrayListUsage[0] = true;
+                    line = line.replace("= []", "= new ArrayList<>()");
                 }
                 return line;
             }).collect(Collectors.toList());
