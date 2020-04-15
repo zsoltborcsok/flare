@@ -38,7 +38,7 @@ public class DartToJava {
         // handleBools(pathToFiles);
         // handleCollectionIterations(pathToFiles);
         // addListImport(pathToFiles);
-        handleListCreation(pathToFiles);
+        // handleListCreation(pathToFiles);
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
@@ -50,11 +50,21 @@ public class DartToJava {
         // addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
         // handleListSizes(pathToFiles);
         // replace(pathToFiles, ".isEmpty", ".isEmpty()");
-        handleIsNotEmpty(pathToFiles);
+        // handleIsNotEmpty(pathToFiles);
+        replace(pathToFiles, ".first", ".get(0)", line -> Pattern.compile("\\.first[a-zA-Z_0-9(]").matcher(line).find());
 
-        // as, ??=, ?., .first
+        // as, ??=, ?.
         // dynamic, var, Float32List, Uint8List, ByteData
         // operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void replace(Path pathToFiles, String target, String replacement, Function<String, Boolean> exclude) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains(target) && !exclude.apply(line)) {
+                line = line.replace(target, replacement);
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void handleIsNotEmpty(Path pathToFiles) {

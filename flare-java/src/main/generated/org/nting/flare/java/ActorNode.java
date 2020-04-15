@@ -168,7 +168,7 @@ public class ActorNode extends ActorComponent {
   public void findLayerEffect() {
     var layerEffects = children?.whereType<ActorLayerEffectRenderer>();
     var change = layerEffects != null && !layerEffects.isEmpty()
-        ? layerEffects.first
+        ? layerEffects.get(0)
         : null;
     if (_layerEffect != change) {
       _layerEffect = change;

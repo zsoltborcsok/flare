@@ -16,9 +16,9 @@ public class ActorShape extends ActorDrawable {
 
   public boolean transformAffectsStroke() { return _transformAffectsStroke; }
 
-  public ActorFill fill() { return !_fills.isEmpty() ? _fills.first : null; }
+  public ActorFill fill() { return !_fills.isEmpty() ? _fills.get(0) : null; }
 
-  public ActorStroke stroke() { return !_strokes.isEmpty() ? _strokes.first : null; }
+  public ActorStroke stroke() { return !_strokes.isEmpty() ? _strokes.get(0) : null; }
 
   public List<ActorFill> fills() { return _fills; }
 

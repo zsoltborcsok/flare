@@ -10,7 +10,7 @@ public abstract class Actor {
 
   Actor();
 
-  public ActorArtboard artboard() { return !_artboards.isEmpty() ? _artboards.first : null; }
+  public ActorArtboard artboard() { return !_artboards.isEmpty() ? _artboards.get(0) : null; }
 
   ActorArtboard getArtboard(String name) =>
       name == null
