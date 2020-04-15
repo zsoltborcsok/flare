@@ -5,7 +5,7 @@ public abstract class ActorShadow extends ActorBlur {
   double offsetY;
   Float32List _color = new Float32List(4);
 
-  int get blendModeId;
+  public abstract int blendModeId();
 
   public abstract set blendModeId(int value);
 

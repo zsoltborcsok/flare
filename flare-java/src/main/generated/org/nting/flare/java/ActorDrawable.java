@@ -40,7 +40,7 @@ public abstract class ActorDrawable extends ActorNode {
     return !isHidden && !renderCollapsed;
   }
 
-  int get blendModeId;
+  public abstract int blendModeId();
 
   public abstract set blendModeId(int value);
 

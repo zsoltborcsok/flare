@@ -68,7 +68,7 @@ public abstract class StreamReader {
 
   public abstract void closeObject();
 
-  String get containerType;
+  public abstract String containerType();
 
   public abstract Uint8List readAsset();
 }

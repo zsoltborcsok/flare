@@ -14,21 +14,21 @@ public abstract class ActorBasePath {
 
   public boolean isRootPath() { return _isRootPath; }
 
-  List<PathPoint> get points;
+  public abstract List<PathPoint> points();
 
-  ActorNode get parent;
+  public abstract ActorNode parent();
 
   public abstract void invalidatePath();
 
   public boolean isPathInWorldSpace() { return false; }
 
-  Mat2D get pathTransform;
+  public abstract Mat2D pathTransform();
 
-  Mat2D get transform;
+  public abstract Mat2D transform();
 
-  Mat2D get worldTransform;
+  public abstract Mat2D worldTransform();
 
-  List<List<ActorClip>> get allClips;
+  public abstract List<List<ActorClip>> allClips();
 
   public List<PathPoint> deformedPoints() { return points; }
 
