@@ -1,5 +1,6 @@
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
+import com.google.common.base.Strings;
 import com.google.common.primitives.Booleans;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,27 +26,44 @@ public class DartToJava {
     private static final Logger logger = LoggerFactory.getLogger(DartToJava.class);
 
     public static void main(String[] args) {
-        // renameDartFiles(Paths.get(RELATIVE_PATH));
-        // addPackageDefinition(Paths.get(RELATIVE_PATH));
-        // removeImports(Paths.get(RELATIVE_PATH));
-        // makeClassesPublic(Paths.get(RELATIVE_PATH));
-        // insertNewKeywords(Paths.get(RELATIVE_PATH));
-        // makeMethodsPublic(Paths.get(RELATIVE_PATH));
-        // makeAbstractMethodsPublic(Paths.get(RELATIVE_PATH));
-        // handleOverrideAnnotations(Paths.get(RELATIVE_PATH));
-        // handleBools(Paths.get(RELATIVE_PATH));
-        // handleCollectionIterations(Paths.get(RELATIVE_PATH));
-        // addListImport(Paths.get(RELATIVE_PATH));
-        // handleListCreation(Paths.get(RELATIVE_PATH));
-        // handleConstDeclarations(Paths.get(RELATIVE_PATH));
-        // addImports(Paths.get(RELATIVE_PATH), "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
-        // handleInstanceOfs(Paths.get(RELATIVE_PATH));
-        // handleGetters(Paths.get(RELATIVE_PATH));
-        // handleLambdaGetters(Paths.get(RELATIVE_PATH));
-        handleAbstractGetters(Paths.get(RELATIVE_PATH));
-        // Math.min, Math.max, acos, .length, operators (e.g. []), dynamic
-        // Float32List, Uint8List, ByteData
-        // = [];, constructors, factories, clone, Future, await, .isNotEmpty
+        Path pathToFiles = Paths.get(RELATIVE_PATH);
+        // renameDartFiles(pathToFiles);
+        // addPackageDefinition(pathToFiles);
+        // removeImports(pathToFiles);
+        // makeClassesPublic(pathToFiles);
+        // insertNewKeywords(pathToFiles);
+        // makeMethodsPublic(pathToFiles);
+        // makeAbstractMethodsPublic(pathToFiles);
+        // handleOverrideAnnotations(pathToFiles);
+        // handleBools(pathToFiles);
+        // handleCollectionIterations(pathToFiles);
+        // addListImport(pathToFiles);
+        // handleListCreation(pathToFiles);
+        // handleConstDeclarations(pathToFiles);
+        // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
+        // handleInstanceOfs(pathToFiles);
+        // handleGetters(pathToFiles);
+        // handleLambdaGetters(pathToFiles);
+        // handleAbstractGetters(pathToFiles);
+        addImport(pathToFiles, "min\\(", "import static java.lang.Math.min;");
+        addImport(pathToFiles, "max\\(", "import static java.lang.Math.max;");
+        addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
+
+        // .length, operators (e.g. []), dynamic, var, Float32List, Uint8List, ByteData
+        // = [];, constructors, factories, clone, Future, await, .isNotEmpty, as
+    }
+
+    private static void addImport(Path pathToFiles, String regex, String importText) {
+        Pattern pattern = Pattern.compile(regex);
+        manipulateJavaFiles(pathToFiles, lines -> {
+            if (lines.stream().anyMatch(line -> pattern.matcher(line).find())) {
+                lines.add(2, importText);
+                if (!Strings.isNullOrEmpty(lines.get(3)) && !lines.get(3).contains("import")) {
+                    lines.add(3, "");
+                }
+            }
+            return lines;
+        });
     }
 
     private static void handleAbstractGetters(Path pathToFiles) {

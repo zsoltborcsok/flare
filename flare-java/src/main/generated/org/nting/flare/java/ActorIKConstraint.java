@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import static java.lang.Math.acos;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.TransformComponents;
 import org.nting.flare.java.maths.Vec2D;

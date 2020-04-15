@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import static java.lang.Math.max;
 import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 

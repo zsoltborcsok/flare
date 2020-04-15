@@ -1,5 +1,8 @@
 package org.nting.flare.java.maths;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class AABB {
   Float32List _buffer;
 
