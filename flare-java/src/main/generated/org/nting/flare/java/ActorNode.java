@@ -167,7 +167,7 @@ public class ActorNode extends ActorComponent {
   // so not every ActorNode has to look for layerEffects as most won't have it.
   public void findLayerEffect() {
     var layerEffects = children?.whereType<ActorLayerEffectRenderer>();
-    var change = layerEffects != null && layerEffects.isNotEmpty
+    var change = layerEffects != null && !layerEffects.isEmpty()
         ? layerEffects.first
         : null;
     if (_layerEffect != change) {

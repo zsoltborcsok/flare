@@ -50,7 +50,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   @Override
   public void completeResolve() {
-    if (_influencedBones == null || _influencedBones.isEmpty) {
+    if (_influencedBones == null || _influencedBones.isEmpty()) {
       return;
     }
 
@@ -168,7 +168,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     Vec2D worldTargetTranslation = new Vec2D();
     target.getWorldTranslation(worldTargetTranslation);
 
-    if (_influencedBones.isEmpty) {
+    if (_influencedBones.isEmpty()) {
       return;
     }
 

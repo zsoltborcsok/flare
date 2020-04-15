@@ -13,7 +13,7 @@ public abstract class ActorSkinnable {
 
   public List<SkinnedBone> connectedBones() { return _connectedBones; }
 
-  public boolean isConnectedToBones() { return _connectedBones != null && _connectedBones.isNotEmpty; }
+  public boolean isConnectedToBones() { return _connectedBones != null && !_connectedBones.isEmpty(); }
 
   static ActorSkinnable read(ActorArtboard artboard, StreamReader reader,
       ActorSkinnable node) {

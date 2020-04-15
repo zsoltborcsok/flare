@@ -49,10 +49,30 @@ public class DartToJava {
         // addImport(pathToFiles, "max\\(", "import static java.lang.Math.max;");
         // addImport(pathToFiles, "acos\\(", "import static java.lang.Math.acos;");
         // handleListSizes(pathToFiles);
+        // replace(pathToFiles, ".isEmpty", ".isEmpty()");
+        handleIsNotEmpty(pathToFiles);
 
-        // .isNotEmpty, as
+        // as, ??=, ?., .first
         // dynamic, var, Float32List, Uint8List, ByteData
         // operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void handleIsNotEmpty(Path pathToFiles) {
+        Pattern pattern = Pattern.compile("\\s[a-zA-Z_0-9]+\\.isNotEmpty");
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.find()) {
+                StringBuilder lineString = new StringBuilder(line.replace(".isNotEmpty", ".isEmpty()"));
+                lineString.insert(matcher.start() + 1, "!");
+                line = lineString.toString();
+            }
+            return line;
+        }).collect(Collectors.toList()));
+    }
+
+    private static void replace(Path pathToFiles, String target, String replacement) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> line.replace(target, replacement))
+                .collect(Collectors.toList()));
     }
 
     private static void handleListSizes(Path pathToFiles) {
