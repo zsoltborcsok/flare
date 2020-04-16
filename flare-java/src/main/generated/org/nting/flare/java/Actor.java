@@ -99,7 +99,7 @@ public abstract class Actor {
 
   Future<boolean> loadAtlases(List<Uint8List> rawAtlases);
 
-  Future<boolean> load(ByteData data, dynamic context) async {
+  Future<boolean> load(ByteData data, Object context) async {
     if (data.lengthInBytes < 5) {
       throw new UnsupportedError("Not a valid Flare file.");
     }
@@ -112,13 +112,13 @@ public abstract class Actor {
     int R = data.getUint8(3);
     int E = data.getUint8(4);
 
-    dynamic inputData = data;
+    Object inputData = data;
 
     if (F != 70 || L != 76 || A != 65 || R != 82 || E != 69) {
       Uint8List charCodes = data.buffer.asUint8List();
       String stringData = String.fromCharCodes(charCodes);
-      dynamic jsonActor = jsonDecode(stringData);
-      Map jsonObject = <dynamic, dynamic>{};
+      Object jsonActor = jsonDecode(stringData);
+      Map jsonObject = <Object, Object>{};
       jsonObject["container"] = jsonActor;
       inputData = jsonObject;
     }
@@ -178,10 +178,10 @@ public abstract class Actor {
     }
   }
 
-  Future<Uint8List> readOutOfBandAsset(String filename, dynamic context);
+  Future<Uint8List> readOutOfBandAsset(String filename, Object context);
 
   Future<List<Uint8List>> readAtlasesBlock(StreamReader block,
-      dynamic context) {
+      Object context) {
     // Determine whether or not the atlas is in or out of band.
     boolean isOOB = block.readBoolean("isOOB");
     block.openArray("data");

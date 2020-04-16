@@ -51,11 +51,12 @@ public class DartToJava {
         // handleListSizes(pathToFiles);
         // replace(pathToFiles, ".isEmpty", ".isEmpty()");
         // handleIsNotEmpty(pathToFiles);
-        replace(pathToFiles, ".first", ".get(0)", line -> Pattern.compile("\\.first[a-zA-Z_0-9(]").matcher(line).find());
+        // replace(pathToFiles, ".first", ".get(0)", line -> Pattern.compile("\\.first[a-zA-Z_0-9(]").matcher(line).find());
+        replace(pathToFiles, "dynamic", "Object", line -> Pattern.compile("(dynamic[a-zA-Z_0-9(])|([a-zA-Z_0-9]dynamic)").matcher(line).find());
 
-        // as, ??=, ?.
-        // dynamic, var, Float32List, Uint8List, ByteData
-        // operators (e.g. []), constructors, factories, clone, Future, await
+        // as, ??=, ?., = <Object, Object>{}
+        // Float32List, Uint8List, ByteData
+        // var, operators (e.g. []), constructors, factories, clone, Future, await
     }
 
     private static void replace(Path pathToFiles, String target, String replacement, Function<String, Boolean> exclude) {

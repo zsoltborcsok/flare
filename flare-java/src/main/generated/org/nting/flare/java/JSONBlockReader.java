@@ -13,10 +13,10 @@ public class JSONBlockReader extends JSONReader {
       return null;
     }
 
-    var obj = <dynamic, dynamic>{};
+    var obj = <Object, Object>{};
     obj["container"] = _peek();
     var type = readBlockType(blockTypes);
-    dynamic c = context.get(0);
+    Object c = context.get(0);
     if (c instanceof Map) {
       c.remove(nextKey);
     } else if (c instanceof List) {
@@ -27,15 +27,15 @@ public class JSONBlockReader extends JSONReader {
   }
 
   public int readBlockType(Map<String, int> blockTypes) {
-    dynamic next = _peek();
+    Object next = _peek();
     int bType;
     if (next instanceof Map) {
-      dynamic c = context.get(0);
+      Object c = context.get(0);
       if (c instanceof Map) {
         bType = blockTypes[nextKey];
       } else if (c instanceof List) {
         // Objects are serialized with "type" property.
-        dynamic nType = next["type"];
+        Object nType = next["type"];
         bType = blockTypes[nType];
       }
     } else if (next instanceof List) {
@@ -45,9 +45,9 @@ public class JSONBlockReader extends JSONReader {
     return bType;
   }
 
-  public dynamic _peek() {
-    dynamic stream = context.get(0);
-    dynamic next;
+  public Object _peek() {
+    Object stream = context.get(0);
+    Object next;
     if (stream instanceof Map) {
       next = stream[nextKey];
     } else if (stream instanceof List) {
@@ -56,5 +56,5 @@ public class JSONBlockReader extends JSONReader {
     return next;
   }
 
-  public dynamic nextKey() { return context.get(0).keys.get(0); }
+  public Object nextKey() { return context.get(0).keys.get(0); }
 }

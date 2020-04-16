@@ -4,19 +4,19 @@ public abstract class JSONReader implements StreamReader {
   @Override
   int blockType;
 
-  dynamic _readObject;
+  Object _readObject;
   ListQueue _context;
 
   JSONReader(Map object) {
     _readObject = object["container"];
-    _context = ListQueue<dynamic>();
+    _context = ListQueue<Object>();
     _context.addFirst(_readObject);
   }
 
   T readProp<T>(String label) {
-    dynamic head = _context.get(0);
+    Object head = _context.get(0);
     if (head instanceof Map) {
-      dynamic prop = head[label];
+      Object prop = head[label];
       head.remove(label);
       if (prop instanceof T) {
         return prop;
@@ -24,7 +24,7 @@ public abstract class JSONReader implements StreamReader {
         return null;
       }
     } else if (head instanceof List) {
-      dynamic prop = head.removeAt(0);
+      Object prop = head.removeAt(0);
       if (prop instanceof T) {
         return prop;
       } else {
@@ -155,7 +155,7 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public void openArray(String label) {
-    dynamic array = readProp<dynamic>(label);
+    Object array = readProp<Object>(label);
     _context.addFirst(array);
   }
 
@@ -166,7 +166,7 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public void openObject(String label) {
-    dynamic o = readProp<dynamic>(label);
+    Object o = readProp<Object>(label);
     _context.addFirst(o);
   }
 
