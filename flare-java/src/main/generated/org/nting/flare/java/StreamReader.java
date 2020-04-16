@@ -30,7 +30,7 @@ public abstract class StreamReader {
 
   public abstract int readUint8(String label);
 
-  public abstract Uint8List readUint8Array(int length, String label);
+  public abstract byte[] readUint8Array(int length, String label);
 
   public abstract int readInt8(String label);
 
@@ -70,5 +70,5 @@ public abstract class StreamReader {
 
   public abstract String containerType();
 
-  public abstract Uint8List readAsset();
+  public abstract byte[] readAsset();
 }

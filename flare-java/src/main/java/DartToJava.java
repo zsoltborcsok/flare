@@ -52,7 +52,8 @@ public class DartToJava {
         // replace(pathToFiles, ".isEmpty", ".isEmpty()");
         // handleIsNotEmpty(pathToFiles);
         // replace(pathToFiles, ".first", ".get(0)", line -> Pattern.compile("\\.first[a-zA-Z_0-9(]").matcher(line).find());
-        replace(pathToFiles, "dynamic", "Object", line -> Pattern.compile("(dynamic[a-zA-Z_0-9(])|([a-zA-Z_0-9]dynamic)").matcher(line).find());
+        // replace(pathToFiles, "dynamic", "Object", line -> Pattern.compile("(dynamic[a-zA-Z_0-9(])|([a-zA-Z_0-9]dynamic)").matcher(line).find());
+        replace(pathToFiles, "Uint8List", "byte[]"); // NOTE: extra adjustments needed
 
         // as, ??=, ?., = <Object, Object>{}
         // Float32List, Uint8List, ByteData

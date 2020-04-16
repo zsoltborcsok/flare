@@ -128,7 +128,7 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  public Uint8List readUint8Array(int length, [String label]) {
+  public byte[] readUint8Array(int length, [String label]) {
     int offset = _readIndex + _raw.offsetInBytes;
     _readIndex += length;
     return _raw.buffer.asUint8List(offset, length);
@@ -177,7 +177,7 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  public Uint8List readAsset() {
+  public byte[] readAsset() {
     int length = readUint32();
     return readUint8Array(length);
   }

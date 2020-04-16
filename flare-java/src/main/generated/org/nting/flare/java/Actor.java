@@ -97,7 +97,7 @@ public abstract class Actor {
 
   public abstract ActorLayerEffectRenderer makeLayerEffectRenderer();
 
-  Future<boolean> loadAtlases(List<Uint8List> rawAtlases);
+  Future<boolean> loadAtlases(List<byte[]> rawAtlases);
 
   Future<boolean> load(ByteData data, Object context) async {
     if (data.lengthInBytes < 5) {
@@ -115,7 +115,7 @@ public abstract class Actor {
     Object inputData = data;
 
     if (F != 70 || L != 76 || A != 65 || R != 82 || E != 69) {
-      Uint8List charCodes = data.buffer.asUint8List();
+      byte[] charCodes = data.buffer.asbyte[]();
       String stringData = String.fromCharCodes(charCodes);
       Object jsonActor = jsonDecode(stringData);
       Map jsonObject = <Object, Object>{};
@@ -134,7 +134,7 @@ public abstract class Actor {
           break;
 
         case BlockTypes.atlases:
-          List<Uint8List> rawAtlases = await readAtlasesBlock(block, context);
+          List<byte[]> rawAtlases = await readAtlasesBlock(block, context);
           success = await loadAtlases(rawAtlases);
           break;
       }
@@ -178,28 +178,28 @@ public abstract class Actor {
     }
   }
 
-  Future<Uint8List> readOutOfBandAsset(String filename, Object context);
+  Future<byte[]> readOutOfBandAsset(String filename, Object context);
 
-  Future<List<Uint8List>> readAtlasesBlock(StreamReader block,
+  Future<List<byte[]>> readAtlasesBlock(StreamReader block,
       Object context) {
     // Determine whether or not the atlas is in or out of band.
     boolean isOOB = block.readBoolean("isOOB");
     block.openArray("data");
     int numAtlases = block.readUint16Length();
-    Future<List<Uint8List>> result;
+    Future<List<byte[]>> result;
     if (isOOB) {
-      List<Future<Uint8List>> waitingFor = new ArrayList<Future<Uint8List>>(numAtlases);
+      List<Future<byte[]>> waitingFor = new ArrayList<Future<byte[]>>(numAtlases);
       for (int i = 0; i < numAtlases; i++) {
         waitingFor[i] = readOutOfBandAsset(block.readString("data"), context);
       }
       result = Future.wait(waitingFor);
     } else {
       // This is sync.
-      List<Uint8List> inBandAssets = new ArrayList<Uint8List>(numAtlases);
+      List<byte[]> inBandAssets = new ArrayList<byte[]>(numAtlases);
       for (int i = 0; i < numAtlases; i++) {
         inBandAssets[i] = block.readAsset();
       }
-      Completer<List<Uint8List>> completer = Completer<List<Uint8List>>();
+      Completer<List<byte[]>> completer = Completer<List<byte[]>>();
       completer.complete(inBandAssets);
       result = completer.future;
     }

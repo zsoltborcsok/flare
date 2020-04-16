@@ -91,8 +91,8 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  public Uint8List readUint8Array(int length, String label) {
-    var ar = new Uint8List(length);
+  public byte[] readUint8Array(int length, String label) {
+    var ar = new byte[length];
     _readArray(ar, label);
     return ar;
   }
@@ -185,7 +185,7 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  public Uint8List readAsset() {
+  public byte[] readAsset() {
     String encodedAsset =
     readString("data"); // are we sure we need a label here?
     return final Base64Decoder().convert(encodedAsset, 22);
