@@ -5,9 +5,9 @@ import org.nting.flare.java.maths.Mat2D;
 import java.util.List;
 
 public class ActorSkin extends ActorComponent {
-  Float32List _boneMatrices;
+  float[] _boneMatrices;
 
-  public Float32List boneMatrices() { return _boneMatrices; }
+  public float[] boneMatrices() { return _boneMatrices; }
 
   @Override
   public void onDirty(int dirt) {

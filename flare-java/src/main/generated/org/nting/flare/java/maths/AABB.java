@@ -4,9 +4,9 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class AABB {
-  Float32List _buffer;
+  float[] _buffer;
 
-  public Float32List values() {
+  public float[] values() {
     return _buffer;
   }
 

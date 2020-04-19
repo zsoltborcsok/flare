@@ -1,9 +1,9 @@
 package org.nting.flare.java.maths;
 
 public class Mat2D {
-  Float32List _buffer;
+  float[] _buffer;
 
-  public Float32List values() {
+  public float[] values() {
     return _buffer;
   }
 
@@ -64,7 +64,7 @@ public class Mat2D {
     o[5] = f[5];
   }
 
-  public static void copyFromList(Mat2D o, Float32List f) {
+  public static void copyFromList(Mat2D o, float[] f) {
     o[0] = f[0];
     o[1] = f[1];
     o[2] = f[2];

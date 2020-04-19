@@ -1,9 +1,9 @@
 package org.nting.flare.java.maths;
 
 public class Vec2D {
-  Float32List _buffer;
+  float[] _buffer;
 
-  public Float32List values() {
+  public float[] values() {
     return _buffer;
   }
 
@@ -32,7 +32,7 @@ public class Vec2D {
     o[1] = a[1];
   }
 
-  public static void copyFromList(Vec2D o, Float32List a) {
+  public static void copyFromList(Vec2D o, float[] a) {
     o[0] = a[0];
     o[1] = a[1];
   }

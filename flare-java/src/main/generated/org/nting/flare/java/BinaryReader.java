@@ -160,8 +160,8 @@ public abstract class BinaryReader implements StreamReader {
   }
 
   @Override
-  public Float32List readFloat32Array(int length, String label) {
-    Float32List list = new Float32List(length);
+  public float[] readFloat32Array(int length, String label) {
+    float[] list = new Float32List(length);
     for (int i = 0; i < length; i++) {
       list[i] = _raw.getFloat32(_readIndex, Endian.little);
       _readIndex += 4;

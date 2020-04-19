@@ -3,13 +3,13 @@ package org.nting.flare.java;
 public abstract class ActorShadow extends ActorBlur {
   double offsetX;
   double offsetY;
-  Float32List _color = new Float32List(4);
+  float[] _color = new Float32List(4);
 
   public abstract int blendModeId();
 
   public abstract set blendModeId(int value);
 
-  public Float32List color() { return _color; }
+  public float[] color() { return _color; }
 
   static ActorShadow read(ActorArtboard artboard, StreamReader reader,
       ActorShadow component) {

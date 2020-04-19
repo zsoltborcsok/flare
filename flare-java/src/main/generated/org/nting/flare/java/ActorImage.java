@@ -28,22 +28,22 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   int drawOrder;
 
   int _textureIndex = -1;
-  Float32List _vertices;
-  Float32List _dynamicUV;
+  float[] _vertices;
+  float[] _dynamicUV;
 
-  public Float32List dynamicUV() { return _dynamicUV; }
+  public float[] dynamicUV() { return _dynamicUV; }
   Uint16List _triangles;
   int _vertexCount = 0;
   int _triangleCount = 0;
-  Float32List _animationDeformedVertices;
+  float[] _animationDeformedVertices;
 
   List<SequenceFrame> _sequenceFrames;
-  Float32List _sequenceUVs;
+  float[] _sequenceUVs;
   int _sequenceFrame = 0;
 
   public int sequenceFrame() { return _sequenceFrame; }
 
-  public Float32List sequenceUVs() { return _sequenceUVs; }
+  public float[] sequenceUVs() { return _sequenceUVs; }
 
   public List<SequenceFrame> sequenceFrames() { return _sequenceFrames; }
 
@@ -67,7 +67,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     return _triangles;
   }
 
-  public Float32List vertices() {
+  public float[] vertices() {
     return _vertices;
   }
 
@@ -115,7 +115,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  public Float32List animationDeformedVertices() {
+  public float[] animationDeformedVertices() {
     return _animationDeformedVertices;
   }
 
@@ -246,11 +246,11 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 //     }
 //   }
 
-  public Float32List makeVertexPositionBuffer() {
+  public float[] makeVertexPositionBuffer() {
     return new Float32List(_vertexCount * 2);
   }
 
-  public Float32List makeVertexUVBuffer() {
+  public float[] makeVertexUVBuffer() {
     return new Float32List(_vertexCount * 2);
   }
 
@@ -259,7 +259,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
       return;
     }
 
-    Float32List fv = _animationDeformedVertices;
+    float[] fv = _animationDeformedVertices;
 
     int vidx = 0;
     for (int j = 0; j < _vertexCount; j++) {
@@ -273,12 +273,12 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  public void updateVertexUVBuffer(Float32List buffer) {
+  public void updateVertexUVBuffer(float[] buffer) {
     int readIdx = vertexUVOffset;
     int writeIdx = 0;
     int stride = vertexStride;
 
-    Float32List v = _vertices;
+    float[] v = _vertices;
     for (int i = 0; i < _vertexCount; i++) {
       buffer[writeIdx++] = v[readIdx];
       buffer[writeIdx++] = v[readIdx + 1];
@@ -286,22 +286,22 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     }
   }
 
-  void updateVertexPositionBuffer(Float32List buffer,
+  void updateVertexPositionBuffer(float[] buffer,
       boolean isSkinnedDeformInWorld) {
     Mat2D worldTransform = this.worldTransform;
     int readIdx = 0;
     int writeIdx = 0;
 
-    Float32List v = _animationDeformedVertices != null
+    float[] v = _animationDeformedVertices != null
         ? _animationDeformedVertices
         : _vertices;
     int stride = _animationDeformedVertices != null ? 2 : vertexStride;
 
     if (skin != null) {
-      Float32List boneTransforms = skin.boneMatrices;
+      float[] boneTransforms = skin.boneMatrices;
 
       //Mat2D inverseWorldTransform = Mat2D.Invert(new Mat2D(), worldTransform);
-      Float32List influenceMatrix =
+      float[] influenceMatrix =
       Float32List.fromList([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]);
 
       // if(this.name == "evolution_1_0001s_0003_evolution_1_weapo")

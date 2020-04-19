@@ -27,9 +27,9 @@ public class ActorArtboard {
   double _height = 0.0;
   final Vec2D _origin = new Vec2D();
   boolean _clipContents = true;
-  final Float32List _color = new Float32List(4);
+  final float[] _color = new Float32List(4);
   double _modulateOpacity = 1.0;
-  Float32List _overrideColor;
+  float[] _overrideColor;
 
   public String name() { return _name; }
 
@@ -45,9 +45,9 @@ public class ActorArtboard {
 
   public double modulateOpacity() { return _modulateOpacity; }
 
-  public Float32List overrideColor() { return _overrideColor; }
+  public float[] overrideColor() { return _overrideColor; }
 
-  set overrideColor(Float32List value) {
+  set overrideColor(float[] value) {
     _overrideColor = value;
     for (final ActorDrawable drawable : _drawableNodes) {
       addDirt(drawable, DirtyFlags.paintDirty, true);
@@ -330,7 +330,7 @@ public class ActorArtboard {
     Vec2D.copyFromList(_origin, reader.readFloat32Array(2, "origin"));
     _clipContents = reader.readBoolean("clipContents");
 
-    Float32List color = reader.readFloat32Array(4, "color");
+    float[] color = reader.readFloat32Array(4, "color");
     _color[0] = color[0];
     _color[1] = color[1];
     _color[2] = color[2];

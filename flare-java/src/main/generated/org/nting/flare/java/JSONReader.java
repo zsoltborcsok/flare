@@ -42,7 +42,7 @@ public abstract class JSONReader implements StreamReader {
 
   // Reads the array into ar
   @Override
-  public Float32List readFloat32Array(int length, String label) {
+  public float[] readFloat32Array(int length, String label) {
     var ar = new Float32List(length);
     _readArray(ar, label);
     return ar;

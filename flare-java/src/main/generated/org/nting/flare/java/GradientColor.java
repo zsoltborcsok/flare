@@ -4,7 +4,7 @@ import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
 public abstract class GradientColor extends ActorPaint {
-  Float32List _colorStops = new Float32List(10);
+  float[] _colorStops = new Float32List(10);
   final Vec2D _start = new Vec2D();
   final Vec2D _end = new Vec2D();
   final Vec2D _renderStart = new Vec2D();
@@ -18,7 +18,7 @@ public abstract class GradientColor extends ActorPaint {
 
   public Vec2D renderEnd() { return _renderEnd; }
 
-  public Float32List colorStops() {
+  public float[] colorStops() {
     return _colorStops;
   }
 
@@ -35,7 +35,7 @@ public abstract class GradientColor extends ActorPaint {
     ActorPaint.read(artboard, reader, component);
 
     int numStops = reader.readUint8("numColorStops");
-    Float32List stops = reader.readFloat32Array(numStops * 5, "colorStops");
+    float[] stops = reader.readFloat32Array(numStops * 5, "colorStops");
     component._colorStops = stops;
 
     Vec2D.copyFromList(component._start, reader.readFloat32Array(2, "start"));

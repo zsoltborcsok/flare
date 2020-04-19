@@ -9,7 +9,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
   boolean _isHidden;
   boolean _isClosed;
   List<PathPoint> _points;
-  Float32List vertexDeform;
+  float[] vertexDeform;
 
   @Override
   public boolean isPathInWorldSpace() { return isConnectedToBones; }
@@ -33,7 +33,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
       return _points;
     }
 
-    Float32List boneMatrices = skin.boneMatrices;
+    float[] boneMatrices = skin.boneMatrices;
     List<PathPoint> deformed = <PathPoint>[];
     for (final PathPoint point : _points) {
       deformed.add(point.skin(worldTransform, boneMatrices));
@@ -61,7 +61,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     int length = points.fold<int>(0, (int previous, PathPoint point) {
       return previous + 2 + (point.pointType == PointType.straight ? 1 : 4);
     });
-    Float32List vertices = new Float32List(length);
+    float[] vertices = new Float32List(length);
     int readIdx = 0;
     for (final PathPoint point : points) {
       vertices[readIdx++] = point.translation[0];

@@ -6,7 +6,7 @@ import org.nting.flare.java.maths.Vec2D;
 public abstract class PathPoint {
   PointType _type;
   Vec2D _translation = new Vec2D();
-  Float32List _weights;
+  float[] _weights;
 
   PathPoint(PointType type) {
     _type = type;
@@ -47,6 +47,6 @@ public abstract class PathPoint {
     return result;
   }
 
-  public abstract PathPoint skin(Mat2D world, Float32List bones);
+  public abstract PathPoint skin(Mat2D world, float[] bones);
 }
 

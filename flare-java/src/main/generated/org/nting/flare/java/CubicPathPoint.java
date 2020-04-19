@@ -56,7 +56,7 @@ public class CubicPathPoint extends PathPoint {
   }
 
   @Override
-  public PathPoint skin(Mat2D world, Float32List bones) {
+  public PathPoint skin(Mat2D world, float[] bones) {
     CubicPathPoint point = new CubicPathPoint(pointType);
 
     double px =

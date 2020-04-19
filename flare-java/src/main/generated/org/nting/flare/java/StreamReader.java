@@ -48,7 +48,7 @@ public abstract class StreamReader {
 
   public abstract double readFloat32(String label);
 
-  public abstract Float32List readFloat32Array(int length, String label);
+  public abstract float[] readFloat32Array(int length, String label);
 
   public abstract double readFloat64(String label);
 

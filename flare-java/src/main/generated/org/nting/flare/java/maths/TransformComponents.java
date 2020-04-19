@@ -1,9 +1,9 @@
 package org.nting.flare.java.maths;
 
 public class TransformComponents {
-  Float32List _buffer;
+  float[] _buffer;
 
-  public Float32List values() {
+  public float[] values() {
     return _buffer;
   }
 

@@ -40,7 +40,7 @@ public class StraightPathPoint extends PathPoint {
   }
 
   @Override
-  public PathPoint skin(Mat2D world, Float32List bones) {
+  public PathPoint skin(Mat2D world, float[] bones) {
     StraightPathPoint point = new StraightPathPoint()
       ..radius = radius;
 
