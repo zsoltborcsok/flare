@@ -3,7 +3,7 @@ package org.nting.flare.java;
 public class ActorEvent extends ActorComponent {
   static ActorComponent read(ActorArtboard artboard, StreamReader reader,
       ActorEvent component) {
-    component ??= new ActorEvent();
+    component = component != null ? component : new ActorEvent();
 
     ActorComponent.read(artboard, reader, component);
 

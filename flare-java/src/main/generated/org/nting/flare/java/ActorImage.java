@@ -131,7 +131,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
   static ActorImage read(ActorArtboard artboard, StreamReader reader,
       ActorImage node) {
-    node ??= new ActorImage();
+    node = node != null ? node : new ActorImage();
 
     ActorDrawable.read(artboard, reader, node);
     ActorSkinnable.read(artboard, reader, node);

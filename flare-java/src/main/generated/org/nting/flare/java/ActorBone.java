@@ -31,7 +31,7 @@ public class ActorBone extends ActorBoneBase {
 
   static ActorBone read(ActorArtboard artboard, StreamReader reader,
       ActorBone node) {
-    node ??= new ActorBone();
+    node = node != null ? node : new ActorBone();
     ActorBoneBase.read(artboard, reader, node);
     return node;
   }

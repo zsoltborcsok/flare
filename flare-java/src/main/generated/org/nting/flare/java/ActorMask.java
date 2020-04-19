@@ -16,7 +16,7 @@ public class ActorMask extends ActorLayerEffect {
 
   static ActorMask read(ActorArtboard artboard, StreamReader reader,
       ActorMask component) {
-    component ??= new ActorMask();
+    component = component != null ? component : new ActorMask();
     ActorLayerEffect.read(artboard, reader, component);
     component._sourceIdx = reader.readId("source");
     component._maskType =

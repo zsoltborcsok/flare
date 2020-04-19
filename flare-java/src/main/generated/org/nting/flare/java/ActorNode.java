@@ -246,7 +246,7 @@ public class ActorNode extends ActorComponent {
 
   static ActorNode read(ActorArtboard artboard, StreamReader reader,
       ActorNode node) {
-    node ??= new ActorNode();
+    node = node != null ? node : new ActorNode();
     ActorComponent.read(artboard, reader, node);
     Vec2D.copyFromList(
         node._translation, reader.readFloat32Array(2, "translation"));
@@ -282,7 +282,7 @@ public class ActorNode extends ActorComponent {
       component.parent.removeChild(component);
     }
     component.parent = this;
-    _children ??= <ActorComponent>[];
+    _children = _children != null ? _children : <ActorComponent>[];
     _children.add(component);
   }
 
@@ -322,7 +322,7 @@ public class ActorNode extends ActorComponent {
   public void onDirty(int dirt) {}
 
   public boolean addConstraint(ActorConstraint constraint) {
-    _constraints ??= <ActorConstraint>[];
+    _constraints = _constraints != null ? _constraints : <ActorConstraint>[];
     if (_constraints.contains(constraint)) {
       return false;
     }
@@ -331,7 +331,7 @@ public class ActorNode extends ActorComponent {
   }
 
   public boolean addPeerConstraint(ActorConstraint constraint) {
-    _peerConstraints ??= <ActorConstraint>[];
+    _peerConstraints = _peerConstraints != null ? _peerConstraints : <ActorConstraint>[];
     if (_peerConstraints.contains(constraint)) {
       return false;
     }

@@ -24,7 +24,7 @@ public class ActorPolygon extends ActorProceduralPath {
 
   static ActorPolygon read(ActorArtboard artboard, StreamReader reader,
       ActorPolygon component) {
-    component ??= new ActorPolygon();
+    component = component != null ? component : new ActorPolygon();
 
     ActorNode.read(artboard, reader, component);
 

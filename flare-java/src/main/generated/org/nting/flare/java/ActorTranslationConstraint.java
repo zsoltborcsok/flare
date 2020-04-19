@@ -8,7 +8,7 @@ public class ActorTranslationConstraint extends ActorAxisConstraint {
 
   static ActorTranslationConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorTranslationConstraint component) {
-    component ??= new ActorTranslationConstraint();
+    component = component != null ? component : new ActorTranslationConstraint();
     ActorAxisConstraint.read(artboard, reader, component);
 
     return component;

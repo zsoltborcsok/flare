@@ -15,7 +15,7 @@ public class ActorTransformConstraint extends ActorTargetedConstraint {
 
   static ActorTransformConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorTransformConstraint component) {
-    component ??= new ActorTransformConstraint();
+    component = component != null ? component : new ActorTransformConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
 
     component._sourceSpace = reader.readUint8("sourceSpaceId");

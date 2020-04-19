@@ -30,7 +30,7 @@ public class ActorRootBone extends ActorNode {
 
   static ActorRootBone read(ActorArtboard artboard, StreamReader reader,
       ActorRootBone node) {
-    node ??= new ActorRootBone();
+    node = node != null ? node : new ActorRootBone();
     ActorNode.read(artboard, reader, node);
     return node;
   }

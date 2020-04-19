@@ -21,7 +21,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
 
   static ActorRotationConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorRotationConstraint component) {
-    component ??= new ActorRotationConstraint();
+    component = component != null ? component : new ActorRotationConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
     component._copy = reader.readBoolean("copy");
     if (component._copy) {

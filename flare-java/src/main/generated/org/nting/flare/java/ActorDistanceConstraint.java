@@ -18,7 +18,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
 
   static ActorDistanceConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorDistanceConstraint component) {
-    component ??= new ActorDistanceConstraint();
+    component = component != null ? component : new ActorDistanceConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
 
     component._distance = reader.readFloat32("distance");

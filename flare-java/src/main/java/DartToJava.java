@@ -54,10 +54,24 @@ public class DartToJava {
         // replace(pathToFiles, ".first", ".get(0)", line -> Pattern.compile("\\.first[a-zA-Z_0-9(]").matcher(line).find());
         // replace(pathToFiles, "dynamic", "Object", line -> Pattern.compile("(dynamic[a-zA-Z_0-9(])|([a-zA-Z_0-9]dynamic)").matcher(line).find());
         // replace(pathToFiles, "Uint8List", "byte[]"); // NOTE: extra adjustments needed
-        replace(pathToFiles, "Float32List", "float[]", line -> Pattern.compile("Float32List[a-zA-Z_0-9(.]").matcher(line).find());
+        // replace(pathToFiles, "Float32List", "float[]", line -> Pattern.compile("Float32List[a-zA-Z_0-9(.]").matcher(line).find());
+        handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
 
-        // as, ??=, ?., = <Object, Object>{}
+        // as, ?., = <Object, Object>{}
         // var, operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void handleAssignOnlyIfTheAssignedToVariableIsNull(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            int indexOfTheOperator = line.indexOf("??=");
+            if (0 <= indexOfTheOperator) {
+                String assignTo = line.substring(0, indexOfTheOperator);
+                String variable = assignTo.trim();
+                line = assignTo + "= " + variable + " != null ? " + variable + " :" +
+                        line.substring(indexOfTheOperator + 3);
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void replace(Path pathToFiles, String target, String replacement, Function<String, Boolean> exclude) {

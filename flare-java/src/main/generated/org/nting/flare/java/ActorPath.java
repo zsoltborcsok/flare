@@ -118,7 +118,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
 
   static ActorPath read(ActorArtboard artboard, StreamReader reader,
       ActorPath component) {
-    component ??= new ActorPath();
+    component = component != null ? component : new ActorPath();
     ActorNode.read(artboard, reader, component);
     ActorSkinnable.read(artboard, reader, component);
 

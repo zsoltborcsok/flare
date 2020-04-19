@@ -26,7 +26,7 @@ public class ActorStar extends ActorProceduralPath {
 
   static ActorStar read(ActorArtboard artboard, StreamReader reader,
       ActorStar component) {
-    component ??= new ActorStar();
+    component = component != null ? component : new ActorStar();
 
     ActorNode.read(artboard, reader, component);
 

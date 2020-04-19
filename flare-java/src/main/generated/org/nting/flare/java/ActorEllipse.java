@@ -19,7 +19,7 @@ public class ActorEllipse extends ActorProceduralPath {
 
   static ActorEllipse read(ActorArtboard artboard, StreamReader reader,
       ActorEllipse component) {
-    component ??= new ActorEllipse();
+    component = component != null ? component : new ActorEllipse();
 
     ActorNode.read(artboard, reader, component);
 

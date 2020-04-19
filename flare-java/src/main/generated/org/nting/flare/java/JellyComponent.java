@@ -226,7 +226,7 @@ public class JellyComponent extends ActorComponent {
 
   static JellyComponent read(ActorArtboard artboard, StreamReader reader,
       JellyComponent node) {
-    node ??= new JellyComponent();
+    node = node != null ? node : new JellyComponent();
     ActorComponent.read(artboard, reader, node);
 
     node._easeIn = reader.readFloat32("easeIn");

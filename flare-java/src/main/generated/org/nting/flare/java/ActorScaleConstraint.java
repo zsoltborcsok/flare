@@ -11,7 +11,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
 
   static ActorScaleConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorScaleConstraint component) {
-    component ??= new ActorScaleConstraint();
+    component = component != null ? component : new ActorScaleConstraint();
     ActorAxisConstraint.read(artboard, reader, component);
     return component;
   }

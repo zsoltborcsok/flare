@@ -138,7 +138,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   static ActorIKConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorIKConstraint component) {
-    component ??= new ActorIKConstraint();
+    component = component != null ? component : new ActorIKConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
     component._invertDirection = reader.readBoolean("isInverted");
 
