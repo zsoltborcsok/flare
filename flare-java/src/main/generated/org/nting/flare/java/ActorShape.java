@@ -181,7 +181,7 @@ public class ActorShape extends ActorDrawable {
   }
 
   @Override
-  set blendModeId(int value) {}
+  public void blendModeId(int value) {}
 
   public boolean addPath(ActorBasePath path) {
     if (_paths.contains(path)) {

@@ -6,7 +6,7 @@ import static java.lang.Math.min;
 public class ActorNodeSolo extends ActorNode {
   private int _activeChildIndex = 0;
 
-  set activeChildIndex(int idx) {
+  public void activeChildIndex(int idx) {
     if (idx != _activeChildIndex) {
       setActiveChildIndex(idx);
     }

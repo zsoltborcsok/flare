@@ -58,7 +58,8 @@ public class DartToJava {
         // replace(pathToFiles, "Float32List", "float[]", line -> Pattern.compile("Float32List[a-zA-Z_0-9(.]").matcher(line).find());
         // handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
         // makeFieldsPublicOrPrivate(pathToFiles);
-        replace(pathToFiles, "double.maxFinite", "Double.MAX_VALUE");
+        // replace(pathToFiles, "double.maxFinite", "Double.MAX_VALUE");
+        replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
 
         // ?., = <Object, Object>{}
         // var, operators (e.g. []), constructors, factories, clone, Future, await

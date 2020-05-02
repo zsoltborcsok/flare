@@ -5,7 +5,7 @@ public class ActorDropShadow extends ActorShadow {
   public int blendModeId() { return 0; }
 
   @Override
-  set blendModeId(int value) {}
+  public void blendModeId(int value) {}
 
   @Override
   public ActorComponent makeInstance(ActorArtboard resetArtboard) {

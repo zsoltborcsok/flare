@@ -41,7 +41,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   }
 
   @Override
-  set blendModeId(int value) {}
+  public void blendModeId(int value) {}
 
   @Override
   public AABB computeAABB() {

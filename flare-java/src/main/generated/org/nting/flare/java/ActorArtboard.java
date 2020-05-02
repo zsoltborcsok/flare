@@ -47,14 +47,14 @@ public class ActorArtboard {
 
   public float[] overrideColor() { return _overrideColor; }
 
-  set overrideColor(float[] value) {
+  public void overrideColor(float[] value) {
     _overrideColor = value;
     for (final ActorDrawable drawable : _drawableNodes) {
       addDirt(drawable, DirtyFlags.paintDirty, true);
     }
   }
 
-  set modulateOpacity(double value) {
+  public void modulateOpacity(double value) {
     _modulateOpacity = value;
     for (final ActorDrawable drawable : _drawableNodes) {
       addDirt(drawable, DirtyFlags.paintDirty, true);

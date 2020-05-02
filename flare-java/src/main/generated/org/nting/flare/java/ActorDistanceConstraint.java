@@ -86,14 +86,14 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
 
   public int mode() { return _mode; }
 
-  set distance(double d) {
+  public void distance(double d) {
     if (_distance != d) {
       _distance = d;
       markDirty();
     }
   }
 
-  set mode(int m) {
+  public void mode(int m) {
     if (_mode != m) {
       _mode = m;
       markDirty();

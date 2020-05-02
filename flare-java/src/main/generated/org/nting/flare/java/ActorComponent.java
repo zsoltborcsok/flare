@@ -8,7 +8,7 @@ public abstract class ActorComponent {
 
   public ActorNode parent() { return _parent; }
 
-  set parent(ActorNode value) {
+  public void parent(ActorNode value) {
     if (_parent == value) {
       return;
     }

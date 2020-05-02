@@ -5,7 +5,7 @@ public abstract class ActorPaint extends ActorComponent {
 
   public double opacity() { return _opacity; }
 
-  set opacity(double value) {
+  public void opacity(double value) {
     if (value == _opacity) {
       return;
     }

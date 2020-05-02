@@ -52,7 +52,7 @@ public class ActorNode extends ActorComponent {
     return _overrideWorldTransform ? _worldTransform : null;
   }
 
-  set worldTransformOverride(Mat2D value) {
+  public void worldTransformOverride(Mat2D value) {
     if (value == null) {
       _overrideWorldTransform = false;
     } else {
@@ -69,7 +69,7 @@ public class ActorNode extends ActorComponent {
   // N.B. this should only be done if you really know what you're doing.
   // Generally you want to manipulate the local translation, rotation,
   // and scale of a Node.
-  set worldTransform(Mat2D value) {
+  public void worldTransform(Mat2D value) {
     Mat2D.copy(_worldTransform, value);
   }
 
@@ -77,7 +77,7 @@ public class ActorNode extends ActorComponent {
     return _translation[0];
   }
 
-  set x(double value) {
+  public void x(double value) {
     if (_translation[0] == value) {
       return;
     }
@@ -89,7 +89,7 @@ public class ActorNode extends ActorComponent {
     return _translation[1];
   }
 
-  set y(double value) {
+  public void y(double value) {
     if (_translation[1] == value) {
       return;
     }
@@ -101,7 +101,7 @@ public class ActorNode extends ActorComponent {
     return Vec2D.clone(_translation);
   }
 
-  set translation(Vec2D value) {
+  public void translation(Vec2D value) {
     Vec2D.copy(_translation, value);
     markTransformDirty();
   }
@@ -110,7 +110,7 @@ public class ActorNode extends ActorComponent {
     return _rotation;
   }
 
-  set rotation(double value) {
+  public void rotation(double value) {
     if (_rotation == value) {
       return;
     }
@@ -122,7 +122,7 @@ public class ActorNode extends ActorComponent {
     return _scale[0];
   }
 
-  set scaleX(double value) {
+  public void scaleX(double value) {
     if (_scale[0] == value) {
       return;
     }
@@ -134,7 +134,7 @@ public class ActorNode extends ActorComponent {
     return _scale[1];
   }
 
-  set scaleY(double value) {
+  public void scaleY(double value) {
     if (_scale[1] == value) {
       return;
     }
@@ -146,7 +146,7 @@ public class ActorNode extends ActorComponent {
     return _opacity;
   }
 
-  set opacity(double value) {
+  public void opacity(double value) {
     if (_opacity == value) {
       return;
     }
@@ -185,7 +185,7 @@ public class ActorNode extends ActorComponent {
     return _isCollapsedVisibility;
   }
 
-  set collapsedVisibility(boolean value) {
+  public void collapsedVisibility(boolean value) {
     if (_isCollapsedVisibility != value) {
       _isCollapsedVisibility = value;
       markTransformDirty();

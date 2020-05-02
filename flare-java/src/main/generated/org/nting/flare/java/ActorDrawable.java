@@ -24,7 +24,7 @@ public abstract class ActorDrawable extends ActorNode {
 
   public int drawOrder() { return _drawOrder; }
 
-  set drawOrder(int value) {
+  public void drawOrder(int value) {
     if (_drawOrder == value) {
       return;
     }

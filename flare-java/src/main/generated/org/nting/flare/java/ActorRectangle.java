@@ -53,7 +53,7 @@ public class ActorRectangle extends ActorProceduralPath {
     return _rectanglePathPoints;
   }
 
-  set radius(double rd) {
+  public void radius(double rd) {
     if (rd != _radius) {
       _radius = rd;
       invalidateDrawable();

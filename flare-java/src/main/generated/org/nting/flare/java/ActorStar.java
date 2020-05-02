@@ -56,7 +56,7 @@ public class ActorStar extends ActorProceduralPath {
     return _starPoints;
   }
 
-  set innerRadius(double val) {
+  public void innerRadius(double val) {
     if (val != _innerRadius) {
       _innerRadius = val;
       invalidateDrawable();

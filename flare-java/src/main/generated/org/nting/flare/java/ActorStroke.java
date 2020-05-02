@@ -5,7 +5,7 @@ public abstract class ActorStroke {
 
   public double width() { return _width; }
 
-  set width(double value) {
+  public void width(double value) {
     if (value == _width) {
       return;
     }
@@ -30,7 +30,7 @@ public abstract class ActorStroke {
 
   public double trimStart() { return _trimStart; }
 
-  set trimStart(double value) {
+  public void trimStart(double value) {
     if (_trimStart == value) {
       return;
     }
@@ -42,7 +42,7 @@ public abstract class ActorStroke {
 
   public double trimEnd() { return _trimEnd; }
 
-  set trimEnd(double value) {
+  public void trimEnd(double value) {
     if (_trimEnd == value) {
       return;
     }
@@ -54,7 +54,7 @@ public abstract class ActorStroke {
 
   public double trimOffset() { return _trimOffset; }
 
-  set trimOffset(double value) {
+  public void trimOffset(double value) {
     if (_trimOffset == value) {
       return;
     }

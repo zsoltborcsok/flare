@@ -10,7 +10,7 @@ public abstract class ActorConstraint extends ActorComponent {
     return _isEnabled;
   }
 
-  set isEnabled(boolean value) {
+  public void isEnabled(boolean value) {
     if (value == _isEnabled) {
       return;
     }
@@ -27,7 +27,7 @@ public abstract class ActorConstraint extends ActorComponent {
     return _strength;
   }
 
-  set strength(double value) {
+  public void strength(double value) {
     if (value == _strength) {
       return;
     }

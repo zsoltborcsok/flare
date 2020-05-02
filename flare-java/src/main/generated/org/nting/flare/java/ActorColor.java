@@ -11,7 +11,7 @@ public abstract class ActorColor extends ActorPaint {
     return artboard?.overrideColor ?? _color;
   }
 
-  set color(float[] value) {
+  public void color(float[] value) {
     if (value.size() != 4) {
       return;
     }

@@ -47,7 +47,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
 
   public List<SequenceFrame> sequenceFrames() { return _sequenceFrames; }
 
-  set sequenceFrame(int value) {
+  public void sequenceFrame(int value) {
     _sequenceFrame = value;
   }
 
@@ -95,7 +95,7 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
     return _animationDeformedVertices != null;
   }
 
-  set doesAnimationVertexDeform(boolean value) {
+  public void doesAnimationVertexDeform(boolean value) {
     if (value) {
       if (_animationDeformedVertices == null ||
           _animationDeformedVertices.size() != _vertexCount * 2) {
@@ -408,5 +408,5 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   }
 
   @Override
-  set blendModeId(int value) {}
+  public void blendModeId(int value) {}
 }

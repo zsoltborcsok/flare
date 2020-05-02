@@ -13,14 +13,14 @@ public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
   @Override
   public Mat2D pathTransform() { return worldTransform; }
 
-  set width(double w) {
+  public void width(double w) {
     if (w != _width) {
       _width = w;
       invalidateDrawable();
     }
   }
 
-  set height(double w) {
+  public void height(double w) {
     if (w != _height) {
       _height = w;
       invalidateDrawable();

@@ -27,7 +27,7 @@ public class TransformComponents {
     return _buffer[0];
   }
 
-  set x(double value) {
+  public void x(double value) {
     _buffer[0] = value;
   }
 
@@ -35,7 +35,7 @@ public class TransformComponents {
     return _buffer[1];
   }
 
-  set y(double value) {
+  public void y(double value) {
     _buffer[1] = value;
   }
 
@@ -43,7 +43,7 @@ public class TransformComponents {
     return _buffer[2];
   }
 
-  set scaleX(double value) {
+  public void scaleX(double value) {
     _buffer[2] = value;
   }
 
@@ -51,7 +51,7 @@ public class TransformComponents {
     return _buffer[3];
   }
 
-  set scaleY(double value) {
+  public void scaleY(double value) {
     _buffer[3] = value;
   }
 
@@ -59,7 +59,7 @@ public class TransformComponents {
     return _buffer[4];
   }
 
-  set rotation(double value) {
+  public void rotation(double value) {
     _buffer[4] = value;
   }
 
@@ -67,7 +67,7 @@ public class TransformComponents {
     return _buffer[5];
   }
 
-  set skew(double value) {
+  public void skew(double value) {
     _buffer[5] = value;
   }
 

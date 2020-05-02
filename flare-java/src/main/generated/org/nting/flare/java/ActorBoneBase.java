@@ -10,7 +10,7 @@ public class ActorBoneBase extends ActorNode {
     return _length;
   }
 
-  set length(double value) {
+  public void length(double value) {
     if (_length == value) {
       return;
     }
