@@ -33,10 +33,10 @@ public abstract class ActorBasePath {
   public List<PathPoint> deformedPoints() { return points; }
 
   public AABB getPathAABB() {
-    double minX = double.maxFinite;
-    double minY = double.maxFinite;
-    double maxX = -double.maxFinite;
-    double maxY = -double.maxFinite;
+    double minX = Double.MAX_VALUE;
+    double minY = Double.MAX_VALUE;
+    double maxX = -Double.MAX_VALUE;
+    double maxY = -Double.MAX_VALUE;
 
     AABB obb = getPathOBB();
 
@@ -89,10 +89,10 @@ public abstract class ActorBasePath {
   }
 
   public AABB getPathOBB() {
-    double minX = double.maxFinite;
-    double minY = double.maxFinite;
-    double maxX = -double.maxFinite;
-    double maxY = -double.maxFinite;
+    double minX = Double.MAX_VALUE;
+    double minY = Double.MAX_VALUE;
+    double maxX = -Double.MAX_VALUE;
+    double maxY = -Double.MAX_VALUE;
 
     List<PathPoint> renderPoints = points;
     for (final PathPoint point : renderPoints) {

@@ -87,10 +87,10 @@ public class AABB {
     double dy = a[3] - a[1];
     return dx >= 0 &&
         dy >= 0 &&
-        a[0] <= double.maxFinite &&
-        a[1] <= double.maxFinite &&
-        a[2] <= double.maxFinite &&
-        a[3] <= double.maxFinite;
+        a[0] <= Double.MAX_VALUE &&
+        a[1] <= Double.MAX_VALUE &&
+        a[2] <= Double.MAX_VALUE &&
+        a[3] <= Double.MAX_VALUE;
   }
 
   public static boolean testOverlap(AABB a, AABB b) {

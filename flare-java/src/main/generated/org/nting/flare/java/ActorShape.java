@@ -107,10 +107,10 @@ public class ActorShape extends ActorDrawable {
       }
     }
 
-    double minX = double.maxFinite;
-    double minY = double.maxFinite;
-    double maxX = -double.maxFinite;
-    double maxY = -double.maxFinite;
+    double minX = Double.MAX_VALUE;
+    double minY = Double.MAX_VALUE;
+    double maxX = -Double.MAX_VALUE;
+    double maxY = -Double.MAX_VALUE;
 
     if (aabb == null) {
       return AABB.fromValues(minX, minY, maxX, maxY);
