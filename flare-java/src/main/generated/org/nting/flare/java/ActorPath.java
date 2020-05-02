@@ -68,10 +68,10 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
       vertices[readIdx++] = point.translation[1];
       if (point.pointType == PointType.straight) {
         // radius
-        vertices[readIdx++] = (point as StraightPathPoint).radius;
+        vertices[readIdx++] = ((StraightPathPoint) point).radius;
       } else {
         // in/out
-        CubicPathPoint cubicPoint = point as CubicPathPoint;
+        CubicPathPoint cubicPoint = (CubicPathPoint) point;
         vertices[readIdx++] = cubicPoint.inPoint[0];
         vertices[readIdx++] = cubicPoint.inPoint[1];
         vertices[readIdx++] = cubicPoint.outPoint[0];
@@ -98,11 +98,11 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
         point.translation[1] = vertexDeform[readIdx++];
         switch (point.pointType) {
           case PointType.straight:
-            (point as StraightPathPoint).radius = vertexDeform[readIdx++];
+            ((StraightPathPoint) point).radius = vertexDeform[readIdx++];
             break;
 
           default:
-            CubicPathPoint cubicPoint = point as CubicPathPoint;
+            CubicPathPoint cubicPoint = (CubicPathPoint) point;
             cubicPoint.inPoint[0] = vertexDeform[readIdx++];
             cubicPoint.inPoint[1] = vertexDeform[readIdx++];
             cubicPoint.outPoint[0] = vertexDeform[readIdx++];

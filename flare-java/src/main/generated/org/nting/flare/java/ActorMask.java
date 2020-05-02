@@ -35,7 +35,7 @@ public class ActorMask extends ActorLayerEffect {
   public void resolveComponentIndices(List<ActorComponent> components) {
     super.resolveComponentIndices(components);
 
-    _source = components[_sourceIdx] as ActorNode;
+    _source = (ActorNode) components[_sourceIdx];
   }
 
   @Override

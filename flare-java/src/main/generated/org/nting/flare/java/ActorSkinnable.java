@@ -47,7 +47,7 @@ public abstract class ActorSkinnable {
     if (_connectedBones != null) {
       for (int i = 0; i < _connectedBones.size(); i++) {
         SkinnedBone bc = _connectedBones[i];
-        bc.node = components[bc.boneIdx] as ActorNode;
+        bc.node = (ActorNode) components[bc.boneIdx];
       }
     }
   }

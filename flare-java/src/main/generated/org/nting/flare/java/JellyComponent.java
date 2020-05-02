@@ -149,14 +149,14 @@ public class JellyComponent extends ActorComponent {
     super.resolveComponentIndices(components);
 
     if (_inTargetIdx != 0) {
-      _inTarget = components[_inTargetIdx] as ActorNode;
+      _inTarget = (ActorNode) components[_inTargetIdx];
     }
     if (_outTargetIdx != 0) {
-      _outTarget = components[_outTargetIdx] as ActorNode;
+      _outTarget = (ActorNode) components[_outTargetIdx];
     }
 
     List<ActorConstraint> dependencyConstraints = <ActorConstraint>[];
-    ActorBone bone = parent as ActorBone;
+    ActorBone bone = (ActorBone) parent;
     if (bone != null) {
       artboard.addDependency(this, bone);
       dependencyConstraints += bone.allConstraints;
@@ -175,7 +175,7 @@ public class JellyComponent extends ActorComponent {
         }
       }
       if (bone.parent instanceof ActorBone) {
-        ActorBone parentBone = bone.parent as ActorBone;
+        ActorBone parentBone = (ActorBone) bone.parent;
         JellyComponent parentBoneJelly = parentBone.jelly;
         if (parentBoneJelly != null && parentBoneJelly.outTarget != null) {
           artboard.addDependency(this, parentBoneJelly.outTarget);
@@ -204,7 +204,7 @@ public class JellyComponent extends ActorComponent {
   @Override
   public void completeResolve() {
     //super.completeResolve();
-    ActorBone bone = parent as ActorBone;
+    ActorBone bone = (ActorBone) parent;
     bone.jelly = this;
 
     // Get jellies.
@@ -243,7 +243,7 @@ public class JellyComponent extends ActorComponent {
     if (_bones == null) {
       return;
     }
-    ActorBone bone = parent as ActorBone;
+    ActorBone bone = (ActorBone) parent;
     // We are in local bone space.
     Vec2D tipPosition = Vec2D.fromValues(bone.size(), 0.0);
 
@@ -311,7 +311,7 @@ public class JellyComponent extends ActorComponent {
 
   @Override
   public void update(int dirt) {
-    ActorBone bone = parent as ActorBone;
+    ActorBone bone = (ActorBone) parent;
     ActorNode parentBone = bone.parent;
     JellyComponent parentBoneJelly;
     if (parentBone instanceof ActorBone) {

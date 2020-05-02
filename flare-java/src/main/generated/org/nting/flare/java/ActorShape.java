@@ -90,7 +90,7 @@ public class ActorShape extends ActorDrawable {
       if (component is! ActorBasePath) {
         continue;
       }
-      ActorBasePath path = component as ActorBasePath;
+      ActorBasePath path = (ActorBasePath) component;
       // This is the axis aligned bounding box in the space of the
       // parent (this case our shape).
       AABB pathAABB = path.getPathAABB();

@@ -38,7 +38,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
     if (_influencedBones != null) {
       for (final InfluencedBone influenced : _influencedBones) {
-        influenced.bone = components[influenced.boneIdx] as ActorBone;
+        influenced.bone = (ActorBone) components[influenced.boneIdx];
         // Mark peer constraints, N.B. that we're not adding it to the
         //  parent bone as we're constraining it anyway.
         if (influenced.bone != parent) {
@@ -69,7 +69,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     int idx = count - 1;
     while (end != null && end != start.parent) {
       BoneChain bc = new BoneChain();
-      bc.bone = end as ActorBone;
+      bc.bone = (ActorBone) end;
       bc.angle = 0.0;
       bc.included = allIn;
       bc.transformComponents = new TransformComponents();
@@ -161,7 +161,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
 
   @Override
   public void constrain(ActorNode node) {
-    ActorNode target = this.target as ActorNode;
+    ActorNode target = (ActorNode) this.target;
     if (target == null) {
       return;
     }

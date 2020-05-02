@@ -35,7 +35,7 @@ public abstract class ActorComponent {
   }
 
   public void resolveComponentIndices(List<ActorComponent> components) {
-    ActorNode node = components[_parentIdx] as ActorNode;
+    ActorNode node = (ActorNode) components[_parentIdx];
     if (node != null) {
       node.addChild(this);
       artboard.addDependency(this, node);

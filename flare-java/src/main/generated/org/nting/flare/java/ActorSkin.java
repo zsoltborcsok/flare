@@ -16,7 +16,7 @@ public class ActorSkin extends ActorComponent {
 
   @Override
   public void update(int dirt) {
-    ActorSkinnable skinnable = parent as ActorSkinnable;
+    ActorSkinnable skinnable = (ActorSkinnable) parent;
     if (skinnable == null) {
       return;
     }
@@ -66,12 +66,12 @@ public class ActorSkin extends ActorComponent {
 
   @Override
   public void completeResolve() {
-    ActorSkinnable skinnable = parent as ActorSkinnable;
+    ActorSkinnable skinnable = (ActorSkinnable) parent;
     if (skinnable == null) {
       return;
     }
     skinnable.skin = this;
-    artboard.addDependency(this, skinnable as ActorComponent);
+    artboard.addDependency(this, (ActorComponent) skinnable);
     if (skinnable.isConnectedToBones) {
       List<SkinnedBone> connectedBones = skinnable.connectedBones;
       for (final SkinnedBone skinnedBone : connectedBones) {

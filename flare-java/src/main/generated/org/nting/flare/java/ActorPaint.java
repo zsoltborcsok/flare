@@ -31,7 +31,7 @@ public abstract class ActorPaint extends ActorComponent {
     artboard.addDependency(this, parent);
   }
 
-  public ActorShape shape() { return parent as ActorShape; }
+  public ActorShape shape() { return (ActorShape) parent; }
 
   public void markPaintDirty() {
     artboard.addDirt(this, DirtyFlags.paintDirty, false);

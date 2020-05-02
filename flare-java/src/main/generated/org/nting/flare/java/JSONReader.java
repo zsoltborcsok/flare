@@ -1,5 +1,8 @@
 package org.nting.flare.java;
 
+import java.util.List;
+import java.util.Map;
+
 public abstract class JSONReader implements StreamReader {
   @Override
   int blockType;
@@ -177,9 +180,9 @@ public abstract class JSONReader implements StreamReader {
 
   public int _readLength() {
     if (_context.get(0) instanceof List) {
-      return (_context.get(0) as List).size();
+      return ((List) _context.get(0)).size();
     } else if (_context.get(0) instanceof Map) {
-      return (_context.get(0) as Map).size();
+      return ((Map) _context.get(0)).size();
     }
     return 0;
   }

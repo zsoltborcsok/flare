@@ -43,7 +43,7 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
 
   @Override
   public void constrain(ActorNode node) {
-    ActorNode t = target as ActorNode;
+    ActorNode t = (ActorNode) target;
     if (t == null) {
       return;
     }

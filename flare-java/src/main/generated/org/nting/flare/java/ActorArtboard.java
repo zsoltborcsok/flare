@@ -225,7 +225,7 @@ public class ActorArtboard {
     }
 
     _flags |= ActorFlags.isDirty;
-    _root = _components[0] as ActorNode;
+    _root = (ActorNode) _components[0];
     resolveHierarchy();
     completeResolveHierarchy();
   }
@@ -388,8 +388,8 @@ public class ActorArtboard {
 
         case BlockTypes.actorImage:
           component = ActorImage.read(this, nodeBlock, actor.makeImageNode());
-          if ((component as ActorImage).textureIndex > actor.maxTextureIndex) {
-            actor.maxTextureIndex = (component as ActorImage).textureIndex;
+          if (((ActorImage) component).textureIndex > actor.maxTextureIndex) {
+            actor.maxTextureIndex = ((ActorImage) component).textureIndex;
           }
           break;
 

@@ -49,7 +49,7 @@ public class CubicPathPoint extends PathPoint {
 
   @Override
   public PathPoint transformed(Mat2D transform) {
-    CubicPathPoint result = super.transformed(transform) as CubicPathPoint;
+    CubicPathPoint result = (CubicPathPoint) super.transformed(transform);
     Vec2D.transformMat2D(result.inPoint, result.inPoint, transform);
     Vec2D.transformMat2D(result.outPoint, result.outPoint, transform);
     return result;

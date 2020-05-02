@@ -49,7 +49,7 @@ public abstract class GradientColor extends ActorPaint {
 
   @Override
   public void update(int dirt) {
-    ActorShape shape = parent as ActorShape;
+    ActorShape shape = (ActorShape) parent;
     Mat2D world = shape.worldTransform;
     if (shape.transformAffectsStroke) {
       Vec2D.copy(_renderStart, _start);

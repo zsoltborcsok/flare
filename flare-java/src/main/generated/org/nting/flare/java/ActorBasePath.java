@@ -159,7 +159,7 @@ public abstract class ActorBasePath {
       possibleShape = possibleShape.parent;
     }
     if (possibleShape != null) {
-      _shape = possibleShape as ActorShape;
+      _shape = (ActorShape) possibleShape;
       _shape.addPath(this);
     } else {
       _shape = null;

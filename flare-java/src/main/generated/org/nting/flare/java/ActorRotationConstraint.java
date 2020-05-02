@@ -46,7 +46,7 @@ public class ActorRotationConstraint extends ActorTargetedConstraint {
 
   @Override
   public void constrain(ActorNode node) {
-    ActorNode target = this.target as ActorNode;
+    ActorNode target = (ActorNode) this.target;
     ActorNode grandParent = parent.parent;
 
     Mat2D transformA = parent.worldTransform;

@@ -25,7 +25,7 @@ public class ActorScaleConstraint extends ActorAxisConstraint {
 
   @Override
   public void constrain(ActorNode node) {
-    ActorNode t = target as ActorNode;
+    ActorNode t = (ActorNode) target;
     ActorNode p = parent;
     ActorNode grandParent = p.parent;
 
