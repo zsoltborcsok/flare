@@ -6,18 +6,18 @@ import org.nting.flare.java.maths.TransformComponents;
 public class ActorRotationConstraint extends ActorTargetedConstraint {
   public static final double pi2 = pi * 2.0;
 
-  boolean _copy = false;
-  double _scale = 1.0;
-  boolean _enableMin = false;
-  boolean _enableMax = false;
-  double _max = pi2;
-  double _min = -pi2;
-  boolean _offset = false;
-  int _sourceSpace = TransformSpace.world;
-  int _destSpace = TransformSpace.world;
-  int _minMaxSpace = TransformSpace.world;
-  final TransformComponents _componentsA = new TransformComponents();
-  final TransformComponents _componentsB = new TransformComponents();
+  private boolean _copy = false;
+  private double _scale = 1.0;
+  private boolean _enableMin = false;
+  private boolean _enableMax = false;
+  private double _max = pi2;
+  private double _min = -pi2;
+  private boolean _offset = false;
+  private int _sourceSpace = TransformSpace.world;
+  private int _destSpace = TransformSpace.world;
+  private int _minMaxSpace = TransformSpace.world;
+  private final TransformComponents _componentsA = new TransformComponents();
+  private final TransformComponents _componentsB = new TransformComponents();
 
   static ActorRotationConstraint read(ActorArtboard artboard,
       StreamReader reader, ActorRotationConstraint component) {

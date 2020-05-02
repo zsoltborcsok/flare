@@ -6,10 +6,10 @@ import org.nting.flare.java.maths.TransformComponents;
 final pi2 = pi * 2;
 
 public class ActorTransformConstraint extends ActorTargetedConstraint {
-  int _sourceSpace = TransformSpace.world;
-  int _destSpace = TransformSpace.world;
-  final TransformComponents _componentsA = new TransformComponents();
-  final TransformComponents _componentsB = new TransformComponents();
+  private int _sourceSpace = TransformSpace.world;
+  private int _destSpace = TransformSpace.world;
+  private final TransformComponents _componentsA = new TransformComponents();
+  private final TransformComponents _componentsB = new TransformComponents();
 
   ActorTransformConstraint() : super();
 

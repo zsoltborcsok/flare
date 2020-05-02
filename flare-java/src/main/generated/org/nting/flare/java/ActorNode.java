@@ -9,29 +9,29 @@ import java.util.List;
 typedef boolean ComopnentWalkCallback(ActorComponent component);
 
 public class ActorNode extends ActorComponent {
-  List<ActorComponent> _children;
+  private List<ActorComponent> _children;
 
   //List<ActorNode> m_Dependents;
-  Mat2D _transform = new Mat2D();
-  Mat2D _worldTransform = new Mat2D();
+  private Mat2D _transform = new Mat2D();
+  private Mat2D _worldTransform = new Mat2D();
 
-  Vec2D _translation = new Vec2D();
-  double _rotation = 0.0;
-  Vec2D _scale = Vec2D.fromValues(1.0, 1.0);
-  double _opacity = 1.0;
-  double _renderOpacity = 1.0;
-  ActorLayerEffectRenderer _layerEffect;
+  private Vec2D _translation = new Vec2D();
+  private double _rotation = 0.0;
+  private Vec2D _scale = Vec2D.fromValues(1.0, 1.0);
+  private double _opacity = 1.0;
+  private double _renderOpacity = 1.0;
+  private ActorLayerEffectRenderer _layerEffect;
 
   public ActorLayerEffectRenderer layerEffect() { return _layerEffect; }
 
-  boolean _overrideWorldTransform = false;
-  boolean _isCollapsedVisibility = false;
+  private boolean _overrideWorldTransform = false;
+  private boolean _isCollapsedVisibility = false;
 
-  boolean _renderCollapsed = false;
-  List<ActorClip> _clips;
+  private boolean _renderCollapsed = false;
+  private List<ActorClip> _clips;
 
-  List<ActorConstraint> _constraints;
-  List<ActorConstraint> _peerConstraints;
+  private List<ActorConstraint> _constraints;
+  private List<ActorConstraint> _peerConstraints;
 
   public static final int transformDirty = DirtyFlags.transformDirty;
   public static final int worldTransformDirty = DirtyFlags.worldTransformDirty;

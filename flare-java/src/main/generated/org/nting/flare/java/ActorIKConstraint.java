@@ -27,10 +27,10 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
   }
 
   public static final double PI2 = pi * 2.0;
-  boolean _invertDirection = false;
-  List<InfluencedBone> _influencedBones;
-  List<BoneChain> _fkChain;
-  List<BoneChain> _boneData;
+  private boolean _invertDirection = false;
+  private List<InfluencedBone> _influencedBones;
+  private List<BoneChain> _fkChain;
+  private List<BoneChain> _boneData;
 
   @Override
   public void resolveComponentIndices(List<ActorComponent> components) {

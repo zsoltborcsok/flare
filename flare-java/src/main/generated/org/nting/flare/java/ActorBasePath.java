@@ -7,10 +7,10 @@ import org.nting.flare.java.maths.Vec2D;
 import java.util.List;
 
 public abstract class ActorBasePath {
-  ActorShape _shape;
+  private ActorShape _shape;
 
   public ActorShape shape() { return _shape; }
-  boolean _isRootPath = false;
+  private boolean _isRootPath = false;
 
   public boolean isRootPath() { return _isRootPath; }
 

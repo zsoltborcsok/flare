@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class ActorFill {
-  FillRule _fillRule = FillRule.evenOdd;
+  private FillRule _fillRule = FillRule.evenOdd;
 
   public FillRule fillRule() { return _fillRule; }
 

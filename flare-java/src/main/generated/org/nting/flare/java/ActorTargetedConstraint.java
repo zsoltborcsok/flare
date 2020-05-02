@@ -3,8 +3,8 @@ package org.nting.flare.java;
 import java.util.List;
 
 public abstract class ActorTargetedConstraint extends ActorConstraint {
-  int _targetIdx;
-  ActorComponent _target;
+  private int _targetIdx;
+  private ActorComponent _target;
 
   public ActorComponent target() {
     return _target;

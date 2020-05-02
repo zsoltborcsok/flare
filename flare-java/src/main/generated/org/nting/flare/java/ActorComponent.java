@@ -3,8 +3,8 @@ package org.nting.flare.java;
 import java.util.List;
 
 public abstract class ActorComponent {
-  String _name = "Unnamed";
-  ActorNode _parent;
+  private String _name = "Unnamed";
+  private ActorNode _parent;
 
   public ActorNode parent() { return _parent; }
 
@@ -19,12 +19,12 @@ public abstract class ActorComponent {
 
   public void onParentChanged(ActorNode from, ActorNode to) {}
 
-  ActorArtboard artboard;
-  int _parentIdx = 0;
-  int idx = 0;
-  int graphOrder = 0;
-  int dirtMask = 0;
-  List<ActorComponent> dependents;
+  public ActorArtboard artboard;
+  private int _parentIdx = 0;
+  public int idx = 0;
+  public int graphOrder = 0;
+  public int dirtMask = 0;
+  public List<ActorComponent> dependents;
 
   ActorComponent();
 

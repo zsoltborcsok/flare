@@ -15,12 +15,12 @@ public abstract class ActorDrawable extends ActorNode {
     ClipShape(this.shape, this.intersect);
   }
 
-  List<List<ClipShape>> _clipShapes;
+  private List<List<ClipShape>> _clipShapes;
 
   public List<List<ClipShape>> clipShapes() { return _clipShapes; }
 
   // Editor set draw index.
-  int _drawOrder;
+  private int _drawOrder;
 
   public int drawOrder() { return _drawOrder; }
 
@@ -33,8 +33,8 @@ public abstract class ActorDrawable extends ActorNode {
   }
 
   // Computed draw index in the draw list.
-  int drawIndex;
-  boolean isHidden;
+  public int drawIndex;
+  public boolean isHidden;
 
   public boolean doesDraw() {
     return !isHidden && !renderCollapsed;
@@ -93,5 +93,5 @@ public abstract class ActorDrawable extends ActorNode {
 
   /// If this is set the drawable belongs to a layer. We store a reference to
   /// the parent node that contains the layer.
-  ActorNode layerEffectRenderParent;
+  public ActorNode layerEffectRenderParent;
 }

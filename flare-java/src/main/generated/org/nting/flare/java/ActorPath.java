@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
-  boolean _isHidden;
-  boolean _isClosed;
-  List<PathPoint> _points;
-  float[] vertexDeform;
+  private boolean _isHidden;
+  private boolean _isClosed;
+  private List<PathPoint> _points;
+  public float[] vertexDeform;
 
   @Override
   public boolean isPathInWorldSpace() { return isConnectedToBones; }

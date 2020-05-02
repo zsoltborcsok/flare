@@ -4,7 +4,7 @@ import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
 public class StraightPathPoint extends PathPoint {
-  double radius = 0.0;
+  public double radius = 0.0;
 
   StraightPathPoint() : super(PointType.straight);
 

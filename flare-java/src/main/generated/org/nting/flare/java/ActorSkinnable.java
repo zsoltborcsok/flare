@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ActorSkinnable {
-  ActorSkin skin;
-  List<SkinnedBone> _connectedBones;
+  public ActorSkin skin;
+  private List<SkinnedBone> _connectedBones;
 
   public abstract set worldTransformOverride(Mat2D value);
 

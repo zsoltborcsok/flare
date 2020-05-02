@@ -1,9 +1,9 @@
 package org.nting.flare.java;
 
 public class ActorClip {
-  int clipIdx;
-  boolean intersect = true;
-  ActorNode node;
+  public int clipIdx;
+  public boolean intersect = true;
+  public ActorNode node;
 
   ActorClip(this.clipIdx);
 

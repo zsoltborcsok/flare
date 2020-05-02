@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public class ActorRootBone extends ActorNode {
-  ActorBone _firstBone;
+  private ActorBone _firstBone;
 
   public ActorBone firstBone() {
     return _firstBone;

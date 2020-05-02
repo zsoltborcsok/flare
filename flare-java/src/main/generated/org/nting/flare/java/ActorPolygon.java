@@ -5,7 +5,7 @@ import org.nting.flare.java.maths.Vec2D;
 import java.util.List;
 
 public class ActorPolygon extends ActorProceduralPath {
-  int sides = 5;
+  public int sides = 5;
 
   @Override
   public void invalidatePath() {}

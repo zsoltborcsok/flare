@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class ActorPaint extends ActorComponent {
-  double _opacity = 1.0;
+  private double _opacity = 1.0;
 
   public double opacity() { return _opacity; }
 

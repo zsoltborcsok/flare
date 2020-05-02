@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActorLayerEffectRenderer extends ActorDrawable {
-  final List<ActorDrawable> _drawables = <ActorDrawable>[];
+  private final List<ActorDrawable> _drawables = <ActorDrawable>[];
 
   public List<ActorDrawable> drawables() { return _drawables; }
-  final List<ActorLayerEffectRendererMask> _renderMasks = new ArrayList<>();
+  private final List<ActorLayerEffectRendererMask> _renderMasks = new ArrayList<>();
 
   public List<ActorLayerEffectRendererMask> renderMasks() { return _renderMasks; }
-  ActorBlur _blur;
-  List<ActorDropShadow> _dropShadows;
-  List<ActorInnerShadow> _innerShadows;
+  private ActorBlur _blur;
+  private List<ActorDropShadow> _dropShadows;
+  private List<ActorInnerShadow> _innerShadows;
 
   public ActorBlur blur() { return _blur; }
 
@@ -138,7 +138,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 }
 
 public void _computeLayerNode(ActorDrawable drawable) {
-  ActorNode parent = drawable;
+  public ActorNode parent = drawable;
   while (parent != null) {
     if (parent.layerEffect != null) {
       drawable.layerEffectRenderParent = parent;

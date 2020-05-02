@@ -4,7 +4,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class AABB {
-  float[] _buffer;
+  private float[] _buffer;
 
   public float[] values() {
     return _buffer;

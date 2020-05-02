@@ -1,8 +1,8 @@
 package org.nting.flare.java;
 
 public class ActorBlur extends ActorLayerEffect {
-  double blurX;
-  double blurY;
+  public double blurX;
+  public double blurY;
 
   static ActorBlur read(ActorArtboard artboard, StreamReader reader,
       ActorBlur component) {

@@ -1,9 +1,9 @@
 package org.nting.flare.java;
 
 public abstract class ActorShadow extends ActorBlur {
-  double offsetX;
-  double offsetY;
-  float[] _color = new Float32List(4);
+  public double offsetX;
+  public double offsetY;
+  private float[] _color = new Float32List(4);
 
   public abstract int blendModeId();
 

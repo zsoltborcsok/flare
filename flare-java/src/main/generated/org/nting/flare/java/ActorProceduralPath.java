@@ -3,8 +3,8 @@ package org.nting.flare.java;
 import org.nting.flare.java.maths.Mat2D;
 
 public abstract class ActorProceduralPath extends ActorNode with ActorBasePath {
-  double _width;
-  double _height;
+  private double _width;
+  private double _height;
 
   public double width() { return _width; }
 

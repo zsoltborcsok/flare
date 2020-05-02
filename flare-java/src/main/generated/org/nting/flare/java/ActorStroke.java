@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class ActorStroke {
-  double _width = 1.0;
+  private double _width = 1.0;
 
   public double width() { return _width; }
 
@@ -13,20 +13,20 @@ public abstract class ActorStroke {
     markPaintDirty();
   }
 
-  StrokeCap _cap = StrokeCap.butt;
-  StrokeJoin _join = StrokeJoin.miter;
+  private StrokeCap _cap = StrokeCap.butt;
+  private StrokeJoin _join = StrokeJoin.miter;
 
   public StrokeCap cap() { return _cap; }
 
   public StrokeJoin join() { return _join; }
 
-  TrimPath _trim = TrimPath.off;
+  private TrimPath _trim = TrimPath.off;
 
   public TrimPath trim() { return _trim; }
 
   public boolean isTrimmed() { return _trim != TrimPath.off; }
 
-  double _trimStart = 0.0;
+  private double _trimStart = 0.0;
 
   public double trimStart() { return _trimStart; }
 
@@ -38,7 +38,7 @@ public abstract class ActorStroke {
     markPathEffectsDirty();
   }
 
-  double _trimEnd = 0.0;
+  private double _trimEnd = 0.0;
 
   public double trimEnd() { return _trimEnd; }
 
@@ -50,7 +50,7 @@ public abstract class ActorStroke {
     markPathEffectsDirty();
   }
 
-  double _trimOffset = 0.0;
+  private double _trimOffset = 0.0;
 
   public double trimOffset() { return _trimOffset; }
 

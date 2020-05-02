@@ -4,9 +4,9 @@ import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
 public abstract class PathPoint {
-  PointType _type;
-  Vec2D _translation = new Vec2D();
-  float[] _weights;
+  private PointType _type;
+  private Vec2D _translation = new Vec2D();
+  private float[] _weights;
 
   PathPoint(PointType type) {
     _type = type;

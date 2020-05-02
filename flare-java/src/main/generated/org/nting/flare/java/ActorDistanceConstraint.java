@@ -11,8 +11,8 @@ public class ActorDistanceConstraint extends ActorTargetedConstraint {
     public static final int exact = 2;
   }
 
-  double _distance = 100.0;
-  int _mode = DistanceMode.closer;
+  private double _distance = 100.0;
+  private int _mode = DistanceMode.closer;
 
   ActorDistanceConstraint() : super();
 

@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class ActorLayerEffect extends ActorComponent {
-  boolean _isActive;
+  private boolean _isActive;
 
   public boolean isActive() { return _isActive; }
 

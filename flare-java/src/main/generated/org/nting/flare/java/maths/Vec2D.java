@@ -1,7 +1,7 @@
 package org.nting.flare.java.maths;
 
 public class Vec2D {
-  float[] _buffer;
+  private float[] _buffer;
 
   public float[] values() {
     return _buffer;

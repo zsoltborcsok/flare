@@ -4,8 +4,8 @@ import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.TransformComponents;
 
 public class ActorScaleConstraint extends ActorAxisConstraint {
-  final TransformComponents _componentsA = new TransformComponents();
-  final TransformComponents _componentsB = new TransformComponents();
+  private final TransformComponents _componentsA = new TransformComponents();
+  private final TransformComponents _componentsB = new TransformComponents();
 
   ActorScaleConstraint() : super();
 

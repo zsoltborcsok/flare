@@ -9,27 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActorArtboard {
-  int _flags = ActorFlags.isDrawOrderDirty;
-  int _drawableNodeCount = 0;
-  int _nodeCount = 0;
-  int _dirtDepth = 0;
-  ActorNode _root;
-  List<ActorComponent> _components;
-  List<ActorNode> _nodes;
-  final List<ActorDrawable> _drawableNodes = new ArrayList<>();
-  final List<ActorLayerEffectRenderer> _effectRenderers = new ArrayList<>();
-  List<ActorAnimation> _animations;
-  List<ActorComponent> _dependencyOrder;
-  Actor _actor;
-  String _name;
-  final Vec2D _translation = new Vec2D();
-  double _width = 0.0;
-  double _height = 0.0;
-  final Vec2D _origin = new Vec2D();
-  boolean _clipContents = true;
-  final float[] _color = new Float32List(4);
-  double _modulateOpacity = 1.0;
-  float[] _overrideColor;
+  private int _flags = ActorFlags.isDrawOrderDirty;
+  private int _drawableNodeCount = 0;
+  private int _nodeCount = 0;
+  private int _dirtDepth = 0;
+  private ActorNode _root;
+  private List<ActorComponent> _components;
+  private List<ActorNode> _nodes;
+  private final List<ActorDrawable> _drawableNodes = new ArrayList<>();
+  private final List<ActorLayerEffectRenderer> _effectRenderers = new ArrayList<>();
+  private List<ActorAnimation> _animations;
+  private List<ActorComponent> _dependencyOrder;
+  private Actor _actor;
+  private String _name;
+  private final Vec2D _translation = new Vec2D();
+  private double _width = 0.0;
+  private double _height = 0.0;
+  private final Vec2D _origin = new Vec2D();
+  private boolean _clipContents = true;
+  private final float[] _color = new Float32List(4);
+  private double _modulateOpacity = 1.0;
+  private float[] _overrideColor;
 
   public String name() { return _name; }
 

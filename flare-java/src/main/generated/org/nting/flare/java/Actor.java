@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Actor {
-  int maxTextureIndex = 0;
-  int _version = 0;
-  List<ActorArtboard> _artboards;
+  public int maxTextureIndex = 0;
+  private int _version = 0;
+  private List<ActorArtboard> _artboards;
 
   Actor();
 

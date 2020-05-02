@@ -86,27 +86,27 @@ public class JellyComponent extends ActorComponent {
     return points;
   }
 
-  double _easeIn;
-  double _easeOut;
-  double _scaleIn;
-  double _scaleOut;
-  int _inTargetIdx;
-  int _outTargetIdx;
-  ActorNode _inTarget;
-  ActorNode _outTarget;
-  List<ActorJellyBone> _bones;
-  Vec2D _inPoint;
-  Vec2D _inDirection;
-  Vec2D _outPoint;
-  Vec2D _outDirection;
+  private double _easeIn;
+  private double _easeOut;
+  private double _scaleIn;
+  private double _scaleOut;
+  private int _inTargetIdx;
+  private int _outTargetIdx;
+  private ActorNode _inTarget;
+  private ActorNode _outTarget;
+  private List<ActorJellyBone> _bones;
+  private Vec2D _inPoint;
+  private Vec2D _inDirection;
+  private Vec2D _outPoint;
+  private Vec2D _outDirection;
 
-  Vec2D _cachedTip;
-  Vec2D _cachedOut;
-  Vec2D _cachedIn;
-  double _cachedScaleIn;
-  double _cachedScaleOut;
+  private Vec2D _cachedTip;
+  private Vec2D _cachedOut;
+  private Vec2D _cachedIn;
+  private double _cachedScaleIn;
+  private double _cachedScaleOut;
 
-  List<Vec2D> _jellyPoints;
+  private List<Vec2D> _jellyPoints;
 
   public ActorNode inTarget() { return _inTarget; }
 

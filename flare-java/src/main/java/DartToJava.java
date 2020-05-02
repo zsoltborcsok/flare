@@ -42,7 +42,7 @@ public class DartToJava {
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
-        handleNotInstanceOfs(pathToFiles);
+        // handleNotInstanceOfs(pathToFiles);
         // handleGetters(pathToFiles);
         // handleLambdaGetters(pathToFiles);
         // handleAbstractGetters(pathToFiles);
@@ -57,9 +57,43 @@ public class DartToJava {
         // replace(pathToFiles, "Uint8List", "byte[]"); // NOTE: extra adjustments needed
         // replace(pathToFiles, "Float32List", "float[]", line -> Pattern.compile("Float32List[a-zA-Z_0-9(.]").matcher(line).find());
         // handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
+        makeFieldsPublicOrPrivate(pathToFiles);
 
         // ?., = <Object, Object>{}
         // var, operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void makeFieldsPublicOrPrivate(Path pathToFiles) {
+        Pattern pattern = Pattern.compile("^\\s*(final )?[a-zA-Z_0-9<>\\[\\]]+\\s[a-z_][a-zA-Z_0-9]*(;|\\s=\\s.*)");
+        Pattern privatePattern = Pattern.compile("^\\s*(final )?[a-zA-Z_0-9<>\\[\\]]+\\s_.*;");
+        manipulateJavaFiles(pathToFiles, lines -> {
+            int contexts = 0;
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.contains("{")) {
+                    contexts++;
+                }
+                if (line.contains("}")) {
+                    contexts--;
+                }
+                if (contexts == 1) {
+                    Matcher matcher = pattern.matcher(line);
+                    if (matcher.find()) {
+                        String lineText = line.replaceAll("^[ ]+", "");
+                        int leadingSpaces = line.length() - lineText.length();
+                        StringBuilder stringBuilder = new StringBuilder(line.substring(0, leadingSpaces));
+                        if (privatePattern.matcher(line).matches()) {
+                            stringBuilder.append("private ");
+                        } else {
+                            stringBuilder.append("public ");
+                        }
+                        stringBuilder.append(line.substring(leadingSpaces));
+                        lines.set(i, stringBuilder.toString());
+                    }
+                }
+            }
+            return lines;
+        });
     }
 
     private static void handleAssignOnlyIfTheAssignedToVariableIsNull(Path pathToFiles) {

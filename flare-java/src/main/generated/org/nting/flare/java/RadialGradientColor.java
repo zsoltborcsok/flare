@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class RadialGradientColor extends GradientColor {
-  double secondaryRadiusScale = 1.0;
+  public double secondaryRadiusScale = 1.0;
 
   void copyRadialGradient(RadialGradientColor node,
       ActorArtboard resetArtboard) {

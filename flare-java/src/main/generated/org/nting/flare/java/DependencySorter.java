@@ -3,9 +3,9 @@ package org.nting.flare.java;
 import java.util.List;
 
 public class DependencySorter {
-  HashSet<ActorComponent> _perm;
-  HashSet<ActorComponent> _temp;
-  List<ActorComponent> _order;
+  private HashSet<ActorComponent> _perm;
+  private HashSet<ActorComponent> _temp;
+  private List<ActorComponent> _order;
 
   DependencySorter() {
     _perm = HashSet<ActorComponent>();

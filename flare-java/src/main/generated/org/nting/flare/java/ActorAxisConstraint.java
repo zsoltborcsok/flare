@@ -1,24 +1,24 @@
 package org.nting.flare.java;
 
 public abstract class ActorAxisConstraint extends ActorTargetedConstraint {
-  boolean _copyX = false;
-  boolean _copyY = false;
-  boolean _enableMinX = false;
-  boolean _enableMaxX = false;
-  boolean _enableMinY = false;
-  boolean _enableMaxY = false;
-  boolean _offset = false;
+  private boolean _copyX = false;
+  private boolean _copyY = false;
+  private boolean _enableMinX = false;
+  private boolean _enableMaxX = false;
+  private boolean _enableMinY = false;
+  private boolean _enableMaxY = false;
+  private boolean _offset = false;
 
-  double _scaleX = 1.0;
-  double _scaleY = 1.0;
-  double _minX = 0.0;
-  double _maxX = 0.0;
-  double _minY = 0.0;
-  double _maxY = 0.0;
+  private double _scaleX = 1.0;
+  private double _scaleY = 1.0;
+  private double _minX = 0.0;
+  private double _maxX = 0.0;
+  private double _minY = 0.0;
+  private double _maxY = 0.0;
 
-  int _sourceSpace = TransformSpace.world;
-  int _destSpace = TransformSpace.world;
-  int _minMaxSpace = TransformSpace.world;
+  private int _sourceSpace = TransformSpace.world;
+  private int _destSpace = TransformSpace.world;
+  private int _minMaxSpace = TransformSpace.world;
 
   ActorAxisConstraint() : super();
 

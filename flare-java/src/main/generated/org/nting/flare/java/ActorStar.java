@@ -5,8 +5,8 @@ import org.nting.flare.java.maths.Vec2D;
 import java.util.List;
 
 public class ActorStar extends ActorProceduralPath {
-  int _numPoints = 5;
-  double _innerRadius = 0.0;
+  private int _numPoints = 5;
+  private double _innerRadius = 0.0;
 
   @Override
   public void invalidatePath() {}

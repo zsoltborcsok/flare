@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class ActorColor extends ActorPaint {
-  float[] _color = new Float32List(4);
+  private float[] _color = new Float32List(4);
 
   public float[] color() {
     return _color;

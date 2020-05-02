@@ -5,10 +5,10 @@ import java.util.Map;
 
 public abstract class JSONReader implements StreamReader {
   @Override
-  int blockType;
+  public int blockType;
 
-  Object _readObject;
-  ListQueue _context;
+  private Object _readObject;
+  private ListQueue _context;
 
   JSONReader(Map object) {
     _readObject = object["container"];

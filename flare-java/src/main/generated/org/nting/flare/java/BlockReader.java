@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public class BlockReader extends BinaryReader {
   @Override
-  int blockType;
+  public int blockType;
 
   BlockReader(ByteData data) : super(data) {
     blockType = 0;

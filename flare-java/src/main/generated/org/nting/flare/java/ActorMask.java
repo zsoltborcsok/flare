@@ -6,9 +6,9 @@ public class ActorMask extends ActorLayerEffect {
 
   enum MaskType { alpha, invertedAlpha, luminance, invertedLuminance }
 
-  ActorNode _source;
-  int _sourceIdx;
-  MaskType _maskType;
+  private ActorNode _source;
+  private int _sourceIdx;
+  private MaskType _maskType;
 
   public ActorNode source() { return _source; }
 

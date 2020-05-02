@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 public abstract class StreamReader {
-  int blockType = 0;
+  public int blockType = 0;
 
   // Instantiate the right type of Reader based on the input values
   factory StreamReader(Object data) {

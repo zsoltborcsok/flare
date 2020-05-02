@@ -25,21 +25,21 @@ public class ActorImage extends ActorDrawable with ActorSkinnable {
   }
 
   @Override
-  int drawOrder;
+  public int drawOrder;
 
-  int _textureIndex = -1;
-  float[] _vertices;
-  float[] _dynamicUV;
+  private int _textureIndex = -1;
+  private float[] _vertices;
+  private float[] _dynamicUV;
 
   public float[] dynamicUV() { return _dynamicUV; }
-  Uint16List _triangles;
-  int _vertexCount = 0;
-  int _triangleCount = 0;
-  float[] _animationDeformedVertices;
+  private Uint16List _triangles;
+  private int _vertexCount = 0;
+  private int _triangleCount = 0;
+  private float[] _animationDeformedVertices;
 
-  List<SequenceFrame> _sequenceFrames;
-  float[] _sequenceUVs;
-  int _sequenceFrame = 0;
+  private List<SequenceFrame> _sequenceFrames;
+  private float[] _sequenceUVs;
+  private int _sequenceFrame = 0;
 
   public int sequenceFrame() { return _sequenceFrame; }
 

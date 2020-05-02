@@ -6,7 +6,7 @@ import org.nting.flare.java.maths.Vec2D;
 import java.util.List;
 
 public class ActorRectangle extends ActorProceduralPath {
-  double _radius = 0.0;
+  private double _radius = 0.0;
 
   @Override
   public void invalidatePath() {}
