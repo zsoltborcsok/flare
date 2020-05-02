@@ -58,7 +58,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 
   public void findEffects() {
     var blurs = parent.children
-        .where((child) => child instanceof ActorBlur && child is! ActorShadow)
+        .where((child) => child instanceof ActorBlur && !(child instanceof ActorShadow))
         .toList(growable: false);
     _blur = !blurs.isEmpty() ? ((ActorBlur) blurs.get(0)) : null;
     _dropShadows =

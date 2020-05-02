@@ -42,6 +42,7 @@ public class DartToJava {
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
+        handleNotInstanceOfs(pathToFiles);
         // handleGetters(pathToFiles);
         // handleLambdaGetters(pathToFiles);
         // handleAbstractGetters(pathToFiles);
@@ -55,9 +56,9 @@ public class DartToJava {
         // replace(pathToFiles, "dynamic", "Object", line -> Pattern.compile("(dynamic[a-zA-Z_0-9(])|([a-zA-Z_0-9]dynamic)").matcher(line).find());
         // replace(pathToFiles, "Uint8List", "byte[]"); // NOTE: extra adjustments needed
         // replace(pathToFiles, "Float32List", "float[]", line -> Pattern.compile("Float32List[a-zA-Z_0-9(.]").matcher(line).find());
-        handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
+        // handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
 
-        // as, ?., = <Object, Object>{}
+        // ?., = <Object, Object>{}
         // var, operators (e.g. []), constructors, factories, clone, Future, await
     }
 
@@ -169,6 +170,15 @@ public class DartToJava {
             if (line.contains(" is ") && !line.trim().startsWith("//")) {
                 line = line.replace(" is ", " instanceof ");
             }
+            return line;
+        }).collect(Collectors.toList()));
+    }
+
+    private static void handleNotInstanceOfs(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            if (line.contains(" is! ") && !line.trim().startsWith("//")) {
+                line = line.replace(" is! ", " instanceof ");
+            } // TODO surround with !(...)
             return line;
         }).collect(Collectors.toList()));
     }

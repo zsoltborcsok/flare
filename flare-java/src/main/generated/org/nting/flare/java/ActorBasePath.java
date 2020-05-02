@@ -155,7 +155,7 @@ public abstract class ActorBasePath {
       _shape.removePath(this);
     }
     ActorNode possibleShape = parent;
-    while (possibleShape != null && possibleShape is! ActorShape) {
+    while (possibleShape != null && !(possibleShape instanceof ActorShape)) {
       possibleShape = possibleShape.parent;
     }
     if (possibleShape != null) {

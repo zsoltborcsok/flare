@@ -87,7 +87,7 @@ public class ActorShape extends ActorDrawable {
     }
 
     for (final ActorComponent component : children) {
-      if (component is! ActorBasePath) {
+      if (!(component instanceof ActorBasePath)) {
         continue;
       }
       ActorBasePath path = (ActorBasePath) component;
