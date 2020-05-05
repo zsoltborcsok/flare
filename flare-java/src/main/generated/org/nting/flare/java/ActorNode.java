@@ -166,7 +166,7 @@ public class ActorNode extends ActorComponent {
   // ActorLayerEffectRenderer when the parent changes. This keeps it efficient
   // so not every ActorNode has to look for layerEffects as most won't have it.
   public void findLayerEffect() {
-    var layerEffects = children?.whereType<ActorLayerEffectRenderer>();
+    var layerEffects = Optional.ofNullable(children).ifPresent(v -> v.whereType<ActorLayerEffectRenderer>());
     var change = layerEffects != null && !layerEffects.isEmpty()
         ? layerEffects.get(0)
         : null;
@@ -274,7 +274,7 @@ public class ActorNode extends ActorComponent {
   }
 
   public void removeChild(ActorComponent component) {
-    _children?.remove(component);
+    Optional.ofNullable(_children).ifPresent(v -> v.remove(component));
   }
 
   public void addChild(ActorComponent component) {

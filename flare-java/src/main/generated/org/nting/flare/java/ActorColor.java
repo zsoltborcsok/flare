@@ -8,7 +8,7 @@ public abstract class ActorColor extends ActorPaint {
   }
 
   public float[] displayColor() {
-    return artboard?.overrideColor ?? _color;
+    return Optional.ofNullable(artboard).ifPresent(v -> v.overrideColor ?? _color);
   }
 
   public void color(float[] value) {

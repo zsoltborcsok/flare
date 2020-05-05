@@ -15,7 +15,7 @@ public abstract class Actor {
   ActorArtboard getArtboard(String name) =>
       name == null
           ? artboard
-          : _artboards.firstWhere((artboard) => artboard?.name == name,
+          : _artboards.firstWhere((artboard) => Optional.ofNullable(artboard).ifPresent(v -> v.name == name),
           orElse: () => null);
 
   public int version() {

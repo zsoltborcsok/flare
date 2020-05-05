@@ -59,10 +59,30 @@ public class DartToJava {
         // handleAssignOnlyIfTheAssignedToVariableIsNull(pathToFiles);
         // makeFieldsPublicOrPrivate(pathToFiles);
         // replace(pathToFiles, "double.maxFinite", "Double.MAX_VALUE");
-        replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
+        // replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
+        handleConditionalMemberAccess(pathToFiles);
 
-        // ?., = <Object, Object>{}
-        // var, operators (e.g. []), constructors, factories, clone, Future, await
+        // = <Object, Object>{}, var, operators (e.g. []), constructors, factories, clone, Future, await
+    }
+
+    private static void handleConditionalMemberAccess(Path pathToFiles) {
+        manipulateJavaFiles(pathToFiles, lines -> lines.stream().map(line -> {
+            int indexOfTheOperator = line.indexOf("?.");
+            if (0 <= indexOfTheOperator) {
+                int from = line.substring(0, indexOfTheOperator).lastIndexOf(' ') + 1;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(line, 0, from);
+                stringBuilder.append("Optional.ofNullable(");
+                stringBuilder.append(line, from, indexOfTheOperator);
+                stringBuilder.append(").ifPresent(v -> v");
+                stringBuilder.append(line, indexOfTheOperator + 1, line.length());
+                if (line.endsWith(";")) {
+                    stringBuilder.insert(stringBuilder.length() - 1, ")");
+                } // TODO closing bracket maybe missing
+                line = stringBuilder.toString();
+            }
+            return line;
+        }).collect(Collectors.toList()));
     }
 
     private static void makeFieldsPublicOrPrivate(Path pathToFiles) {

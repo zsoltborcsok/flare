@@ -30,8 +30,8 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
   @Override
   public void onParentChanged(ActorNode from, ActorNode to) {
     super.onParentChanged(from, to);
-    from?.findLayerEffect();
-    to?.findLayerEffect();
+    Optional.ofNullable(from).ifPresent(v -> v.findLayerEffect());
+    Optional.ofNullable(to).ifPresent(v -> v.findLayerEffect());
     findEffects();
   }
 
@@ -79,7 +79,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 
     _drawables.clear();
 
-    parent?.all((node) {
+    Optional.ofNullable(parent).ifPresent(v -> v.all((node) {
       if (node == this) {
         // don't recurse into this renderer
         return false;
@@ -94,7 +94,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
         _drawables.add(node);
       }
       return true;
-    });
+    }));
 
     _drawables.forEach(_computeLayerNode);
 
@@ -109,7 +109,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
 
     for (final mask : masks) {
       var renderMask = new ActorLayerEffectRendererMask(mask);
-      mask.source?.all((child) {
+      Optional.ofNullable(mask.source).ifPresent(v -> v.all((child) {
         if (child == parent) {
           // recursive mask was selected
           return false;
@@ -128,7 +128,7 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
           }
         }
         return true;
-      });
+      }));
 
       if (renderMask.drawables.isNotEmpty) {
         _renderMasks.add(renderMask);

@@ -40,7 +40,7 @@ public abstract class JSONReader implements StreamReader {
   @Override
   public double readFloat32(String label) {
     num f = readProp<num>(label);
-    return f?.toDouble() ?? 0.0;
+    return Optional.ofNullable(f).ifPresent(v -> v.toDouble() ?? 0.0);
   }
 
   // Reads the array into ar
@@ -65,7 +65,7 @@ public abstract class JSONReader implements StreamReader {
   @Override
   public double readFloat64(String label) {
     num f = readProp<num>(label);
-    return f?.toDouble() ?? 0;
+    return Optional.ofNullable(f).ifPresent(v -> v.toDouble() ?? 0);
   }
 
   @Override
