@@ -194,7 +194,7 @@ public class ActorNode extends ActorComponent {
 
   public List<List<ActorClip>> allClips() {
     // Find clips.
-    List<List<ActorClip>> all = <List<ActorClip>>[];
+    List<List<ActorClip>> all = new ArrayList<List<ActorClip>>();
     ActorNode clipSearch = this;
     while (clipSearch != null) {
       if (clipSearch.clips != null) {

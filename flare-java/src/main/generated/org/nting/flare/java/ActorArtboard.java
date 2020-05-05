@@ -91,7 +91,7 @@ public class ActorArtboard {
   public boolean addDependency(ActorComponent a, ActorComponent b) {
     List<ActorComponent> dependents = b.dependents;
     if (dependents == null) {
-      b.dependents = dependents = <ActorComponent>[];
+      b.dependents = dependents = new ArrayList<ActorComponent>();
     }
     if (dependents.contains(a)) {
       return false;

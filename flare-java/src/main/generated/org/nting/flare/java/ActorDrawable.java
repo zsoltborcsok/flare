@@ -2,6 +2,7 @@ package org.nting.flare.java;
 
 import org.nting.flare.java.maths.AABB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ActorDrawable extends ActorNode {
@@ -73,10 +74,10 @@ public abstract class ActorDrawable extends ActorNode {
 
   @Override
   public void completeResolve() {
-    _clipShapes = <List<ClipShape>>[];
+    _clipShapes = new ArrayList<List<ClipShape>>();
     List<List<ActorClip>> clippers = allClips;
     for (final List<ActorClip> clips : clippers) {
-      List<ClipShape> shapes = <ClipShape>[];
+      List<ClipShape> shapes = new ArrayList<ClipShape>();
       for (final ActorClip clip : clips) {
         clip.node.all((component) {
           if (component instanceof ActorShape) {

@@ -34,7 +34,7 @@ public class ActorPath extends ActorNode with ActorSkinnable, ActorBasePath {
     }
 
     float[] boneMatrices = skin.boneMatrices;
-    List<PathPoint> deformed = <PathPoint>[];
+    List<PathPoint> deformed = new ArrayList<PathPoint>();
     for (final PathPoint point : _points) {
       deformed.add(point.skin(worldTransform, boneMatrices));
     }

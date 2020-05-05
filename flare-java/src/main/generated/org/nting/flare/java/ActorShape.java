@@ -6,12 +6,13 @@ import org.nting.flare.java.maths.AABB;
 import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorShape extends ActorDrawable {
-  private final List<ActorBasePath> _paths = <ActorBasePath>[];
-  private final List<ActorStroke> _strokes = <ActorStroke>[];
-  private final List<ActorFill> _fills = <ActorFill>[];
+  private final List<ActorBasePath> _paths = new ArrayList<ActorBasePath>();
+  private final List<ActorStroke> _strokes = new ArrayList<ActorStroke>();
+  private final List<ActorFill> _fills = new ArrayList<ActorFill>();
   private boolean _transformAffectsStroke = false;
 
   public boolean transformAffectsStroke() { return _transformAffectsStroke; }

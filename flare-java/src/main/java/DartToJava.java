@@ -38,7 +38,7 @@ public class DartToJava {
         // handleBools(pathToFiles);
         // handleCollectionIterations(pathToFiles);
         // addListImport(pathToFiles);
-        // handleListCreation(pathToFiles);
+        handleListCreation(pathToFiles);
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
@@ -60,7 +60,7 @@ public class DartToJava {
         // makeFieldsPublicOrPrivate(pathToFiles);
         // replace(pathToFiles, "double.maxFinite", "Double.MAX_VALUE");
         // replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
-        handleConditionalMemberAccess(pathToFiles);
+        // handleConditionalMemberAccess(pathToFiles);
 
         // = <Object, Object>{}, var, operators (e.g. []), constructors, factories, clone, Future, await
     }
@@ -286,6 +286,9 @@ public class DartToJava {
                 } else if (line.contains("= []")) {
                     hasArrayListUsage[0] = true;
                     line = line.replace("= []", "= new ArrayList<>()");
+                } else if (line.contains("= <") && line.endsWith("[];")) {
+                    hasArrayListUsage[0] = true;
+                    line = line.replace("= <", "= new ArrayList<").replace("[]", "()");
                 }
                 return line;
             }).collect(Collectors.toList());

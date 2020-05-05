@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DependencySorter {
@@ -13,7 +14,7 @@ public class DependencySorter {
   }
 
   public List<ActorComponent> sort(ActorComponent root) {
-    _order = <ActorComponent>[];
+    _order = new ArrayList<ActorComponent>();
     if (!visit(root)) {
       return null;
     }

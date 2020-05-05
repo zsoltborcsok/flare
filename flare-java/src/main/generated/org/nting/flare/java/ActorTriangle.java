@@ -2,6 +2,7 @@ package org.nting.flare.java;
 
 import org.nting.flare.java.maths.Vec2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorTriangle extends ActorProceduralPath {
@@ -28,7 +29,7 @@ public class ActorTriangle extends ActorProceduralPath {
 
   @Override
   public List<PathPoint> points() {
-    List<PathPoint> _trianglePoints = <PathPoint>[];
+    List<PathPoint> _trianglePoints = new ArrayList<PathPoint>();
     _trianglePoints.add(
         StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY)));
     _trianglePoints.add(

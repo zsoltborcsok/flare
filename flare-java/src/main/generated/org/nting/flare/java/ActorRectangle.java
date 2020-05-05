@@ -3,6 +3,7 @@ package org.nting.flare.java;
 import static java.lang.Math.min;
 import org.nting.flare.java.maths.Vec2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorRectangle extends ActorProceduralPath {
@@ -40,7 +41,7 @@ public class ActorRectangle extends ActorProceduralPath {
     double halfWidth = width / 2;
     double halfHeight = height / 2;
     double renderRadius = min(_radius, min(halfWidth, halfHeight));
-    List<PathPoint> _rectanglePathPoints = <PathPoint>[];
+    List<PathPoint> _rectanglePathPoints = new ArrayList<PathPoint>();
     _rectanglePathPoints.add(StraightPathPoint.fromValues(
         Vec2D.fromValues(-halfWidth, -halfHeight), renderRadius));
     _rectanglePathPoints.add(StraightPathPoint.fromValues(

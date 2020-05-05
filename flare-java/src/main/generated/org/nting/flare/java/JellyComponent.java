@@ -50,7 +50,7 @@ public class JellyComponent extends ActorComponent {
   }
 
   public List<Vec2D> normalizeCurve(List<Vec2D> curve, int numSegments) {
-    List<Vec2D> points = <Vec2D>[];
+    List<Vec2D> points = new ArrayList<Vec2D>();
     int curvePointCount = curve.size();
     List<double> distances = new ArrayList<double>(curvePointCount);
     distances[0] = 0.0;
@@ -155,7 +155,7 @@ public class JellyComponent extends ActorComponent {
       _outTarget = (ActorNode) components[_outTargetIdx];
     }
 
-    List<ActorConstraint> dependencyConstraints = <ActorConstraint>[];
+    List<ActorConstraint> dependencyConstraints = new ArrayList<ActorConstraint>();
     ActorBone bone = (ActorBone) parent;
     if (bone != null) {
       artboard.addDependency(this, bone);
@@ -213,7 +213,7 @@ public class JellyComponent extends ActorComponent {
       return;
     }
 
-    _bones = <ActorJellyBone>[];
+    _bones = new ArrayList<ActorJellyBone>();
     for (final child : children) {
       if (child instanceof ActorJellyBone) {
         _bones.add(child);

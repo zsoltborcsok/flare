@@ -4,6 +4,8 @@ import org.nting.flare.java.maths.Vec2D;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 public class ActorStar extends ActorProceduralPath {
   private int _numPoints = 5;
   private double _innerRadius = 0.0;
@@ -39,9 +41,9 @@ public class ActorStar extends ActorProceduralPath {
 
   @Override
   public List<PathPoint> points() {
-    List<PathPoint> _starPoints = <PathPoint>[
+    List<PathPoint> _starPoints = Lists.newArrayList(
       StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY))
-    ];
+    );
 
     double angle = -pi / 2.0;
     double inc = (pi * 2.0) / sides;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActorLayerEffectRenderer extends ActorDrawable {
-  private final List<ActorDrawable> _drawables = <ActorDrawable>[];
+  private final List<ActorDrawable> _drawables = new ArrayList<ActorDrawable>();
 
   public List<ActorDrawable> drawables() { return _drawables; }
   private final List<ActorLayerEffectRendererMask> _renderMasks = new ArrayList<>();

@@ -2,6 +2,7 @@ package org.nting.flare.java;
 
 import org.nting.flare.java.maths.Vec2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 final double circleConstant = 0.55;
@@ -30,7 +31,7 @@ public class ActorEllipse extends ActorProceduralPath {
 
   @Override
   public List<PathPoint> points() {
-    List<PathPoint> _ellipsePathPoints = <PathPoint>[];
+    List<PathPoint> _ellipsePathPoints = new ArrayList<PathPoint>();
     _ellipsePathPoints.add(CubicPathPoint.fromValues(
         Vec2D.fromValues(0.0, -radiusY),
         Vec2D.fromValues(-radiusX * circleConstant, -radiusY),

@@ -2,6 +2,7 @@ package org.nting.flare.java;
 
 import org.nting.flare.java.maths.Vec2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorPolygon extends ActorProceduralPath {
@@ -36,7 +37,7 @@ public class ActorPolygon extends ActorProceduralPath {
 
   @Override
   public List<PathPoint> points() {
-    List<PathPoint> _polygonPoints = <PathPoint>[];
+    List<PathPoint> _polygonPoints = new ArrayList<PathPoint>();
     double angle = -pi / 2.0;
     double inc = (pi * 2.0) / sides;
 

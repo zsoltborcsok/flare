@@ -80,7 +80,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
 
     // Make sure bones are good.
-    _boneData = <BoneChain>[];
+    _boneData = new ArrayList<BoneChain>();
     for (final InfluencedBone bone : _influencedBones) {
       BoneChain item = _fkChain.firstWhere(
               (chainItem) => chainItem.bone == bone.bone,
