@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,7 +119,7 @@ public abstract class Actor {
       byte[] charCodes = data.buffer.asbyte[]();
       String stringData = String.fromCharCodes(charCodes);
       Object jsonActor = jsonDecode(stringData);
-      Map jsonObject = <Object, Object>{};
+      Map jsonObject = new HashMap();
       jsonObject["container"] = jsonActor;
       inputData = jsonObject;
     }

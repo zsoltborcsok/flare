@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.HashMap;
+
 public class JSONBlockReader extends JSONReader {
   JSONBlockReader(Map object) : super(object);
 
@@ -13,7 +15,7 @@ public class JSONBlockReader extends JSONReader {
       return null;
     }
 
-    var obj = <Object, Object>{};
+    var obj = new HashMap();
     obj["container"] = _peek();
     var type = readBlockType(blockTypes);
     Object c = context.get(0);

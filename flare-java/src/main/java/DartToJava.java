@@ -38,7 +38,9 @@ public class DartToJava {
         // handleBools(pathToFiles);
         // handleCollectionIterations(pathToFiles);
         // addListImport(pathToFiles);
-        handleListCreation(pathToFiles);
+        // handleListCreation(pathToFiles);
+        replace(pathToFiles, "= <Object, Object>{}", "= new HashMap()");
+        addImport(pathToFiles, "new HashMap\\(", "import java.util.HashMap;");
         // handleConstDeclarations(pathToFiles);
         // addImports(pathToFiles, "org.nting.flare.java.maths", "AABB", "Mat2D", "TransformComponents", "Vec2D");
         // handleInstanceOfs(pathToFiles);
@@ -62,7 +64,7 @@ public class DartToJava {
         // replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
         // handleConditionalMemberAccess(pathToFiles);
 
-        // = <Object, Object>{}, var, operators (e.g. []), constructors, factories, clone, Future, await
+        // var, operators (e.g. []), constructors, factories, clone, Future, await
     }
 
     private static void handleConditionalMemberAccess(Path pathToFiles) {
