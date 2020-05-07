@@ -2,6 +2,7 @@ package org.nting.flare.java;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public abstract class JSONReader implements StreamReader {
   @Override
@@ -16,7 +17,7 @@ public abstract class JSONReader implements StreamReader {
     _context.addFirst(_readObject);
   }
 
-  T readProp<T>(String label) {
+  private <T> T readProp(String label) {
     Object head = _context.get(0);
     if (head instanceof Map) {
       Object prop = head[label];
@@ -38,9 +39,9 @@ public abstract class JSONReader implements StreamReader {
   }
 
   @Override
-  public double readFloat32(String label) {
-    num f = readProp<num>(label);
-    return Optional.ofNullable(f).ifPresent(v -> v.toDouble() ?? 0.0);
+  public float readFloat32(String label) {
+    Float f = readProp(label);
+    return Optional.ofNullable(f).orElse(0.0f);
   }
 
   // Reads the array into ar
@@ -64,13 +65,13 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public double readFloat64(String label) {
-    num f = readProp<num>(label);
-    return Optional.ofNullable(f).ifPresent(v -> v.toDouble() ?? 0);
+    Double f = readProp(label);
+    return Optional.ofNullable(f).orElse(0.0);
   }
 
   @Override
   public int readUint8(String label) {
-    return readProp(label) ?? 0;
+    return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
@@ -85,12 +86,12 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public int readInt8(String label) {
-    return readProp<int>(label) ?? 0;
+    return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
   public int readUint16(String label) {
-    return readProp<int>(label) ?? 0;
+    return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
@@ -109,7 +110,7 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public int readInt16(String label) {
-    return readProp<int>(label) ?? 0;
+      return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
@@ -124,27 +125,27 @@ public abstract class JSONReader implements StreamReader {
 
   @Override
   public int readUint32(String label) {
-    return readProp<int>(label) ?? 0;
+      return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
   public int readInt32(String label) {
-    return readProp<int>(label) ?? 0;
+      return Optional.ofNullable(this.<Integer> readProp(label)).orElse(0);
   }
 
   @Override
   public int readVersion() {
-    return readProp<int>("version") ?? 0;
+    return Optional.ofNullable(this.<Integer> readProp("version")).orElse(0);
   }
 
   @Override
   public String readString(String label) {
-    return readProp<String>(label) ?? "";
+    return Optional.ofNullable(this.<String> readProp(label)).orElse("");
   }
 
   @Override
   public boolean readBoolean(String label) {
-    return readProp<boolean>(label) ?? false;
+    return Optional.ofNullable(this.<Boolean> readProp(label)).orElse(false);
   }
 
   // @hasOffset flag is needed for older (up until version 14) files.

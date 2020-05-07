@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.Optional;
+
 public abstract class ActorStroke {
   private double _width = 1.0;
 
@@ -74,7 +76,7 @@ public abstract class ActorStroke {
       component._join = StrokeJoin.values()[reader.readUint8("join")];
       if (artboard.actor.version >= 20) {
         component._trim =
-            TrimPath.values()[reader.readUint8("trim")] ?? TrimPath.off;
+                Optional.ofNullable(TrimPath.values()[reader.readUint8("trim")]).orElse(TrimPath.off);
         if (component.isTrimmed) {
           component._trimStart = reader.readFloat32("start");
           component._trimEnd = reader.readFloat32("end");

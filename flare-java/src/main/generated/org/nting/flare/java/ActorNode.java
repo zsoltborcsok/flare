@@ -5,6 +5,9 @@ import org.nting.flare.java.maths.Vec2D;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 typedef boolean ComopnentWalkCallback(ActorComponent component);
 
@@ -339,13 +342,12 @@ public class ActorNode extends ActorComponent {
     return true;
   }
 
-  List<ActorConstraint> get allConstraints =>
-      (_constraints == null
-          ? _peerConstraints
-          : _peerConstraints == null
-          ? _constraints
-          : _constraints + _peerConstraints) ??
-          <ActorConstraint>[];
+  public List<ActorConstraint> allConstraints() {
+    return Optional.of(_constraints == null ? _peerConstraints
+        : _peerConstraints == null ? _constraints
+            : Stream.of(_constraints, _peerConstraints).flatMap(List::stream).collect(Collectors.toList()))
+        .orElse(new ArrayList<>());
+  }
 
   @Override
   public void update(int dirt) {

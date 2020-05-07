@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.Optional;
+
 public abstract class ActorColor extends ActorPaint {
   private float[] _color = new Float32List(4);
 
@@ -8,7 +10,7 @@ public abstract class ActorColor extends ActorPaint {
   }
 
   public float[] displayColor() {
-    return Optional.ofNullable(artboard).ifPresent(v -> v.overrideColor ?? _color);
+    return Optional.ofNullable(artboard).map(ActorArtboard::overrideColor).orElse(_color);
   }
 
   public void color(float[] value) {

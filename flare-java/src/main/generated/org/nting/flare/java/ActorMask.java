@@ -1,6 +1,7 @@
 package org.nting.flare.java;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ActorMask extends ActorLayerEffect {
 
@@ -20,7 +21,7 @@ public class ActorMask extends ActorLayerEffect {
     ActorLayerEffect.read(artboard, reader, component);
     component._sourceIdx = reader.readId("source");
     component._maskType =
-        MaskType.values()[reader.readUint8("maskType")] ?? MaskType.alpha;
+            Optional.ofNullable(MaskType.values()[reader.readUint8("maskType")]).orElse(MaskType.alpha);
 
     return component;
   }
