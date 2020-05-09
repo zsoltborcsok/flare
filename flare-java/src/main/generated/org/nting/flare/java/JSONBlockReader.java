@@ -1,6 +1,7 @@
 package org.nting.flare.java;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class JSONBlockReader extends JSONReader {
   JSONBlockReader(Map object) : super(object);

@@ -1,7 +1,7 @@
 package org.nting.flare.java;
 
 /// Implementation of StreamReader that reads binary data.
-public abstract class BinaryReader implements StreamReader {
+public abstract class BinaryReader extends StreamReader {
   private ByteData _raw;
   private int _readIndex;
 

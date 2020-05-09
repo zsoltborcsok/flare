@@ -1,3 +1,5 @@
 package org.nting.flare.java;
 
-enum TrimPath { off, sequential, synced }
+public enum TrimPath {
+    off, sequential, synced
+}

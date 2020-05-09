@@ -1,81 +1,76 @@
 package org.nting.flare.java.maths;
 
+import java.util.Arrays;
+
 public class TransformComponents {
-  private float[] _buffer;
 
-  public float[] values() {
-    return _buffer;
-  }
+    private float[] _buffer;
 
-  double operator [](int index) {
-    return _buffer[index];
-  }
+    public TransformComponents() {
+        _buffer = new float[] { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f };
+    }
 
-  void operator []=(int index, double value) {
-    _buffer[index] = value;
-  }
+    public TransformComponents(TransformComponents copy) {
+        _buffer = Arrays.copyOf(copy._buffer, copy._buffer.length);
+    }
 
-  TransformComponents() {
-    _buffer = Float32List.fromList([1.0, 0.0, 0.0, 1.0, 0.0, 0.0]);
-  }
+    public float[] values() {
+        return _buffer;
+    }
 
-  TransformComponents.clone(TransformComponents copy) {
-    _buffer = Float32List.fromList(copy.values);
-  }
+    public float x() {
+        return _buffer[0];
+    }
 
-  public double x() {
-    return _buffer[0];
-  }
+    public void x(float value) {
+        _buffer[0] = value;
+    }
 
-  public void x(double value) {
-    _buffer[0] = value;
-  }
+    public float y() {
+        return _buffer[1];
+    }
 
-  public double y() {
-    return _buffer[1];
-  }
+    public void y(float value) {
+        _buffer[1] = value;
+    }
 
-  public void y(double value) {
-    _buffer[1] = value;
-  }
+    public float scaleX() {
+        return _buffer[2];
+    }
 
-  public double scaleX() {
-    return _buffer[2];
-  }
+    public void scaleX(float value) {
+        _buffer[2] = value;
+    }
 
-  public void scaleX(double value) {
-    _buffer[2] = value;
-  }
+    public float scaleY() {
+        return _buffer[3];
+    }
 
-  public double scaleY() {
-    return _buffer[3];
-  }
+    public void scaleY(float value) {
+        _buffer[3] = value;
+    }
 
-  public void scaleY(double value) {
-    _buffer[3] = value;
-  }
+    public float rotation() {
+        return _buffer[4];
+    }
 
-  public double rotation() {
-    return _buffer[4];
-  }
+    public void rotation(float value) {
+        _buffer[4] = value;
+    }
 
-  public void rotation(double value) {
-    _buffer[4] = value;
-  }
+    public float skew() {
+        return _buffer[5];
+    }
 
-  public double skew() {
-    return _buffer[5];
-  }
+    public void skew(float value) {
+        _buffer[5] = value;
+    }
 
-  public void skew(double value) {
-    _buffer[5] = value;
-  }
+    public Vec2D translation() {
+        return new Vec2D(_buffer[0], _buffer[1]);
+    }
 
-  public Vec2D translation() {
-    return Vec2D.fromValues(_buffer[0], _buffer[1]);
-  }
-
-  public Vec2D scale() {
-    return Vec2D.fromValues(_buffer[2], _buffer[3]);
-  }
+    public Vec2D scale() {
+        return new Vec2D(_buffer[2], _buffer[3]);
+    }
 }

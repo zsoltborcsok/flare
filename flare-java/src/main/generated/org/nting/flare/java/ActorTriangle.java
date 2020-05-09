@@ -1,50 +1,56 @@
 package org.nting.flare.java;
 
-import org.nting.flare.java.maths.Vec2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.nting.flare.java.maths.Vec2D;
+
 public class ActorTriangle extends ActorProceduralPath {
-  @Override
-  public void invalidatePath() {}
 
-  @Override
-  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorTriangle instance = new ActorTriangle();
-    instance.copyPath(this, resetArtboard);
-    return instance;
-  }
+    @Override
+    public void invalidatePath() {
+    }
 
-  static ActorTriangle read(ActorArtboard artboard, StreamReader reader,
-      ActorTriangle component) {
-    component = component != null ? component : new ActorTriangle();
+    @Override
+    public ActorComponent makeInstance(ActorArtboard resetArtboard) {
+        ActorTriangle instance = new ActorTriangle();
+        instance.copyPath(this, resetArtboard);
+        return instance;
+    }
 
-    ActorNode.read(artboard, reader, component);
+    public static ActorTriangle read(ActorArtboard artboard, StreamReader reader, ActorTriangle component) {
+        component = component != null ? component : new ActorTriangle();
 
-    component.width = reader.readFloat32("width");
-    component.height = reader.readFloat32("height");
-    return component;
-  }
+        ActorNode.read(artboard, reader, component);
 
-  @Override
-  public List<PathPoint> points() {
-    List<PathPoint> _trianglePoints = new ArrayList<PathPoint>();
-    _trianglePoints.add(
-        StraightPathPoint.fromTranslation(Vec2D.fromValues(0.0, -radiusY)));
-    _trianglePoints.add(
-        StraightPathPoint.fromTranslation(Vec2D.fromValues(radiusX, radiusY)));
-    _trianglePoints.add(
-        StraightPathPoint.fromTranslation(Vec2D.fromValues(-radiusX, radiusY)));
+        component.width(reader.readFloat32("width"));
+        component.height(reader.readFloat32("height"));
+        return component;
+    }
 
-    return _trianglePoints;
-  }
+    @Override
+    public List<PathPoint> points() {
+        List<PathPoint> _trianglePoints = new ArrayList<PathPoint>();
+        _trianglePoints.add(new StraightPathPoint(new Vec2D(0.0f, -radiusY())));
+        _trianglePoints.add(new StraightPathPoint(new Vec2D(radiusX(), radiusY())));
+        _trianglePoints.add(new StraightPathPoint(new Vec2D(-radiusX(), radiusY())));
 
-  public boolean isClosed() { return true; }
+        return _trianglePoints;
+    }
 
-  public boolean doesDraw() { return !renderCollapsed; }
+    public boolean isClosed() {
+        return true;
+    }
 
-  public double radiusX() { return width / 2; }
+    public boolean doesDraw() {
+        return !renderCollapsed();
+    }
 
-  public double radiusY() { return height / 2; }
+    public float radiusX() {
+        return width() / 2;
+    }
+
+    public float radiusY() {
+        return height() / 2;
+    }
 }

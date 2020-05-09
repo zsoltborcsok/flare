@@ -1,70 +1,73 @@
 package org.nting.flare.java;
 
-import org.nting.flare.java.maths.Mat2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ActorSkinnable {
-  public ActorSkin skin;
-  private List<SkinnedBone> _connectedBones;
+import org.nting.flare.java.maths.Mat2D;
 
-  public abstract set worldTransformOverride(Mat2D value);
+public interface ActorSkinnable {
 
-  public List<SkinnedBone> connectedBones() { return _connectedBones; }
+    void worldTransformOverride(Mat2D value);
 
-  public boolean isConnectedToBones() { return _connectedBones != null && !_connectedBones.isEmpty(); }
+    ActorSkin skin();
 
-  static ActorSkinnable read(ActorArtboard artboard, StreamReader reader,
-      ActorSkinnable node) {
-    reader.openArray("bones");
-    int numConnectedBones = reader.readUint8Length();
-    if (numConnectedBones != 0) {
-      node._connectedBones = new ArrayList<SkinnedBone>(numConnectedBones);
+    void skin(ActorSkin skin);
 
-      for (int i = 0; i < numConnectedBones; i++) {
-        SkinnedBone bc = new SkinnedBone();
-        reader.openObject("bone");
-        bc.boneIdx = reader.readId("component");
-        Mat2D.copyFromList(bc.bind, reader.readFloat32Array(6, "bind"));
-        reader.closeObject();
-        Mat2D.invert(bc.inverseBind, bc.bind);
-        node._connectedBones[i] = bc;
-      }
-      reader.closeArray();
-      Mat2D worldOverride = new Mat2D();
-      Mat2D.copyFromList(
-          worldOverride, reader.readFloat32Array(6, "worldTransform"));
-      node.worldTransformOverride = worldOverride;
-    } else {
-      reader.closeArray();
+    List<SkinnedBone> connectedBones();
+
+    void connectedBones(List<SkinnedBone> connectedBones);
+
+    default boolean isConnectedToBones() {
+        return connectedBones() != null && !connectedBones().isEmpty();
     }
 
-    return node;
-  }
+    public static ActorSkinnable read(ActorArtboard artboard, StreamReader reader, ActorSkinnable node) {
+        reader.openArray("bones");
+        int numConnectedBones = reader.readUint8Length();
+        if (numConnectedBones != 0) {
+            node.connectedBones(new ArrayList<SkinnedBone>(numConnectedBones));
 
-  public void resolveSkinnable(List<ActorComponent> components) {
-    if (_connectedBones != null) {
-      for (int i = 0; i < _connectedBones.size(); i++) {
-        SkinnedBone bc = _connectedBones[i];
-        bc.node = (ActorNode) components[bc.boneIdx];
-      }
+            for (int i = 0; i < numConnectedBones; i++) {
+                SkinnedBone bc = new SkinnedBone();
+                reader.openObject("bone");
+                bc.boneIdx = reader.readId("component");
+                Mat2D.copyFromList(bc.bind, reader.readFloat32Array(6, "bind"));
+                reader.closeObject();
+                Mat2D.invert(bc.inverseBind, bc.bind);
+                node.connectedBones().set(i, bc);
+            }
+            reader.closeArray();
+            Mat2D worldOverride = new Mat2D();
+            Mat2D.copyFromList(worldOverride, reader.readFloat32Array(6, "worldTransform"));
+            node.worldTransformOverride(worldOverride);
+        } else {
+            reader.closeArray();
+        }
+
+        return node;
     }
-  }
 
-  public void copySkinnable(ActorSkinnable node, ActorArtboard resetArtboard) {
-    if (node._connectedBones != null) {
-      _connectedBones = new ArrayList<SkinnedBone>(node._connectedBones.size());
-      for (int i = 0; i < node._connectedBones.size(); i++) {
-        SkinnedBone from = node._connectedBones[i];
-        SkinnedBone bc = new SkinnedBone();
-        bc.boneIdx = from.boneIdx;
-        Mat2D.copy(bc.bind, from.bind);
-        Mat2D.copy(bc.inverseBind, from.inverseBind);
-        _connectedBones[i] = bc;
-      }
+    default void resolveSkinnable(List<ActorComponent> components) {
+        if (connectedBones() != null) {
+            for (SkinnedBone bc : connectedBones()) {
+                bc.node = (ActorNode) components.get(bc.boneIdx);
+            }
+        }
     }
-  }
 
-  public abstract void invalidateDrawable();
+    default void copySkinnable(ActorSkinnable node, ActorArtboard resetArtboard) {
+        if (node.connectedBones() != null) {
+            connectedBones(new ArrayList<>(node.connectedBones().size()));
+            for (int i = 0; i < node.connectedBones().size(); i++) {
+                SkinnedBone from = node.connectedBones().get(i);
+                SkinnedBone bc = new SkinnedBone();
+                bc.boneIdx = from.boneIdx;
+                Mat2D.copy(bc.bind, from.bind);
+                Mat2D.copy(bc.inverseBind, from.inverseBind);
+                connectedBones().set(i, bc);
+            }
+        }
+    }
+
+    void invalidateDrawable();
 }

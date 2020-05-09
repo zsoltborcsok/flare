@@ -1,3 +1,5 @@
 package org.nting.flare.java;
 
-enum FillRule { evenOdd, nonZero }
+public enum FillRule {
+    evenOdd, nonZero
+}

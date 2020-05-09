@@ -1,25 +1,32 @@
 package org.nting.flare.java;
 
-public abstract class GradientStroke extends GradientColor with ActorStroke {
-  public void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
-    copyGradient(node, resetArtboard);
-    copyStroke(node, resetArtboard);
-  }
+import static com.google.common.util.concurrent.Runnables.doNothing;
 
-  static GradientStroke read(ActorArtboard artboard, StreamReader reader,
-      GradientStroke component) {
-    GradientColor.read(artboard, reader, component);
-    ActorStroke.read(artboard, reader, component);
-    return component;
-  }
+public abstract class GradientStroke extends GradientColor {
 
-  @Override
-  public void completeResolve() {
-    super.completeResolve();
+    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, doNothing(),
+            this::initializeGraphics);
 
-    ActorNode parentNode = parent;
-    if (parentNode instanceof ActorShape) {
-      parentNode.addStroke(this);
+    public void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
+        copyGradient(node, resetArtboard);
+        actorStroke.copyStroke(node.actorStroke, resetArtboard);
     }
-  }
+
+    public static GradientStroke read(ActorArtboard artboard, StreamReader reader, GradientStroke component) {
+        GradientColor.read(artboard, reader, component);
+        ActorStroke.read(artboard, reader, component.actorStroke);
+        return component;
+    }
+
+    @Override
+    public void completeResolve() {
+        super.completeResolve();
+
+        ActorNode parentNode = parent();
+        if (parentNode instanceof ActorShape) {
+            ((ActorShape) parentNode).addStroke(actorStroke);
+        }
+    }
+
+    public abstract void initializeGraphics();
 }

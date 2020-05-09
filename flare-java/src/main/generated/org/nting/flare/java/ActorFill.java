@@ -1,18 +1,32 @@
 package org.nting.flare.java;
 
-public abstract class ActorFill {
-  private FillRule _fillRule = FillRule.evenOdd;
+public class ActorFill {
 
-  public FillRule fillRule() { return _fillRule; }
+    private final Runnable initializeGraphics;
 
-  static void read(ActorArtboard artboard, StreamReader reader,
-      ActorFill component) {
-    component._fillRule = FillRule.values()[reader.readUint8("fillRule")];
-  }
+    private FillRule _fillRule = FillRule.evenOdd;
 
-  public void copyFill(ActorFill node, ActorArtboard resetArtboard) {
-    _fillRule = node._fillRule;
-  }
+    public ActorFill(Runnable initializeGraphics) {
+        this.initializeGraphics = initializeGraphics;
+    }
 
-  public abstract void initializeGraphics();
+    public FillRule fillRule() {
+        return _fillRule;
+    }
+
+    public void fillRule(FillRule fillRule) {
+        _fillRule = fillRule;
+    }
+
+    public static void read(ActorArtboard artboard, StreamReader reader, ActorFill component) {
+        component._fillRule = FillRule.values()[reader.readUint8("fillRule")];
+    }
+
+    public void copyFill(ActorFill node, ActorArtboard resetArtboard) {
+        _fillRule = node._fillRule;
+    }
+
+    public void initializeGraphics() {
+        initializeGraphics.run();
+    }
 }

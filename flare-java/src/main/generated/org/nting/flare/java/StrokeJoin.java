@@ -1,3 +1,5 @@
 package org.nting.flare.java;
 
-enum StrokeJoin { miter, round, bevel }
+public enum StrokeJoin {
+    miter, round, bevel
+}

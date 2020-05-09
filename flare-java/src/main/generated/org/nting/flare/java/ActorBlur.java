@@ -1,44 +1,44 @@
 package org.nting.flare.java;
 
 public class ActorBlur extends ActorLayerEffect {
-  public double blurX;
-  public double blurY;
 
-  static ActorBlur read(ActorArtboard artboard, StreamReader reader,
-      ActorBlur component) {
-    component = component != null ? component : new ActorBlur();
-    ActorLayerEffect.read(artboard, reader, component);
-    component.blurX = reader.readFloat32("blurX");
-    component.blurY = reader.readFloat32("blurY");
+    public double blurX;
+    public double blurY;
 
-    return component;
-  }
+    public static ActorBlur read(ActorArtboard artboard, StreamReader reader, ActorBlur component) {
+        component = component != null ? component : new ActorBlur();
+        ActorLayerEffect.read(artboard, reader, component);
+        component.blurX = reader.readFloat32("blurX");
+        component.blurY = reader.readFloat32("blurY");
 
-  public void copyBlur(ActorBlur from, ActorArtboard resetArtboard) {
-    copyLayerEffect(from, resetArtboard);
-    blurX = from.blurX;
-    blurY = from.blurY;
-  }
+        return component;
+    }
 
-  @Override
-  public void completeResolve() {
-    // intentionally empty, no logic to complete.
-  }
+    public void copyBlur(ActorBlur from, ActorArtboard resetArtboard) {
+        copyLayerEffect(from, resetArtboard);
+        blurX = from.blurX;
+        blurY = from.blurY;
+    }
 
-  @Override
-  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    ActorBlur instanceNode = new ActorBlur();
-    instanceNode.copyBlur(this, resetArtboard);
-    return instanceNode;
-  }
+    @Override
+    public void completeResolve() {
+        // intentionally empty, no logic to complete.
+    }
 
-  @Override
-  public void onDirty(int dirt) {
-    // intentionally empty
-  }
+    @Override
+    public ActorComponent makeInstance(ActorArtboard resetArtboard) {
+        ActorBlur instanceNode = new ActorBlur();
+        instanceNode.copyBlur(this, resetArtboard);
+        return instanceNode;
+    }
 
-  @Override
-  public void update(int dirt) {
-    // intentionally empty
-  }
+    @Override
+    public void onDirty(int dirt) {
+        // intentionally empty
+    }
+
+    @Override
+    public void update(int dirt) {
+        // intentionally empty
+    }
 }

@@ -1,13 +1,17 @@
 package org.nting.flare.java;
 
 public class ActorClip {
-  public int clipIdx;
-  public boolean intersect = true;
-  public ActorNode node;
 
-  ActorClip(this.clipIdx);
+    public int clipIdx;
+    public boolean intersect = true;
+    public ActorNode node;
 
-  ActorClip.copy(ActorClip from)
-      : clipIdx = from.clipIdx,
+    public ActorClip(int clipIdx) {
+        this.clipIdx = clipIdx;
+    }
+
+    public ActorClip(ActorClip from) {
+        clipIdx = from.clipIdx;
         intersect = from.intersect;
+    }
 }

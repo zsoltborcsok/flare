@@ -1,173 +1,178 @@
 package org.nting.flare.java;
 
+import java.util.List;
+
 import org.nting.flare.java.maths.AABB;
 import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
-import java.util.List;
+import com.google.common.collect.Lists;
 
-public abstract class ActorBasePath {
-  private ActorShape _shape;
+interface ActorBasePath {
 
-  public ActorShape shape() { return _shape; }
-  private boolean _isRootPath = false;
+    ActorShape shape();
 
-  public boolean isRootPath() { return _isRootPath; }
+    void shape(ActorShape shape);
 
-  public abstract List<PathPoint> points();
+    boolean isRootPath();
 
-  public abstract ActorNode parent();
+    void setRootPath(boolean isRootPath);
 
-  public abstract void invalidatePath();
+    List<PathPoint> points();
 
-  public boolean isPathInWorldSpace() { return false; }
+    ActorNode parent();
 
-  public abstract Mat2D pathTransform();
+    void invalidatePath();
 
-  public abstract Mat2D transform();
-
-  public abstract Mat2D worldTransform();
-
-  public abstract List<List<ActorClip>> allClips();
-
-  public List<PathPoint> deformedPoints() { return points; }
-
-  public AABB getPathAABB() {
-    double minX = Double.MAX_VALUE;
-    double minY = Double.MAX_VALUE;
-    double maxX = -Double.MAX_VALUE;
-    double maxY = -Double.MAX_VALUE;
-
-    AABB obb = getPathOBB();
-
-    List<Vec2D> pts = [
-      Vec2D.fromValues(obb[0], obb[1]),
-      Vec2D.fromValues(obb[2], obb[1]),
-      Vec2D.fromValues(obb[2], obb[3]),
-      Vec2D.fromValues(obb[0], obb[3])
-    ];
-
-    Mat2D localTransform;
-    if (isPathInWorldSpace) {
-      //  convert the path coordinates into local parent space.
-      localTransform = new Mat2D();
-      Mat2D.invert(localTransform, parent.worldTransform);
-    } else if (!_isRootPath) {
-      localTransform = new Mat2D();
-      // Path isn't root, so get transform in shape space.
-      if (Mat2D.invert(localTransform, shape.worldTransform)) {
-        Mat2D.multiply(localTransform, localTransform, worldTransform);
-      }
-    } else {
-      localTransform = transform;
+    default boolean isPathInWorldSpace() {
+        return false;
     }
 
-    for (final Vec2D p : pts) {
-      Vec2D wp = Vec2D.transformMat2D(p, p, localTransform);
-      if (wp[0] < minX) {
-        minX = wp[0];
-      }
-      if (wp[1] < minY) {
-        minY = wp[1];
-      }
+    Mat2D pathTransform();
 
-      if (wp[0] > maxX) {
-        maxX = wp[0];
-      }
-      if (wp[1] > maxY) {
-        maxY = wp[1];
-      }
-    }
-    return AABB.fromValues(minX, minY, maxX, maxY);
-  }
+    Mat2D transform();
 
-  public void invalidateDrawable() {
-    invalidatePath();
-    if (shape != null) {
-      shape.invalidateShape();
-    }
-  }
+    Mat2D worldTransform();
 
-  public AABB getPathOBB() {
-    double minX = Double.MAX_VALUE;
-    double minY = Double.MAX_VALUE;
-    double maxX = -Double.MAX_VALUE;
-    double maxY = -Double.MAX_VALUE;
+    List<List<ActorClip>> allClips();
 
-    List<PathPoint> renderPoints = points;
-    for (final PathPoint point : renderPoints) {
-      Vec2D t = point.translation;
-      double x = t[0];
-      double y = t[1];
-      if (x < minX) {
-        minX = x;
-      }
-      if (y < minY) {
-        minY = y;
-      }
-      if (x > maxX) {
-        maxX = x;
-      }
-      if (y > maxY) {
-        maxY = y;
-      }
-
-      if (point instanceof CubicPathPoint) {
-        Vec2D t = point.inPoint;
-        x = t[0];
-        y = t[1];
-        if (x < minX) {
-          minX = x;
-        }
-        if (y < minY) {
-          minY = y;
-        }
-        if (x > maxX) {
-          maxX = x;
-        }
-        if (y > maxY) {
-          maxY = y;
-        }
-
-        t = point.outPoint;
-        x = t[0];
-        y = t[1];
-        if (x < minX) {
-          minX = x;
-        }
-        if (y < minY) {
-          minY = y;
-        }
-        if (x > maxX) {
-          maxX = x;
-        }
-        if (y > maxY) {
-          maxY = y;
-        }
-      }
+    default List<PathPoint> deformedPoints() {
+        return points();
     }
 
-    return AABB.fromValues(minX, minY, maxX, maxY);
-  }
+    default AABB getPathAABB() {
+        float minX = Float.MAX_VALUE;
+        float minY = Float.MAX_VALUE;
+        float maxX = -Float.MAX_VALUE;
+        float maxY = -Float.MAX_VALUE;
 
-  public void updateShape() {
-    if (_shape != null) {
-      _shape.removePath(this);
-    }
-    ActorNode possibleShape = parent;
-    while (possibleShape != null && !(possibleShape instanceof ActorShape)) {
-      possibleShape = possibleShape.parent;
-    }
-    if (possibleShape != null) {
-      _shape = (ActorShape) possibleShape;
-      _shape.addPath(this);
-    } else {
-      _shape = null;
-    }
-    _isRootPath = _shape == parent;
-  }
+        AABB obb = getPathOBB();
 
-  public void completeResolve() {
-    updateShape();
-  }
+        List<Vec2D> pts = Lists.newArrayList(new Vec2D(obb.values()[0], obb.values()[1]),
+                new Vec2D(obb.values()[2], obb.values()[1]), new Vec2D(obb.values()[2], obb.values()[3]),
+                new Vec2D(obb.values()[0], obb.values()[3]));
+
+        Mat2D localTransform;
+        if (isPathInWorldSpace()) {
+            // convert the path coordinates into local parent space.
+            localTransform = new Mat2D();
+            Mat2D.invert(localTransform, parent().worldTransform());
+        } else if (!isRootPath()) {
+            localTransform = new Mat2D();
+            // Path isn't root, so get transform in shape space.
+            if (Mat2D.invert(localTransform, shape().worldTransform())) {
+                Mat2D.multiply(localTransform, localTransform, worldTransform());
+            }
+        } else {
+            localTransform = transform();
+        }
+
+        for (final Vec2D p : pts) {
+            Vec2D wp = Vec2D.transformMat2D(p, p, localTransform);
+            if (wp.values()[0] < minX) {
+                minX = wp.values()[0];
+            }
+            if (wp.values()[1] < minY) {
+                minY = wp.values()[1];
+            }
+
+            if (wp.values()[0] > maxX) {
+                maxX = wp.values()[0];
+            }
+            if (wp.values()[1] > maxY) {
+                maxY = wp.values()[1];
+            }
+        }
+        return new AABB(minX, minY, maxX, maxY);
+    }
+
+    default void invalidateDrawable() {
+        invalidatePath();
+        if (shape() != null) {
+            shape().invalidateShape();
+        }
+    }
+
+    default AABB getPathOBB() {
+        float minX = Float.MAX_VALUE;
+        float minY = Float.MAX_VALUE;
+        float maxX = -Float.MAX_VALUE;
+        float maxY = -Float.MAX_VALUE;
+
+        List<PathPoint> renderPoints = points();
+        for (final PathPoint point : renderPoints) {
+            Vec2D t = point.translation();
+            float x = t.values()[0];
+            float y = t.values()[1];
+            if (x < minX) {
+                minX = x;
+            }
+            if (y < minY) {
+                minY = y;
+            }
+            if (x > maxX) {
+                maxX = x;
+            }
+            if (y > maxY) {
+                maxY = y;
+            }
+
+            if (point instanceof CubicPathPoint) {
+                t = ((CubicPathPoint) point).inPoint();
+                x = t.values()[0];
+                y = t.values()[1];
+                if (x < minX) {
+                    minX = x;
+                }
+                if (y < minY) {
+                    minY = y;
+                }
+                if (x > maxX) {
+                    maxX = x;
+                }
+                if (y > maxY) {
+                    maxY = y;
+                }
+
+                t = ((CubicPathPoint) point).outPoint();
+                x = t.values()[0];
+                y = t.values()[1];
+                if (x < minX) {
+                    minX = x;
+                }
+                if (y < minY) {
+                    minY = y;
+                }
+                if (x > maxX) {
+                    maxX = x;
+                }
+                if (y > maxY) {
+                    maxY = y;
+                }
+            }
+        }
+
+        return new AABB(minX, minY, maxX, maxY);
+    }
+
+    default void updateShape() {
+        if (shape() != null) {
+            shape().removePath(this);
+        }
+        ActorNode possibleShape = parent();
+        while (possibleShape != null && !(possibleShape instanceof ActorShape)) {
+            possibleShape = possibleShape.parent();
+        }
+        if (possibleShape != null) {
+            shape((ActorShape) possibleShape);
+            shape().addPath(this);
+        } else {
+            shape(null);
+        }
+        setRootPath(shape() == parent());
+    }
+
+    default void completeResolve() {
+        updateShape();
+    }
 }

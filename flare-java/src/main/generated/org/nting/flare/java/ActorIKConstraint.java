@@ -3,12 +3,13 @@ package org.nting.flare.java;
 import static java.lang.Math.acos;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import org.nting.flare.java.maths.Mat2D;
-import org.nting.flare.java.maths.TransformComponents;
-import org.nting.flare.java.maths.Vec2D;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.TransformComponents;
+import org.nting.flare.java.maths.Vec2D;
 
 public class ActorIKConstraint extends ActorTargetedConstraint {
 
@@ -136,7 +137,7 @@ public class ActorIKConstraint extends ActorTargetedConstraint {
     }
   }
 
-  static ActorIKConstraint read(ActorArtboard artboard, StreamReader reader,
+    public static ActorIKConstraint read(ActorArtboard artboard, StreamReader reader,
       ActorIKConstraint component) {
     component = component != null ? component : new ActorIKConstraint();
     ActorTargetedConstraint.read(artboard, reader, component);
