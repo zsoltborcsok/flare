@@ -206,7 +206,7 @@ public class ActorPath extends ActorNode implements ActorBasePath, ActorSkinnabl
             }
             reader.closeObject();
 
-            component._points.set(i, point);
+            component._points.add(point);
         }
         reader.closeArray();
         return component;
@@ -235,7 +235,7 @@ public class ActorPath extends ActorNode implements ActorBasePath, ActorSkinnabl
 
         _points = new ArrayList<PathPoint>(pointCount);
         for (int i = 0; i < pointCount; i++) {
-            _points.set(i, node._points.get(i).makeInstance());
+            _points.add(node._points.get(i).makeInstance());
         }
 
         if (node.vertexDeform != null) {

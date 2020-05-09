@@ -276,7 +276,7 @@ public class ActorNode extends ActorComponent {
                     clip.intersect = reader.readBoolean("intersect");
                 }
                 reader.closeObject();
-                node._clips.set(i, clip);
+                node._clips.add(clip);
             }
         }
         reader.closeArray();
@@ -321,7 +321,7 @@ public class ActorNode extends ActorComponent {
         if (node._clips != null) {
             _clips = new ArrayList<ActorClip>(node._clips.size());
             for (int i = 0, l = node._clips.size(); i < l; i++) {
-                _clips.set(i, new ActorClip(node._clips.get(i)));
+                _clips.add(new ActorClip(node._clips.get(i)));
             }
         } else {
             _clips = null;

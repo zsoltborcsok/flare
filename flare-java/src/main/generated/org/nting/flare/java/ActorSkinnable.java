@@ -34,7 +34,7 @@ public interface ActorSkinnable {
                 Mat2D.copyFromList(bc.bind, reader.readFloat32Array(6, "bind"));
                 reader.closeObject();
                 Mat2D.invert(bc.inverseBind, bc.bind);
-                node.connectedBones().set(i, bc);
+                node.connectedBones().add(bc);
             }
             reader.closeArray();
             Mat2D worldOverride = new Mat2D();
@@ -64,7 +64,7 @@ public interface ActorSkinnable {
                 bc.boneIdx = from.boneIdx;
                 Mat2D.copy(bc.bind, from.bind);
                 Mat2D.copy(bc.inverseBind, from.inverseBind);
-                connectedBones().set(i, bc);
+                connectedBones().add(bc);
             }
         }
     }

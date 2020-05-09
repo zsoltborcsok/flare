@@ -34,15 +34,14 @@ public abstract class Actor {
         maxTextureIndex = actor.maxTextureIndex;
         int artboardCount = actor._artboards.size();
         if (artboardCount > 0) {
-            int idx = 0;
             _artboards = new ArrayList<ActorArtboard>(artboardCount);
             for (final ActorArtboard artboard : actor._artboards) {
                 if (artboard == null) {
-                    _artboards[idx++] = null;
+                    _artboards.add(null);
                     continue;
                 }
                 ActorArtboard instanceArtboard = artboard.makeInstanceWithActor(this);
-                _artboards[idx++] = instanceArtboard;
+                _artboards.add(instanceArtboard);
             }
         }
     }
