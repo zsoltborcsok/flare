@@ -38,7 +38,7 @@ public class ActorStar extends ActorProceduralPath {
 
         component.width(reader.readFloat32("width"));
         component.height(reader.readFloat32("height"));
-        component._numPoints = reader.readUint32("points");
+        component._numPoints = reader.readInt32("points");
         component._innerRadius = reader.readFloat32("innerRadius");
         return component;
     }

@@ -1,7 +1,14 @@
 package org.nting.flare.java;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.nting.flare.java.BlockTypes.blockTypesMap;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import org.nting.flare.java.animation.ActorAnimation;
 import org.nting.flare.java.maths.AABB;
@@ -23,23 +30,23 @@ public class ActorArtboard {
     private Actor _actor;
     private String _name;
     private final Vec2D _translation = new Vec2D();
-    private double _width = 0.0;
-    private double _height = 0.0;
+    private float _width = 0.0f;
+    private float _height = 0.0f;
     private final Vec2D _origin = new Vec2D();
     private boolean _clipContents = true;
-    private final float[] _color = new Float32List(4);
-    private double _modulateOpacity = 1.0;
+    private final float[] _color = new float[4];
+    private float _modulateOpacity = 1.0f;
     private float[] _overrideColor;
 
     public String name() {
         return _name;
     }
 
-    public double width() {
+    public float width() {
         return _width;
     }
 
-    public double height() {
+    public float height() {
         return _height;
     }
 
@@ -55,7 +62,7 @@ public class ActorArtboard {
         return _clipContents;
     }
 
-    public double modulateOpacity() {
+    public float modulateOpacity() {
         return _modulateOpacity;
     }
 
@@ -70,7 +77,7 @@ public class ActorArtboard {
         }
     }
 
-    public void modulateOpacity(double value) {
+    public void modulateOpacity(float value) {
         _modulateOpacity = value;
         for (final ActorDrawable drawable : _drawableNodes) {
             addDirt(drawable, DirtyFlags.paintDirty, true);
@@ -79,7 +86,7 @@ public class ActorArtboard {
 
     public ActorArtboard(Actor actor) {
         _actor = actor;
-        _root = ActorNode.withArtboard(this);
+        _root = new ActorNode(this);
     }
 
     public Actor actor() {
@@ -100,12 +107,6 @@ public class ActorArtboard {
 
     public List<ActorDrawable> drawableNodes() {
         return _drawableNodes;
-    }
-
-    ActorComponent operator [](
-    int index)
-    {
-        return _components[index];
     }
 
     public int componentCount() {
@@ -182,7 +183,7 @@ public class ActorArtboard {
 
     public ActorAnimation getAnimation(String name) {
         for (final ActorAnimation a : _animations) {
-            if (a.name == name) {
+            if (Objects.equals(a.name, name)) {
                 return a;
             }
         }
@@ -191,7 +192,7 @@ public class ActorArtboard {
 
     public ActorNode getNode(String name) {
         for (final ActorNode node : _nodes) {
-            if (node != null && node.name == name) {
+            if (node != null && Objects.equals(node.name(), name)) {
                 return node;
             }
         }
@@ -232,36 +233,34 @@ public class ActorArtboard {
         _drawableNodeCount = artboard._drawableNodeCount;
         _nodeCount = artboard._nodeCount;
 
-        if (artboard.componentCount != 0) {
-            _components = new ArrayList<ActorComponent>(artboard.componentCount);
+        if (artboard.componentCount() != 0) {
+            _components = new ArrayList<>(artboard.componentCount());
         }
         if (_nodeCount != 0) // This will always be at least 1.
         {
-            _nodes = new ArrayList<ActorNode>(_nodeCount);
+            _nodes = Arrays.asList(new ActorNode[_nodeCount]);
         }
 
-        if (artboard.componentCount != 0) {
-            int idx = 0;
-
-            for (final ActorComponent component : artboard.components) {
+        if (artboard.componentCount() != 0) {
+            for (final ActorComponent component : artboard.components()) {
                 if (component == null) {
-                    _components[idx++] = null;
+                    _components.add(null);
                     continue;
                 }
                 ActorComponent instanceComponent = component.makeInstance(this);
-                _components[idx++] = instanceComponent;
+                _components.add(instanceComponent);
             }
         }
         // Copy dependency order.
-        _dependencyOrder = new ArrayList<ActorComponent>(artboard._dependencyOrder.size());
+        _dependencyOrder = Arrays.asList(new ActorComponent[artboard._dependencyOrder.size()]);
         for (final ActorComponent component : artboard._dependencyOrder) {
-            final ActorComponent localComponent = _components[component.idx];
-            _dependencyOrder[component.graphOrder] = localComponent;
+            final ActorComponent localComponent = _components.get(component.idx);
+            _dependencyOrder.set(component.graphOrder, localComponent);
             localComponent.dirtMask = 255;
         }
 
         _flags |= ActorFlags.isDirty;
-        _root = (ActorNode) _components[0];
+        _root = (ActorNode) _components.get(0);
         resolveHierarchy();
         completeResolveHierarchy();
     }
@@ -271,9 +270,9 @@ public class ActorArtboard {
         int anIdx = 0;
 
         _drawableNodes.clear();
-        int componentCount = this.componentCount;
+        int componentCount = this.componentCount();
         for (int i = 1; i < componentCount; i++) {
-            ActorComponent c = _components[i];
+            ActorComponent c = _components.get(i);
 
             /// Nodes can be null if we read from a file version that contained
             /// nodes that we don't interpret in this runtime.
@@ -282,20 +281,18 @@ public class ActorArtboard {
             }
 
             if (c instanceof ActorNode) {
-                ActorNode an = c;
-                if (an != null) {
-                    _nodes[anIdx++] = an;
-                }
+                ActorNode an = (ActorNode) c;
+                _nodes.set(anIdx++, an);
             }
         }
     }
 
     public void completeResolveHierarchy() {
-        int componentCount = this.componentCount;
+        int componentCount = this.componentCount();
 
         // Complete resolve.
         for (int i = 1; i < componentCount; i++) {
-            ActorComponent c = components[i];
+            ActorComponent c = components().get(i);
             if (c != null) {
                 c.completeResolve();
             }
@@ -304,12 +301,13 @@ public class ActorArtboard {
         // Build lists. Important to do this after all components have resolved as
         // layers won't be known before this.
         for (int i = 1; i < componentCount; i++) {
-            ActorComponent c = components[i];
-            if (c instanceof ActorDrawable && c.layerEffectRenderParent == null) {
-                _drawableNodes.add(c);
+            ActorComponent c = components().get(i);
+            if (c instanceof ActorDrawable && ((ActorDrawable) c).layerEffectRenderParent == null) {
+                _drawableNodes.add((ActorDrawable) c);
             }
-            if (c instanceof ActorLayerEffectRenderer && c.layerEffectRenderParent == null) {
-                _effectRenderers.add(c);
+            if (c instanceof ActorLayerEffectRenderer
+                    && ((ActorLayerEffectRenderer) c).layerEffectRenderParent == null) {
+                _effectRenderers.add((ActorLayerEffectRenderer) c);
             }
         }
 
@@ -317,16 +315,16 @@ public class ActorArtboard {
     }
 
     public void sortDrawOrder() {
-        _drawableNodes.sort((a, b) => a.drawOrder.compareTo(b.drawOrder));
+        _drawableNodes.sort(Comparator.comparingInt(ActorDrawable::drawOrder));
         for (int i = 0; i < _drawableNodes.size(); i++) {
-            _drawableNodes[i].drawIndex = i;
+            _drawableNodes.get(i).drawIndex = i;
         }
         for (final ActorLayerEffectRenderer layer : _effectRenderers) {
             layer.sortDrawables();
         }
     }
 
-    public void advance(double seconds) {
+    public void advance(float seconds) {
         if ((_flags & ActorFlags.isDirty) != 0) {
             final int maxSteps = 100;
             int step = 0;
@@ -336,7 +334,7 @@ public class ActorArtboard {
                 // Track dirt depth here so that if something else marks
                 // dirty, we restart.
                 for (int i = 0; i < count; i++) {
-                    ActorComponent component = _dependencyOrder[i];
+                    ActorComponent component = _dependencyOrder.get(i);
                     _dirtDepth = i;
                     int d = component.dirtMask;
                     if (d == 0) {
@@ -374,7 +372,7 @@ public class ActorArtboard {
 
         StreamReader block;
         while ((block = reader.readNextBlock(blockTypesMap)) != null) {
-            switch (block.blockType) {
+            switch (block.blockType()) {
             case BlockTypes.components:
                 readComponentsBlock(block);
                 break;
@@ -388,7 +386,7 @@ public class ActorArtboard {
     public void readComponentsBlock(StreamReader block) {
         int componentCount = block.readUint16Length();
         _components = new ArrayList<ActorComponent>(componentCount + 1);
-        _components[0] = _root;
+        _components.add(_root);
 
         // Guaranteed from the exporter to be in index order.
         _nodeCount = 1;
@@ -397,8 +395,8 @@ public class ActorArtboard {
             if (nodeBlock == null) {
                 break;
             }
-            ActorComponent component;
-            switch (nodeBlock.blockType) {
+            ActorComponent component = null;
+            switch (nodeBlock.blockType()) {
             case BlockTypes.actorNode:
                 component = ActorNode.read(this, nodeBlock, null);
                 break;
@@ -414,16 +412,16 @@ public class ActorArtboard {
             // TODO: fix sequences for flare.
             // case BlockTypes.ActorImageSequence:
             // component =
-            // ActorImage.readSequence(this, nodeBlock, actor.makeImageNode());
+            // ActorImage.readSequence(this, nodeBlock, actor().makeImageNode());
             // ActorImage ai = component as ActorImage;
-            // actor.maxTextureIndex = ai
+            // actor().maxTextureIndex = ai
             // .sequenceFrames.last.atlasIndex; // Last atlasIndex is the biggest
             // break;
 
             case BlockTypes.actorImage:
-                component = ActorImage.read(this, nodeBlock, actor.makeImageNode());
-                if (((ActorImage) component).textureIndex > actor.maxTextureIndex) {
-                    actor.maxTextureIndex = ((ActorImage) component).textureIndex;
+                component = ActorImage.read(this, nodeBlock, actor().makeImageNode());
+                if (((ActorImage) component).textureIndex() > actor().maxTextureIndex) {
+                    actor().maxTextureIndex = ((ActorImage) component).textureIndex();
                 }
                 break;
 
@@ -508,55 +506,55 @@ public class ActorArtboard {
                 break;
 
             case BlockTypes.actorShape:
-                component = ActorShape.read(this, nodeBlock, actor.makeShapeNode(null));
+                component = ActorShape.read(this, nodeBlock, actor().makeShapeNode(null));
                 break;
 
             case BlockTypes.actorPath:
-                component = ActorPath.read(this, nodeBlock, actor.makePathNode());
+                component = ActorPath.read(this, nodeBlock, actor().makePathNode());
                 break;
 
             case BlockTypes.colorFill:
-                component = ColorFill.read(this, nodeBlock, actor.makeColorFill());
+                component = ColorFill.read(this, nodeBlock, actor().makeColorFill());
                 break;
 
             case BlockTypes.colorStroke:
-                component = ColorStroke.read(this, nodeBlock, actor.makeColorStroke());
+                component = ColorStroke.read(this, nodeBlock, actor().makeColorStroke());
                 break;
 
             case BlockTypes.gradientFill:
-                component = GradientFill.read(this, nodeBlock, actor.makeGradientFill());
+                component = GradientFill.read(this, nodeBlock, actor().makeGradientFill());
                 break;
 
             case BlockTypes.gradientStroke:
-                component = GradientStroke.read(this, nodeBlock, actor.makeGradientStroke());
+                component = GradientStroke.read(this, nodeBlock, actor().makeGradientStroke());
                 break;
 
             case BlockTypes.radialGradientFill:
-                component = RadialGradientFill.read(this, nodeBlock, actor.makeRadialFill());
+                component = RadialGradientFill.read(this, nodeBlock, actor().makeRadialFill());
                 break;
 
             case BlockTypes.radialGradientStroke:
-                component = RadialGradientStroke.read(this, nodeBlock, actor.makeRadialStroke());
+                component = RadialGradientStroke.read(this, nodeBlock, actor().makeRadialStroke());
                 break;
 
             case BlockTypes.actorEllipse:
-                component = ActorEllipse.read(this, nodeBlock, actor.makeEllipse());
+                component = ActorEllipse.read(this, nodeBlock, actor().makeEllipse());
                 break;
 
             case BlockTypes.actorRectangle:
-                component = ActorRectangle.read(this, nodeBlock, actor.makeRectangle());
+                component = ActorRectangle.read(this, nodeBlock, actor().makeRectangle());
                 break;
 
             case BlockTypes.actorTriangle:
-                component = ActorTriangle.read(this, nodeBlock, actor.makeTriangle());
+                component = ActorTriangle.read(this, nodeBlock, actor().makeTriangle());
                 break;
 
             case BlockTypes.actorStar:
-                component = ActorStar.read(this, nodeBlock, actor.makeStar());
+                component = ActorStar.read(this, nodeBlock, actor().makeStar());
                 break;
 
             case BlockTypes.actorPolygon:
-                component = ActorPolygon.read(this, nodeBlock, actor.makePolygon());
+                component = ActorPolygon.read(this, nodeBlock, actor().makePolygon());
                 break;
 
             case BlockTypes.actorSkin:
@@ -564,7 +562,7 @@ public class ActorArtboard {
                 break;
 
             case BlockTypes.actorLayerEffectRenderer:
-                component = ActorDrawable.read(this, nodeBlock, actor.makeLayerEffectRenderer());
+                component = ActorDrawable.read(this, nodeBlock, actor().makeLayerEffectRenderer());
                 break;
 
             case BlockTypes.actorMask:
@@ -576,11 +574,11 @@ public class ActorArtboard {
                 break;
 
             case BlockTypes.actorDropShadow:
-                component = ActorShadow.read(this, nodeBlock, actor.makeDropShadow());
+                component = ActorShadow.read(this, nodeBlock, actor().makeDropShadow());
                 break;
 
             case BlockTypes.actorInnerShadow:
-                component = ActorShadow.read(this, nodeBlock, actor.makeInnerShadow());
+                component = ActorShadow.read(this, nodeBlock, actor().makeInnerShadow());
                 break;
             }
             if (component instanceof ActorDrawable) {
@@ -590,21 +588,21 @@ public class ActorArtboard {
             if (component instanceof ActorNode) {
                 _nodeCount++;
             }
-            _components[componentIndex] = component;
+            _components.add(component);
             if (component != null) {
                 component.idx = componentIndex;
             }
         }
 
         _nodes = new ArrayList<ActorNode>(_nodeCount);
-        _nodes[0] = _root;
+        _nodes.add(_root);
     }
 
     public void initializeGraphics() {
         // Iterate components as some drawables may end up in other layers.
         for (final ActorComponent component : _components) {
             if (component instanceof ActorDrawable) {
-                component.initializeGraphics();
+                ((ActorDrawable) component).initializeGraphics();
             }
         }
     }
@@ -614,30 +612,27 @@ public class ActorArtboard {
         int animationCount = block.readUint16Length();
         _animations = new ArrayList<ActorAnimation>(animationCount);
         StreamReader animationBlock;
-        int animationIndex = 0;
 
         while ((animationBlock = block.readNextBlock(blockTypesMap)) != null) {
-            switch (animationBlock.blockType) {
-            case BlockTypes.animation:
+            if (animationBlock.blockType() == BlockTypes.animation) {
                 ActorAnimation anim = ActorAnimation.read(animationBlock, _components);
-                _animations[animationIndex++] = anim;
-                break;
+                _animations.add(anim);
             }
         }
     }
 
     public AABB artboardAABB() {
-        double minX = -1 * _origin[0] * width;
-        double minY = -1 * _origin[1] * height;
-        return AABB.fromValues(minX, minY, minX + _width, minY + height);
+        float minX = -1 * _origin.values()[0] * width();
+        float minY = -1 * _origin.values()[1] * height();
+        return new AABB(minX, minY, minX + _width, minY + height());
     }
 
     public AABB computeAABB() {
-        if (_drawableNodes == null) {
+        if (_drawableNodes.isEmpty()) {
             return new AABB();
         }
 
-        AABB aabb;
+        AABB aabb = null;
         for (final ActorDrawable drawable : _drawableNodes) {
             // This is the axis aligned bounding box in the space
             // of the parent (this case our shape).
@@ -649,11 +644,11 @@ public class ActorArtboard {
                 aabb = pathAABB;
             } else {
                 // Combine.
-                aabb[0] = min(aabb[0], pathAABB[0]);
-                aabb[1] = min(aabb[1], pathAABB[1]);
+                aabb.values()[0] = min(aabb.values()[0], pathAABB.values()[0]);
+                aabb.values()[1] = min(aabb.values()[1], pathAABB.values()[1]);
 
-                aabb[2] = max(aabb[2], pathAABB[2]);
-                aabb[3] = max(aabb[3], pathAABB[3]);
+                aabb.values()[2] = max(aabb.values()[2], pathAABB.values()[2]);
+                aabb.values()[3] = max(aabb.values()[3], pathAABB.values()[3]);
             }
         }
 

@@ -189,21 +189,12 @@ public class ActorPath extends ActorNode implements ActorBasePath, ActorSkinnabl
             reader.openObject("point");
             PathPoint point;
             PointType type = PointType.values()[reader.readUint8("pointType")];
-            switch (type) {
-            case straight: {
+            if (type == straight) {
                 point = new StraightPathPoint();
-                break;
-            }
-            default: {
-                point = new CubicPathPoint(type);
-                break;
-            }
-            }
-            if (point == null) {
-                throw new IllegalStateException("Invalid point type " + type.toString());
             } else {
-                point.read(reader, component.isConnectedToBones());
+                point = new CubicPathPoint(type);
             }
+            point.read(reader, component.isConnectedToBones());
             reader.closeObject();
 
             component._points.add(point);

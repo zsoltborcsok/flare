@@ -49,7 +49,7 @@ public class ActorNodeSolo extends ActorNode {
         node = node != null ? node : new ActorNodeSolo();
 
         ActorNode.read(artboard, reader, node);
-        node._activeChildIndex = reader.readUint32("activeChild");
+        node._activeChildIndex = reader.readInt32("activeChild");
         return node;
     }
 

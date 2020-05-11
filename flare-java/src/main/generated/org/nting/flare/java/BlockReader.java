@@ -6,21 +6,29 @@ public class BlockReader extends BinaryReader {
 
     public int blockType;
 
-  BlockReader(byte[] data) : super(data) {
-    blockType = 0;
-  }
+    public BlockReader(byte[] data) {
+        super(data);
+        blockType = 0;
+    }
 
-  BlockReader.fromBlock(this.blockType, byte[] stream) : super(stream);
+    public BlockReader(int blockType, byte[] stream) {
+        super(stream);
+        this.blockType = blockType;
+    }
 
-  // A block is defined as a TLV with type of one byte, length of 4 bytes,
-  // and then the value following.
+    @Override
+    public int blockType() {
+        return blockType;
+    }
+
+    // A block is defined as a TLV with type of one byte, length of 4 bytes and then the value following.
     @Override
     public BlockReader readNextBlock(Map<String, Integer> types) {
         if (isEOF()) {
             return null;
         }
-        int blockType = readUint8();
-        int length = readUint32();
-        return BlockReader.fromBlock(blockType, readBytes(length));
+        int blockType = readUint8("");
+        int length = (int) readUint32("");
+        return new BlockReader(blockType, readBytes(length));
     }
 }

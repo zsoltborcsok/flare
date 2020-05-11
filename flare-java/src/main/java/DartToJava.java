@@ -1,9 +1,4 @@
-import com.google.common.base.CaseFormat;
-import com.google.common.base.Converter;
-import com.google.common.base.Strings;
-import com.google.common.primitives.Booleans;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +12,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.CaseFormat;
+import com.google.common.base.Converter;
+import com.google.common.base.Strings;
+import com.google.common.primitives.Booleans;
 
 public class DartToJava {
 
@@ -63,6 +64,9 @@ public class DartToJava {
         // replace(pathToFiles, "double.maxFinite", "Double.MAX_VALUE");
         // replace(pathToFiles, " set ", " public void ", line -> Pattern.compile("\\s*(//|public)").matcher(line).find());
         // handleConditionalMemberAccess(pathToFiles);
+        // replace(pathToFiles, "=>", "->");
+        // replace(pathToFiles, "pi", "PI");
+        // addImport(pathToFiles, "PI", "import static java.lang.Math.PI;");
 
         // var, operators (e.g. []), constructors, factories, clone, Future, await
     }

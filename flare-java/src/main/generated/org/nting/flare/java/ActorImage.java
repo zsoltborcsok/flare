@@ -173,7 +173,7 @@ public class ActorImage extends ActorDrawable implements ActorSkinnable {
         if (!node.isHidden) {
             node._textureIndex = reader.readUint8("atlas");
 
-            int numVertices = reader.readUint32("numVertices");
+            int numVertices = reader.readInt32("numVertices");
 
             node._vertexCount = numVertices;
             node._vertices = reader.readFloat32Array(numVertices * node.vertexStride(), "vertices");
@@ -187,7 +187,7 @@ public class ActorImage extends ActorDrawable implements ActorSkinnable {
                 }
             }
 
-            int numTris = reader.readUint32("numTriangles");
+            int numTris = reader.readInt32("numTriangles");
             node._triangles = new int[numTris * 3];
             node._triangleCount = numTris;
             node._triangles = reader.readUint16Array(numTris * 3, "triangles");

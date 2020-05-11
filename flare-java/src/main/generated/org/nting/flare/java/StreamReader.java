@@ -2,12 +2,10 @@ package org.nting.flare.java;
 
 import java.util.Map;
 
-public abstract class StreamReader {
-
-    public int blockType = 0;
+public interface StreamReader {
 
     // Instantiate the right type of Reader based on the input values
-    public static StreamReader createStreamReader(Object data) {
+    static StreamReader createStreamReader(Object data) {
         StreamReader reader = null;
         if (data instanceof byte[]) {
             reader = new BlockReader((byte[]) data);
@@ -23,55 +21,57 @@ public abstract class StreamReader {
         return reader;
     }
 
-    public abstract boolean isEOF();
+    int blockType();
 
-    public abstract int readUint8Length();
+    boolean isEOF();
 
-    public abstract int readUint16Length();
+    int readUint8Length();
 
-    public abstract int readUint32Length();
+    int readUint16Length();
 
-    public abstract int readUint8(String label);
+    long readUint32Length();
 
-    public abstract byte[] readUint8Array(int length, String label);
+    int readUint8(String label);
 
-    public abstract int readInt8(String label);
+    int[] readUint8Array(int length, String label);
 
-    public abstract int readUint16(String label);
+    int readInt8(String label);
 
-    public abstract int[] readUint16Array(int length, String label);
+    int readUint16(String label);
 
-    public abstract int readInt16(String label);
+    int[] readUint16Array(int length, String label);
 
-    public abstract int readInt32(String label);
+    int readInt16(String label);
 
-    public abstract int readUint32(String label);
+    int readInt32(String label);
 
-    public abstract int readVersion();
+    long readUint32(String label);
 
-    public abstract float readFloat32(String label);
+    int readVersion();
 
-    public abstract float[] readFloat32Array(int length, String label);
+    float readFloat32(String label);
 
-    public abstract double readFloat64(String label);
+    float[] readFloat32Array(int length, String label);
 
-    public abstract String readString(String label);
+    double readFloat64(String label);
 
-    public abstract boolean readBoolean(String label);
+    String readString(String label);
 
-    public abstract int readId(String label);
+    boolean readBoolean(String label);
 
-    public abstract StreamReader readNextBlock(Map<String, Integer> types);
+    int readId(String label);
 
-    public abstract void openArray(String label);
+    StreamReader readNextBlock(Map<String, Integer> types);
 
-    public abstract void closeArray();
+    void openArray(String label);
 
-    public abstract void openObject(String label);
+    void closeArray();
 
-    public abstract void closeObject();
+    void openObject(String label);
 
-    public abstract String containerType();
+    void closeObject();
 
-    public abstract byte[] readAsset();
+    String containerType();
+
+    byte[] readAsset();
 }

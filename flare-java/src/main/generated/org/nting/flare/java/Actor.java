@@ -1,10 +1,15 @@
 package org.nting.flare.java;
 
+import static org.nting.flare.java.BlockTypes.blockTypesMap;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+
+import com.google.common.collect.ImmutableMap;
 
 public abstract class Actor {
+
     public int maxTextureIndex = 0;
     private int _version = 0;
     private List<ActorArtboard> _artboards;
@@ -16,11 +21,11 @@ public abstract class Actor {
         return !_artboards.isEmpty() ? _artboards.get(0) : null;
     }
 
-    ActorArtboard getArtboard(String name) =>
-    name == null
-            ? artboard
-          : _artboards.firstWhere((artboard) => Optional.ofNullable(artboard).ifPresent(v -> v.name == name),
-    orElse: () => null);
+    public ActorArtboard getArtboard(String name) {
+        return name == null ? artboard()
+                : _artboards.stream().filter(Objects::nonNull).filter(artboard -> Objects.equals(artboard.name(), name))
+                        .findFirst().orElse(null);
+    }
 
     public int version() {
         return _version;
@@ -34,7 +39,7 @@ public abstract class Actor {
         maxTextureIndex = actor.maxTextureIndex;
         int artboardCount = actor._artboards.size();
         if (artboardCount > 0) {
-            _artboards = new ArrayList<ActorArtboard>(artboardCount);
+            _artboards = new ArrayList<>(artboardCount);
             for (final ActorArtboard artboard : actor._artboards) {
                 if (artboard == null) {
                     _artboards.add(null);
@@ -100,124 +105,101 @@ public abstract class Actor {
 
     public abstract ActorLayerEffectRenderer makeLayerEffectRenderer();
 
-    Future<boolean>
+    public abstract boolean loadAtlases(List<byte[]> rawAtlases);
 
-    loadAtlases(List<byte[]> rawAtlases);
-
-    Future<boolean>
-
-    load(ByteData data, Object context) async {
-        if (data.lengthInBytes < 5) {
-            throw new UnsupportedError("Not a valid Flare file.");
+    public boolean load(byte[] data, Object context) {
+        if (data.length < 5) {
+            throw new IllegalStateException("Not a valid Flare file.");
         }
 
         boolean success = true;
 
-        int F = data.getUint8(0);
-        int L = data.getUint8(1);
-        int A = data.getUint8(2);
-        int R = data.getUint8(3);
-        int E = data.getUint8(4);
+        int F = data[0] & 0xff;
+        int L = data[1] & 0xff;
+        int A = data[2] & 0xff;
+        int R = data[3] & 0xff;
+        int E = data[4] & 0xff;
 
         Object inputData = data;
 
         if (F != 70 || L != 76 || A != 65 || R != 82 || E != 69) {
-            byte[] charCodes = data.buffer.asbyte[]();
-            String stringData = String.fromCharCodes(charCodes);
-            Object jsonActor = jsonDecode(stringData);
-            Map jsonObject = new HashMap();
-            jsonObject["container"] = jsonActor;
-            inputData = jsonObject;
+            Object jsonActor = jsonDecode(new String(data));
+            inputData = ImmutableMap.of("container", jsonActor);
         }
 
-        StreamReader reader = new StreamReader(inputData);
+        StreamReader reader = StreamReader.createStreamReader(inputData);
         _version = reader.readVersion();
 
         StreamReader block;
         while ((block = reader.readNextBlock(blockTypesMap)) != null) {
-            switch (block.blockType) {
+            switch (block.blockType()) {
             case BlockTypes.artboards:
                 readArtboardsBlock(block);
                 break;
 
             case BlockTypes.atlases:
-                List<byte[]> rawAtlases =
-
-    await readAtlasesBlock(block, context);
-                success =
-
-    await loadAtlases(rawAtlases);
+                List<byte[]> rawAtlases = readAtlasesBlock(block, context);
+                success = loadAtlases(rawAtlases);
                 break;
-            }}
+            }
+        }
 
-    // Resolve now.
-    for(
-
-    final ActorArtboard artboard:_artboards)
-    {
+        // Resolve now.
+        for (final ActorArtboard artboard : _artboards) {
             artboard.resolveHierarchy();
-        }for(
-    final ActorArtboard artboard:_artboards)
-    {
-        artboard.completeResolveHierarchy();
+        }
+        for (final ActorArtboard artboard : _artboards) {
+            artboard.completeResolveHierarchy();
+        }
+
+        for (final ActorArtboard artboard : _artboards) {
+            artboard.sortDependencies();
+        }
+
+        return success;
     }
 
-    for(
-    final ActorArtboard artboard:_artboards)
-    {
-        artboard.sortDependencies();
-    }
-
-    return success;
-    }
+    // Should return either a List or a Map
+    protected abstract Object jsonDecode(String json);
 
     public void readArtboardsBlock(StreamReader block) {
         int artboardCount = block.readUint16Length();
-        _artboards = new ArrayList<ActorArtboard>(artboardCount);
+        _artboards = new ArrayList<>(artboardCount);
 
-        for (int artboardIndex = 0, end = _artboards.size();
-             artboardIndex < end;
-             artboardIndex++) {
+        for (int artboardIndex = 0; artboardIndex < artboardCount; artboardIndex++) {
             StreamReader artboardBlock = block.readNextBlock(blockTypesMap);
             if (artboardBlock == null) {
                 break;
             }
-            switch (artboardBlock.blockType) {
-            case BlockTypes.actorArtboard:
-            {
+            if (artboardBlock.blockType() == BlockTypes.actorArtboard) {
                 ActorArtboard artboard = makeArtboard();
                 artboard.read(artboardBlock);
-                _artboards[artboardIndex] = artboard;
-                break;
-            }
+                _artboards.add(artboard);
             }
         }
     }
 
-    Future<byte[]> readOutOfBandAsset(String filename, Object context);
+    public abstract byte[] readOutOfBandAsset(String filename, Object context);
 
-    Future<List<byte[]>> readAtlasesBlock(StreamReader block,
-            Object context) {
+    public List<byte[]> readAtlasesBlock(StreamReader block, Object context) {
         // Determine whether or not the atlas is in or out of band.
         boolean isOOB = block.readBoolean("isOOB");
         block.openArray("data");
         int numAtlases = block.readUint16Length();
-        Future<List<byte[]>> result;
+        List<byte[]> result;
         if (isOOB) {
-            List<Future<byte[]>> waitingFor = new ArrayList<Future<byte[]>>(numAtlases);
+            List<byte[]> outOfBandAssets = new ArrayList<>(numAtlases);
             for (int i = 0; i < numAtlases; i++) {
-                waitingFor[i] = readOutOfBandAsset(block.readString("data"), context);
+                outOfBandAssets.add(readOutOfBandAsset(block.readString("data"), context));
             }
-            result = Future.wait(waitingFor);
+            result = outOfBandAssets;
         } else {
             // This is sync.
-            List<byte[]> inBandAssets = new ArrayList<byte[]>(numAtlases);
+            List<byte[]> inBandAssets = new ArrayList<>(numAtlases);
             for (int i = 0; i < numAtlases; i++) {
-                inBandAssets[i] = block.readAsset();
+                inBandAssets.add(block.readAsset());
             }
-            Completer<List<byte[]>> completer = Completer<List<byte[]>>();
-            completer.complete(inBandAssets);
-            result = completer.future;
+            result = inBandAssets;
         }
         block.closeArray();
         return result;

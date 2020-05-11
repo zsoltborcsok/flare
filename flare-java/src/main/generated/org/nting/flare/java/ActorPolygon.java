@@ -35,7 +35,7 @@ public class ActorPolygon extends ActorProceduralPath {
 
         component.width(reader.readFloat32("width"));
         component.height(reader.readFloat32("height"));
-        component.sides = reader.readUint32("sides");
+        component.sides = reader.readInt32("sides");
         return component;
     }
 
