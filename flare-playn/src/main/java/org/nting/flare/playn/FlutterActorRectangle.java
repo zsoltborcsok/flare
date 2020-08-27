@@ -1,10 +1,15 @@
 package org.nting.flare.playn;
 
-public class FlutterActorRectangle extends ActorRectangle with FlutterPathPointsPath {
-  @Override
-  public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-    FlutterActorRectangle instanceNode = new FlutterActorRectangle();
-    instanceNode.copyRectangle(this, resetArtboard);
-    return instanceNode;
-  }
+import org.nting.flare.java.ActorArtboard;
+import org.nting.flare.java.ActorComponent;
+import org.nting.flare.java.ActorRectangle;
+
+public class FlutterActorRectangle extends ActorRectangle implements FlutterPathPointsPath {
+
+    @Override
+    public ActorComponent makeInstance(ActorArtboard resetArtboard) {
+        FlutterActorRectangle instanceNode = new FlutterActorRectangle();
+        instanceNode.copyRectangle(this, resetArtboard);
+        return instanceNode;
+    }
 }
