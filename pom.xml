@@ -10,11 +10,21 @@
 
     <modules>
         <module>flare-java</module>
-        <!-- <module>flare-playn</module> -->
+         <module>flare-playn</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.nting</groupId>
+                <artifactId>flare-java</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nting.playn</groupId>
+                <artifactId>playn-core</artifactId>
+                <version>1.9.0.14</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>

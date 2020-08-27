@@ -8,10 +8,10 @@
     </parent>
 
     <groupId>org.nting</groupId>
-    <artifactId>flare-java</artifactId>
+    <artifactId>flare-playn</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Flare java implementation</name>
+    <name>Flare animations on PlayN</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,6 +39,14 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>flare-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nting.playn</groupId>
+            <artifactId>playn-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
