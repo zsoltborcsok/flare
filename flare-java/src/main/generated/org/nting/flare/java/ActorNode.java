@@ -351,7 +351,7 @@ public class ActorNode extends ActorComponent {
     }
 
     public List<ActorConstraint> allConstraints() {
-        return Optional.of(_constraints == null ? _peerConstraints
+        return Optional.ofNullable(_constraints == null ? _peerConstraints
                 : _peerConstraints == null ? _constraints
                         : Stream.of(_constraints, _peerConstraints).flatMap(List::stream).collect(Collectors.toList()))
                 .orElse(new ArrayList<>());

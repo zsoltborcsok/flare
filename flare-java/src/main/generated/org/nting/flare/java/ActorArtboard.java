@@ -282,7 +282,7 @@ public class ActorArtboard {
 
             if (c instanceof ActorNode) {
                 ActorNode an = (ActorNode) c;
-                _nodes.set(anIdx++, an);
+                _nodes.add(anIdx++, an);
             }
         }
     }
