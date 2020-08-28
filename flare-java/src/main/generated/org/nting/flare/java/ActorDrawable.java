@@ -7,10 +7,6 @@ import org.nting.flare.java.maths.AABB;
 
 public abstract class ActorDrawable extends ActorNode {
 
-    public enum BlendModes {
-        normal, multiply, screen, additive
-    }
-
     public static class ClipShape {
         public final ActorShape shape;
         public final boolean intersect;
@@ -70,7 +66,6 @@ public abstract class ActorDrawable extends ActorNode {
 
     public void copyDrawable(ActorDrawable node, ActorArtboard resetArtboard) {
         copyNode(node, resetArtboard);
-        // todo blendmode
         drawOrder(node.drawOrder());
         blendModeId(node.blendModeId());
         isHidden = node.isHidden;
