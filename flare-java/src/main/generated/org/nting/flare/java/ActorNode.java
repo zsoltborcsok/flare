@@ -25,8 +25,8 @@ public class ActorNode extends ActorComponent {
     private Vec2D _translation = new Vec2D();
     private float _rotation = 0.0f;
     private Vec2D _scale = new Vec2D(1.0f, 1.0f);
-    private double _opacity = 1.0;
-    private double _renderOpacity = 1.0;
+    private float _opacity = 1.0f;
+    private float _renderOpacity = 1.0f;
     private ActorLayerEffectRenderer _layerEffect;
 
     public ActorLayerEffectRenderer layerEffect() {
@@ -154,11 +154,11 @@ public class ActorNode extends ActorComponent {
         markTransformDirty();
     }
 
-    public double opacity() {
+    public float opacity() {
         return _opacity;
     }
 
-    public void opacity(double value) {
+    public void opacity(float value) {
         if (_opacity == value) {
             return;
         }
@@ -166,7 +166,7 @@ public class ActorNode extends ActorComponent {
         markTransformDirty();
     }
 
-    public double renderOpacity() {
+    public float renderOpacity() {
         return _renderOpacity;
     }
 
