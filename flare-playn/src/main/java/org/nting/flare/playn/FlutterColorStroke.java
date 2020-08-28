@@ -39,9 +39,4 @@ public class FlutterColorStroke extends ColorStroke implements FlutterStroke {
         // ..blendMode = parentShape.blendMode;
         // onPaintUpdated(_paint);
     }
-
-    @Override
-    public void initializeGraphics() {
-        // See FlutterStroke
-    }
 }

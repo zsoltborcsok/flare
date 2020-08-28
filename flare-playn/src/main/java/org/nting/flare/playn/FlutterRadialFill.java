@@ -69,9 +69,4 @@ public class FlutterRadialFill extends RadialGradientFill implements FlutterFill
         instanceNode.copyRadialFill(this, resetArtboard);
         return instanceNode;
     }
-
-    @Override
-    public void initializeGraphics() {
-        // See FlutterFill
-    }
 }

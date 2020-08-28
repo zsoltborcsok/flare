@@ -2,13 +2,7 @@ package org.nting.flare.java;
 
 public class ActorFill {
 
-    private final Runnable initializeGraphics;
-
     private FillRule _fillRule = FillRule.evenOdd;
-
-    public ActorFill(Runnable initializeGraphics) {
-        this.initializeGraphics = initializeGraphics;
-    }
 
     public FillRule fillRule() {
         return _fillRule;
@@ -24,9 +18,5 @@ public class ActorFill {
 
     public void copyFill(ActorFill node, ActorArtboard resetArtboard) {
         _fillRule = node._fillRule;
-    }
-
-    public void initializeGraphics() {
-        initializeGraphics.run();
     }
 }

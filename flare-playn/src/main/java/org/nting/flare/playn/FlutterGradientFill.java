@@ -63,9 +63,4 @@ public class FlutterGradientFill extends GradientFill implements FlutterFill {
         instanceNode.copyGradientFill(this, resetArtboard);
         return instanceNode;
     }
-
-    @Override
-    public void initializeGraphics() {
-        // See FlutterFill
-    }
 }

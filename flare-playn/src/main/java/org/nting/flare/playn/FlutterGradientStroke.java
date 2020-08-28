@@ -64,9 +64,4 @@ public class FlutterGradientStroke extends GradientStroke implements FlutterStro
         instanceNode.copyGradientStroke(this, resetArtboard);
         return instanceNode;
     }
-
-    @Override
-    public void initializeGraphics() {
-        // See FlutterStroke
-    }
 }

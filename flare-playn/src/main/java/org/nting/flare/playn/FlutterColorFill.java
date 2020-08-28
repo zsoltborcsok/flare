@@ -37,9 +37,4 @@ public class FlutterColorFill extends ColorFill implements FlutterFill {
         // ..blendMode = parentShape.blendMode;
         // onPaintUpdated(_paint);
     }
-
-    @Override
-    public void initializeGraphics() {
-        // See FlutterFill
-    }
 }

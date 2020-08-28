@@ -6,7 +6,6 @@ public class ActorStroke {
 
     private final Runnable markPaintDirty;
     private final Runnable markPathEffectsDirty;
-    private final Runnable initializeGraphics;
 
     private float _width = 1.0f;
     private StrokeCap _cap = StrokeCap.butt;
@@ -16,10 +15,9 @@ public class ActorStroke {
     private float _trimEnd = 0.0f;
     private float _trimOffset = 0.0f;
 
-    public ActorStroke(Runnable markPaintDirty, Runnable markPathEffectsDirty, Runnable initializeGraphics) {
+    public ActorStroke(Runnable markPaintDirty, Runnable markPathEffectsDirty) {
         this.markPaintDirty = markPaintDirty;
         this.markPathEffectsDirty = markPathEffectsDirty;
-        this.initializeGraphics = initializeGraphics;
     }
 
     public float width() {
@@ -110,9 +108,5 @@ public class ActorStroke {
         _trimStart = node._trimStart;
         _trimEnd = node._trimEnd;
         _trimOffset = node._trimOffset;
-    }
-
-    public void initializeGraphics() {
-        initializeGraphics.run();
     }
 }

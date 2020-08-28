@@ -420,10 +420,6 @@ public class ActorImage extends ActorDrawable implements ActorSkinnable {
     }
 
     @Override
-    public void initializeGraphics() {
-    }
-
-    @Override
     public void invalidateDrawable() {
     }
 

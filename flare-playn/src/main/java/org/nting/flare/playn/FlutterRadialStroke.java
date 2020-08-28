@@ -65,9 +65,4 @@ public class FlutterRadialStroke extends RadialGradientStroke implements Flutter
         // instanceNode.copyRadialStroke(this, resetArtboard);
         return instanceNode;
     }
-
-    @Override
-    public void initializeGraphics() {
-        // TODO See FlutterStroke
-    }
 }

@@ -4,8 +4,7 @@ import static com.google.common.util.concurrent.Runnables.doNothing;
 
 public abstract class ColorStroke extends ActorColor {
 
-    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, doNothing(),
-            this::initializeGraphics);
+    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, doNothing());
 
     public void copyColorStroke(ColorStroke node, ActorArtboard resetArtboard) {
         copyColor(node, resetArtboard);
@@ -27,6 +26,4 @@ public abstract class ColorStroke extends ActorColor {
             ((ActorShape) parentNode).addStroke(actorStroke);
         }
     }
-
-    public abstract void initializeGraphics();
 }

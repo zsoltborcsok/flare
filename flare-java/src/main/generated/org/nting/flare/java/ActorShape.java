@@ -177,16 +177,6 @@ public class ActorShape extends ActorDrawable {
     }
 
     @Override
-    public void initializeGraphics() {
-        for (final ActorStroke stroke : _strokes) {
-            stroke.initializeGraphics();
-        }
-        for (final ActorFill fill : _fills) {
-            fill.initializeGraphics();
-        }
-    }
-
-    @Override
     public int blendModeId() {
         return 0;
     }

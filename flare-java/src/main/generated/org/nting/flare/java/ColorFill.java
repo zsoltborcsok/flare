@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public abstract class ColorFill extends ActorColor {
 
-    private final ActorFill actorFill = new ActorFill(this::initializeGraphics);
+    private final ActorFill actorFill = new ActorFill();
 
     public void copyColorFill(ColorFill node, ActorArtboard resetArtboard) {
         copyColor(node, resetArtboard);
@@ -24,6 +24,4 @@ public abstract class ColorFill extends ActorColor {
             ((ActorShape) parentNode).addFill(actorFill);
         }
     }
-
-    public abstract void initializeGraphics();
 }

@@ -78,9 +78,6 @@ public abstract class ActorDrawable extends ActorNode {
 
     public abstract AABB computeAABB();
 
-    public void initializeGraphics() {
-    }
-
     @Override
     public void completeResolve() {
         _clipShapes = new ArrayList<List<ClipShape>>();
