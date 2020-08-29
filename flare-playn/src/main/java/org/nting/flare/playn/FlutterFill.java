@@ -8,7 +8,7 @@ import playn.core.Path;
 public interface FlutterFill {
 
     default void paint(ActorFill fill, Canvas canvas, Path path) {
-        // Note FillRule is not supported by PlayN
+        // path.setFillType(fill.fillRule()) is not supported by PlayN (evenOdd vs nonZero)
         canvas.fillPath(path);
     }
 }

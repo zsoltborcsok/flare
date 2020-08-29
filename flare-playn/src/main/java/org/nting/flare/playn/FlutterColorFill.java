@@ -1,8 +1,16 @@
 package org.nting.flare.playn;
 
+import static java.lang.Math.round;
+import static pythagoras.f.MathUtil.clamp;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
+import org.nting.flare.java.ActorFill;
 import org.nting.flare.java.ColorFill;
+
+import playn.core.Canvas;
+import playn.core.Color;
+import playn.core.Path;
 
 public class FlutterColorFill extends ColorFill implements FlutterFill {
 
@@ -13,28 +21,28 @@ public class FlutterColorFill extends ColorFill implements FlutterFill {
         return instanceNode;
     }
 
-    // public Color uiColor() {
-    // float[] c = displayColor;
-    // double o = (artboard.modulateOpacity * opacity * shape.renderOpacity)
-    // .clamp(0.0, 1.0)
-    // .toDouble();
-    // return Color.fromRGBO((c[0] * 255.0).round(), (c[1] * 255.0).round(),
-    // (c[2] * 255.0).round(), c[3] * o);
-    // }
-    //
-    // public void uiColor(Color c) {
-    // color = Float32List.fromList(
-    // [c.red / 255, c.green / 255, c.blue / 255, c.opacity]);
-    // }
+    public int uiColor() {
+        float[] c = displayColor();
+        float o = clamp(artboard.modulateOpacity() * opacity() * shape().renderOpacity(), 0.0f, 1.0f);
+        return Color.argb(round(c[3] * o * 255.0f), round(c[0] * 255.0f), round(c[1] * 255.0f), round(c[2] * 255.0f));
+    }
+
+    public void uiColor(int c) {
+        color(new float[] { Color.red(c) / 255.0f, Color.green(c) / 255.0f, Color.blue(c) / 255.0f,
+                Color.alpha(c) / 255.0f });
+    }
 
     @Override
-    public void update(int dirt) {
-        super.update(dirt);
-        // var parentShape = parent as FlutterActorShape;
-        // _paint
-        // ..color = uiColor
-        // ..isAntiAlias = parentShape.useAntialias
-        // ..blendMode = parentShape.blendMode;
-        // onPaintUpdated(_paint);
+    public void paint(ActorFill fill, Canvas canvas, Path path) {
+        canvas.save();
+        try {
+            FlutterActorShape parentShape = (FlutterActorShape) parent();
+            canvas.setFillColor(uiColor());
+            // canvas.setUseAntialias() is not supported
+            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            FlutterFill.super.paint(fill, canvas, path);
+        } finally {
+            canvas.restore();
+        }
     }
 }
