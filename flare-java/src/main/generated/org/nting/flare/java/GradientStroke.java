@@ -1,10 +1,8 @@
 package org.nting.flare.java;
 
-import static com.google.common.util.concurrent.Runnables.doNothing;
-
 public abstract class GradientStroke extends GradientColor {
 
-    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, doNothing());
+    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, this::markPathEffectsDirty);
 
     public void copyGradientStroke(GradientStroke node, ActorArtboard resetArtboard) {
         copyGradient(node, resetArtboard);
@@ -26,4 +24,6 @@ public abstract class GradientStroke extends GradientColor {
             ((ActorShape) parentNode).addStroke(actorStroke);
         }
     }
+
+    public abstract void markPathEffectsDirty();
 }

@@ -1,67 +1,86 @@
 package org.nting.flare.playn;
 
+import static java.lang.Math.round;
+import static pythagoras.f.MathUtil.clamp;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
+import org.nting.flare.java.ActorStroke;
 import org.nting.flare.java.GradientStroke;
+import org.nting.flare.java.maths.Vec2D;
+import org.nting.flare.playn.util.Capture;
+
+import playn.core.Canvas;
+import playn.core.Color;
+import playn.core.Path;
+import playn.core.PlayN;
 
 public class FlutterGradientStroke extends GradientStroke implements FlutterStroke {
 
-    @Override
-    public void update(int dirt) {
-        super.update(dirt);
-        // List<ui.Color> colors = new ArrayList<ui.Color>();
-        // List<double> stops = new ArrayList<double>();
-        // int numStops = (colorStops.size() / 5).round();
-        //
-        // int idx = 0;
-        // for (int i = 0; i < numStops; i++) {
-        // double o = colorStops[idx + 3].clamp(0.0, 1.0).toDouble();
-        // ui.Color color = ui.Color.fromRGBO(
-        // (colorStops[idx] * 255.0).round(),
-        // (colorStops[idx + 1] * 255.0).round(),
-        // (colorStops[idx + 2] * 255.0).round(),
-        // o);
-        // colors.add(color);
-        // stops.add(colorStops[idx + 4]);
-        // idx += 5;
-        // }
-        //
-        // Color paintColor;
-        // if (artboard.overrideColor == null) {
-        // paintColor = Colors.white.withOpacity(
-        // (artboard.modulateOpacity * opacity * shape.renderOpacity)
-        // .clamp(0.0, 1.0)
-        // .toDouble());
-        // } else {
-        // float[] overrideColor = artboard.overrideColor;
-        // double o = (overrideColor[3] *
-        // artboard.modulateOpacity *
-        // opacity *
-        // shape.renderOpacity)
-        // .clamp(0.0, 1.0)
-        // .toDouble();
-        // paintColor = ui.Color.fromRGBO(
-        // (overrideColor[0] * 255.0).round(),
-        // (overrideColor[1] * 255.0).round(),
-        // (overrideColor[2] * 255.0).round(),
-        // o);
-        // }
-        //
-        // var parentShape = parent as FlutterActorShape;
-        // _paint
-        // ..color = paintColor
-        // ..isAntiAlias = parentShape.useAntialias
-        // ..blendMode = parentShape.blendMode
-        // ..strokeWidth = width
-        // ..shader = ui.Gradient.linear(ui.Offset(renderStart[0], renderStart[1]),
-        // ui.Offset(renderEnd[0], renderEnd[1]), colors, stops);
-        // onPaintUpdated(_paint);
-    }
+    private final Capture<Path> effectPath = new Capture<>();
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
         FlutterGradientStroke instanceNode = new FlutterGradientStroke();
         instanceNode.copyGradientStroke(this, resetArtboard);
         return instanceNode;
+    }
+
+    @Override
+    public Capture<Path> effectPath() {
+        return effectPath;
+    }
+
+    @Override
+    public void paint(ActorStroke stroke, Canvas canvas, Path path) {
+        float[] colorStops = colorStops();
+        int numStops = round(colorStops.length / 5.0f);
+        int[] colors = new int[numStops];
+        float[] stops = new float[numStops];
+
+        int idx = 0;
+        for (int i = 0; i < numStops; i++) {
+            float o = clamp(colorStops[idx + 3], 0.0f, 1.0f);
+            int color = Color.argb(round(o * 255.0f), round(colorStops[idx] * 255.0f),
+                    round(colorStops[idx + 1] * 255.0f), round(colorStops[idx + 2] * 255.0f));
+            colors[i] = color;
+            stops[i] = colorStops[idx + 4];
+            idx += 5;
+        }
+
+        int paintColor;
+        if (artboard.overrideColor() == null) {
+            float o = clamp(artboard.modulateOpacity() * opacity() * shape().renderOpacity(), 0.0f, 1.0f);
+            paintColor = Color.withAlpha(0xFFFFFFFF, round(o * 255.0f));
+        } else {
+            float[] overrideColor = artboard.overrideColor();
+            float o = clamp(overrideColor[3] * artboard.modulateOpacity() * opacity() * shape().renderOpacity(), 0.0f,
+                    1.0f);
+            paintColor = Color.argb(round(o * 255.0f), round(overrideColor[0] * 255.0f),
+                    round(overrideColor[1] * 255.0f), round(overrideColor[2] * 255.0f));
+        }
+
+        Vec2D renderStart = renderStart();
+        Vec2D renderEnd = renderEnd();
+
+        canvas.save();
+        try {
+            FlutterActorShape parentShape = (FlutterActorShape) parent();
+            canvas.setStrokeColor(paintColor);
+            // canvas.setUseAntialias() is not supported
+            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            if (0 < numStops) {
+                canvas.setStrokeGradient(PlayN.graphics().createLinearGradient(renderStart.values()[0],
+                        renderStart.values()[1], renderEnd.values()[0], renderEnd.values()[1], colors, stops));
+            }
+            FlutterStroke.super.paint(stroke, canvas, path);
+        } finally {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public void markPathEffectsDirty() {
+        FlutterStroke.super.markPathEffectsDirty();
     }
 }
