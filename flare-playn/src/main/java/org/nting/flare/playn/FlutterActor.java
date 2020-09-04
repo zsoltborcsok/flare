@@ -19,6 +19,8 @@ import org.nting.flare.java.GradientFill;
 import org.nting.flare.java.GradientStroke;
 import org.nting.flare.java.RadialGradientFill;
 import org.nting.flare.java.RadialGradientStroke;
+import org.nting.flare.playn.util.JsonMap;
+import playn.core.PlayN;
 
 import java.util.List;
 
@@ -126,7 +128,7 @@ public class FlutterActor extends Actor {
 
     @Override
     protected Object jsonDecode(String json) {
-        return null; // TODO
+        return new JsonMap(PlayN.json().parse(json));
     }
 
     @Override
@@ -171,4 +173,5 @@ public class FlutterActor extends Actor {
     // frames.map((ui.FrameInfo frame) -> frame.image).toList(growable: false);
     // return true;
     // }
+
 }

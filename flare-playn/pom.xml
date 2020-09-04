@@ -69,5 +69,10 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.nting.playn</groupId>
+            <artifactId>playn-swing</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

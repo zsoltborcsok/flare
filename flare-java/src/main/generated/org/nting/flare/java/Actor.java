@@ -1,12 +1,11 @@
 package org.nting.flare.java;
 
-import static org.nting.flare.java.BlockTypes.blockTypesMap;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.common.collect.ImmutableMap;
+import static org.nting.flare.java.BlockTypes.blockTypesMap;
 
 public abstract class Actor {
 
@@ -124,7 +123,7 @@ public abstract class Actor {
 
         if (F != 70 || L != 76 || A != 65 || R != 82 || E != 69) {
             Object jsonActor = jsonDecode(new String(data));
-            inputData = ImmutableMap.of("container", jsonActor);
+            inputData = Collections.singletonMap("container", jsonActor);
         }
 
         StreamReader reader = StreamReader.createStreamReader(inputData);

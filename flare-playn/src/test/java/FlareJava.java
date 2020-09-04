@@ -1,16 +1,20 @@
+import org.nting.flare.playn.FlutterActor;
+import playn.swing.JavaPlatform;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.nting.flare.playn.FlutterActor;
-
 public class FlareJava {
 
     public static void main(String[] args) throws URISyntaxException, IOException {
-        byte[] data = Files.readAllBytes(Paths.get(ClassLoader.getSystemResource("Teddy.flr").toURI()));
+        JavaPlatform.register();
+        byte[] data = Files.readAllBytes(Paths.get(ClassLoader.getSystemResource("Izé.flr").toURI()));
         // StreamReader streamReader = StreamReader.createStreamReader(data);
         FlutterActor flutterActor = loadFromByteData(data);
+        flutterActor.version();
+        System.exit(0);
     }
 
     private static FlutterActor loadFromByteData(byte[] data) {

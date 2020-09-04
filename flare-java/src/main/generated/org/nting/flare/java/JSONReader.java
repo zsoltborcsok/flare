@@ -34,18 +34,18 @@ public abstract class JSONReader implements StreamReader {
 
     @Override
     public float readFloat32(String label) {
-        Float f = readProp(label);
-        return Optional.ofNullable(f).orElse(0.0f);
+        Number f = readProp(label);
+        return Optional.ofNullable(f).map(Number::floatValue).orElse(0.0f);
     }
 
     // Reads the array into ar
     @Override
     public float[] readFloat32Array(int length, String label) {
         float[] ar = new float[length];
-        List<Float> list = readProp(label);
+        List<Number> list = readProp(label);
         if (list != null) {
             for (int i = 0; i < ar.length; i++) {
-                ar[i] = list.get(i);
+                ar[i] = list.get(i).floatValue();
             }
         }
         return ar;
@@ -53,8 +53,8 @@ public abstract class JSONReader implements StreamReader {
 
     @Override
     public double readFloat64(String label) {
-        Double f = readProp(label);
-        return Optional.ofNullable(f).orElse(0.0);
+        Number f = readProp(label);
+        return Optional.ofNullable(f).map(Number::doubleValue).orElse(0.0);
     }
 
     @Override

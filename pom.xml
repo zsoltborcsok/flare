@@ -8,9 +8,13 @@
     <packaging>pom</packaging>
     <name>flare</name>
 
+    <properties>
+        <playn.version>1.9.0.16</playn.version>
+    </properties>
+
     <modules>
         <module>flare-java</module>
-         <module>flare-playn</module>
+        <module>flare-playn</module>
     </modules>
 
     <dependencyManagement>
@@ -23,7 +27,7 @@
             <dependency>
                 <groupId>org.nting.playn</groupId>
                 <artifactId>playn-core</artifactId>
-                <version>1.9.0.16</version>
+                <version>${playn.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -51,6 +55,11 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>3.2.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nting.playn</groupId>
+                <artifactId>playn-swing</artifactId>
+                <version>${playn.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
