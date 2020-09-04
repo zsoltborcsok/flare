@@ -24,9 +24,9 @@ public class Mat2D {
         return _buffer;
     }
 
-    public double[] mat4() {
-        return new double[] { _buffer[0], _buffer[1], 0.0, 0.0, _buffer[2], _buffer[3], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-                _buffer[4], _buffer[5], 0.0, 1.0 };
+    public float[] mat4() {
+        return new float[] { _buffer[0], _buffer[1], 0.0f, 0.0f, _buffer[2], _buffer[3], 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+                0.0f, _buffer[4], _buffer[5], 0.0f, 1.0f };
     }
 
     public static void fromRotation(Mat2D o, float rad) {
