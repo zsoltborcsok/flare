@@ -1,10 +1,10 @@
 package org.nting.flare.java;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.nting.flare.java.maths.AABB;
 import org.nting.flare.java.maths.Mat2D;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ActorImage extends ActorDrawable implements ActorSkinnable {
 
@@ -421,14 +421,5 @@ public class ActorImage extends ActorDrawable implements ActorSkinnable {
 
     @Override
     public void invalidateDrawable() {
-    }
-
-    @Override
-    public int blendModeId() {
-        return 0;
-    }
-
-    @Override
-    public void blendModeId(int value) {
     }
 }

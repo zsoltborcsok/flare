@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
-import static java.util.Comparator.comparingInt;
+import org.nting.flare.java.maths.AABB;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.nting.flare.java.maths.AABB;
+import static java.util.Comparator.comparingInt;
 
 public class ActorLayerEffectRenderer extends ActorDrawable {
 
@@ -49,15 +49,6 @@ public class ActorLayerEffectRenderer extends ActorDrawable {
         Optional.ofNullable(from).ifPresent(ActorNode::findLayerEffect);
         Optional.ofNullable(to).ifPresent(ActorNode::findLayerEffect);
         findEffects();
-    }
-
-    @Override
-    public int blendModeId() {
-        return 0;
-    }
-
-    @Override
-    public void blendModeId(int value) {
     }
 
     @Override

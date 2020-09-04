@@ -1,9 +1,9 @@
 package org.nting.flare.java;
 
+import org.nting.flare.java.maths.AABB;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.nting.flare.java.maths.AABB;
 
 public abstract class ActorDrawable extends ActorNode {
 
@@ -41,14 +41,19 @@ public abstract class ActorDrawable extends ActorNode {
     // Computed draw index in the draw list.
     public int drawIndex;
     public boolean isHidden;
+    private int blendModeId = 0;
 
     public boolean doesDraw() {
         return !isHidden && !renderCollapsed();
     }
 
-    public abstract int blendModeId();
+    public int blendModeId() {
+        return blendModeId;
+    }
 
-    public abstract void blendModeId(int value);
+    public void blendModeId(int blendModeId) {
+        this.blendModeId = blendModeId;
+    }
 
     public static ActorDrawable read(ActorArtboard artboard, StreamReader reader, ActorDrawable component) {
         ActorNode.read(artboard, reader, component);

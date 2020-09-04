@@ -1,16 +1,15 @@
 package org.nting.flare.java;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import org.nting.flare.java.maths.AABB;
 import org.nting.flare.java.maths.Mat2D;
 import org.nting.flare.java.maths.Vec2D;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class ActorShape extends ActorDrawable {
 
@@ -174,15 +173,6 @@ public class ActorShape extends ActorDrawable {
 
     public void addFill(ActorFill fill) {
         _fills.add(fill);
-    }
-
-    @Override
-    public int blendModeId() {
-        return 0;
-    }
-
-    @Override
-    public void blendModeId(int value) {
     }
 
     public boolean addPath(ActorBasePath path) {
