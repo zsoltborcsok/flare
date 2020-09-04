@@ -1,7 +1,5 @@
 package org.nting.flare.playn;
 
-import java.util.List;
-
 import org.nting.flare.java.Actor;
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorDropShadow;
@@ -22,6 +20,8 @@ import org.nting.flare.java.GradientStroke;
 import org.nting.flare.java.RadialGradientFill;
 import org.nting.flare.java.RadialGradientStroke;
 
+import java.util.List;
+
 public class FlutterActor extends Actor {
 
     // List<ui.Image> _images;
@@ -37,10 +37,11 @@ public class FlutterActor extends Actor {
 
     @Override
     public ActorShape makeShapeNode(ActorShape source) {
-        // return Optional.ofNullable(source).ifPresent(v -> v.transformAffectsStroke ?? false
-        // ? FlutterActorShapeWithTransformedStroke()
-        // : FlutterActorShape(); TODO
-        return new ActorShape();
+        if (source != null && source.transformAffectsStroke()) {
+            return new FlutterActorShapeWithTransformedStroke();
+        } else {
+            return new FlutterActorShape();
+        }
     }
 
     @Override
