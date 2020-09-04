@@ -4,6 +4,12 @@ public class ActorFill {
 
     private FillRule _fillRule = FillRule.evenOdd;
 
+    public final ActorPaint actorPaint;
+
+    public ActorFill(ActorPaint actorPaint) {
+        this.actorPaint = actorPaint;
+    }
+
     public FillRule fillRule() {
         return _fillRule;
     }

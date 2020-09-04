@@ -4,8 +4,9 @@ import java.util.Optional;
 
 public class ActorStroke {
 
-    private final Runnable markPaintDirty;
-    private final Runnable markPathEffectsDirty;
+    public final ActorPaint actorPaint;
+    public final Runnable markPaintDirty;
+    public final Runnable markPathEffectsDirty;
 
     private float _width = 1.0f;
     private StrokeCap _cap = StrokeCap.butt;
@@ -15,7 +16,8 @@ public class ActorStroke {
     private float _trimEnd = 0.0f;
     private float _trimOffset = 0.0f;
 
-    public ActorStroke(Runnable markPaintDirty, Runnable markPathEffectsDirty) {
+    public ActorStroke(ActorPaint actorPaint, Runnable markPaintDirty, Runnable markPathEffectsDirty) {
+        this.actorPaint = actorPaint;
         this.markPaintDirty = markPaintDirty;
         this.markPathEffectsDirty = markPathEffectsDirty;
     }

@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public abstract class ColorStroke extends ActorColor {
 
-    private final ActorStroke actorStroke = new ActorStroke(this::markPaintDirty, this::markPathEffectsDirty);
+    private final ActorStroke actorStroke = new ActorStroke(this, this::markPaintDirty, this::markPathEffectsDirty);
 
     public void copyColorStroke(ColorStroke node, ActorArtboard resetArtboard) {
         copyColor(node, resetArtboard);
