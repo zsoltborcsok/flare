@@ -8,7 +8,7 @@ import org.nting.flare.java.maths.Vec2D;
 
 import com.google.common.collect.Lists;
 
-interface ActorBasePath {
+public interface ActorBasePath {
 
     ActorShape shape();
 
