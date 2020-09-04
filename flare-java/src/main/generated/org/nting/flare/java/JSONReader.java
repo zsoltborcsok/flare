@@ -1,5 +1,7 @@
 package org.nting.flare.java;
 
+import java.util.AbstractList;
+import java.util.AbstractMap;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,11 +21,11 @@ public abstract class JSONReader implements StreamReader {
 
     private <T> T readProp(String label) {
         Object head = _context.get(0);
-        if (head instanceof Map) {
+        if (head instanceof AbstractMap) {
             Object prop = ((Map) head).get(label);
             ((Map) head).remove(label);
             return (T) prop;
-        } else if (head instanceof List) {
+        } else if (head instanceof AbstractList) {
             Object prop = ((List) head).remove(0);
             return (T) prop;
         }
@@ -67,8 +69,8 @@ public abstract class JSONReader implements StreamReader {
 
     @Override
     public boolean isEOF() {
-        return _context.size() <= 1 && ((_readObject instanceof Map && ((Map) _readObject).size() == 0)
-                || (_readObject instanceof List && ((List) _readObject).size() == 0));
+        return _context.size() <= 1 && ((_readObject instanceof AbstractMap && ((Map) _readObject).size() == 0)
+                || (_readObject instanceof AbstractList && ((List) _readObject).size() == 0));
     }
 
     @Override
@@ -177,9 +179,9 @@ public abstract class JSONReader implements StreamReader {
     }
 
     private int _readLength() {
-        if (_context.get(0) instanceof List) {
+        if (_context.get(0) instanceof AbstractList) {
             return ((List) _context.get(0)).size();
-        } else if (_context.get(0) instanceof Map) {
+        } else if (_context.get(0) instanceof AbstractMap) {
             return ((Map) _context.get(0)).size();
         }
         return 0;

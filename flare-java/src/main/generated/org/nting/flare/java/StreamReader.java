@@ -1,5 +1,6 @@
 package org.nting.flare.java;
 
+import java.util.AbstractMap;
 import java.util.Map;
 
 public interface StreamReader {
@@ -15,7 +16,7 @@ public interface StreamReader {
             reader.readUint8("A");
             reader.readUint8("R");
             reader.readUint8("E");
-        } else if (data instanceof Map) {
+        } else if (data instanceof AbstractMap) {
             reader = new JSONBlockReader((Map) data);
         }
         return reader;
