@@ -48,7 +48,7 @@ public class FlutterColorStroke extends ColorStroke implements FlutterStroke {
             canvas.setStrokeColor(uiColor());
             canvas.setStrokeWidth(stroke.width());
             // canvas.setUseAntialias() is not supported
-            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             FlutterStroke.super.paint(stroke, canvas, path);
         } finally {
             canvas.restore();

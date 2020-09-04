@@ -61,7 +61,7 @@ public class FlutterRadialFill extends RadialGradientFill implements FlutterFill
             FlutterActorShape parentShape = (FlutterActorShape) parent();
             canvas.setFillColor(paintColor);
             // canvas.setUseAntialias() is not supported
-            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             if (0 < numStops) {
                 canvas.setFillGradient(PlayN.graphics().createRadialGradient(renderStart.values()[0],
                         renderStart.values()[1], radius, colors, stops));

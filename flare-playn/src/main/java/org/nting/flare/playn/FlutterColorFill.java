@@ -39,7 +39,7 @@ public class FlutterColorFill extends ColorFill implements FlutterFill {
             FlutterActorShape parentShape = (FlutterActorShape) parent();
             canvas.setFillColor(uiColor());
             // canvas.setUseAntialias() is not supported
-            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             FlutterFill.super.paint(fill, canvas, path);
         } finally {
             canvas.restore();

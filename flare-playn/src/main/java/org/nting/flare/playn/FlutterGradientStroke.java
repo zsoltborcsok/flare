@@ -68,7 +68,7 @@ public class FlutterGradientStroke extends GradientStroke implements FlutterStro
             FlutterActorShape parentShape = (FlutterActorShape) parent();
             canvas.setStrokeColor(paintColor);
             // canvas.setUseAntialias() is not supported
-            canvas.setCompositeOperation(parentShape.blendMode(parentShape).getComposite());
+            canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             if (0 < numStops) {
                 canvas.setStrokeGradient(PlayN.graphics().createLinearGradient(renderStart.values()[0],
                         renderStart.values()[1], renderEnd.values()[0], renderEnd.values()[1], colors, stops));
