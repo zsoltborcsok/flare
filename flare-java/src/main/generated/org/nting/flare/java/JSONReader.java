@@ -2,7 +2,6 @@ package org.nting.flare.java;
 
 import java.util.AbstractList;
 import java.util.AbstractMap;
-import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -190,8 +189,7 @@ public abstract class JSONReader implements StreamReader {
     @Override
     public byte[] readAsset() {
         String encodedAsset = readString("data"); // are we sure we need a label here?
-        return Base64.getDecoder().decode(encodedAsset.substring(0, 22)); // ??? "Base64Decoder().convert(encodedAsset,
-                                                                          // 22)"
+        return encodedAsset.getBytes(); // Base64.getDecoder().decode(encodedAsset.substring(22));
     }
 
     @Override

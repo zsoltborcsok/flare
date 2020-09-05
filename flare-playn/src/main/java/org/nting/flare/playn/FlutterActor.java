@@ -1,5 +1,8 @@
 package org.nting.flare.playn;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.nting.flare.java.Actor;
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorDropShadow;
@@ -20,17 +23,15 @@ import org.nting.flare.java.GradientStroke;
 import org.nting.flare.java.RadialGradientFill;
 import org.nting.flare.java.RadialGradientStroke;
 import org.nting.flare.playn.util.JsonMap;
-import playn.core.PlayN;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+
+import playn.core.Image;
+import playn.core.PlayN;
 
 public class FlutterActor extends Actor {
 
-    // List<ui.Image> _images;
-    //
-    // public List<ui.Image> images() {
-    // return _images;
-    // }
+    public final List<Image> images = Lists.newLinkedList();
 
     @Override
     public ActorArtboard makeArtboard() {
@@ -159,19 +160,14 @@ public class FlutterActor extends Actor {
         return true;
     }
 
-    // Future<boolean> loadImages() {
-    // if (_rawAtlasData == null) {
-    // return false;
-    // }
-    // List<byte[]> data = _rawAtlasData;
-    // _rawAtlasData = null;
-    // List<ui.Codec> codecs =
-    // await Future.wait(data.map(ui.instantiateImageCodec));
-    // List<ui.FrameInfo> frames =
-    // await Future.wait(codecs.map((ui.Codec codec) -> codec.getNextFrame()));
-    // _images =
-    // frames.map((ui.FrameInfo frame) -> frame.image).toList(growable: false);
-    // return true;
-    // }
+    public void loadImages() {
+        images.clear();
+        if (_rawAtlasData == null) {
+            return;
+        }
+
+        images.addAll(_rawAtlasData.stream().map(String::new).map(s -> PlayN.assets().getRemoteImage(s))
+                .collect(Collectors.toList()));
+    }
 
 }
