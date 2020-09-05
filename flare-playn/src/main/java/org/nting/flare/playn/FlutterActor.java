@@ -146,28 +146,23 @@ public class FlutterActor extends Actor {
 
     public void copyFlutterActor(FlutterActor actor) {
         copyActor(actor);
-        // _images = actor._images;
+        images.clear();
+        images.addAll(actor.images);
     }
 
     public void dispose() {
+        images.clear();
     }
-
-    private List<byte[]> _rawAtlasData;
 
     @Override
     public boolean loadAtlases(List<byte[]> rawAtlases) {
-        _rawAtlasData = rawAtlases;
-        return true;
-    }
-
-    public void loadImages() {
         images.clear();
-        if (_rawAtlasData == null) {
-            return;
+        if (rawAtlases == null) {
+            return false;
         }
 
-        images.addAll(_rawAtlasData.stream().map(String::new).map(s -> PlayN.assets().getRemoteImage(s))
+        images.addAll(rawAtlases.stream().map(String::new).map(s -> PlayN.assets().getRemoteImage(s))
                 .collect(Collectors.toList()));
+        return true;
     }
-
 }
