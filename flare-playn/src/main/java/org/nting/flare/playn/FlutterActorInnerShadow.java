@@ -4,15 +4,15 @@ import org.nting.flare.java.ActorInnerShadow;
 
 public class FlutterActorInnerShadow extends ActorInnerShadow {
 
-    // @Override
-    // public int blendModeId() {
-    // return blendMode.index;
-    // }
-    //
-    // @Override
-    // public void blendModeId(int index) {
-    // blendMode = ui.BlendMode.values[index];
-    // }
-    //
-    // ui.BlendMode blendMode;
+    private BlendMode blendMode;
+
+    @Override
+    public int blendModeId() {
+        return blendMode.ordinal();
+    }
+
+    @Override
+    public void blendModeId(int index) {
+        blendMode = BlendMode.values()[index];
+    }
 }

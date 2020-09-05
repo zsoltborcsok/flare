@@ -13,16 +13,8 @@ public class FlareJava {
         JavaPlatform.register();
         byte[] data = Files.readAllBytes(Paths.get(ClassLoader.getSystemResource("Images.flr").toURI()));
         FlutterActor flutterActor = FlutterActor.loadFromByteData(data);
-        flutterActor.loadImages();
         flutterActor.artboard().initializeGraphics();
         flutterActor.version();
         System.exit(0);
-    }
-
-    private static FlutterActor loadFromByteData(byte[] data) {
-        // ByteData data = await context.bundle.load(context.filename);
-        FlutterActor actor = new FlutterActor();
-        actor.load(data, null);
-        return actor;
     }
 }
