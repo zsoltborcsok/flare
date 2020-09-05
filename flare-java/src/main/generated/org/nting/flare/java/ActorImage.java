@@ -1,10 +1,10 @@
 package org.nting.flare.java;
 
-import org.nting.flare.java.maths.AABB;
-import org.nting.flare.java.maths.Mat2D;
-
 import java.util.Arrays;
 import java.util.List;
+
+import org.nting.flare.java.maths.AABB;
+import org.nting.flare.java.maths.Mat2D;
 
 public class ActorImage extends ActorDrawable implements ActorSkinnable {
 
@@ -319,7 +319,7 @@ public class ActorImage extends ActorDrawable implements ActorSkinnable {
         }
     }
 
-    void updateVertexPositionBuffer(float[] buffer, boolean isSkinnedDeformInWorld) {
+    protected void updateVertexPositionBuffer(float[] buffer, boolean isSkinnedDeformInWorld) {
         Mat2D worldTransform = this.worldTransform();
         int readIdx = 0;
         int writeIdx = 0;

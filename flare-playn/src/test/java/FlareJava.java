@@ -14,6 +14,7 @@ public class FlareJava {
         byte[] data = Files.readAllBytes(Paths.get(ClassLoader.getSystemResource("Images.flr").toURI()));
         FlutterActor flutterActor = FlutterActor.loadFromByteData(data);
         flutterActor.loadImages();
+        flutterActor.artboard().initializeGraphics();
         flutterActor.version();
         System.exit(0);
     }
