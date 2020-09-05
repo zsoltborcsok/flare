@@ -1,9 +1,9 @@
 package org.nting.flare.java;
 
-import org.nting.flare.java.maths.AABB;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.nting.flare.java.maths.AABB;
 
 public abstract class ActorDrawable extends ActorNode {
 
@@ -77,6 +77,9 @@ public abstract class ActorDrawable extends ActorNode {
     }
 
     public abstract AABB computeAABB();
+
+    public void initializeGraphics() {
+    }
 
     @Override
     public void completeResolve() {

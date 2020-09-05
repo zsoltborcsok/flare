@@ -598,6 +598,15 @@ public class ActorArtboard {
         _nodes.add(_root);
     }
 
+    public void initializeGraphics() {
+        // Iterate components as some drawables may end up in other layers.
+        for (final ActorComponent component : _components) {
+            if (component instanceof ActorDrawable) {
+                ((ActorDrawable) component).initializeGraphics();
+            }
+        }
+    }
+
     public void readAnimationsBlock(StreamReader block) {
         // Read animations.
         int animationCount = block.readUint16Length();
