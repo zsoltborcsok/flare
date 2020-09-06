@@ -74,5 +74,10 @@
             <artifactId>playn-swing</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>toolkit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

@@ -1,15 +1,16 @@
 package org.nting.flare.playn;
 
+import java.util.Optional;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorBasePath;
 import org.nting.flare.java.ActorFill;
 import org.nting.flare.java.ActorShape;
 import org.nting.flare.java.ActorStroke;
 import org.nting.flare.java.maths.Mat2D;
+
 import playn.core.Canvas;
 import pythagoras.f.Path;
-
-import java.util.Optional;
 
 public class FlutterActorShape extends ActorShape implements FlutterActorDrawable {
 
@@ -81,11 +82,11 @@ public class FlutterActorShape extends ActorShape implements FlutterActorDrawabl
         playn.core.Path renderPath = getRenderPath(canvas);
 
         for (ActorFill actorFill : fills()) {
-            FlutterFill fill = (FlutterFill) actorFill;
+            FlutterFill fill = (FlutterFill) actorFill.actorPaint;
             fill.paint(actorFill, canvas, renderPath);
         }
-        for (final ActorStroke actorStroke : strokes()) {
-            FlutterStroke stroke = (FlutterStroke) actorStroke;
+        for (ActorStroke actorStroke : strokes()) {
+            FlutterStroke stroke = (FlutterStroke) actorStroke.actorPaint;
             stroke.paint(actorStroke, canvas, renderPath);
         }
 
