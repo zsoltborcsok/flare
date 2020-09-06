@@ -85,7 +85,7 @@ public class ActorNode extends ActorComponent {
         Mat2D.copy(_worldTransform, value);
     }
 
-    public double x() {
+    public float x() {
         return _translation.values()[0];
     }
 
@@ -97,7 +97,7 @@ public class ActorNode extends ActorComponent {
         markTransformDirty();
     }
 
-    public double y() {
+    public float y() {
         return _translation.values()[1];
     }
 
@@ -142,7 +142,7 @@ public class ActorNode extends ActorComponent {
         markTransformDirty();
     }
 
-    public double scaleY() {
+    public float scaleY() {
         return _scale.values()[1];
     }
 
@@ -170,7 +170,7 @@ public class ActorNode extends ActorComponent {
         return _renderOpacity;
     }
 
-    public double childOpacity() {
+    public float childOpacity() {
         return _layerEffect == null ? _renderOpacity : 1;
     }
 

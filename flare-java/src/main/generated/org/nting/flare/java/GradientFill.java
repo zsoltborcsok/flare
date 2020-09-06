@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public abstract class GradientFill extends GradientColor {
 
-    private final ActorFill actorFill = new ActorFill(this);
+    public final ActorFill actorFill = new ActorFill(this);
 
     public void copyGradientFill(GradientFill node, ActorArtboard resetArtboard) {
         copyGradient(node, resetArtboard);

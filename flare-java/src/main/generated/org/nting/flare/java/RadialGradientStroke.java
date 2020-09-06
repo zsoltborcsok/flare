@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public abstract class RadialGradientStroke extends RadialGradientColor {
 
-    private final ActorStroke actorStroke = new ActorStroke(this, this::markPaintDirty, this::markPathEffectsDirty);
+    public final ActorStroke actorStroke = new ActorStroke(this, this::markPaintDirty, this::markPathEffectsDirty);
 
     void copyRadialStroke(RadialGradientStroke node, ActorArtboard resetArtboard) {
         copyRadialGradient(node, resetArtboard);

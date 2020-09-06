@@ -2,7 +2,7 @@ package org.nting.flare.java;
 
 public abstract class RadialGradientFill extends RadialGradientColor {
 
-    private final ActorFill actorFill = new ActorFill(this);
+    public final ActorFill actorFill = new ActorFill(this);
 
     public void copyRadialFill(RadialGradientFill node, ActorArtboard resetArtboard) {
         copyRadialGradient(node, resetArtboard);
