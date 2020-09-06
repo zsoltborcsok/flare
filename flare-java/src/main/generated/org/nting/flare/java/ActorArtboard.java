@@ -183,7 +183,7 @@ public class ActorArtboard {
 
     public ActorAnimation getAnimation(String name) {
         for (final ActorAnimation a : _animations) {
-            if (Objects.equals(a.name, name)) {
+            if (Objects.equals(a.name(), name)) {
                 return a;
             }
         }
