@@ -216,6 +216,11 @@ public class ActorPath extends ActorNode implements ActorBasePath, ActorSkinnabl
         resolveSkinnable(components);
     }
 
+    @Override
+    public void completeResolve() {
+        ActorBasePath.super.completeResolve();
+    }
+
     public void copyPath(ActorPath node, ActorArtboard resetArtboard) {
         copyNode(node, resetArtboard);
         copySkinnable(node, resetArtboard);

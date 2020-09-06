@@ -1,11 +1,13 @@
 package org.nting.flare.java;
 
+import static org.nting.flare.java.BlockTypes.blockTypesMap;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.nting.flare.java.BlockTypes.blockTypesMap;
+import com.google.common.base.Strings;
 
 public abstract class Actor {
 
@@ -21,7 +23,7 @@ public abstract class Actor {
     }
 
     public ActorArtboard getArtboard(String name) {
-        return name == null ? artboard()
+        return Strings.isNullOrEmpty(name) ? artboard()
                 : _artboards.stream().filter(Objects::nonNull).filter(artboard -> Objects.equals(artboard.name(), name))
                         .findFirst().orElse(null);
     }

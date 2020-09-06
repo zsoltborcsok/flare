@@ -69,4 +69,9 @@ public abstract class ActorProceduralPath extends ActorNode implements ActorBase
             shape().invalidateShape();
         }
     }
+
+    @Override
+    public void completeResolve() {
+        ActorBasePath.super.completeResolve();
+    }
 }
