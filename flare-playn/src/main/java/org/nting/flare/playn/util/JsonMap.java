@@ -1,10 +1,10 @@
 package org.nting.flare.playn.util;
 
-import playn.core.Json;
-
 import java.util.AbstractMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
+import playn.core.Json;
 
 public class JsonMap extends AbstractMap {
 
@@ -15,7 +15,7 @@ public class JsonMap extends AbstractMap {
     }
 
     private Set<Entry> createEntries(Json.Object jsonObject) {
-        Set<Entry> entries = new HashSet<>();
+        Set<Entry> entries = new LinkedHashSet<>();
 
         for (String key : jsonObject.keys()) {
             if (jsonObject.isObject(key)) {

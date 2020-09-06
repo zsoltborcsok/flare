@@ -9,7 +9,7 @@
     <name>flare</name>
 
     <properties>
-        <playn.version>1.9.0.18</playn.version>
+        <playn.version>1.9.0.19</playn.version>
     </properties>
 
     <modules>
