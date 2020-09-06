@@ -1,7 +1,6 @@
 package org.nting.flare.playn;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.nting.flare.java.Actor;
 import org.nting.flare.java.ActorArtboard;
@@ -161,8 +160,15 @@ public class FlutterActor extends Actor {
             return false;
         }
 
-        images.addAll(rawAtlases.stream().map(String::new).map(s -> PlayN.assets().getRemoteImage(s))
-                .collect(Collectors.toList()));
+        for (byte[] rawAtlas : rawAtlases) {
+            if (4 < rawAtlas.length && (rawAtlas[0] == 'd' || rawAtlas[0] == 'D')
+                    && (rawAtlas[1] == 'a' || rawAtlas[1] == 'A') && (rawAtlas[2] == 't' || rawAtlas[2] == 'T')
+                    && (rawAtlas[3] == 'a' || rawAtlas[3] == 'A')) {
+                images.add(PlayN.assets().getRemoteImage(new String(rawAtlas)));
+            } else {
+                images.add(PlayN.assets().getImage(rawAtlas));
+            }
+        }
         return true;
     }
 }
