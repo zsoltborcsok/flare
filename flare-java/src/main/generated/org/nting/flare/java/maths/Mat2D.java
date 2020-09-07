@@ -16,6 +16,10 @@ public class Mat2D {
         _buffer = new float[] { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f };
     }
 
+    public Mat2D(float m11, float m12, float m21, float m22, float dx, float dy) {
+        _buffer = new float[] { m11, m12, m21, m22, dx, dy };
+    }
+
     public Mat2D(Mat2D copy) {
         _buffer = Arrays.copyOf(copy._buffer, copy._buffer.length);
     }

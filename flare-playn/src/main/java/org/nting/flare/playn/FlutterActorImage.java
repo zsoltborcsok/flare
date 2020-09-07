@@ -7,6 +7,7 @@ import java.util.List;
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorImage;
 import org.nting.flare.java.maths.AABB;
+import org.nting.flare.java.maths.Mat2D;
 
 import playn.core.Canvas;
 import playn.core.Image;
@@ -22,6 +23,7 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
 
     private float[] _vertexBuffer;
     private Image _image;
+    private boolean isImageRotated;
 
     public void dispose() {
         _vertexBuffer = null;
@@ -36,12 +38,15 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
         _vertexBuffer = makeVertexPositionBuffer();
         float[] _uvBuffer = makeVertexUVBuffer();
         updateVertexUVBuffer(_uvBuffer);
+        float[] _positionBuffer = makeVertexPositionBuffer();
+        _updateVertexPositionBuffer(_positionBuffer);
 
         int count = vertexCount();
         List<Image> images = ((FlutterActor) artboard.actor()).images;
         if (textureIndex() < images.size()) {
             _image = images.get(textureIndex());
             Rectangle uvBounds = null;
+            Rectangle positionBounds = null;
 
             int idx = 0;
             for (int i = 0; i < count; i++) {
@@ -51,6 +56,16 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
                     uvBounds = new Rectangle(new Point(_uvBuffer[idx], _uvBuffer[idx + 1]));
                 } else {
                     uvBounds.add(new Point(_uvBuffer[idx], _uvBuffer[idx + 1]));
+                }
+                idx += 2;
+            }
+
+            idx = 0;
+            for (int i = 0; i < count; i++) {
+                if (positionBounds == null) {
+                    positionBounds = new Rectangle(new Point(_positionBuffer[idx], _positionBuffer[idx + 1]));
+                } else {
+                    positionBounds.add(new Point(_positionBuffer[idx], _positionBuffer[idx + 1]));
                 }
                 idx += 2;
             }
@@ -65,6 +80,7 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
 
             if (uvBounds != null) {
                 _image = _image.subImage(uvBounds.x, uvBounds.y, uvBounds.width, uvBounds.height);
+                isImageRotated = uvBounds.width < uvBounds.height && positionBounds.height < positionBounds.width;
             }
         }
     }
@@ -85,9 +101,9 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
         if (imageTransform() != null) {
             float[] m32 = imageTransform().values(); // 3x2 matrix
             canvas.transform(m32[0], m32[1], m32[2], m32[3], m32[4], m32[5]);
-            canvas.drawImageCentered(_image, translation().values()[0], translation().values()[1]);
+            canvas.drawImageCentered(_image, 0, 0);
         } else {
-            canvas.drawImageCentered(_image, translation().values()[0], translation().values()[1]);
+            canvas.drawImageCentered(_image, 0, 0);
         }
 
         canvas.restore();
@@ -132,10 +148,34 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
         updateVertices();
     }
 
+    @Override
+    public void updateWorldTransform() {
+        super.updateWorldTransform();
+
+        if (isImageRotated) {
+            Mat2D worldTransform = worldTransform();
+            Mat2D rotation = new Mat2D(0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+            Mat2D.multiply(worldTransform, worldTransform, rotation);
+        }
+    }
+
     private void updateVertices() {
         if (triangles() == null) {
             return;
         }
         updateVertexPositionBuffer(_vertexBuffer, false);
+    }
+
+    private void _updateVertexPositionBuffer(float[] buffer) {
+        int readIdx = vertexPositionOffset();
+        int writeIdx = 0;
+        int stride = vertexStride();
+
+        float[] v = vertices();
+        for (int i = 0; i < vertexCount(); i++) {
+            buffer[writeIdx++] = v[readIdx];
+            buffer[writeIdx++] = v[readIdx + 1];
+            readIdx += stride;
+        }
     }
 }
