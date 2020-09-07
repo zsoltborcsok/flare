@@ -1,6 +1,7 @@
 package org.nting.flare.playn;
 
 import org.nting.flare.java.maths.Mat2D;
+
 import pythagoras.f.AffineTransform;
 import pythagoras.f.Path;
 
@@ -15,9 +16,11 @@ public interface FlutterPath {
         if (pathTransform == null) {
             return path;
         } else {
+            Path tPath = new Path();
+            tPath.append(path, false);
             float[] m32 = pathTransform.values(); // 3x2 matrix
-            path.transform(new AffineTransform(m32[0], m32[1], m32[2], m32[3], m32[4], m32[5]));
-            return path;
+            tPath.transform(new AffineTransform(m32[0], m32[1], m32[2], m32[3], m32[4], m32[5]));
+            return tPath;
         }
     }
 }
