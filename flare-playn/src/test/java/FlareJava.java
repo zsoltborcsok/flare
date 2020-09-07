@@ -1,3 +1,4 @@
+import static org.nting.toolkit.ui.style.material.MaterialColorPalette.amber_100;
 import static org.nting.toolkit.ui.style.material.MaterialColorPalette.brown_100;
 
 import java.io.IOException;
@@ -5,6 +6,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.nting.flare.java.animation.ActorAnimation;
 import org.nting.flare.playn.FlutterActor;
 import org.nting.flare.playn.FlutterActorArtboard;
 import org.nting.toolkit.app.ToolkitApp;
@@ -40,19 +42,23 @@ public class FlareJava {
     }
 
     // TODO LayoutManager corresponding for BoxFit + configure the transform accordingly!
+    // TODO support animation start, stop, pause, rewind, fastForward???
     private static class FlareActorRenderObject extends AbstractComponent {
 
         private FlutterActor flutterActor;
         private FlutterActorArtboard flutterActorArtboard;
-        private String animationName;
+        private ActorAnimation animation;
+        private float time = 0.0f;
 
         private FlareActorRenderObject(FlutterActor flutterActor, String artboardName, String animationName) {
             this.flutterActor = flutterActor;
             flutterActorArtboard = (FlutterActorArtboard) flutterActor.getArtboard(artboardName);
             flutterActorArtboard.initializeGraphics();
+            animation = flutterActorArtboard.getAnimation(animationName);
+            if (animation != null) {
+                animation.apply(0.0f, flutterActorArtboard, 1.0f);
+            }
             flutterActorArtboard.advance(0.0f);
-
-            this.animationName = animationName;
         }
 
         @Override
@@ -69,8 +75,29 @@ public class FlareJava {
         public void doPaintComponent(Canvas canvas) {
             canvas.setFillColor(brown_100);
             canvas.fillRect(0, 0, width.getValue(), height.getValue());
+            canvas.setFillColor(amber_100);
+            canvas.fillRect(0, 0, flutterActorArtboard.width(), flutterActorArtboard.height());
 
+            float elapsedSeconds = time;
+            if (animation != null) {
+                if (animation.isLooping()) {
+                    time %= animation.duration();
+                }
+                animation.apply(time, flutterActorArtboard, 1.0f);
+            }
+
+            flutterActorArtboard.advance(elapsedSeconds);
             flutterActorArtboard.draw(canvas);
+        }
+
+        @Override
+        public void update(float delta) {
+            super.update(delta);
+
+            if (animation != null) {
+                time += (delta / 1000);
+                repaint();
+            }
         }
     }
 }
