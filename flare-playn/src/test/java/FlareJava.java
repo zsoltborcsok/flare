@@ -1,24 +1,23 @@
-import static org.nting.toolkit.ui.style.material.MaterialColorPalette.amber_100;
-import static org.nting.toolkit.ui.style.material.MaterialColorPalette.brown_100;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.nting.flare.java.animation.ActorAnimation;
 import org.nting.flare.playn.FlutterActor;
-import org.nting.flare.playn.FlutterActorArtboard;
+import org.nting.flare.playn.component.BoxFit;
+import org.nting.flare.playn.component.FlareActorRenderObject;
+import org.nting.toolkit.Component;
 import org.nting.toolkit.app.ToolkitApp;
-import org.nting.toolkit.component.AbstractComponent;
+import org.nting.toolkit.event.KeyEvent;
+import org.nting.toolkit.event.KeyListener;
+import org.nting.toolkit.event.MouseEvent;
+import org.nting.toolkit.event.MouseListener;
 import org.nting.toolkit.layout.AbsoluteLayout;
-import org.nting.toolkit.ui.ComponentUI;
 
-import playn.core.Canvas;
+import playn.core.Key;
 import playn.core.PlayN;
 import playn.swing.JavaGraphics;
 import playn.swing.JavaPlatform;
-import pythagoras.f.Dimension;
 
 public class FlareJava {
 
@@ -37,67 +36,42 @@ public class FlareJava {
         platform.graphics().registerFont("IconFont", "fonts/IconFont.ttf");
         ((JavaGraphics) PlayN.graphics()).setSize(1024, 800);
 
-        ToolkitApp.startApp().then(toolkitManager -> toolkitManager.root().addComponent(
-                new FlareActorRenderObject(flutterActor, null, "idle"), AbsoluteLayout.fillParentConstraint()));
+        ToolkitApp.startApp().then(toolkitManager -> toolkitManager.root().addComponent(createContent(flutterActor),
+                AbsoluteLayout.fillParentConstraint()));
     }
 
-    // TODO LayoutManager corresponding for BoxFit + configure the transform accordingly!
-    // TODO support animation start, stop, pause, rewind, fastForward???
-    private static class FlareActorRenderObject extends AbstractComponent {
+    private static Component createContent(FlutterActor flutterActor) {
+        FlareActorRenderObject flareActorRenderObject = new FlareActorRenderObject(flutterActor, null, "idle");
+        flareActorRenderObject.addMouseListener(new MouseListener() {
 
-        private FlutterActor flutterActor;
-        private FlutterActorArtboard flutterActorArtboard;
-        private ActorAnimation animation;
-        private float time = 0.0f;
-
-        private FlareActorRenderObject(FlutterActor flutterActor, String artboardName, String animationName) {
-            this.flutterActor = flutterActor;
-            flutterActorArtboard = (FlutterActorArtboard) flutterActor.getArtboard(artboardName);
-            flutterActorArtboard.initializeGraphics();
-            animation = flutterActorArtboard.getAnimation(animationName);
-            if (animation != null) {
-                animation.apply(0.0f, flutterActorArtboard, 1.0f);
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                flareActorRenderObject.paused.adjustValue(p -> !p);
             }
-            flutterActorArtboard.advance(0.0f);
-        }
 
-        @Override
-        public void setComponentUI(ComponentUI componentUI) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(flutterActor.artboard().width(), flutterActor.artboard().height());
-        }
-
-        @Override
-        public void doPaintComponent(Canvas canvas) {
-            canvas.setFillColor(brown_100);
-            canvas.fillRect(0, 0, width.getValue(), height.getValue());
-            canvas.setFillColor(amber_100);
-            canvas.fillRect(0, 0, flutterActorArtboard.width(), flutterActorArtboard.height());
-
-            float elapsedSeconds = time;
-            if (animation != null) {
-                if (animation.isLooping()) {
-                    time %= animation.duration();
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.getButton() == MouseEvent.MouseButton.BUTTON_RIGHT) {
+                    BoxFit fit = flareActorRenderObject.fit.getValue();
+                    fit = BoxFit.values()[(fit.ordinal() + 1) % BoxFit.values().length];
+                    flareActorRenderObject.fit.setValue(fit);
                 }
-                animation.apply(time, flutterActorArtboard, 1.0f);
             }
+        });
+        flareActorRenderObject.addKeyListener(new KeyListener() {
 
-            flutterActorArtboard.advance(elapsedSeconds);
-            flutterActorArtboard.draw(canvas);
-        }
-
-        @Override
-        public void update(float delta) {
-            super.update(delta);
-
-            if (animation != null) {
-                time += (delta / 1000);
-                repaint();
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.isKeyCode(Key.HOME)) {
+                    flareActorRenderObject.rewind();
+                } else if (e.isKeyCode(Key.END)) {
+                    flareActorRenderObject.fastForward();
+                } else if (e.isKeyCode(Key.SPACE)) {
+                    flareActorRenderObject.paused.adjustValue(p -> !p);
+                }
             }
-        }
+        });
+
+        return flareActorRenderObject;
     }
 }

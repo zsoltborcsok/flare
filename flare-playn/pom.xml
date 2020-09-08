@@ -48,6 +48,10 @@
             <artifactId>playn-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>toolkit</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
@@ -72,11 +76,6 @@
         <dependency>
             <groupId>org.nting.playn</groupId>
             <artifactId>playn-swing</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.nting</groupId>
-            <artifactId>toolkit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
