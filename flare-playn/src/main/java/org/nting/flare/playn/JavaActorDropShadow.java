@@ -2,7 +2,7 @@ package org.nting.flare.playn;
 
 import org.nting.flare.java.ActorDropShadow;
 
-public class FlutterActorDropShadow extends ActorDropShadow {
+public class JavaActorDropShadow extends ActorDropShadow {
 
     private BlendMode blendMode;
 

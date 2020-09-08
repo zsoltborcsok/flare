@@ -2,9 +2,10 @@ package org.nting.flare.playn;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorLayerEffectRenderer;
+
 import playn.core.Canvas;
 
-public class FlutterActorLayerEffectRenderer extends ActorLayerEffectRenderer implements FlutterActorDrawable {
+public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer implements JavaActorDrawable {
 
     @Override
     public ActorArtboard artboard() {

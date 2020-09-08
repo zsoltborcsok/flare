@@ -13,13 +13,13 @@ import playn.core.Canvas;
 import playn.core.Color;
 import playn.core.Path;
 
-public class FlutterColorStroke extends ColorStroke implements FlutterStroke {
+public class JavaColorStroke extends ColorStroke implements JavaStroke {
 
     private final Capture<Path> effectPath = new Capture<>();
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterColorStroke instanceNode = new FlutterColorStroke();
+        JavaColorStroke instanceNode = new JavaColorStroke();
         instanceNode.copyColorStroke(this, resetArtboard);
         return instanceNode;
     }
@@ -44,12 +44,12 @@ public class FlutterColorStroke extends ColorStroke implements FlutterStroke {
     public void paint(ActorStroke stroke, Canvas canvas, Path path) {
         canvas.save();
         try {
-            FlutterActorShape parentShape = (FlutterActorShape) parent();
+            JavaActorShape parentShape = (JavaActorShape) parent();
             canvas.setStrokeColor(uiColor());
             canvas.setStrokeWidth(stroke.width());
             // canvas.setUseAntialias() is not supported
             canvas.setCompositeOperation(parentShape.blendMode().getComposite());
-            FlutterStroke.super.paint(stroke, canvas, path);
+            JavaStroke.super.paint(stroke, canvas, path);
         } finally {
             canvas.restore();
         }
@@ -57,6 +57,6 @@ public class FlutterColorStroke extends ColorStroke implements FlutterStroke {
 
     @Override
     public void markPathEffectsDirty() {
-        FlutterStroke.super.markPathEffectsDirty();
+        JavaStroke.super.markPathEffectsDirty();
     }
 }

@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorPolygon;
+import org.nting.flare.java.ActorStar;
 import org.nting.flare.java.PathPoint;
 
 import pythagoras.f.Path;
 
-public class FlutterActorPolygon extends ActorPolygon implements FlutterPathPointsPath {
+public class JavaActorStar extends ActorStar implements JavaPathPointsPath {
 
     private final Path path = new Path();
     private boolean isValid = false;
@@ -35,8 +35,8 @@ public class FlutterActorPolygon extends ActorPolygon implements FlutterPathPoin
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterActorPolygon instanceNode = new FlutterActorPolygon();
-        instanceNode.copyPolygon(this, resetArtboard);
+        JavaActorStar instanceNode = new JavaActorStar();
+        instanceNode.copyStar(this, resetArtboard);
         return instanceNode;
     }
 }

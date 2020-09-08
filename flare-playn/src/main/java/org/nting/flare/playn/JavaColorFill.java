@@ -12,11 +12,11 @@ import playn.core.Canvas;
 import playn.core.Color;
 import playn.core.Path;
 
-public class FlutterColorFill extends ColorFill implements FlutterFill {
+public class JavaColorFill extends ColorFill implements JavaFill {
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterColorFill instanceNode = new FlutterColorFill();
+        JavaColorFill instanceNode = new JavaColorFill();
         instanceNode.copyColorFill(this, resetArtboard);
         return instanceNode;
     }
@@ -36,11 +36,11 @@ public class FlutterColorFill extends ColorFill implements FlutterFill {
     public void paint(ActorFill fill, Canvas canvas, Path path) {
         canvas.save();
         try {
-            FlutterActorShape parentShape = (FlutterActorShape) parent();
+            JavaActorShape parentShape = (JavaActorShape) parent();
             canvas.setFillColor(uiColor());
             // canvas.setUseAntialias() is not supported
             canvas.setCompositeOperation(parentShape.blendMode().getComposite());
-            FlutterFill.super.paint(fill, canvas, path);
+            JavaFill.super.paint(fill, canvas, path);
         } finally {
             canvas.restore();
         }

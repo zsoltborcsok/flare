@@ -7,9 +7,9 @@ import org.nting.flare.java.maths.AABB;
 import playn.core.Canvas;
 
 // Note Canvas.setUseAntialias() is not supported
-public class FlutterActorArtboard extends ActorArtboard {
+public class JavaActorArtboard extends ActorArtboard {
 
-    public FlutterActorArtboard(FlutterActor actor) {
+    public JavaActorArtboard(JavaActor actor) {
         super(actor);
     }
 
@@ -22,8 +22,8 @@ public class FlutterActorArtboard extends ActorArtboard {
         }
         if (drawableNodes() != null) {
             for (ActorDrawable drawable : drawableNodes()) {
-                if (drawable instanceof FlutterActorDrawable) {
-                    ((FlutterActorDrawable) drawable).draw(canvas);
+                if (drawable instanceof JavaActorDrawable) {
+                    ((JavaActorDrawable) drawable).draw(canvas);
                 }
             }
         }

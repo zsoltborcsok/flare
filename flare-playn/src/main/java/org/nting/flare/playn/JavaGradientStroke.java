@@ -5,26 +5,34 @@ import static pythagoras.f.MathUtil.clamp;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorFill;
-import org.nting.flare.java.GradientFill;
+import org.nting.flare.java.ActorStroke;
+import org.nting.flare.java.GradientStroke;
 import org.nting.flare.java.maths.Vec2D;
+import org.nting.flare.playn.util.Capture;
 
 import playn.core.Canvas;
 import playn.core.Color;
 import playn.core.Path;
 import playn.core.PlayN;
 
-public class FlutterGradientFill extends GradientFill implements FlutterFill {
+public class JavaGradientStroke extends GradientStroke implements JavaStroke {
+
+    private final Capture<Path> effectPath = new Capture<>();
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterGradientFill instanceNode = new FlutterGradientFill();
-        instanceNode.copyGradientFill(this, resetArtboard);
+        JavaGradientStroke instanceNode = new JavaGradientStroke();
+        instanceNode.copyGradientStroke(this, resetArtboard);
         return instanceNode;
     }
 
     @Override
-    public void paint(ActorFill fill, Canvas canvas, Path path) {
+    public Capture<Path> effectPath() {
+        return effectPath;
+    }
+
+    @Override
+    public void paint(ActorStroke stroke, Canvas canvas, Path path) {
         float[] colorStops = colorStops();
         int numStops = round(colorStops.length / 5.0f);
         int[] colors = new int[numStops];
@@ -57,17 +65,22 @@ public class FlutterGradientFill extends GradientFill implements FlutterFill {
 
         canvas.save();
         try {
-            FlutterActorShape parentShape = (FlutterActorShape) parent();
-            canvas.setFillColor(paintColor);
+            JavaActorShape parentShape = (JavaActorShape) parent();
+            canvas.setStrokeColor(paintColor);
             // canvas.setUseAntialias() is not supported
             canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             if (0 < numStops) {
-                canvas.setFillGradient(PlayN.graphics().createLinearGradient(renderStart.values()[0],
+                canvas.setStrokeGradient(PlayN.graphics().createLinearGradient(renderStart.values()[0],
                         renderStart.values()[1], renderEnd.values()[0], renderEnd.values()[1], colors, stops));
             }
-            FlutterFill.super.paint(fill, canvas, path);
+            JavaStroke.super.paint(stroke, canvas, path);
         } finally {
             canvas.restore();
         }
+    }
+
+    @Override
+    public void markPathEffectsDirty() {
+        JavaStroke.super.markPathEffectsDirty();
     }
 }

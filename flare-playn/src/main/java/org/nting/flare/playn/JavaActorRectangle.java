@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorTriangle;
+import org.nting.flare.java.ActorRectangle;
 import org.nting.flare.java.PathPoint;
 
 import pythagoras.f.Path;
 
-public class FlutterActorTriangle extends ActorTriangle implements FlutterPathPointsPath {
+public class JavaActorRectangle extends ActorRectangle implements JavaPathPointsPath {
 
     private final Path path = new Path();
     private boolean isValid = false;
@@ -35,8 +35,8 @@ public class FlutterActorTriangle extends ActorTriangle implements FlutterPathPo
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterActorTriangle instanceNode = new FlutterActorTriangle();
-        instanceNode.copyPath(this, resetArtboard);
+        JavaActorRectangle instanceNode = new JavaActorRectangle();
+        instanceNode.copyRectangle(this, resetArtboard);
         return instanceNode;
     }
 }

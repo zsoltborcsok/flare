@@ -10,8 +10,8 @@ import java.util.Objects;
 import org.nting.data.Property;
 import org.nting.data.util.Pair;
 import org.nting.flare.java.animation.ActorAnimation;
-import org.nting.flare.playn.FlutterActor;
-import org.nting.flare.playn.FlutterActorArtboard;
+import org.nting.flare.playn.JavaActor;
+import org.nting.flare.playn.JavaActorArtboard;
 import org.nting.toolkit.component.AbstractComponent;
 import org.nting.toolkit.ui.ComponentUI;
 
@@ -23,14 +23,14 @@ public class FlareActorRenderObject extends AbstractComponent {
     public final Property<BoxFit> fit = createProperty("fit", BoxFit.CONTAIN);
     public final Property<Boolean> paused = createProperty("paused", false);
 
-    private final FlutterActor flutterActor;
-    private FlutterActorArtboard artboard;
+    private final JavaActor javaActor;
+    private JavaActorArtboard artboard;
     private ActorAnimation animation;
     private float time = 0.0f;
 
-    public FlareActorRenderObject(FlutterActor flutterActor, String artboardName, String animationName) {
-        this.flutterActor = flutterActor;
-        artboard = (FlutterActorArtboard) flutterActor.getArtboard(artboardName);
+    public FlareActorRenderObject(JavaActor javaActor, String artboardName, String animationName) {
+        this.javaActor = javaActor;
+        artboard = (JavaActorArtboard) javaActor.getArtboard(artboardName);
         artboard.initializeGraphics();
         animation = artboard.getAnimation(animationName);
         if (animation != null) {
@@ -44,7 +44,7 @@ public class FlareActorRenderObject extends AbstractComponent {
             return;
         }
 
-        artboard = (FlutterActorArtboard) flutterActor.getArtboard(artboardName);
+        artboard = (JavaActorArtboard) javaActor.getArtboard(artboardName);
         artboard.initializeGraphics();
         setAnimationName(animation.name());
         artboard.advance(0.0f);

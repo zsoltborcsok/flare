@@ -12,7 +12,7 @@ import org.nting.flare.java.maths.Mat2D;
 import playn.core.Canvas;
 import pythagoras.f.Path;
 
-public class FlutterActorShape extends ActorShape implements FlutterActorDrawable {
+public class JavaActorShape extends ActorShape implements JavaActorDrawable {
 
     private final Path _path = new Path();
     private boolean _isValid = false;
@@ -58,7 +58,7 @@ public class FlutterActorShape extends ActorShape implements FlutterActorDrawabl
 
         for (final ActorBasePath path : paths()) {
             Mat2D transform = path.pathTransform();
-            _path.append(((FlutterPath) path).pathWithTransform(transform), false);
+            _path.append(((JavaPath) path).pathWithTransform(transform), false);
         }
         return _path;
     }
@@ -82,11 +82,11 @@ public class FlutterActorShape extends ActorShape implements FlutterActorDrawabl
         playn.core.Path renderPath = getRenderPath(canvas);
 
         for (ActorFill actorFill : fills()) {
-            FlutterFill fill = (FlutterFill) actorFill.actorPaint;
+            JavaFill fill = (JavaFill) actorFill.actorPaint;
             fill.paint(actorFill, canvas, renderPath);
         }
         for (ActorStroke actorStroke : strokes()) {
-            FlutterStroke stroke = (FlutterStroke) actorStroke.actorPaint;
+            JavaStroke stroke = (JavaStroke) actorStroke.actorPaint;
             stroke.paint(actorStroke, canvas, renderPath);
         }
 

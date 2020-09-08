@@ -5,35 +5,31 @@ import static pythagoras.f.MathUtil.clamp;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorStroke;
-import org.nting.flare.java.GradientStroke;
+import org.nting.flare.java.ActorFill;
+import org.nting.flare.java.RadialGradientFill;
 import org.nting.flare.java.maths.Vec2D;
-import org.nting.flare.playn.util.Capture;
 
 import playn.core.Canvas;
 import playn.core.Color;
 import playn.core.Path;
 import playn.core.PlayN;
 
-public class FlutterGradientStroke extends GradientStroke implements FlutterStroke {
-
-    private final Capture<Path> effectPath = new Capture<>();
+public class JavaRadialFill extends RadialGradientFill implements JavaFill {
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterGradientStroke instanceNode = new FlutterGradientStroke();
-        instanceNode.copyGradientStroke(this, resetArtboard);
+        JavaRadialFill instanceNode = new JavaRadialFill();
+        instanceNode.copyRadialFill(this, resetArtboard);
         return instanceNode;
     }
 
     @Override
-    public Capture<Path> effectPath() {
-        return effectPath;
-    }
-
-    @Override
-    public void paint(ActorStroke stroke, Canvas canvas, Path path) {
+    public void paint(ActorFill fill, Canvas canvas, Path path) {
+        Vec2D renderStart = renderStart();
+        Vec2D renderEnd = renderEnd();
         float[] colorStops = colorStops();
+
+        float radius = Vec2D.distance(renderStart, renderEnd);
         int numStops = round(colorStops.length / 5.0f);
         int[] colors = new int[numStops];
         float[] stops = new float[numStops];
@@ -60,27 +56,19 @@ public class FlutterGradientStroke extends GradientStroke implements FlutterStro
                     round(overrideColor[1] * 255.0f), round(overrideColor[2] * 255.0f));
         }
 
-        Vec2D renderStart = renderStart();
-        Vec2D renderEnd = renderEnd();
-
         canvas.save();
         try {
-            FlutterActorShape parentShape = (FlutterActorShape) parent();
-            canvas.setStrokeColor(paintColor);
+            JavaActorShape parentShape = (JavaActorShape) parent();
+            canvas.setFillColor(paintColor);
             // canvas.setUseAntialias() is not supported
             canvas.setCompositeOperation(parentShape.blendMode().getComposite());
             if (0 < numStops) {
-                canvas.setStrokeGradient(PlayN.graphics().createLinearGradient(renderStart.values()[0],
-                        renderStart.values()[1], renderEnd.values()[0], renderEnd.values()[1], colors, stops));
+                canvas.setFillGradient(PlayN.graphics().createRadialGradient(renderStart.values()[0],
+                        renderStart.values()[1], radius, colors, stops));
             }
-            FlutterStroke.super.paint(stroke, canvas, path);
+            JavaFill.super.paint(fill, canvas, path);
         } finally {
             canvas.restore();
         }
-    }
-
-    @Override
-    public void markPathEffectsDirty() {
-        FlutterStroke.super.markPathEffectsDirty();
     }
 }

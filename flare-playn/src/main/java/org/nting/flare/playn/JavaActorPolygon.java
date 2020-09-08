@@ -1,12 +1,15 @@
 package org.nting.flare.playn;
 
+import java.util.List;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorPath;
+import org.nting.flare.java.ActorPolygon;
+import org.nting.flare.java.PathPoint;
 
 import pythagoras.f.Path;
 
-public class FlutterActorPath extends ActorPath implements FlutterPathPointsPath {
+public class JavaActorPolygon extends ActorPolygon implements JavaPathPointsPath {
 
     private final Path path = new Path();
     private boolean isValid = false;
@@ -26,9 +29,14 @@ public class FlutterActorPath extends ActorPath implements FlutterPathPointsPath
     }
 
     @Override
+    public List<PathPoint> deformedPoints() {
+        return super.deformedPoints();
+    }
+
+    @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterActorPath instanceNode = new FlutterActorPath();
-        instanceNode.copyPath(this, resetArtboard);
+        JavaActorPolygon instanceNode = new JavaActorPolygon();
+        instanceNode.copyPolygon(this, resetArtboard);
         return instanceNode;
     }
 }

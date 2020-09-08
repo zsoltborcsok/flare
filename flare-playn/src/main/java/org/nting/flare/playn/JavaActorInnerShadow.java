@@ -2,7 +2,7 @@ package org.nting.flare.playn;
 
 import org.nting.flare.java.ActorInnerShadow;
 
-public class FlutterActorInnerShadow extends ActorInnerShadow {
+public class JavaActorInnerShadow extends ActorInnerShadow {
 
     private BlendMode blendMode;
 

@@ -1,17 +1,18 @@
 package org.nting.flare.playn;
 
+import java.util.List;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorBasePath;
 import org.nting.flare.java.ActorDrawable.ClipShape;
 import org.nting.flare.java.ActorShape;
 import org.nting.flare.java.FillRule;
+
 import playn.core.Canvas;
 import playn.core.Path;
 import pythagoras.f.Rectangle;
 
-import java.util.List;
-
-public interface FlutterActorDrawable {
+public interface JavaActorDrawable {
 
     default BlendMode blendMode() {
         return BlendMode.values()[blendModeId()];
@@ -34,7 +35,7 @@ public interface FlutterActorDrawable {
                 }
                 if (clipShape.intersect) {
                     Path clipPath = canvas.createPath();
-                    clipPath.append(((FlutterActorShape) shape).path(), false);
+                    clipPath.append(((JavaActorShape) shape).path(), false);
                     canvas.clip(clipPath);
                 } else {
                     Rectangle artboardRect = new Rectangle(artboard().origin().values()[0] * artboard().width(),
@@ -46,7 +47,7 @@ public interface FlutterActorDrawable {
                         Path clipPath = canvas.createPath();
                         clipPath.append(artboardRect, false);
                         for (ActorBasePath path : shape.paths()) {
-                            clipPath.append(((FlutterPath) path).pathWithTransform(path.pathTransform()), false);
+                            clipPath.append(((JavaPath) path).pathWithTransform(path.pathTransform()), false);
                         }
                         // clipPath.fillType = PathFillType.evenOdd;
                         canvas.clip(clipPath);
@@ -55,7 +56,7 @@ public interface FlutterActorDrawable {
                         for (ActorBasePath path : shape.paths()) {
                             Path clipPath = canvas.createPath();
                             clipPath.append(artboardRect, false);
-                            clipPath.append(((FlutterPath) path).pathWithTransform(path.pathTransform()), false);
+                            clipPath.append(((JavaPath) path).pathWithTransform(path.pathTransform()), false);
                             // clipPath.fillType = PathFillType.evenOdd;
                             canvas.clip(clipPath);
                         }

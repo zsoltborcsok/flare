@@ -15,7 +15,7 @@ import playn.core.Canvas.LineCap;
 import playn.core.Canvas.LineJoin;
 import playn.core.Path;
 
-public interface FlutterStroke {
+public interface JavaStroke {
 
     Capture<Path> effectPath();
 

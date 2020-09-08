@@ -14,10 +14,10 @@ import com.google.common.collect.Lists;
 import pythagoras.f.Path;
 
 /// Abstract path that uses Actor PathPoints, slightly higher level
-/// that FlutterPath. Most shapes can use this, but if they want to
+/// that JavaPath. Most shapes can use this, but if they want to
 /// use a different procedural backing call, they should implement
-/// FlutterPath and generate the path another way.
-public interface FlutterPathPointsPath extends FlutterPath {
+/// JavaPath and generate the path another way.
+public interface JavaPathPointsPath extends JavaPath {
 
     List<PathPoint> deformedPoints();
 

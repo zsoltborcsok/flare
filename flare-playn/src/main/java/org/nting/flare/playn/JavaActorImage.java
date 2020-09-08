@@ -14,7 +14,7 @@ import playn.core.Image;
 import pythagoras.f.Point;
 import pythagoras.f.Rectangle;
 
-public class FlutterActorImage extends ActorImage implements FlutterActorDrawable {
+public class JavaActorImage extends ActorImage implements JavaActorDrawable {
 
     @Override
     public ActorArtboard artboard() {
@@ -42,7 +42,7 @@ public class FlutterActorImage extends ActorImage implements FlutterActorDrawabl
         _updateVertexPositionBuffer(_positionBuffer);
 
         int count = vertexCount();
-        List<Image> images = ((FlutterActor) artboard.actor()).images;
+        List<Image> images = ((JavaActor) artboard.actor()).images;
         if (textureIndex() < images.size()) {
             _image = images.get(textureIndex());
             Rectangle uvBounds = null;

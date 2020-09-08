@@ -2,10 +2,11 @@ package org.nting.flare.playn;
 
 import org.nting.flare.java.ActorBasePath;
 import org.nting.flare.java.maths.Mat2D;
+
 import playn.core.Canvas;
 import pythagoras.f.Path;
 
-public class FlutterActorShapeWithTransformedStroke extends FlutterActorShape {
+public class JavaActorShapeWithTransformedStroke extends JavaActorShape {
 
     private final Path _localPath = new Path();
     private boolean _isLocalValid = false;
@@ -36,7 +37,7 @@ public class FlutterActorShapeWithTransformedStroke extends FlutterActorShape {
                 localTransform = new Mat2D();
                 Mat2D.multiply(localTransform, inverseWorld, transform);
             }
-            _localPath.append(((FlutterPath) path).pathWithTransform(localTransform), false);
+            _localPath.append(((JavaPath) path).pathWithTransform(localTransform), false);
         }
         return _localPath;
     }

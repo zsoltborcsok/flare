@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
-import org.nting.flare.java.ActorEllipse;
+import org.nting.flare.java.ActorTriangle;
 import org.nting.flare.java.PathPoint;
 
 import pythagoras.f.Path;
 
-public class FlutterActorEllipse extends ActorEllipse implements FlutterPathPointsPath {
+public class JavaActorTriangle extends ActorTriangle implements JavaPathPointsPath {
 
     private final Path path = new Path();
     private boolean isValid = false;
@@ -35,7 +35,7 @@ public class FlutterActorEllipse extends ActorEllipse implements FlutterPathPoin
 
     @Override
     public ActorComponent makeInstance(ActorArtboard resetArtboard) {
-        FlutterActorEllipse instanceNode = new FlutterActorEllipse();
+        JavaActorTriangle instanceNode = new JavaActorTriangle();
         instanceNode.copyPath(this, resetArtboard);
         return instanceNode;
     }

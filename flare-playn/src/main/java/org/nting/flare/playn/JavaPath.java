@@ -7,7 +7,7 @@ import pythagoras.f.Path;
 
 /// Abstract base path that can be invalidated and somehow
 /// regenerates, no concrete logic
-public interface FlutterPath {
+public interface JavaPath {
 
     Path path();
 

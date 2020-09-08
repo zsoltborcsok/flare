@@ -3,7 +3,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.nting.flare.playn.FlutterActor;
+import org.nting.flare.playn.JavaActor;
 import org.nting.flare.playn.component.BoxFit;
 import org.nting.flare.playn.component.FlareActorRenderObject;
 import org.nting.toolkit.Component;
@@ -26,7 +26,7 @@ public class FlareJava {
         platform.setTitle("Flare");
 
         byte[] data = Files.readAllBytes(Paths.get(ClassLoader.getSystemResource("Teddy.flr").toURI()));
-        FlutterActor flutterActor = FlutterActor.loadFromByteData(data);
+        JavaActor javaActor = JavaActor.loadFromByteData(data);
 
         platform.assets().setPathPrefix("org/nting/assets");
         platform.graphics().registerFont("SourceSansPro-Bold", "fonts/SourceSansPro-Bold.ttf");
@@ -36,12 +36,12 @@ public class FlareJava {
         platform.graphics().registerFont("IconFont", "fonts/IconFont.ttf");
         ((JavaGraphics) PlayN.graphics()).setSize(1024, 800);
 
-        ToolkitApp.startApp().then(toolkitManager -> toolkitManager.root().addComponent(createContent(flutterActor),
+        ToolkitApp.startApp().then(toolkitManager -> toolkitManager.root().addComponent(createContent(javaActor),
                 AbsoluteLayout.fillParentConstraint()));
     }
 
-    private static Component createContent(FlutterActor flutterActor) {
-        FlareActorRenderObject flareActorRenderObject = new FlareActorRenderObject(flutterActor, null, "idle");
+    private static Component createContent(JavaActor javaActor) {
+        FlareActorRenderObject flareActorRenderObject = new FlareActorRenderObject(javaActor, null, "idle");
         flareActorRenderObject.addMouseListener(new MouseListener() {
 
             @Override

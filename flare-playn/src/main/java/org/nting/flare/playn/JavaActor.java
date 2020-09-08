@@ -28,102 +28,102 @@ import com.google.common.collect.Lists;
 import playn.core.Image;
 import playn.core.PlayN;
 
-public class FlutterActor extends Actor {
+public class JavaActor extends Actor {
 
     public final List<Image> images = Lists.newLinkedList();
 
     @Override
     public ActorArtboard makeArtboard() {
-        return new FlutterActorArtboard(this);
+        return new JavaActorArtboard(this);
     }
 
     @Override
     public ActorShape makeShapeNode(ActorShape source) {
         if (source != null && source.transformAffectsStroke()) {
-            return new FlutterActorShapeWithTransformedStroke();
+            return new JavaActorShapeWithTransformedStroke();
         } else {
-            return new FlutterActorShape();
+            return new JavaActorShape();
         }
     }
 
     @Override
     public ActorPath makePathNode() {
-        return new FlutterActorPath();
+        return new JavaActorPath();
     }
 
     @Override
     public ActorImage makeImageNode() {
-        return new FlutterActorImage();
+        return new JavaActorImage();
     }
 
     @Override
     public ActorRectangle makeRectangle() {
-        return new FlutterActorRectangle();
+        return new JavaActorRectangle();
     }
 
     @Override
     public ActorTriangle makeTriangle() {
-        return new FlutterActorTriangle();
+        return new JavaActorTriangle();
     }
 
     @Override
     public ActorStar makeStar() {
-        return new FlutterActorStar();
+        return new JavaActorStar();
     }
 
     @Override
     public ActorPolygon makePolygon() {
-        return new FlutterActorPolygon();
+        return new JavaActorPolygon();
     }
 
     @Override
     public ActorEllipse makeEllipse() {
-        return new FlutterActorEllipse();
+        return new JavaActorEllipse();
     }
 
     @Override
     public ColorFill makeColorFill() {
-        return new FlutterColorFill();
+        return new JavaColorFill();
     }
 
     @Override
     public ColorStroke makeColorStroke() {
-        return new FlutterColorStroke();
+        return new JavaColorStroke();
     }
 
     @Override
     public GradientFill makeGradientFill() {
-        return new FlutterGradientFill();
+        return new JavaGradientFill();
     }
 
     @Override
     public GradientStroke makeGradientStroke() {
-        return new FlutterGradientStroke();
+        return new JavaGradientStroke();
     }
 
     @Override
     public RadialGradientFill makeRadialFill() {
-        return new FlutterRadialFill();
+        return new JavaRadialFill();
     }
 
     @Override
     public RadialGradientStroke makeRadialStroke() {
-        return new FlutterRadialStroke();
+        return new JavaRadialStroke();
     }
 
     @Override
     public ActorDropShadow makeDropShadow() {
-        return new FlutterActorDropShadow();
+        return new JavaActorDropShadow();
     }
 
     @Override
     public ActorLayerEffectRenderer makeLayerEffectRenderer() {
-        return new FlutterActorLayerEffectRenderer();
+        return new JavaActorLayerEffectRenderer();
     }
 
     @Override
     public ActorInnerShadow makeInnerShadow() {
-        return new FlutterActorInnerShadow();
+        return new JavaActorInnerShadow();
     }
 
     @Override
@@ -136,14 +136,14 @@ public class FlutterActor extends Actor {
         return new byte[0];
     }
 
-    public static FlutterActor loadFromByteData(byte[] data) {
+    public static JavaActor loadFromByteData(byte[] data) {
         // ByteData data = await context.bundle.load(context.filename);
-        FlutterActor actor = new FlutterActor();
+        JavaActor actor = new JavaActor();
         actor.load(data, null);
         return actor;
     }
 
-    public void copyFlutterActor(FlutterActor actor) {
+    public void copyJavaActor(JavaActor actor) {
         copyActor(actor);
         images.clear();
         images.addAll(actor.images);
