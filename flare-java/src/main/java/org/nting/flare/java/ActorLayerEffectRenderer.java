@@ -1,13 +1,13 @@
 package org.nting.flare.java;
 
-import org.nting.flare.java.maths.AABB;
+import static java.util.Comparator.comparingInt;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparingInt;
+import org.nting.flare.java.maths.AABB;
 
 public class ActorLayerEffectRenderer extends ActorDrawable {
 

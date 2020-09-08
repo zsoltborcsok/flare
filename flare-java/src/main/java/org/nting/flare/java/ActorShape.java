@@ -1,15 +1,16 @@
 package org.nting.flare.java;
 
-import com.google.common.collect.Lists;
-import org.nting.flare.java.maths.AABB;
-import org.nting.flare.java.maths.Mat2D;
-import org.nting.flare.java.maths.Vec2D;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
+import org.nting.flare.java.maths.AABB;
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
+
+import com.google.common.collect.Lists;
 
 public class ActorShape extends ActorDrawable {
 
