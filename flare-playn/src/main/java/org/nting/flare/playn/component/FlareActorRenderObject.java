@@ -4,21 +4,55 @@ import static java.lang.Float.max;
 import static java.lang.Float.min;
 import static org.nting.toolkit.ui.style.material.MaterialColorPalette.amber_100;
 import static org.nting.toolkit.ui.style.material.MaterialColorPalette.brown_500;
+import static playn.core.PlayN.assets;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 import org.nting.data.Property;
 import org.nting.data.util.Pair;
 import org.nting.flare.java.animation.ActorAnimation;
 import org.nting.flare.playn.JavaActor;
 import org.nting.flare.playn.JavaActorArtboard;
+import org.nting.toolkit.Component;
 import org.nting.toolkit.component.AbstractComponent;
+import org.nting.toolkit.component.Panel;
 import org.nting.toolkit.ui.ComponentUI;
 
 import playn.core.Canvas;
+import playn.core.PlayN;
+import playn.core.util.Callback;
 import pythagoras.f.Dimension;
 
 public class FlareActorRenderObject extends AbstractComponent {
+
+    public static Component lazyFlareActorRenderObject(String filePath, String artboardName, String animationName,
+            Consumer<FlareActorRenderObject> loadedCallback) {
+        Panel panel = new Panel();
+
+        assets().getBytes(filePath, new Callback<byte[]>() {
+
+            @Override
+            public void onSuccess(byte[] result) {
+                JavaActor javaActor = JavaActor.loadFromByteData(result);
+                FlareActorRenderObject flareActorRenderObject = new FlareActorRenderObject(javaActor, artboardName,
+                        animationName);
+
+                Component parent = panel.getParent();
+                Object constraints = parent.getLayoutConstraints(panel);
+                parent.removeComponent(panel);
+                parent.addComponent(flareActorRenderObject, constraints);
+                loadedCallback.accept(flareActorRenderObject);
+            }
+
+            @Override
+            public void onFailure(Throwable cause) {
+                PlayN.log().error(cause.getMessage(), cause);
+            }
+        });
+
+        return panel;
+    }
 
     public final Property<BoxFit> fit = createProperty("fit", BoxFit.CONTAIN);
     public final Property<Boolean> paused = createProperty("paused", false);

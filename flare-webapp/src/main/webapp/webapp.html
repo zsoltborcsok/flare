@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Flare WebApp</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .text-input {
+        position: absolute;
+        z-index: 0;
+        width: 0.5em;
+        height: 1em;
+        opacity: 0;
+        background: transparent;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        resize: none;
+        outline: none;
+        overflow: hidden;
+        font: inherit;
+        padding: 0 1px;
+        margin: 0 -1px;
+        }
+        @font-face {
+        font-family: "SourceSansPro-Bold";
+        src: url(webapp/text/SourceSansPro-Bold.ttf);
+        }
+        @font-face {
+        font-family: "SourceSansPro-BoldItalic";
+        src: url(webapp/text/SourceSansPro-BoldItalic.ttf);
+        }
+        @font-face {
+        font-family: "SourceSansPro-Italic";
+        src: url(webapp/text/SourceSansPro-Italic.ttf);
+        }
+        @font-face {
+        font-family: "SourceSansPro-Regular";
+        src: url(webapp/text/SourceSansPro-Regular.ttf);
+        }
+        @font-face {
+        font-family: "IconFont";
+        src: url(webapp/text/IconFont.woff) format('woff'),
+        url(webapp/text/IconFont.ttf) format('truetype');
+        }
+
+    </style>
+</head>
+<body>
+<script src="webapp/webapp.nocache.js"></script>
+<div id="playn-root"></div>
+<div id='loadfont-bold' style='font-family: SourceSansPro-Bold; color: #FFFFFF;'>.</div>
+<div id='loadfont-bolditalic' style='font-family: SourceSansPro-BoldItalic; color: #FFFFFF;'>.</div>
+<div id='loadfont-italic' style='font-family: SourceSansPro-Italic; color: #FFFFFF;'>.</div>
+<div id='loadfont-regular' style='font-family: SourceSansPro-Regular; color: #FFFFFF;'>.</div>
+<div id='loadfont-iconfont' style='font-family: IconFont; color: #FFFFFF;'>.</div>
+</body>
+</html>

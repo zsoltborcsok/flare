@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.nting</groupId>
+        <artifactId>flare</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.nting</groupId>
+    <artifactId>flare-webapp</artifactId>
+    <packaging>war</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Showing flare animations in a web app</name>
+
+    <properties>
+        <gwt.module>org.nting.App</gwt.module>
+        <gwt.name>webapp</gwt.name>
+        <gwt.style>PRETTY</gwt.style>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>flare-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>flare-playn</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nting</groupId>
+            <artifactId>toolkit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nting.playn</groupId>
+            <artifactId>playn-core</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.nting.playn</groupId>
+            <artifactId>playn-html</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.nting.playn</groupId>
+            <artifactId>playn-swing</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <compilerVersion>8</compilerVersion>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>${gwt.version}</version>
+                <configuration>
+                    <disableClassMetadata>false</disableClassMetadata>
+                    <extraJvmArgs>-Xms512m -Xmx2048m</extraJvmArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- allows testing of HTML backend via: mvn integration-test -Phtml -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <war>
+                        ${project.basedir}/target/${project.artifactId}-${project.version}
+                    </war>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-html</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run-exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
