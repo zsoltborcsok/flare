@@ -1,12 +1,16 @@
 package org.nting.flare.playn;
 
+import static java.lang.Math.round;
+
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorDrawable;
+import org.nting.flare.java.ActorDropShadow;
 import org.nting.flare.java.ActorLayerEffectRenderer;
-import org.nting.flare.java.maths.AABB;
 
 import playn.core.Canvas;
-import pythagoras.f.Rectangle;
+import playn.core.CanvasImage;
+import playn.core.Color;
+import playn.core.PlayN;
 
 public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer implements JavaActorDrawable {
 
@@ -22,20 +26,45 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
 
     @Override
     public void draw(Canvas canvas) {
-        AABB aabb = artboard.artboardAABB();
-        Rectangle bounds = new Rectangle(aabb.values()[0], aabb.values()[1], aabb.values()[2] - aabb.values()[0],
-                aabb.values()[3] - aabb.values()[1]);
-
         // TODO Paint blur
 
-        // TODO Paint drop shadows
+        // TODO drawDropShadows(canvas);
 
-        drawPass(canvas, bounds);
+        drawPass(canvas);
 
         // TODO Paint inner shadows
     }
 
-    void drawPass(Canvas canvas, Rectangle bounds) {
+    private void drawDropShadows(Canvas canvas) {
+        if (!dropShadows().isEmpty()) {
+            for (ActorDropShadow dropShadow : dropShadows()) {
+                if (!dropShadow.isActive()) {
+                    continue;
+                }
+
+                canvas.save();
+                float[] c = dropShadow.color();
+                int color = Color.argb(round(c[3] * 255.0f), round(c[0] * 255.0f), round(c[1] * 255.0f),
+                        round(c[2] * 255.0f));
+
+                CanvasImage canvasImage = PlayN.graphics().createImage(artboard.width(), artboard.height());
+                Canvas layerCanvas = canvasImage.canvas();
+                layerCanvas.translate(dropShadow.offsetX, dropShadow.offsetY);
+                drawPass(layerCanvas);
+                layerCanvas.translate(-dropShadow.offsetX, -dropShadow.offsetY);
+                layerCanvas.setFillColor(color);
+                layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
+                layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
+                // _blurFilter(dropShadow.blurX + baseBlurX, dropShadow.blurY + baseBlurY)
+
+                canvas.drawImage(canvasImage, 0, 0);
+
+                canvas.restore();
+            }
+        }
+    }
+
+    private void drawPass(Canvas canvas) {
         for (ActorDrawable drawable : drawables()) {
             if (drawable instanceof JavaActorDrawable) {
                 ((JavaActorDrawable) drawable).draw(canvas);

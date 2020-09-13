@@ -1307,7 +1307,7 @@ public class KeyFrames {
         @Override
         public void setValue(ActorComponent component, float value, float mix) {
             ActorShadow node = (ActorShadow) component;
-            node.offsetX = node.offsetX * (1.0 - mix) + value * mix;
+            node.offsetX = node.offsetX * (1.0f - mix) + value * mix;
         }
 
         public static KeyFrame read(StreamReader reader, ActorComponent component) {
@@ -1324,7 +1324,7 @@ public class KeyFrames {
         @Override
         public void setValue(ActorComponent component, float value, float mix) {
             ActorShadow node = (ActorShadow) component;
-            node.offsetY = node.offsetY * (1.0 - mix) + value * mix;
+            node.offsetY = node.offsetY * (1.0f - mix) + value * mix;
         }
 
         public static KeyFrame read(StreamReader reader, ActorComponent component) {
@@ -1341,7 +1341,7 @@ public class KeyFrames {
         @Override
         public void setValue(ActorComponent component, float value, float mix) {
             ActorBlur node = (ActorBlur) component;
-            node.blurX = node.blurX * (1.0 - mix) + value * mix;
+            node.blurX = node.blurX * (1.0f - mix) + value * mix;
         }
 
         public static KeyFrame read(StreamReader reader, ActorComponent component) {
@@ -1358,7 +1358,7 @@ public class KeyFrames {
         @Override
         public void setValue(ActorComponent component, float value, float mix) {
             ActorBlur node = (ActorBlur) component;
-            node.blurY = node.blurY * (1.0 - mix) + value * mix;
+            node.blurY = node.blurY * (1.0f - mix) + value * mix;
         }
 
         public static KeyFrame read(StreamReader reader, ActorComponent component) {
