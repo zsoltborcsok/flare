@@ -7,6 +7,7 @@ import org.nting.flare.java.ActorDrawable;
 import org.nting.flare.java.ActorDropShadow;
 import org.nting.flare.java.ActorLayerEffectRenderer;
 
+import playn.core.BlurImageFilter;
 import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.Color;
@@ -28,7 +29,7 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
     public void draw(Canvas canvas) {
         // TODO Paint blur
 
-        // TODO drawDropShadows(canvas);
+        drawDropShadows(canvas);
 
         drawPass(canvas);
 
@@ -55,9 +56,9 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 layerCanvas.setFillColor(color);
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
                 layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
-                // _blurFilter(dropShadow.blurX + baseBlurX, dropShadow.blurY + baseBlurY)
 
-                canvas.drawImage(canvasImage, 0, 0);
+                BlurImageFilter blurImageFilter = new BlurImageFilter((int) dropShadow.blurX, (int) dropShadow.blurY);
+                canvas.drawImage(blurImageFilter.apply(canvasImage), 0, 0);
 
                 canvas.restore();
             }

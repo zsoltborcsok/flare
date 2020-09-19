@@ -9,7 +9,7 @@
     <name>flare</name>
 
     <properties>
-        <playn.version>1.9.1.2</playn.version>
+        <playn.version>1.9.1.3</playn.version>
         <gwt.version>2.8.2</gwt.version> <!-- TODO (also in PlayN!) -->
         <jetty.version>9.4.31.v20200723</jetty.version>
     </properties>

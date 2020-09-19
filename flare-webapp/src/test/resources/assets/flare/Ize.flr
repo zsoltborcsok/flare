@@ -283,6 +283,25 @@
 					"type": "shape"
 				},
 				{
+					"name": "Triangle Path",
+					"parent": 9,
+					"translation": [
+						40.56488037109375,
+						-44.22581100463867
+					],
+					"rotation": 0,
+					"scale": [
+						1.000643253326416,
+						1
+					],
+					"opacity": 1,
+					"isCollapsed": false,
+					"clips": [],
+					"width": 49,
+					"height": 55,
+					"type": "triangle"
+				},
+				{
 					"name": "Rectangle Path",
 					"parent": 9,
 					"translation": [
@@ -301,19 +320,6 @@
 					"height": 63,
 					"cornerRadius": 0,
 					"type": "rectangle"
-				},
-				{
-					"name": "Color",
-					"parent": 9,
-					"opacity": 1,
-					"color": [
-						0.47385716438293457,
-						0.7642857432365417,
-						0.5377514362335205,
-						1
-					],
-					"fillRule": 1,
-					"type": "colorFill"
 				},
 				{
 					"name": "Color",
@@ -350,14 +356,14 @@
 					"name": "Drop Shadow",
 					"parent": 9,
 					"isActive": true,
-					"blurX": 29.700000000000003,
+					"blurX": 9.899999999999997,
 					"blurY": 7.60000000000001,
-					"offsetX": 16.099999999999994,
-					"offsetY": 0,
+					"offsetX": 7.699999999999999,
+					"offsetY": 3.0000000000000013,
 					"color": [
-						0.11571428924798965,
-						0.20417138934135437,
-						0.3214285671710968,
+						0.7560005187988281,
+						0.8309524059295654,
+						0.14957143366336823,
 						1
 					],
 					"blendMode": 3,
@@ -382,6 +388,44 @@
 					"blendMode": 3,
 					"drawOrder": 4,
 					"type": "effectRenderer"
+				},
+				{
+					"name": "Color",
+					"parent": 9,
+					"opacity": 1,
+					"color": [
+						0.47385716438293457,
+						0.7642857432365417,
+						0.5377514362335205,
+						1
+					],
+					"fillRule": 1,
+					"type": "colorFill"
+				},
+				{
+					"name": "Inner Shadow",
+					"parent": 9,
+					"isActive": false,
+					"blurX": 20,
+					"blurY": 20,
+					"offsetX": 0,
+					"offsetY": 0,
+					"color": [
+						0,
+						0,
+						0,
+						1
+					],
+					"blendMode": 3,
+					"type": "innerShadow"
+				},
+				{
+					"name": "Blur",
+					"parent": 9,
+					"isActive": false,
+					"blurX": -10.6,
+					"blurY": -7.8000000000000025,
+					"type": "blur"
 				},
 				{
 					"name": "user-placeholder",
@@ -492,7 +536,7 @@
 					"isLooping": true,
 					"keyed": [
 						{
-							"component": 16,
+							"component": 19,
 							"rotation": [
 								[
 									{
