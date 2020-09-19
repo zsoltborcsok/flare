@@ -25,7 +25,7 @@ public class FlareJava {
 
         ToolkitApp.startApp()
                 .then(toolkitManager -> toolkitManager.root().addComponent(
-                        FlareRenderUtil.createContent("flare/Ize.flr", null, "idle"),
+                        FlareRenderUtil.createContent("flare/LayerEffects.flr", null, "idle"),
                         AbsoluteLayout.fillParentConstraint()));
     }
 

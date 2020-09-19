@@ -33,7 +33,7 @@ public class WebApp extends HtmlGame {
 
                 ToolkitApp.startApp()
                         .then(toolkitManager -> toolkitManager.root().addComponent(
-                                FlareRenderUtil.createContent("flare/Teddy.flr", null, "idle"),
+                                FlareRenderUtil.createContent("flare/LayerEffects.flr", null, "idle"),
                                 AbsoluteLayout.fillParentConstraint()));
             }
         }.schedule(400);
