@@ -6,13 +6,17 @@ import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorBlur;
 import org.nting.flare.java.ActorDrawable;
 import org.nting.flare.java.ActorDropShadow;
+import org.nting.flare.java.ActorInnerShadow;
 import org.nting.flare.java.ActorLayerEffectRenderer;
 
-import playn.core.BlurImageFilter;
 import playn.core.Canvas;
 import playn.core.CanvasImage;
 import playn.core.Color;
+import playn.core.Image;
 import playn.core.PlayN;
+import playn.core.transform.BlurImageDataTransform;
+import playn.core.transform.ColorImageDataTransform;
+import playn.core.transform.ImageTransforms;
 
 public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer implements JavaActorDrawable {
 
@@ -46,7 +50,7 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
             drawPass(canvas);
         }
 
-        // TODO Paint inner shadows
+        drawInnerShadows(canvas, blurX, blurY);
     }
 
     private void drawBlur(Canvas canvas, float blurX, float blurY) {
@@ -54,8 +58,8 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
         Canvas layerCanvas = canvasImage.canvas();
         drawPass(layerCanvas);
 
-        BlurImageFilter blurImageFilter = new BlurImageFilter((int) blurX, (int) blurY);
-        canvas.drawImage(blurImageFilter.apply(canvasImage), 0, 0);
+        Image blurredImage = ImageTransforms.blur(canvasImage, (int) blurX, (int) blurY);
+        canvas.drawImage(blurredImage, 0, 0);
     }
 
     private void drawDropShadows(Canvas canvas, float baseBlurX, float baseBlurY) {
@@ -78,10 +82,40 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
                 layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
 
-                BlurImageFilter blurImageFilter = new BlurImageFilter(
+                Image blurredImage = ImageTransforms.blur(canvasImage,
                         (int) (dropShadow.blurX * BLUR_COEFFICIENT + baseBlurX),
                         (int) (dropShadow.blurY * BLUR_COEFFICIENT + baseBlurY));
-                canvas.drawImage(blurImageFilter.apply(canvasImage), 0, 0);
+                canvas.drawImage(blurredImage, 0, 0);
+            }
+        }
+    }
+
+    private void drawInnerShadows(Canvas canvas, float baseBlurX, float baseBlurY) {
+        if (innerShadows() != null) {
+            for (ActorInnerShadow innerShadow : innerShadows()) {
+                if (!innerShadow.isActive()) {
+                    continue;
+                }
+
+                float[] c = innerShadow.color();
+                int color = Color.argb(round(c[3] * 255.0f), round(c[0] * 255.0f), round(c[1] * 255.0f),
+                        round(c[2] * 255.0f));
+
+                CanvasImage canvasImage = PlayN.graphics().createImage(artboard.width(), artboard.height());
+                Canvas layerCanvas = canvasImage.canvas();
+                layerCanvas.translate(innerShadow.offsetX, innerShadow.offsetY);
+                drawPass(layerCanvas);
+                layerCanvas.translate(-innerShadow.offsetX, -innerShadow.offsetY);
+                layerCanvas.setFillColor(color);
+                layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
+                layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
+                Image blurredImage = ImageTransforms.transformToNew(canvasImage,
+                        new BlurImageDataTransform((int) (innerShadow.blurX * BLUR_COEFFICIENT + baseBlurX),
+                                (int) (innerShadow.blurY * BLUR_COEFFICIENT + baseBlurY))
+                                        .andThen(ColorImageDataTransform.INVERT_ALPHA));
+                layerCanvas.drawImage(blurredImage, 0, 0);
+
+                canvas.drawImage(canvasImage, 0, 0);
             }
         }
     }
