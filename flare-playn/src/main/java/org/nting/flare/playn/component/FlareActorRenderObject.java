@@ -2,8 +2,6 @@ package org.nting.flare.playn.component;
 
 import static java.lang.Float.max;
 import static java.lang.Float.min;
-import static org.nting.toolkit.ui.style.material.MaterialColorPalette.amber_100;
-import static org.nting.toolkit.ui.style.material.MaterialColorPalette.brown_500;
 import static playn.core.PlayN.assets;
 
 import java.util.Objects;
@@ -112,13 +110,15 @@ public class FlareActorRenderObject extends AbstractComponent {
         }
         artboard.advance(elapsedSeconds);
 
+        canvas.save();
         Pair<Float, Float> scaling = calculateScaling();
         float dx = (width.getValue() - scaling.first * artboard.width()) / 2;
         float dy = (height.getValue() - scaling.second * artboard.height()) / 2;
         canvas.transform(scaling.first, 0, 0, scaling.second, dx, dy);
 
-        // paintDebug(canvas);
         artboard.draw(canvas);
+
+        canvas.restore();
     }
 
     @Override
@@ -141,14 +141,6 @@ public class FlareActorRenderObject extends AbstractComponent {
         if (animation != null) {
             time = animation.duration();
         }
-    }
-
-    private void paintDebug(Canvas canvas) {
-        canvas.setFillColor(amber_100);
-        canvas.fillRect(0, 0, artboard.width(), artboard.height());
-        canvas.setStrokeColor(brown_500);
-        canvas.setStrokeWidth(1);
-        canvas.strokeRect(0, 0, artboard.width() - 1, artboard.height() - 1);
     }
 
     private Pair<Float, Float> calculateScaling() {
