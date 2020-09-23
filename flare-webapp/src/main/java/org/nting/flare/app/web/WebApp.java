@@ -1,6 +1,7 @@
 package org.nting.flare.app.web;
 
-import org.nting.flare.app.core.FlareRenderUtil;
+import org.nting.flare.app.core.FlareDemoPagesFactory;
+import org.nting.toolkit.app.Pages;
 import org.nting.toolkit.app.ToolkitApp;
 import org.nting.toolkit.layout.AbsoluteLayout;
 
@@ -33,7 +34,7 @@ public class WebApp extends HtmlGame {
 
                 ToolkitApp.startApp()
                         .then(toolkitManager -> toolkitManager.root().addComponent(
-                                FlareRenderUtil.createContent("flare/LayerEffects.flr", null, "idle"),
+                                new Pages().addPage(new FlareDemoPagesFactory()),
                                 AbsoluteLayout.fillParentConstraint()));
             }
         }.schedule(400);

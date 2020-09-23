@@ -1,7 +1,8 @@
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import org.nting.flare.app.core.FlareRenderUtil;
+import org.nting.flare.app.core.FlareDemoPagesFactory;
+import org.nting.toolkit.app.Pages;
 import org.nting.toolkit.app.ToolkitApp;
 import org.nting.toolkit.layout.AbsoluteLayout;
 
@@ -25,7 +26,7 @@ public class FlareJava {
 
         ToolkitApp.startApp()
                 .then(toolkitManager -> toolkitManager.root().addComponent(
-                        FlareRenderUtil.createContent("flare/LayerEffects.flr", null, "idle"),
+                        new Pages().addPage(new FlareDemoPagesFactory()),
                         AbsoluteLayout.fillParentConstraint()));
     }
 
