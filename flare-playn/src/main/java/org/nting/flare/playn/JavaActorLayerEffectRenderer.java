@@ -84,9 +84,8 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 layerCanvas.translate(dropShadow.offsetX + dx, dropShadow.offsetY + dy);
                 drawPass(layerCanvas);
                 layerCanvas.translate(-dropShadow.offsetX - dx, -dropShadow.offsetY - dy);
-                layerCanvas.setFillColor(color);
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
-                layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
+                layerCanvas.setFillColor(color).fillRect(0, 0, artboard.width(), artboard.height());
 
                 Image blurredImage = ImageTransforms.blur(canvasImage,
                         (int) (dropShadow.blurX * BLUR_COEFFICIENT + baseBlurX),
@@ -115,16 +114,15 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 layerCanvas.translate(innerShadow.offsetX + dx, innerShadow.offsetY + dy);
                 drawPass(layerCanvas);
                 layerCanvas.translate(-innerShadow.offsetX - dx, -innerShadow.offsetY - dy);
-                layerCanvas.setFillColor(color);
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
-                layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
+                layerCanvas.setFillColor(color).fillRect(0, 0, artboard.width(), artboard.height());
                 Image blurredImage = ImageTransforms.transformToNew(canvasImage,
                         new BlurImageDataTransform((int) (innerShadow.blurX * BLUR_COEFFICIENT + baseBlurX),
                                 (int) (innerShadow.blurY * BLUR_COEFFICIENT + baseBlurY))
                                         .andThen(ColorImageDataTransform.INVERT_ALPHA));
-                layerCanvas.drawImage(blurredImage, 0, 0);
+                layerCanvas.drawImage(blurredImage, innerShadow.offsetX, innerShadow.offsetY);
 
-                canvas.drawImage(canvasImage, -dx, -dy);
+                canvas.drawImage(canvasImage, -innerShadow.offsetX - dx, -innerShadow.offsetY - dy);
             }
         }
     }
