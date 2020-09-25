@@ -56,10 +56,13 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
     private void drawBlur(Canvas canvas, float blurX, float blurY) {
         CanvasImage canvasImage = PlayN.graphics().createImage(artboard.width(), artboard.height());
         Canvas layerCanvas = canvasImage.canvas();
+        float dx = artboard.origin().values()[0] * artboard.width();
+        float dy = artboard.origin().values()[1] * artboard.height();
+        layerCanvas.translate(dx, dy);
         drawPass(layerCanvas);
 
         Image blurredImage = ImageTransforms.blur(canvasImage, (int) blurX, (int) blurY);
-        canvas.drawImage(blurredImage, 0, 0);
+        canvas.drawImage(blurredImage, -dx, -dy);
     }
 
     private void drawDropShadows(Canvas canvas, float baseBlurX, float baseBlurY) {
@@ -73,11 +76,14 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 int color = Color.argb(round(c[3] * 255.0f), round(c[0] * 255.0f), round(c[1] * 255.0f),
                         round(c[2] * 255.0f));
 
+                float dx = artboard.origin().values()[0] * artboard.width();
+                float dy = artboard.origin().values()[1] * artboard.height();
+
                 CanvasImage canvasImage = PlayN.graphics().createImage(artboard.width(), artboard.height());
                 Canvas layerCanvas = canvasImage.canvas();
-                layerCanvas.translate(dropShadow.offsetX, dropShadow.offsetY);
+                layerCanvas.translate(dropShadow.offsetX + dx, dropShadow.offsetY + dy);
                 drawPass(layerCanvas);
-                layerCanvas.translate(-dropShadow.offsetX, -dropShadow.offsetY);
+                layerCanvas.translate(-dropShadow.offsetX - dx, -dropShadow.offsetY - dy);
                 layerCanvas.setFillColor(color);
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
                 layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
@@ -85,7 +91,7 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 Image blurredImage = ImageTransforms.blur(canvasImage,
                         (int) (dropShadow.blurX * BLUR_COEFFICIENT + baseBlurX),
                         (int) (dropShadow.blurY * BLUR_COEFFICIENT + baseBlurY));
-                canvas.drawImage(blurredImage, 0, 0);
+                canvas.drawImage(blurredImage, -dx, -dy);
             }
         }
     }
@@ -101,11 +107,14 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                 int color = Color.argb(round(c[3] * 255.0f), round(c[0] * 255.0f), round(c[1] * 255.0f),
                         round(c[2] * 255.0f));
 
+                float dx = artboard.origin().values()[0] * artboard.width();
+                float dy = artboard.origin().values()[1] * artboard.height();
+
                 CanvasImage canvasImage = PlayN.graphics().createImage(artboard.width(), artboard.height());
                 Canvas layerCanvas = canvasImage.canvas();
-                layerCanvas.translate(innerShadow.offsetX, innerShadow.offsetY);
+                layerCanvas.translate(innerShadow.offsetX + dx, innerShadow.offsetY + dy);
                 drawPass(layerCanvas);
-                layerCanvas.translate(-innerShadow.offsetX, -innerShadow.offsetY);
+                layerCanvas.translate(-innerShadow.offsetX - dx, -innerShadow.offsetY - dy);
                 layerCanvas.setFillColor(color);
                 layerCanvas.setCompositeOperation(Canvas.Composite.SRC_IN);
                 layerCanvas.fillRect(0, 0, artboard.width(), artboard.height());
@@ -115,7 +124,7 @@ public class JavaActorLayerEffectRenderer extends ActorLayerEffectRenderer imple
                                         .andThen(ColorImageDataTransform.INVERT_ALPHA));
                 layerCanvas.drawImage(blurredImage, 0, 0);
 
-                canvas.drawImage(canvasImage, 0, 0);
+                canvas.drawImage(canvasImage, -dx, -dy);
             }
         }
     }
