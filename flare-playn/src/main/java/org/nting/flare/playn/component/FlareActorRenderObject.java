@@ -10,6 +10,9 @@ import java.util.function.Consumer;
 import org.nting.data.Property;
 import org.nting.data.util.Pair;
 import org.nting.flare.java.animation.ActorAnimation;
+import org.nting.flare.java.maths.AABB;
+import org.nting.flare.java.maths.Mat2D;
+import org.nting.flare.java.maths.Vec2D;
 import org.nting.flare.playn.JavaActor;
 import org.nting.flare.playn.JavaActorArtboard;
 import org.nting.toolkit.Component;
@@ -69,6 +72,8 @@ public class FlareActorRenderObject extends AbstractComponent {
             animation.apply(time, artboard, 1.0f);
         }
         artboard.advance(0.0f);
+
+        setClip(true);
     }
 
     public void setArtboardName(String artboardName) {
@@ -110,15 +115,38 @@ public class FlareActorRenderObject extends AbstractComponent {
         }
         artboard.advance(elapsedSeconds);
 
-        canvas.save();
-        Pair<Float, Float> scaling = calculateScaling();
-        float dx = (width.getValue() - scaling.first * artboard.width()) / 2;
-        float dy = (height.getValue() - scaling.second * artboard.height()) / 2;
-        canvas.transform(scaling.first, 0, 0, scaling.second, dx, dy);
+        AABB bounds = artboard.artboardAABB();
+        if (bounds != null) {
+            canvas.save();
 
-        artboard.draw(canvas);
+            Pair<Float, Float> scaling = calculateScaling();
+            Mat2D transform = calculateTransform(bounds, 0, 0, scaling.first, scaling.second);
+            canvas.transform(transform.values()[0], transform.values()[1], transform.values()[2], transform.values()[3],
+                    transform.values()[4], transform.values()[5]);
 
-        canvas.restore();
+            artboard.draw(canvas);
+
+            canvas.restore();
+        }
+    }
+
+    private Mat2D calculateTransform(AABB bounds, float alignmentX, float alignmentY, float scaleX, float scaleY) {
+        Dimension size = getSize();
+        float contentWidth = bounds.values()[2] - bounds.values()[0];
+        float contentHeight = bounds.values()[3] - bounds.values()[1];
+        float x = -1 * bounds.values()[0] - contentWidth / 2.0f - (alignmentX * contentWidth / 2.0f);
+        float y = -1 * bounds.values()[1] - contentHeight / 2.0f - (alignmentY * contentHeight / 2.0f);
+
+        Mat2D transform = new Mat2D();
+        transform.values()[4] = size.width / 2.0f + (alignmentX * size.width / 2.0f);
+        transform.values()[5] = size.height / 2.0f + (alignmentY * size.height / 2.0f);
+        Mat2D.scale(transform, transform, new Vec2D(scaleX, scaleY));
+        Mat2D center = new Mat2D();
+        center.values()[4] = x;
+        center.values()[5] = y;
+        Mat2D.multiply(transform, transform, center);
+
+        return transform;
     }
 
     @Override
