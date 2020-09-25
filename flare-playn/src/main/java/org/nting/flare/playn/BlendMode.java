@@ -1,7 +1,6 @@
 package org.nting.flare.playn;
 
 import playn.core.Canvas.Composite;
-import playn.core.PlayN;
 
 public enum BlendMode {
     CLEAR(null), //
@@ -44,8 +43,11 @@ public enum BlendMode {
         if (composite != null) {
             return composite;
         } else {
-            PlayN.log(getClass()).error("Not supported BlendMode: {}", name());
             return Composite.SRC_OVER;
         }
+    }
+
+    public static boolean isBlendModeSupported(int blendModeId) {
+        return BlendMode.values()[blendModeId].composite != null;
     }
 }

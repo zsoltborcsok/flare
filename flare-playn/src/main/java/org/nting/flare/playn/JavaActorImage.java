@@ -1,5 +1,6 @@
 package org.nting.flare.playn;
 
+import static com.google.common.base.MoreObjects.toStringHelper;
 import static pythagoras.f.MathUtil.clamp;
 
 import java.util.List;
@@ -9,8 +10,11 @@ import org.nting.flare.java.ActorImage;
 import org.nting.flare.java.maths.AABB;
 import org.nting.flare.java.maths.Mat2D;
 
+import com.google.common.base.MoreObjects;
+
 import playn.core.Canvas;
 import playn.core.Image;
+import playn.core.PlayN;
 import pythagoras.f.Point;
 import pythagoras.f.Rectangle;
 
@@ -24,6 +28,21 @@ public class JavaActorImage extends ActorImage implements JavaActorDrawable {
     private float[] _vertexBuffer;
     private Image _image;
     private boolean isImageRotated;
+
+    @Override
+    public void blendModeId(int blendModeId) {
+        super.blendModeId(blendModeId);
+
+        if (!BlendMode.isBlendModeSupported(blendModeId)) {
+            MoreObjects.ToStringHelper toStringHelper = toStringHelper(this).add("artboard", artboard.name())
+                    .add("name", name());
+            if (parent() != null) {
+                toStringHelper.add("parent", parent().name());
+            }
+            PlayN.log(getClass()).warn("Not supported BlendMode: {} - {}",
+                    new Object[] { blendMode(), toStringHelper.toString() });
+        }
+    }
 
     public void dispose() {
         _vertexBuffer = null;

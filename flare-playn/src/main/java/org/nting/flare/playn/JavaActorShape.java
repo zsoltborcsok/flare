@@ -1,5 +1,7 @@
 package org.nting.flare.playn;
 
+import static com.google.common.base.MoreObjects.toStringHelper;
+
 import java.util.Optional;
 
 import org.nting.flare.java.ActorArtboard;
@@ -9,7 +11,10 @@ import org.nting.flare.java.ActorShape;
 import org.nting.flare.java.ActorStroke;
 import org.nting.flare.java.maths.Mat2D;
 
+import com.google.common.base.MoreObjects.ToStringHelper;
+
 import playn.core.Canvas;
+import playn.core.PlayN;
 import pythagoras.f.Path;
 
 public class JavaActorShape extends ActorShape implements JavaActorDrawable {
@@ -26,6 +31,15 @@ public class JavaActorShape extends ActorShape implements JavaActorDrawable {
     public void blendModeId(int blendModeId) {
         super.blendModeId(blendModeId);
         markPaintDirty();
+
+        if (!BlendMode.isBlendModeSupported(blendModeId)) {
+            ToStringHelper toStringHelper = toStringHelper(this).add("artboard", artboard.name()).add("name", name());
+            if (parent() != null) {
+                toStringHelper.add("parent", parent().name());
+            }
+            PlayN.log(getClass()).warn("Not supported BlendMode: {} - {}",
+                    new Object[] { blendMode(), toStringHelper.toString() });
+        }
     }
 
     @Override
