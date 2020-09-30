@@ -62,6 +62,10 @@ public class ActorArtboard {
         return _clipContents;
     }
 
+    public float[] color() {
+        return _color;
+    }
+
     public float modulateOpacity() {
         return _modulateOpacity;
     }
