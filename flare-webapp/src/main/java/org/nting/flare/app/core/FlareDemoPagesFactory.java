@@ -11,6 +11,8 @@ public class FlareDemoPagesFactory extends ListPageFactory {
         registerAnimationPage("Teddy", "flare/Teddy.flr", null, "idle");
         registerAnimationPage("Effects (Drop Shadow, Blur, Inner Shadow)", "flare/LayerEffects.flr", null, "idle");
         registerAnimationPage("Basketball", "flare/basketball_blur_effects.flr", null, "Untitled");
+        registerAnimationPage("Penguin", "flare/Penguin.flr", null, "walk");
+        registerAnimationPage("TrimPaths", "flare/trimpaths/Liquid_Download.flr", null, "Demo");
     }
 
     private void registerAnimationPage(String pageName, String filePath, String artboardName, String animationName) {

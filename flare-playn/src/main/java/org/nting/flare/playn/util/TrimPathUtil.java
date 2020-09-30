@@ -13,7 +13,8 @@ public class TrimPathUtil {
         for (PathContour contour : contours) {
             nextOffset += offset + contour.length;
             if (start < nextOffset) {
-                Path extracted = contour.extractPath(start - offset, stop - offset);
+                Path extracted = contour.extractPath((start - offset) / contour.length,
+                        (stop - offset) / contour.length);
                 if (extracted != null && !extracted.isEmpty()) {
                     to.append(extracted, false);
                 }
@@ -29,7 +30,7 @@ public class TrimPathUtil {
     private static void _appendPathSegmentSync(PathContour contour, Path to, float offset, float start, float stop) {
         float nextOffset = offset + contour.length;
         if (start < nextOffset) {
-            Path extracted = contour.extractPath(start - offset, stop - offset);
+            Path extracted = contour.extractPath((start - offset) / contour.length, (stop - offset) / contour.length);
             if (extracted != null) {
                 to.append(extracted, false);
             }
