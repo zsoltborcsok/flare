@@ -4,7 +4,6 @@ import static java.lang.Float.max;
 import static java.lang.Float.min;
 import static playn.core.PlayN.assets;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.nting.data.Property;
@@ -27,8 +26,8 @@ import pythagoras.f.Dimension;
 
 public class FlareActorRenderObject extends AbstractComponent {
 
-    public static Component lazyFlareActorRenderObject(String filePath, String artboardName, String animationName,
-            Consumer<FlareActorRenderObject> loadedCallback) {
+    public static AbstractComponent lazyFlareActorRenderObject(String filePath, String artboardName,
+            String animationName, Consumer<FlareActorRenderObject> loadedCallback) {
         Panel panel = new Panel();
 
         assets().getBytes(filePath, new Callback<byte[]>() {
@@ -76,22 +75,39 @@ public class FlareActorRenderObject extends AbstractComponent {
         setClip(true);
     }
 
-    public void setArtboardName(String artboardName) {
-        if (!Objects.equals(artboardName, artboard.name())) {
+    public void setArtboard(String artboardName) {
+        setArtboard((JavaActorArtboard) javaActor.getArtboard(artboardName));
+    }
+
+    public void setArtboard(JavaActorArtboard artboard) {
+        if (artboard == this.artboard) {
             return;
         }
 
-        artboard = (JavaActorArtboard) javaActor.getArtboard(artboardName);
-        artboard.initializeGraphics();
-        setAnimationName(animation.name());
-        artboard.advance(0.0f);
+        this.artboard = artboard;
+        this.artboard.initializeGraphics();
+        setAnimation(animation.name());
+        this.artboard.advance(0.0f);
     }
 
-    public void setAnimationName(String animationName) {
-        ActorAnimation animation = artboard.getAnimation(animationName);
-        if (animation != null) {
-            animation.apply(time = 0.0f, artboard, 1.0f);
+    public void setAnimation(String animationName) {
+        setAnimation(artboard.getAnimation(animationName));
+
+    }
+
+    public void setAnimation(ActorAnimation animation) {
+        if (this.animation == animation) {
+            return;
         }
+
+        this.animation = animation;
+        if (this.animation != null) {
+            this.animation.apply(time = 0.0f, artboard, 1.0f);
+        }
+    }
+
+    public JavaActorArtboard getArtboard() {
+        return artboard;
     }
 
     @Override
