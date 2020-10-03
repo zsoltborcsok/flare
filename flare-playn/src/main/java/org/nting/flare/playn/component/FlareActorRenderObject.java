@@ -56,7 +56,7 @@ public class FlareActorRenderObject extends AbstractComponent {
     }
 
     public final Property<BoxFit> fit = createProperty("fit", BoxFit.CONTAIN);
-    public final Property<Boolean> paused = createProperty("paused", false);
+    public final Property<Boolean> paused = createProperty("paused", true);
 
     private final JavaActor javaActor;
     private JavaActorArtboard artboard;
