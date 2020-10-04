@@ -1,8 +1,8 @@
 package org.nting.flare.playn;
 
 import static java.lang.Math.abs;
+import static org.nting.flare.java.maths.Floats.clamp;
 import static org.nting.flare.playn.util.TrimPathUtil.trimPath;
-import static pythagoras.f.MathUtil.clamp;
 
 import org.nting.flare.java.ActorStroke;
 import org.nting.flare.java.StrokeCap;

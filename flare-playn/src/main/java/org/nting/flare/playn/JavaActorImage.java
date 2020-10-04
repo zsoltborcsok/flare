@@ -1,7 +1,7 @@
 package org.nting.flare.playn;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
-import static pythagoras.f.MathUtil.clamp;
+import static org.nting.flare.java.maths.Floats.clamp;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package org.nting.flare.playn;
 
 import static java.lang.Math.round;
-import static pythagoras.f.MathUtil.clamp;
+import static org.nting.flare.java.maths.Floats.clamp;
 
 import org.nting.flare.java.ActorArtboard;
 import org.nting.flare.java.ActorComponent;
